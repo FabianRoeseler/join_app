@@ -6,6 +6,14 @@ body {
     font-family: "Inter";
     margin: 0;
 }
+
+/* general styling */
+
+.d-none {
+    display: none !important;
+}
+
+/* defined color codes */
 :root {
     --orange: #FF7A00;
     --lilac: #9327FF;
@@ -27,41 +35,52 @@ body {
     --darkLightBlue: #29ABE2;
     --lightBlack: #091931;
 }
-.button-filled {
+
+/* defined button styles */
+
+.btn-filled {
     background-color: var(--darkGray);
     color: white;
     font-size: 16px;
+    line-height: 19.2px;
+    border: none;
     border-radius: 8px;
     padding: 15px 24px 15px 24px;
+    cursor: pointer;
 }
-.button-filled:hover {
+.btn-filled:hover {
     background-color: var(--darkLightBlue);
-}
-.button-filled-pushed {
-    background-color: var(--darkBlack);
-    color: white;
-    font-size: 16px;
-    border-radius: 8px;
-    padding: 15px 24px 15px 24px;
-}
-.button-outline {
-    background-color: white;
-    color: var(--darkGray);
-    border: solid 1px var(--darkGray);
-    font-size: 16px;
-    border-radius: 8px;
-    padding: 15px 24px 15px 24px;
-}
-.button-outline:hover {
-    color: var(--darkLightBlue);
-    border: solid 1px var(--darkLightBlue);
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-.button-outline-pushed {
+.btn-filled-clicked {
+    background-color: var(--lightBlack);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: white;
+    font-size: 16px;
+    line-height: 19.2px;
+    border-radius: 8px;
+    padding: 15px 24px 15px 24px;
+}
+.btn-outline {
+    background-color: white;
+    color: var(--darkGray);
+    border: solid 2px var(--darkGray);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 15px 24px 15px 24px;
+}
+.btn-outline:hover {
+    color: var(--darkLightBlue);
+    border: solid 2px var(--darkLightBlue);
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.btn-outline-clicked {
     background-color: white;
     color: var(--darkBlack);
-    border: solid 1px var(--darkBlack);
+    border: solid 2px var(--darkBlack);
     font-size: 16px;
+    font-weight: 600;
     border-radius: 8px;
     padding: 15px 24px 15px 24px;
 }

@@ -1,8 +1,13 @@
 <header>
     <span>Kanban Project Management Tool</span>
     <div class="header-icons">
-        <img src="../assets/img/Property 1=Default.svg" class="help-icon" alt="help">
-        <div id="profile-initials-header" alt="profile initials">SM</div>
+        <a href="help.html"><img src="../assets/img/Property 1=Default.svg" class="help-icon" alt="help"></a>
+        <div onclick="openDropdown()" id="profile-initials-header" alt="profile initials">SM</div>
+        <div id="dropdown" class="d-none">
+                <a href="legal_notice.html">Legal Notice</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="index.html">Log out</a>
+        </div>
     </div>
 </header>
 <nav>

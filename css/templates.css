@@ -15,6 +15,7 @@ header {
 }
 .header-icons {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 .help-icon {
@@ -28,6 +29,7 @@ header {
     fill:#2A3647;
 }
 #profile-initials-header {
+    position: relative;
     font-weight: 700;
     background-color: white;
     color: #29ABE2;
@@ -40,8 +42,36 @@ header {
     align-items: center;
     cursor: pointer;
 }
-#profile-initials:hover {
+#profile-initials-header:hover {
     background-color: #0c2e621f;
+}
+#dropdown {
+    position: absolute;
+    top: 103px;
+    z-index: 1;
+    width: 140px;
+    height: 150px;
+    right: 20px;
+    border-radius: 20px 0 20px 20px;
+    padding: 10px;
+    background-color: var(--darkGray);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+#dropdown a {
+    text-decoration: none;
+    color: #CDCDCD;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.2px;
+    text-align: left;
+    padding: 8px 16px 8px 16px;
+}
+#dropdown a:hover {
+    background-color: #2A3D59;
 }
 
 /* sidebar styling */

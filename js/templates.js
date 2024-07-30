@@ -11,3 +11,7 @@ async function includeHTML() {
         }
     }
 }
+
+function openDropdown() {
+    document.getElementById('dropdown').classList.toggle('d-none');
+}
