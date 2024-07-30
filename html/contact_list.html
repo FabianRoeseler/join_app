@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact List</title>
-    <link rel="stylesheet" href="stylecontact.css">
-    <script src="contact.js" defer></script>
+    <link rel="stylesheet" href="../css/styleContactSalmai.css">
+    <script src="../js/contactSalmai.js" defer></script>
+    <link rel="stylesheet" href="../css/templates.css">
+    <script src="../js/templates.js"></script>
 </head>
-<body>
+
+<body onload="includeHTML()">
+    <div w3-include-html="./templates/desktop_template.html"></div>
     <div class="contactDiv">
         <button class="add-contact-btn">Add new contact <span>+</span></button>
         <div id="contact-list">
@@ -15,4 +20,5 @@
         </div>
     </div>
 </body>
+
 </html>
