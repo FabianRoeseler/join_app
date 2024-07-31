@@ -14,11 +14,54 @@
 
 <body onload="includeHTML()">
     <div w3-include-html="./templates/desktop_template.html"></div>
-    <div class="contactDiv">
-        <button class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
-        <div id="contact-list">
-            <!-- Dynamische Kontakte werden hier generiert -->
+    <div class="main-cont">
+        <div class="contactDiv">
+            <div class="btn-section">
+                <div class="btn-cont">
+                    <button class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
+                </div>
+            </div>
+            <div id="contact-list">
+                <!-- Dynamische Kontakte werden hier generiert -->
+            </div>
         </div>
+        <div class="contact-details">
+            <div class="contact-details-head">
+                <h1>Contacts</h1>
+                <span>Better with a team</span>
+            </div>
+            <div id="render-contact-details">
+                <div class="render-details-head">
+                    <div class="profile-initials">AM</div>
+                        <div>
+                            <div class="profile-name">Anton Mayer</div>
+                            <div class="edit-delete">
+                                <div class="edit">
+                                    <img src="../assets/img/edit.svg" alt="edit">
+                                    <span>Edit</span>
+                                </div>
+                                <div class="delete">
+                                    <img src="../assets/img/delete.svg" alt="delete">
+                                    <span>Delete</span>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="render-details-info">
+                    <div class="contact-info-headline">Contact Information</div>
+                    <div>
+                        <div class="single-info">
+                            <span ><b>Email</b></span>
+                            <span class="blue">anton@gmail.com</span>
+                        </div>
+                        <div class="single-info">
+                            <span><b>Phone</b></span>
+                            <span>+ 49 1111 111 11 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
     </div>
 </body>
 
