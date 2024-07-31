@@ -50,6 +50,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .initials {
@@ -131,27 +132,20 @@ hr {
     justify-content: center;
     align-items: center;
 }
-.edit-delete {
+.edit-delete-cont {
     display: flex;
     gap: 20px;
 }
-.edit {
+.edit-delete-child {
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
 }
-.edit:hover {
+.edit-delete-child:hover > svg *,
+.edit-delete-child:hover {
     color: var(--darkLightBlue);
-}
-.delete {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-.delete:hover {
-    color: var(--darkLightBlue);
+    fill: var(--darkLightBlue);
 }
 .contact-info-headline  {
     font-size: 20px;
