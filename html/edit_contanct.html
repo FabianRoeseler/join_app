@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add contact</title>
+    <link rel="stylesheet" href="../css/edit_contact.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
+    <script src="../js/edit_contact.js"></script>
+</head>
+<body>
+    <section class="contact-popup" id="contactPopUp">
+        <h1>Contact</h1>
+    </section>
+
+    <div id="editContact" class="edit-contact">
+        <div class="edit-contact-box edit-contact-box-animation-slidein">
+            <div class="edit-contact-top-left-section">
+                <img class="edit-contact-logo" src="../assets/img/join_logo_white.png" alt="">
+                <h1 class="edit-contact-headline">Edit contact</h1>
+                <div class="edit-contact-separator"></div>
+            </div>
+            <div class="edit-contact-bottom-right-section">
+                <!-- <img class="add-contact-avatar" src="../assets/img/avatar_add_contact.jpg" alt="Avatar for Add contact"> -->
+                 <span class="edit-contact-avatar"></span>
+                <div class="edit-contact-bottom-rightmost-section">
+                    <div onclick="" class="edit-contact-close"></div>
+                    <form class="edit-contact-form">
+                        <div class="input-edit-container">
+                            <input class="edit-imput edit-imput-name" id="inputName" type="text" placeholder="Name">
+                            <!-- <img src="../assets/img/person.jpg" alt=""> -->
+                        </div>
+                        <div class="input-edit-container">
+                            <input class="edit-imput edit-imput-email" id="inputEmail" type="email" placeholder="Email">
+                            <!-- <img src="../assets/img/mail.jpg" alt=""> -->
+                        </div>
+                        <div class="input-edit-container">
+                            <input class="edit-imput edit-imput-phone" id="inputPhone" type="number" placeholder="Phone">
+                            <!-- <img src="../assets/img/call.jpg" alt=""> -->
+                        </div>
+                        <div class="button-edit-container">
+                            <button class="btn-cancel">
+                                Delete
+                            </button>
+                            <button class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+                        </div> 
+                    </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
