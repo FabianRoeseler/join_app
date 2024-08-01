@@ -25,7 +25,7 @@ img {
     padding: 0 15px;
 }
 
-.add-edit-contact {
+.add-contact {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,15 +39,20 @@ img {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
+    display: none;
 }
-
 
 .add-contact-box {
     display: flex;
-    max-width: 1212px;
-    z-index: 100;
-    height: 594px;
-    /* width: 1212px; */
+    min-width: fit-content;
+    height: 592px;
+    position: fixed;
+    top: 50%;
+    right: -1200px; 
+    transform: translate(50%, -50%);
+    transition: right 0.5s ease; 
+    z-index: 500;
+
 }
 
 .add-contact-top-left-section {
@@ -131,10 +136,9 @@ h1 {
     object-fit: contain;
     background-image: url(../assets/img/close.jpg);
     background-repeat: no-repeat;
-    /* background-size: contain; */
     background-position: center;
+    cursor: pointer;
 }
-
 
 .add-contact-close:hover {
     content: url('../assets/img/icon_close_hover.png');
@@ -146,7 +150,7 @@ h1 {
     gap: 32px;
 }
 
-.add-edit-imput {
+.add-imput {
     background-repeat: no-repeat;
     background-position-x: calc(422px - 48px);
     background-position-y: center;
@@ -160,60 +164,47 @@ h1 {
     outline: none;
 }
 
-.add-edit-imput-name {
+.add-imput-name {
     background-image: url(../assets/img/person.jpg);
     object-fit: contain;
 }
-.add-edit-imput-email {
+.add-imput-email {
     background-image: url(../assets/img/mail.jpg);
     object-fit: contain;
 }
-.add-edit-imput-phone {
+.add-imput-phone {
     background-image: url(../assets/img/call.jpg);
     object-fit: contain;
 }
 
-.add-contact-box-animation-slidein {
-    animation-duration: 0.5s;
-    animation-name: add-contact-box-slidein;
-}
-
-@keyframes add-contact-box-slidein {
-    from {
-        margin-left: calc(100vw + 1212px + 16px);
-    }
-
-    to {
-        margin-left: 0;
-    }
-}
-
-.add-contact-box-animation-slideout {
-    animation-duration: 0.5s;
-    animation-name: add-contact-box-slideout;
-}
-
-@keyframes add-contact-box-slideout {
-    from {
-        margin-left: 0;
-    }
-
-    to {
-        margin-left: calc(100vw + 1212px + 16px);
-    }
-}
-
-.button-add-edit-container {
+.button-add-container {
     display: flex;
     align-items: center;
     gap: 24px;
 }
 
-.add-edit-imput:focus {
+.add-imput:focus {
     border: 2px solid rgb(41, 170, 227);
     
 }
 
-.btn-close {
+.add-imput-phone::-webkit-outer-spin-button,
+.add-imput-phone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+.add-imput-phone[type=number] {
+    -moz-appearance: textfield;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 400;
 }

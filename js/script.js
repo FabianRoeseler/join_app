@@ -4,9 +4,9 @@ const BASE_URL =
 let loadedUserArray = {};
 let firstNameInput = document.getElementById("firstName");
 let lastNameInput = document.getElementById("lastName");
-let userNameInput = document.getElementById("userName");
-let emailInput = document.getElementById("email");
-let phoneInput = document.getElementById("phonenumber");
+let userNameInput = document.getElementById("inputName"); // userName
+let emailInput = document.getElementById("inputEmail"); // email
+let phoneInput = document.getElementById("inputPhone"); // phonenumber
 
 // Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
 async function loadData() {

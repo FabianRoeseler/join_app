@@ -39,15 +39,24 @@ img {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
+    display: none;
 }
 
 
 .edit-contact-box {
-    display: flex;
+    /* display: flex;
     max-width: 1212px;
     z-index: 100;
-    height: 594px;
-    /* width: 1212px; */
+    height: 594px; */
+    display: flex;
+    min-width: fit-content;
+    height: 592px;
+    position: fixed;
+    top: 50%;
+    right: -1200px; 
+    transform: translate(50%, -50%);
+    transition: right 0.5s ease; 
+    z-index: 500;
 }
 
 .edit-contact-top-left-section {
@@ -130,8 +139,8 @@ h1 {
     object-fit: contain;
     background-image: url(../assets/img/close.jpg);
     background-repeat: no-repeat;
-    /* background-size: contain; */
     background-position: center;
+    cursor: pointer;
 }
 
 .edit-contact-close:hover {
@@ -171,36 +180,6 @@ h1 {
     object-fit: contain;
 }
 
-.edit-contact-box-animation-slidein {
-    animation-duration: 0.5s;
-    animation-name: add-contact-box-slidein;
-}
-
-@keyframes edit-contact-box-slidein {
-    from {
-        margin-left: calc(100vw + 1212px + 16px);
-    }
-
-    to {
-        margin-left: 0;
-    }
-}
-
-.edit-contact-box-animation-slideout {
-    animation-duration: 0.5s;
-    animation-name: edit-contact-box-slideout;
-}
-
-@keyframes edit-contact-box-slideout {
-    from {
-        margin-left: 0;
-    }
-
-    to {
-        margin-left: calc(100vw + 1212px + 16px);
-    }
-}
-
 .button-edit-container {
     display: flex;
     align-items: center;
@@ -210,4 +189,25 @@ h1 {
 .edit-imput:focus {
     border: 2px solid rgb(41, 170, 227);
     
+}
+
+.edit-imput-phone::-webkit-outer-spin-button,
+.edit-imput-phone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.edit-imput-phone[type=number] {
+    -moz-appearance: textfield;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 400;
 }
