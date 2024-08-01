@@ -135,6 +135,11 @@ h1 {
     background-position: center;
 }
 
+
+.add-contact-close:hover {
+    content: url('../assets/img/icon_close_hover.png');
+}
+
 .add-contact-form {
     display: flex;
     flex-direction: column;
@@ -209,3 +214,6 @@ h1 {
     
 }
 
+.btn-close {
+
+}

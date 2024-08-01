@@ -134,6 +134,10 @@ h1 {
     background-position: center;
 }
 
+.edit-contact-close:hover {
+    content: url('../assets/img/icon_close_hover.png');
+}
+
 .edit-contact-form {
     display: flex;
     flex-direction: column;
