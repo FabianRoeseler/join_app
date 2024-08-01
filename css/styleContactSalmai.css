@@ -76,9 +76,9 @@
     color: #000;
 }
 
-.contact-info .email a {
+.contact-info .email {
     font-size: 0.9em;
-    color: #555;
+    color: #007CEE;
     text-decoration: none;
 }
 
@@ -157,6 +157,10 @@ hr {
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+}
+.single-info a {
+    text-decoration: none;
+    color: #007CEE;
 }
 .blue {
     color: #007CEE;

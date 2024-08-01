@@ -58,14 +58,17 @@ document.addEventListener('DOMContentLoaded', renderContacts);
 
 // Funktion um die Kontakt-Detail-Ansicht zu rendern
 
-function renderContactDetails() {
+
+function renderContactDetails(i) {
     let contactDetail = document.getElementById('render-contact-details');
+
+    let users = loadedUserArray;
 
     contactDetail.innerHTML = /*html*/`
         <div class="render-details-head">
-            <div class="profile-initials">${`initials-dummy`}</div>
+            <div class="profile-initials">XY</div>
                 <div>
-                    <div class="profile-name">${`name-dummy`}</div>
+                    <div class="profile-name">${users[`user${i}`].username}</div>
                     <div class="edit-delete">
                         <div class="edit">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,12 +99,12 @@ function renderContactDetails() {
             <div class="contact-info-headline">Contact Information</div>
             <div>
                 <div class="single-info">
-                    <span ><b>Email</b></span>
-                    <span class="blue">${`mail-dummy`}</span>
+                    <span><b>Email</b></span>
+                    <span><a href="mailto:${users[`user${i}`].email}">${users[`user${i}`].email}</a></span>
                 </div>
                 <div class="single-info">
                     <span><b>Phone</b></span>
-                    <span>${`phone-dummy`}</span>
+                    <span>${users[`user${i}`].contactNumber}</span>
                 </div>
             </div>
         </div>

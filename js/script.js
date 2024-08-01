@@ -29,15 +29,16 @@ async function displayContacts(users) {
     // Iterates through the DB Data delivered
     let userKey = userKeys[i]; // Iterates data
     let user = users[userKey]; // variable to use iterates Data
-    container.innerHTML += `
-      <div class="contact">
+
+    container.innerHTML += /*html*/`
+      <div onclick="renderContactDetails(${i})" class="contact">
         <div class="initials" style="background-color: ${generateRandomColor()};">${getInitials(user.username)}</div>
           <div class="contact-info">
             <p class="name"><span>${user.username}</span></p>
-            <p class="email"><a href="mailto:${user.email}">${user.email}</a></p>
+            <p class="email">${user.email}</p>
           </div>
         </div>
-`;
+    `;
   }
 }
 
