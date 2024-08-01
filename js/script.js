@@ -21,7 +21,7 @@ async function loadData() {
 
 // Nimmt die Datenbankdaten und postet alle Kontakte auf die Seite
 async function displayContacts(users) {
-  let container = document.getElementById("card"); // Chose the DIV Window to render the Contacts in
+  let container = document.getElementById("contact-list"); // Chose the DIV Window to render the Contacts in
   container.innerHTML = ""; // Clearing Div Window
   let userKeys = Object.keys(users); // Changes DB Data to an Object
   console.log("User Keys:", userKeys); // remove later
@@ -30,14 +30,14 @@ async function displayContacts(users) {
     let userKey = userKeys[i]; // Iterates data
     let user = users[userKey]; // variable to use iterates Data
     container.innerHTML += `
-    <div>
-    <span><b>Firstname:</b> ${user.firstName}</span><br>
-    <span><b>Lastname:</b> ${user.lastName}</span><br>
-    <span><b>Username:</b> ${user.username}</span><br>
-    <span><b>E-Mail:</b> ${user.email}</span><br>
-    <span><b>Phone:</b> ${user.contactNumber}</span><br>
-    <button onclick="deleteContact(${i})">Delete</button>
-    </div><br>`;
+      <div class="contact">
+        <div class="initials" style="background-color: ${generateRandomColor()};">${getInitials(user.username)}</div>
+          <div class="contact-info">
+            <p class="name"><span>${user.username}</span></p>
+            <p class="email"><a href="mailto:${user.email}">${user.email}</a></p>
+          </div>
+        </div>
+`;
   }
 }
 

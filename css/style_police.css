@@ -9,6 +9,10 @@ body {
 
 .content {
     padding: 20px;
+    position: fixed !important;
+    top: 102px;
+    left: 232px;
+
 }
 
 .header-container {
