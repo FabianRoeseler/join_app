@@ -21,7 +21,7 @@ async function loadData() {
 
 // Nimmt die Datenbankdaten und postet alle Kontakte auf die Seite
 async function displayContacts(users) {
-  let container = document.getElementById("card"); // Chose the DIV Window to render the Contacts in
+  let container = document.getElementById("contact-list"); // Chose the DIV Window to render the Contacts in
   container.innerHTML = ""; // Clearing Div Window
   let userKeys = Object.keys(users); // Changes DB Data to an Object
   console.log("User Keys:", userKeys); // remove later
