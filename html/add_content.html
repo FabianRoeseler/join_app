@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="../css/add_contact.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
-    <script src="../js/add_contact.js"></script>
+    <script src="../js/add_edit_contact.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <section class="contact-popup" id="contactPopUp">
-        <h1>Contact</h1>
+        <button onclick="openAddContact()">Contact</button>
     </section>
 
-    <div id="addContact" class="add-edit-contact">
-        <div class="add-contact-box add-contact-box-animation-slidein">
+    <div id="overlay" class="add-contact">
+        <div id="addContact" class="add-contact-box add-contact-box-animation-slidein">
             <div class="add-contact-top-left-section">
                 <img class="add-contact-logo" src="../assets/img/join_logo_white.png" alt="">
                 <h1 class="add-contact-headline">Add contact</h1>
@@ -23,29 +24,25 @@
                 <div class="add-contact-separator"></div>
             </div>
             <div class="add-contact-bottom-right-section">
-                <!-- <img class="add-contact-avatar" src="../assets/img/avatar_add_contact.jpg" alt="Avatar for Add contact"> -->
                  <span class="add-contact-avatar"></span>
                 <div class="add-contact-bottom-rightmost-section">
-                    <div onclick="" class="add-contact-close add-contact-close-imge"></div>
-                    <form class="add-contact-form">
-                        <div class="input-add-edit-container">
-                            <input class="add-edit-imput add-edit-imput-name" id="inputName" type="text" placeholder="Name">
-                            <!-- <img src="../assets/img/person.jpg" alt=""> -->
+                    <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="add-contact-close add-contact-close-imge"></div>
+                    <form onsubmit="addContact()" class="add-contact-form">
+                        <div class="input-add-container">
+                            <input class="add-imput add-imput-name" id="inputName" type="text" placeholder="Name">
                         </div>
-                        <div class="input-add-edit-container">
-                            <input class="add-edit-imput add-edit-imput-email" id="inputEmail" type="email" placeholder="Email">
-                            <!-- <img src="../assets/img/mail.jpg" alt=""> -->
+                        <div class="input-add-container">
+                            <input class="add-imput add-imput-email" id="inputEmail" type="email" placeholder="Email">
                         </div>
-                        <div class="input-add-edit-container">
-                            <input class="add-edit-imput add-edit-imput-phone" id="inputPhone" type="number" placeholder="Phone">
-                            <!-- <img src="../assets/img/call.jpg" alt=""> -->
+                        <div class="input-add-container">
+                            <input class="add-imput add-imput-phone" id="inputPhone" type="number" placeholder="Phone">
                         </div>
-                        <div class="button-add-edit-container">
-                            <button class="btn-cancel">
+                        <div class="button-add-container">
+                            <button type="reset" onclick="closeContactPopup()" class="btn-cancel">
                                 Cencel
                                 <img class="btn-cancel-icon" src="../assets/img/iconoir_cancel.svg">
                             </button>
-                            <button class="btn-create btn-create:hover ::root">Create contact<img src="../assets/img/check.svg"></button>
+                            <button type="submit" class="btn-create btn-create:hover ::root">Create contact<img src="../assets/img/check.svg"></button>
                         </div> 
                     </form>
             </div>
@@ -54,3 +51,8 @@
     
 </body>
 </html>
+
+
+
+
+
