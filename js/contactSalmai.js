@@ -57,20 +57,22 @@ function generateRandomColor() {
 document.addEventListener('DOMContentLoaded', renderContacts);
 
 // Funktion um die Kontakt-Detail-Ansicht zu rendern
-
+/**
+ * function to render one contact of the contact list into the big contact detail 
+ * @param {*} i 
+ */
 
 function renderContactDetails(i) {
     let contactDetail = document.getElementById('render-contact-details');
-
     let users = loadedUserArray;
 
     contactDetail.innerHTML = /*html*/`
         <div class="render-details-head">
-            <div class="profile-initials">XY</div>
+            <div id="initials-detail" class="profile-initials">${getInitials(users[`user${i}`].username)}</div>
                 <div>
                     <div class="profile-name">${users[`user${i}`].username}</div>
-                    <div class="edit-delete">
-                        <div class="edit">
+                    <div class="edit-delete-cont">
+                        <div class="edit-delete-child">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_207322_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -81,7 +83,7 @@ function renderContactDetails(i) {
                             </svg>
                             <span>Edit</span>
                         </div>
-                        <div class="delete">
+                        <div class="edit-delete-child">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_207322_4146" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -109,4 +111,6 @@ function renderContactDetails(i) {
             </div>
         </div>
     `;
+    contactDetail.style = `width: 100%; left: 0;`;
+    document.getElementById('initials-detail').style.background = `${colors[i-1]}`;
 }
