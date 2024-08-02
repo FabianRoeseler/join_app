@@ -1,14 +1,8 @@
 let colors = [];
 
-const BASE_URL =
-  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let loadedUserArray = {};
-let firstNameInput = document.getElementById("firstName");
-let lastNameInput = document.getElementById("lastName");
-let userNameInput = document.getElementById("addInputName"); // userName
-let emailInput = document.getElementById("addInputEmail"); // email
-let phoneInput = document.getElementById("addInputPhone"); // phonenumber
 
 // Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
 async function loadData() {
@@ -27,26 +21,19 @@ async function displayContacts(users) {
   container.innerHTML = ""; // Clearing Div Window
 
   let sortedUsers = Object.values(users).sort((a, b) => a.username.localeCompare(b.username));
-  // console.log("User Keys:", userKeys); // remove later
 
   let lastInitial = ''; // Variable zur Speicherung des letzten Buchstabens für Gruppierung
 
   for (let i = 0; i < sortedUsers.length; i++) {
-    // Iterates through the DB Data delivered
-     // Iterates data
-     let user = sortedUsers[i]; // variable to use iterates Data
-    /* let user = users[`user${i}`]; */
+    let user = sortedUsers[i];
 
-    // generates a randow colorcode and pushes it to "colors" array
     let color = generateRandomColor();
     colors.push(color);
 
-    // generates extra headline with first Letter of contact name
-    let initial = user.username[0].toUpperCase(); // Holt den ersten Buchstaben des Namens und macht ihn groß
+    let initial = user.username[0].toUpperCase(); 
     if (initial !== lastInitial) {
-      // Wenn das Initial anders ist als das letzte, füge eine neue Buchstabenüberschrift hinzu
       container.innerHTML += `<h3>${initial}</h3><hr>`;
-      lastInitial = initial; // Aktualisiert das letzte Initial
+      lastInitial = initial;
     }
 
     container.innerHTML += /*html*/`
@@ -62,7 +49,6 @@ async function displayContacts(users) {
 }
 
 function alphabet() {
-  // Kontakte nach Namen sortieren
   loadedUserArray = Object.values(loadedUserArray);
   loadedUserArray.sort((a, b) => a.username.localeCompare(b.username));
   let container = document.getElementById("contact-list");
@@ -74,33 +60,42 @@ function alphabet() {
         <p class="email">${user.email}</p>
       </div>
     </div>
-`;
+  `;
 }
 
+async function addContactS(
+  path = "users"
+) {
+  let userNameInput = document.getElementById("addInputNameA");
+  let emailInput = document.getElementById("addInputEmailB");
+  let phoneInput = document.getElementById("addInputPhoneC");
 
+  if (!userNameInput || !emailInput || !phoneInput) {
+    console.error("One or more input elements are missing.");
+    return;
+  }
 
-async function addContact(
-  path = "users",
-  data = {
+  let data = {
     firstName: `firstName`,
     lastName: `lastName`,
-    username: `${userNameInput.value}`,
-    email: `${emailInput.value}`,
-    contactNumber: `${phoneInput.value}`,
+    username: userNameInput.value,
+    email: emailInput.value,
+    contactNumber: phoneInput.value,
     avatarUrl: "asbachuralt.com",
     assignedTasks: { taskName: "Adding Data" },
-  }
-) {
+  };
+
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
+
   cleanInputFields();
   window.location.reload();
-  return (responseToJson = await response.json());
+  return await response.json();
 }
 
 async function deleteContact(i) {
@@ -111,13 +106,15 @@ async function deleteContact(i) {
     }
   );
   window.location.reload();
-  return (responseToJson = await response.json());
+  return await response.json();
 }
 
 function cleanInputFields() {
-  // firstNameInput.value = "";
-  // lastNameInput.value = "";
-  userNameInput.value = "";
-  emailInput.value = "";
-  phoneInput.value = "";
+  let userNameInput = document.getElementById("addInputNameA");
+  let emailInput = document.getElementById("addInputEmailB");
+  let phoneInput = document.getElementById("addInputPhoneC");
+
+  if (userNameInput) userNameInput.value = "";
+  if (emailInput) emailInput.value = "";
+  if (phoneInput) phoneInput.value = "";
 }
