@@ -1,12 +1,14 @@
+let colors = [];
+
 const BASE_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let loadedUserArray = {};
 let firstNameInput = document.getElementById("firstName");
 let lastNameInput = document.getElementById("lastName");
-let userNameInput = document.getElementById("userName");
-let emailInput = document.getElementById("email");
-let phoneInput = document.getElementById("phonenumber");
+let userNameInput = document.getElementById("inputName"); // userName
+let emailInput = document.getElementById("inputEmail"); // email
+let phoneInput = document.getElementById("inputPhone"); // phonenumber
 
 // Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
 async function loadData() {
@@ -23,23 +25,59 @@ async function loadData() {
 async function displayContacts(users) {
   let container = document.getElementById("contact-list"); // Chose the DIV Window to render the Contacts in
   container.innerHTML = ""; // Clearing Div Window
-  let userKeys = Object.keys(users); // Changes DB Data to an Object
-  console.log("User Keys:", userKeys); // remove later
-  for (let i = 0; i < userKeys.length; i++) {
+
+  let sortedUsers = Object.values(users).sort((a, b) => a.username.localeCompare(b.username));
+  // console.log("User Keys:", userKeys); // remove later
+
+  let lastInitial = ''; // Variable zur Speicherung des letzten Buchstabens für Gruppierung
+
+  for (let i = 0; i < sortedUsers.length; i++) {
     // Iterates through the DB Data delivered
-    let userKey = userKeys[i]; // Iterates data
-    let user = users[userKey]; // variable to use iterates Data
-    container.innerHTML += `
-      <div class="contact">
-        <div class="initials" style="background-color: ${generateRandomColor()};">${getInitials(user.username)}</div>
+     // Iterates data
+     let user = sortedUsers[i]; // variable to use iterates Data
+    /* let user = users[`user${i}`]; */
+
+    // generates a randow colorcode and pushes it to "colors" array
+    let color = generateRandomColor();
+    colors.push(color);
+
+    // generates extra headline with first Letter of contact name
+    let initial = user.username[0].toUpperCase(); // Holt den ersten Buchstaben des Namens und macht ihn groß
+    if (initial !== lastInitial) {
+      // Wenn das Initial anders ist als das letzte, füge eine neue Buchstabenüberschrift hinzu
+      container.innerHTML += `<h3>${initial}</h3><hr>`;
+      lastInitial = initial; // Aktualisiert das letzte Initial
+    }
+
+    container.innerHTML += /*html*/`
+      <div onclick="renderContactDetails(${i})" class="contact">
+        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
           <div class="contact-info">
             <p class="name"><span>${user.username}</span></p>
-            <p class="email"><a href="mailto:${user.email}">${user.email}</a></p>
+            <p class="email">${user.email}</p>
           </div>
         </div>
-`;
+    `;
   }
 }
+
+function alphabet() {
+  // Kontakte nach Namen sortieren
+  loadedUserArray = Object.values(loadedUserArray);
+  loadedUserArray.sort((a, b) => a.username.localeCompare(b.username));
+  let container = document.getElementById("contact-list");
+  container.innerHTML += /*html*/`
+  <div onclick="renderContactDetails(${i})" class="contact">
+    <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+      <div class="contact-info">
+        <p class="name"><span>${user.username}</span></p>
+        <p class="email">${user.email}</p>
+      </div>
+    </div>
+`;
+}
+
+
 
 async function addContact(
   path = "users",

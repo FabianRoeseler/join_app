@@ -5,7 +5,9 @@ const contacts = [
     { name: "Benedikt Ziegler", email: "benedikt@gmail.com" },
     { name: "David Eisenberg", email: "davidberg@gmail.com" },
     { name: "Eva Fischer", email: "eva@gmail.com" },
-    { name: "Emmanuel Mauer", email: "emmanuelma@gmail.com" }
+    { name: "Emmanuel Mauer", email: "emmanuelma@gmail.com" },
+    { name: "Salmai Safi", email: "salmaisafi@gmail.com" },
+    { name: "Balmai Afi", email: "salmaisafi@gmail.com" }
 ];
 
 // Funktion zum Rendern der Kontakte auf der Webseite
@@ -13,6 +15,10 @@ function renderContacts() {
     // Sucht das HTML-Element mit der ID 'contact-list'
     let contactList = document.getElementById('contact-list');
     contactList.innerHTML = ''; // Löscht vorhandene Inhalte im Element
+
+    // Kontakte nach Namen sortieren
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
+
 
     let lastInitial = ''; // Variable zur Speicherung des letzten Buchstabens für Gruppierung
     for (let contact of contacts) { // Schleife durch alle Kontakte
@@ -57,17 +63,22 @@ function generateRandomColor() {
 document.addEventListener('DOMContentLoaded', renderContacts);
 
 // Funktion um die Kontakt-Detail-Ansicht zu rendern
+/**
+ * function to render one contact of the contact list into the big contact detail 
+ * @param {*} i 
+ */
 
-function renderContactDetails() {
+function renderContactDetails(i) {
     let contactDetail = document.getElementById('render-contact-details');
+    let users = loadedUserArray;
 
     contactDetail.innerHTML = /*html*/`
         <div class="render-details-head">
-            <div class="profile-initials">${`initials-dummy`}</div>
+            <div id="initials-detail" class="profile-initials">${getInitials(users[`user${i}`].username)}</div>
                 <div>
-                    <div class="profile-name">${`name-dummy`}</div>
-                    <div class="edit-delete">
-                        <div class="edit">
+                    <div class="profile-name">${users[`user${i}`].username}</div>
+                    <div class="edit-delete-cont">
+                        <div class="edit-delete-child">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_207322_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -78,7 +89,7 @@ function renderContactDetails() {
                             </svg>
                             <span>Edit</span>
                         </div>
-                        <div class="delete">
+                        <div class="edit-delete-child">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_207322_4146" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                     <rect width="24" height="24" fill="#D9D9D9"/>
@@ -96,14 +107,16 @@ function renderContactDetails() {
             <div class="contact-info-headline">Contact Information</div>
             <div>
                 <div class="single-info">
-                    <span ><b>Email</b></span>
-                    <span class="blue">${`mail-dummy`}</span>
+                    <span><b>Email</b></span>
+                    <span><a href="mailto:${users[`user${i}`].email}">${users[`user${i}`].email}</a></span>
                 </div>
                 <div class="single-info">
                     <span><b>Phone</b></span>
-                    <span>${`phone-dummy`}</span>
+                    <span>${users[`user${i}`].contactNumber}</span>
                 </div>
             </div>
         </div>
     `;
+    contactDetail.style = `width: 100%; left: 0;`;
+    document.getElementById('initials-detail').style.background = `${colors[i - 1]}`;
 }

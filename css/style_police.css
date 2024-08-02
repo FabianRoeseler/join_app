@@ -1,18 +1,18 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f8f9fa;
-}
+} */
 
 .content {
-    padding: 20px;
     position: fixed;
-    top: 102px;
-    left: 232px;
-
+    margin-top: 102px;
+    margin-left: 232px;
+    padding: 50px;
+    background-color: #f8f9fa;
 }
 
 .header-container {
