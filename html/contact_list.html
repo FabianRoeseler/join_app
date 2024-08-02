@@ -7,12 +7,10 @@
     <title>Contact List</title>
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../css/styleContactSalmai.css">
-    <script src="../js/contactSalmai.js" defer></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/templates.css">
-    <script src="../js/templates.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/add_edit_contact.js"></script>
+    <link rel="stylesheet" href="../css/add_contact.css">
+    <link rel="stylesheet" href="../css/edit_contact.css">
 </head>
 
 <body onload="includeHTML(), loadData()">
@@ -37,8 +35,11 @@
         </div>
         <div id="overlay"></div>    
     </div>
-    <div id="addContact" w3-include-html="../html/add_contact.html"></div>
-    <div id="addContact" w3-include-html="../html/edit_contact.html"></div>
+    <div id="addContact" class="add-contact-box add-contact-box-animation-slidein" w3-include-html="./add_content.html"></div>
+    <script src="../js/templates.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/add_edit_contact.js"></script>
+    <script src="../js/contactSalmai.js" defer></script>
 </body>
 
 </html>
