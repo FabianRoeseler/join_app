@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/templates.css">
     <script src="../js/templates.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/add_edit_contact.js"></script>
 </head>
 
 <body onload="includeHTML(), loadData()">
@@ -20,7 +21,7 @@
         <div class="contactDiv">
             <div class="btn-section">
                 <div class="btn-cont">
-                    <button class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
+                    <button onclick="openAddContact()" class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
                 </div>
             </div>
             <div id="contact-list">
@@ -33,8 +34,11 @@
                 <span>Better with a team</span>
             </div>
             <div id="render-contact-details"></div>
-        </div>    
+        </div>
+        <div id="overlay"></div>    
     </div>
+    <div id="addContact" w3-include-html="../html/add_contact.html"></div>
+    <div id="addContact" w3-include-html="../html/edit_contact.html"></div>
 </body>
 
 </html>

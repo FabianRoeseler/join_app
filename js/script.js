@@ -6,9 +6,9 @@ const BASE_URL =
 let loadedUserArray = {};
 let firstNameInput = document.getElementById("firstName");
 let lastNameInput = document.getElementById("lastName");
-let userNameInput = document.getElementById("inputName"); // userName
-let emailInput = document.getElementById("inputEmail"); // email
-let phoneInput = document.getElementById("inputPhone"); // phonenumber
+let userNameInput = document.getElementById("addInputName"); // userName
+let emailInput = document.getElementById("addInputEmail"); // email
+let phoneInput = document.getElementById("addInputPhone"); // phonenumber
 
 // Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
 async function loadData() {
@@ -64,8 +64,8 @@ async function displayContacts(users) {
 async function addContact(
   path = "users",
   data = {
-    firstName: `${firstNameInput.value}`,
-    lastName: `${lastNameInput.value}`,
+    firstName: `firstName`,
+    lastName: `lastName`,
     username: `${userNameInput.value}`,
     email: `${emailInput.value}`,
     contactNumber: `${phoneInput.value}`,
@@ -97,10 +97,9 @@ async function deleteContact(i) {
 }
 
 function cleanInputFields() {
-  firstNameInput.value = "";
-  lastNameInput.value = "";
+  // firstNameInput.value = "";
+  // lastNameInput.value = "";
   userNameInput.value = "";
   emailInput.value = "";
   phoneInput.value = "";
-  firstNameInput.value = "";
 }

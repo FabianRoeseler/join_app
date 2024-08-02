@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="../css/edit_contact.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
-    <script src="../js/add_edit_contact.js"></script>
-    <script src="../js/script.js"></script>
 </head>
 <body>
     <section class="contact-popup" id="contactPopUp">
@@ -26,26 +24,27 @@
                  <span class="edit-contact-avatar"></span>
                 <div class="edit-contact-bottom-rightmost-section">
                     <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
-                    <form onsubmit="addContact()" class="edit-contact-form">
+                    <form class="edit-contact-form">
                         <div class="input-edit-container">
-                            <input class="edit-imput edit-imput-name" id="inputName" type="text" placeholder="Name">
+                            <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name">
                         </div>
                         <div class="input-edit-container">
-                            <input class="edit-imput edit-imput-email" id="inputEmail" type="email" placeholder="Email">
+                            <input class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email">
                         </div>
                         <div class="input-edit-container">
-                            <input class="edit-imput edit-imput-phone" id="inputPhone" type="number" placeholder="Phone">
+                            <input class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone">
                         </div>
-                        <div class="button-edit-container">
-                            <button onclick="deleteContact(i)" class="btn-cancel">
-                                Delete
-                            </button>
-                            <button class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
-                        </div> 
                     </form>
+                    <div class="button-edit-container">
+                        <button onclick="deleteContact(i)" class="btn-cancel">
+                            Delete
+                        </button>
+                        <button class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+                    </div> 
             </div>
         </div>
     </div>
-    
+    <script src="../js/add_edit_contact.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

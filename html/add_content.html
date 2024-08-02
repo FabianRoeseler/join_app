@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="../css/add_contact.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
-    <script src="../js/add_edit_contact.js"></script>
-    <script src="../js/script.js"></script>
 </head>
 <body>
     <section class="contact-popup" id="contactPopUp">
@@ -27,29 +25,31 @@
                  <span class="add-contact-avatar"></span>
                 <div class="add-contact-bottom-rightmost-section">
                     <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="add-contact-close add-contact-close-imge"></div>
-                    <form onsubmit="addContact()" class="add-contact-form">
+                    <form class="add-contact-form">
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-name" id="inputName" type="text" placeholder="Name">
+                            <input class="add-imput add-imput-name" id="addInputName" type="text" placeholder="Name">
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-email" id="inputEmail" type="email" placeholder="Email">
+                            <input class="add-imput add-imput-email" id="addInputEmail" type="email" placeholder="Email">
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-phone" id="inputPhone" type="number" placeholder="Phone">
+                            <input class="add-imput add-imput-phone" id="addInputPhone" type="number" placeholder="Phone">
                         </div>
-                        <div class="button-add-container">
-                            <button type="reset" onclick="closeContactPopup()" class="btn-cancel">
-                                Cancel
-                                <img class="btn-cancel-icon" src="../assets/img/iconoir_cancel.svg">
-                            </button>
-                            <button type="submit" class="btn-create">Create contact<img src="../assets/img/check.svg"></button>
-                        </div> 
                     </form>
+                    <div class="button-add-container">
+                        <button type="reset" onclick="closeContactPopup()" class="btn-cancel">
+                            Cancel
+                            <img class="btn-cancel-icon" src="../assets/img/iconoir_cancel.svg">
+                        </button>
+                        <button onclick="addContact();" class="btn-create">Create contact<img src="../assets/img/check.svg"></button>
+                    </div>
             </div>
         </div>
     </div>
-    
+    <script src="../js/add_edit_contact.js"></script>
+    <script src="../js/script.js"></script>
 </body>
+
 </html>
 
 
