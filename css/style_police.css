@@ -9,7 +9,7 @@ body {
 
 .content {
     padding: 20px;
-    position: fixed !important;
+    position: fixed;
     top: 102px;
     left: 232px;
 
