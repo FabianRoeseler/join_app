@@ -10,10 +10,10 @@
 </head>
 <body>
     <section class="contact-popup" id="contactPopUp">
-        <button onclick="openAddContact()">Contact</button>
+        <button onclick="openEditContact()">Contact</button>
     </section>
 
-    <div id="overlay" class="edit-contact">
+    <div id="overlayEdit" class="edit-contact">
         <div id="editContact" class="edit-contact-box edit-contact-box-animation-slidein">
             <div class="edit-contact-top-left-section">
                 <img class="edit-contact-logo" src="../assets/img/join_logo_white.png" alt="">
@@ -23,7 +23,7 @@
             <div class="edit-contact-bottom-right-section">
                  <span class="edit-contact-avatar"></span>
                 <div class="edit-contact-bottom-rightmost-section">
-                    <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
+                    <div type="reset" onclick="closeEditContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
                     <form class="edit-contact-form">
                         <div class="input-edit-container">
                             <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name">

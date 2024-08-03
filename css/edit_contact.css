@@ -201,7 +201,7 @@ h1 {
     -moz-appearance: textfield;
 }
 
-#overlay {
+#overlayEdit {
     position: fixed;
     top: 0;
     left: 0;

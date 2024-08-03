@@ -1,25 +1,25 @@
-function openAddContact() {
-    let addContact = document.getElementById("editContact");
-    let overlay = document.getElementById("overlay");
+function openEditContact() {
+    let editContact = document.getElementById("editContact");
+    let overlayEdit = document.getElementById("overlayEdit");
       
-    addContact.style.right = "50%"; // Popup nach links schieben
-    overlay.style.display = "flex"; // Overlay sichtbar machen
-    overlay.addEventListener("click", closeContactPopupByOverlay); // Event-Listener hinzufügen
+    editContact.style.right = "50%"; // Popup nach links schieben
+    overlayEdit.style.display = "flex"; // Overlay sichtbar machen
+    overlayEdit.addEventListener("click", closeContactPopupByOverlay); // Event-Listener hinzufügen
   }
   
   
-  function closeContactPopup() {
-    let addContact = document.getElementById("editContact");
-    let overlay = document.getElementById("overlay");
+  function closeEditContactPopup() {
+    let editContact = document.getElementById("editContact");
+    let overlayEdit = document.getElementById("overlayEdit");
     
-    addContact.style.right = "-1200px"; // Popup nach rechts außerhalb des Bildschirms verschieben
-    overlay.style.display = "none"; // Overlay unsichtbar machen
-    overlay.removeEventListener("click", closeContactPopupByOverlay); // Event-Listener entfernen
+    editContact.style.right = "-1200px"; // Popup nach rechts außerhalb des Bildschirms verschieben
+    overlayEdit.style.display = "none"; // Overlay unsichtbar machen
+    overlayEdit.removeEventListener("click", closeEditContactPopupByOverlay); // Event-Listener entfernen
   }
   
   
-  function closeContactPopupByOverlay(event) {
+  function closeEditContactPopupByOverlay(event) {
     if (event.target.id === "overlay") {
-        closeContactPopup();
+        closeEditContactPopup();
     }
   }
