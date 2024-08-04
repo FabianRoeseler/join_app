@@ -4,7 +4,7 @@ function openEditContact() {
       
     editContact.style.right = "50%"; // Popup nach links schieben
     overlayEdit.style.display = "flex"; // Overlay sichtbar machen
-    overlayEdit.addEventListener("click", closeContactPopupByOverlay); // Event-Listener hinzufügen
+    overlayEdit.addEventListener("click", closeEditContactPopupByOverlay); // Event-Listener hinzufügen
   }
   
   
