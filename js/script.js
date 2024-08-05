@@ -38,7 +38,7 @@ async function displayContacts(users) {
 
     container.innerHTML += /*html*/`
       <div onclick="renderContactDetails(${i})" class="contact">
-        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+        <div class="initials" style="background-color: ${colors[i]};">${getInitials(user.username)}</div>
           <div class="contact-info">
             <p class="name"><span>${user.username}</span></p>
             <p class="email">${user.email}</p>
@@ -58,21 +58,6 @@ function generateRandomColor() {
 }
 
 
-
-function alphabet() {
-  loadedUserArray = Object.values(loadedUserArray);
-  loadedUserArray.sort((a, b) => a.username.localeCompare(b.username));
-  let container = document.getElementById("contact-list");
-  container.innerHTML += /*html*/`
-  <div onclick="renderContactDetails(${i})" class="contact">
-    <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
-      <div class="contact-info">
-        <p class="name"><span>${user.username}</span></p>
-        <p class="email">${user.email}</p>
-      </div>
-    </div>
-  `;
-}
 
 async function addContactS(
   path = "users"
@@ -133,13 +118,15 @@ function cleanInputFields() {
 
 function renderContactDetails(i) {
   let contactDetail = document.getElementById('render-contact-details');
-  let users = loadedUserArray;
+  
+  let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
+  let user = sortedUsers[i];
 
   contactDetail.innerHTML = /*html*/`
       <div class="render-details-head">
-          <div id="initials-detail" class="profile-initials">${getInitials(users[`user${i}`].username)}</div>
+          <div id="initials-detail" class="profile-initials">${getInitials(user.username)}</div>
               <div>
-                  <div class="profile-name">${users[`user${i}`].username}</div>
+                  <div class="profile-name">${user.username}</div>
                   <div class="edit-delete-cont">
                       <div class="edit-delete-child">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -171,11 +158,11 @@ function renderContactDetails(i) {
           <div>
               <div class="single-info">
                   <span><b>Email</b></span>
-                  <span><a href="mailto:${users[`user${i}`].email}">${users[`user${i}`].email}</a></span>
+                  <span><a href="mailto:${user.email}">${user.email}</a></span>
               </div>
               <div class="single-info">
                   <span><b>Phone</b></span>
-                  <span>${users[`user${i}`].contactNumber}</span>
+                  <span>${user.contactNumber}</span>
               </div>
           </div>
       </div>
@@ -189,3 +176,18 @@ function getInitials(name) {
   // Teilt den Namen in Wörter auf und holt das erste Zeichen jedes Wortes
   return name.split(' ').map(word => word[0]).join('');
 }
+
+/* function alphabet(color) {
+  loadedUserArray = Object.values(loadedUserArray);
+  loadedUserArray.sort((a, b) => a.username.localeCompare(b.username));
+  let container = document.getElementById("contact-list");
+  container.innerHTML += `
+  <div onclick="renderContactDetails(${i})" class="contact">
+    <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+      <div class="contact-info">
+        <p class="name"><span>${user.username}</span></p>
+        <p class="email">${user.email}</p>
+      </div>
+    </div>
+  `;
+} */ 
