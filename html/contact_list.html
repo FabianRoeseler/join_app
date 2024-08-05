@@ -8,14 +8,14 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../css/styleContactSalmai.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/media.css">
     <link rel="stylesheet" href="../css/templates.css">
     <link rel="stylesheet" href="../css/add_contact.css">
     <link rel="stylesheet" href="../css/edit_contact.css">
+    <link rel="stylesheet" href="../css/media.css">
+
 </head>
 
 <body onload="includeHTML(), loadData()">
-    <div w3-include-html="./templates/desktop_template.html"></div>
     <div class="main-cont">
         <div class="contactDiv">
             <div class="btn-section">
@@ -40,6 +40,7 @@
     <div id="addContact" class="add-contact-box add-contact-box-animation-slidein" w3-include-html="./add_content.html"></div>
     <div id="overlayEdit"></div>
     <div id="editContact" class="edit-contact-box edit-contact-box-animation-slidein" w3-include-html="./edit_contanct.html"></div>
+    <div w3-include-html="./templates/desktop_template.html"></div>
     <script src="../js/templates.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/add_contact.js"></script>

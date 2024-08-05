@@ -50,38 +50,39 @@
 }
 @media(max-width: 600px) {
     .sidebar-mobile {
-        padding: 0 50px;
+        padding: 0 40px;
     }
 }
 @media(max-width: 450px) {
-    #profile-initials-header {
-        position: absolute;
-        right: 30px;
+    .sidebar-mobile {
+        padding: 0 20px;
+    }
+    .sidebar-mobile a img {
+        height: 28px;
     }
 }
 @media(max-width: 420px) {
-    .sidebar-mobile {
-        /* padding: 0 10px; */
-    }
     .header-icons {
         margin-right: 20px;
     }
-    #profile-initials-header {
-        right: 50px;
-    }
 }
 @media(max-width: 380px) {
-    #profile-initials-header {
-        right: 80px;
-    }
 }
 @media(max-width: 350px) {
+    header {
+        height: 96px;
+    }
     #profile-initials-header {
-        right: 115px;
+        position: absolute;
+        right: 80px;
     }
     .header-logo {
         left: 20px;
     }
+    .sidebar-mobile {
+        padding: 0 10px;
+    }
+
 }
 
 
