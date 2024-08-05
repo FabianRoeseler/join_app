@@ -1,2 +1,88 @@
+/* header & sidebar  */
+@media(max-width: 1350px) {
+    .contact-details {
+        padding-left: 30px;
+     }
+     #render-contact-details {
+        padding-left: 30px;
+     }
+ }
+@media(max-width: 1280px) {
+    .contactDiv {
+        width: 345px;
+    }
+}
+@media(min-width: 1170px) {
+    .sidebar-mobile {
+        display: none;
+    }
+}
+@media(max-width: 1170px) {
+    .contact-details {
+        display: none;
+    }
+    .contactDiv {
+        flex: 1;
+    }
+}
+@media(max-width: 830px) {
+    .main-cont {
+        padding-left: 0;
+    }
+    .contactDiv {
+        height: 743px;
+    }
+    .sidebar {
+        display: none;
+    }
+    header span {
+        display: none;
+    }
+    .help-icon {
+        display: none;
+    }
+    header {
+        justify-content: flex-end;
+    }
+    .btn-cont {
+        display: none;
+    }
+}
+@media(max-width: 600px) {
+    .sidebar-mobile {
+        padding: 0 40px;
+    }
+}
+@media(max-width: 450px) {
+    .sidebar-mobile {
+        padding: 0 20px;
+    }
+    .sidebar-mobile a img {
+        height: 28px;
+    }
+}
+@media(max-width: 420px) {
+    .header-icons {
+        margin-right: 20px;
+    }
+}
+@media(max-width: 380px) {
+}
+@media(max-width: 350px) {
+    header {
+        height: 96px;
+    }
+    #profile-initials-header {
+        position: absolute;
+        right: 80px;
+    }
+    .header-logo {
+        left: 20px;
+    }
+    .sidebar-mobile {
+        padding: 0 10px;
+    }
+
+}
 
 

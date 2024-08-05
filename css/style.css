@@ -175,13 +175,11 @@ body {
     gap: 4px;
     cursor: pointer;
 }
-
 .btn-cancel:hover {
     color: var(--darkLightBlue);
     border: solid 2px var(--darkLightBlue);
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-
 .btn-cancel:hover .btn-cancel-icon {
     content: url('../assets/img/icon_close_hover.png');
 }

@@ -13,6 +13,12 @@ header {
     box-sizing: border-box;
     box-shadow: 0px 4px 4px 0px #0000001A;
 }
+.header-logo {
+    height: 56px;
+    position: absolute;
+    top: 23px;
+    left: 50px;
+}
 .header-icons {
     display: flex;
     align-items: center;
@@ -132,4 +138,37 @@ menu a:hover {
 .footer-sidebar a:hover {
     color: #29ABE2;
     font-weight: 700;
+}
+/* sidebar mobile styling */
+
+.sidebar-mobile {
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--darkGray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+}
+.sidebar-mobile a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.sidebar-mobile a:hover {
+    background-color: #2A3D59;
+    width: 100px;
+    height: 100%;
+    /* padding: 10px 10px 10px 0; */
+    border-radius: 10px;
+}
+.sidebar-mobile a img {
+    height: 32px;
 }

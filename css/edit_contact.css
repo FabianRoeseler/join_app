@@ -244,7 +244,7 @@ h1 {
         padding-bottom: 24px;
     }
 
-    .add-contact-close {
+    .edit-contact-close {
         background-image: url(../assets/img/close_white.png);
         top: calc(-352px + 28px);
         right: 20px;
@@ -253,5 +253,74 @@ h1 {
 }
 
 @media(max-width: 520px) {
+    .edit-contact-headline {
+        font-size: 47px;
+        padding-bottom: 0px;
+    }
 
+    .edit-contact-top-left-section {
+        display: flex;
+        padding: 130px 20px;
+        height: 352px;
+        width: 396px;
+
+    }
+
+    .edit-contact-bottom-right-section {
+        width: 396px;
+        padding-top: 100px;
+    }
+
+    .edit-contact-logo {
+        display: none;
+    }
+
+    .edit-contact-text {
+        font-size: 20px;
+    }
+
+    .edit-contact-close {
+        top: calc(-352px + 20px);
+        right: 20px;
+    }
+
+    .edit-contact-avatar {
+        position: absolute;
+        top: -70px;
+    }
+
+    .btn-cancel {
+        padding: 12px !important;
+    }
+
+    .button-edit-container {
+        justify-content: center;
+        padding-bottom: 54px;
+    }
+
+    .edit-imput {
+        width: 363px;
+        height: 40px;
+        background-position-x: calc(365px - 48px);
+    }
+
+    .btn-create {
+        padding: 12px !important;
+    }
+
+}
+
+@media(max-width: 420px) {
+    .edit-contact-bottom-right-section {
+        width: 320px;
+    }
+
+    .edit-contact-top-left-section {
+        width: 320px;
+    }
+
+    .edit-imput {
+        width: 300px;
+        background-position-x: calc(300px - 48px);
+    }
 }
