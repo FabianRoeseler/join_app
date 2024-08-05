@@ -178,14 +178,69 @@ function getInitials(name) {
   return name.split(' ').map(word => word[0]).join('');
 }
 
-async function renderEdit(i) {
+async function saveContact() {
+  let editNameInput = document.getElementById("editInputName");
+  let editEmailInput = document.getElementById("editInputEmail");
+  let editPhoneInput = document.getElementById("editInputPhone");
+
+  if (!editNameInput || !editEmailInput || !editPhoneInput) {
+    console.error("One or more input elements are missing.");
+    return;
+  }
+
+  // Sammelt die neuen Daten aus den Eingabefeldern
+  let updatedData = {
+    username: editNameInput.value,
+    email: editEmailInput.value,
+    contactNumber: editPhoneInput.value,
+  };
+
+  // Verwendet den aktuell bearbeiteten Index
+  let userIndex = window.currentlyEditingUserIndex;
+
+  // Findet den Benutzer anhand des Index
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
 
-  // Überprüfung, ob der Index gültig ist
+  if (userIndex < 0 || userIndex >= sortedUsers.length) {
+    console.error("User index out of bounds.");
+    return;
+  }
+
+  let userId = Object.keys(loadedUserArray).find(key => loadedUserArray[key] === sortedUsers[userIndex]);
+
+  // Senden der aktualisierten Daten an die Datenbank
+  let response = await fetch(
+    BASE_URL + "users/" + userId + ".json",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    }
+  );
+
+  // Überprüfen auf Fehler bei der Anfrage
+  if (!response.ok) {
+    console.error("Failed to update the user.");
+    return;
+  }
+
+  // Aktualisiert die Anzeige der Kontakte
+  await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
+  closeEditContactPopup(); // Schließen des Bearbeitungs-Popups
+  window.location.reload();
+}
+
+function renderEdit(i) {
+  window.currentlyEditingUserIndex = i; // Speichert den Index des aktuell bearbeiteten Benutzers
+
+  let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
+
   if (i >= 0 && i < sortedUsers.length) {
     let user = sortedUsers[i];
     console.log(user);
-    
+
     let editContainer = document.getElementById('editContact');
     editContainer.innerHTML = '';
     editContainer.innerHTML = /*html*/`
@@ -213,7 +268,7 @@ async function renderEdit(i) {
           <button onclick="deleteContact(${i})" class="btn-cancel">
             Delete
           </button>
-          <button class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+          <button onclick="saveContact()" class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
         </div> 
       </div>
     </div>
@@ -222,3 +277,5 @@ async function renderEdit(i) {
     console.error("Benutzer nicht gefunden oder ungültiger Index:", i);
   }
 }
+
+
