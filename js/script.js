@@ -91,8 +91,12 @@ async function addContactS(
 }
 
 async function deleteContact(i) {
+  // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
+  let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
+  let userId = Object.keys(loadedUserArray).find(key => loadedUserArray[key] === sortedUsers[i]);
+
   let response = await fetch(
-    BASE_URL + "users" + "/" + Object.keys(loadedUserArray)[i] + ".json",
+    BASE_URL + "users/" + userId + ".json",
     {
       method: "DELETE",
     }
@@ -100,6 +104,7 @@ async function deleteContact(i) {
   window.location.reload();
   return await response.json();
 }
+
 
 function cleanInputFields() {
   let userNameInput = document.getElementById("addInputNameA");
@@ -135,7 +140,7 @@ function renderContactDetails(i) {
                           </svg>
                           <span onclick="openEditContact()">Edit</span>
                       </div>
-                      <div class="edit-delete-child">
+                      <div onclick="deleteContact(${i})" class="edit-delete-child">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <mask id="mask0_207322_4146" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                   <rect width="24" height="24" fill="#D9D9D9"/>
@@ -173,17 +178,3 @@ function getInitials(name) {
   return name.split(' ').map(word => word[0]).join('');
 }
 
-/* function alphabet(color) {
-  loadedUserArray = Object.values(loadedUserArray);
-  loadedUserArray.sort((a, b) => a.username.localeCompare(b.username));
-  let container = document.getElementById("contact-list");
-  container.innerHTML += `
-  <div onclick="renderContactDetails(${i})" class="contact">
-    <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
-      <div class="contact-info">
-        <p class="name"><span>${user.username}</span></p>
-        <p class="email">${user.email}</p>
-      </div>
-    </div>
-  `;
-} */ 
