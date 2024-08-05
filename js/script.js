@@ -139,7 +139,7 @@ function renderContactDetails(i) {
                                   <path d="M5 19H6.4L15.025 10.375L13.625 8.975L5 17.6V19ZM19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3042 2.75 17.8625 2.75C18.4208 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.57083 21.275 6.1125C21.2917 6.65417 21.1083 7.11667 20.725 7.5L19.3 8.925ZM17.85 10.4L7.25 21H3V16.75L13.6 6.15L17.85 10.4Z" fill="#2A3647"/>
                               </g>
                           </svg>
-                          <span onclick="openEditContact()">Edit</span>
+                          <span onclick="openEditContact(); renderEdit(${i})">Edit</span>
                       </div>
                       <div onclick="deleteContact(${i})" class="edit-delete-child">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,4 +182,105 @@ function getInitials(name) {
   // Teilt den Namen in Wörter auf und holt das erste Zeichen jedes Wortes
   return name.split(' ').map(word => word[0]).join('');
 }
+
+async function saveContact() {
+  let editNameInput = document.getElementById("editInputName");
+  let editEmailInput = document.getElementById("editInputEmail");
+  let editPhoneInput = document.getElementById("editInputPhone");
+
+  if (!editNameInput || !editEmailInput || !editPhoneInput) {
+    console.error("One or more input elements are missing.");
+    return;
+  }
+
+  // Sammelt die neuen Daten aus den Eingabefeldern
+  let updatedData = {
+    username: editNameInput.value,
+    email: editEmailInput.value,
+    contactNumber: editPhoneInput.value,
+  };
+
+  // Verwendet den aktuell bearbeiteten Index
+  let userIndex = window.currentlyEditingUserIndex;
+
+  // Findet den Benutzer anhand des Index
+  let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
+
+  if (userIndex < 0 || userIndex >= sortedUsers.length) {
+    console.error("User index out of bounds.");
+    return;
+  }
+
+  let userId = Object.keys(loadedUserArray).find(key => loadedUserArray[key] === sortedUsers[userIndex]);
+
+  // Senden der aktualisierten Daten an die Datenbank
+  let response = await fetch(
+    BASE_URL + "users/" + userId + ".json",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    }
+  );
+
+  // Überprüfen auf Fehler bei der Anfrage
+  if (!response.ok) {
+    console.error("Failed to update the user.");
+    return;
+  }
+
+  // Aktualisiert die Anzeige der Kontakte
+  await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
+  closeEditContactPopup(); // Schließen des Bearbeitungs-Popups
+  window.location.reload();
+}
+
+function renderEdit(i) {
+  window.currentlyEditingUserIndex = i; // Speichert den Index des aktuell bearbeiteten Benutzers
+
+  let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
+
+  if (i >= 0 && i < sortedUsers.length) {
+    let user = sortedUsers[i];
+    console.log(user);
+
+    let editContainer = document.getElementById('editContact');
+    editContainer.innerHTML = '';
+    editContainer.innerHTML = /*html*/`
+    <div class="edit-contact-top-left-section">
+      <img class="edit-contact-logo" src="../assets/img/join_logo_white.png" alt="">
+      <h1 class="edit-contact-headline">Edit contact</h1>
+      <div class="edit-contact-separator"></div>
+    </div>
+    <div class="edit-contact-bottom-right-section">
+      <span class="edit-contact-avatar"></span>
+      <div class="edit-contact-bottom-rightmost-section">
+        <div type="reset" onclick="closeEditContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
+        <form class="edit-contact-form">
+          <div class="input-edit-container">
+            <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}">
+          </div>
+          <div class="input-edit-container">
+            <input class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}">
+          </div>
+          <div class="input-edit-container">
+            <input class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}">
+          </div>
+        </form>
+        <div class="button-edit-container">
+          <button onclick="deleteContact(${i})" class="btn-cancel">
+            Delete
+          </button>
+          <button onclick="saveContact()" class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+        </div> 
+      </div>
+    </div>
+    `;
+  } else {
+    console.error("Benutzer nicht gefunden oder ungültiger Index:", i);
+  }
+}
+
 
