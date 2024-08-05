@@ -30,15 +30,15 @@ async function displayContacts(users) {
     let color = generateRandomColor();
     colors.push(color);
 
-    let initial = user.username[0].toUpperCase(); 
+    let initial = user.username[0].toUpperCase();
     if (initial !== lastInitial) {
       container.innerHTML += `<h3>${initial}</h3><hr>`;
       lastInitial = initial;
     }
-
+    console.log(colors[0])
     container.innerHTML += /*html*/`
       <div onclick="renderContactDetails(${i})" class="contact">
-        <div class="initials" style="background-color: ${colors[i]};">${getInitials(user.username)}</div>
+        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
           <div class="contact-info">
             <p class="name"><span>${user.username}</span></p>
             <p class="email">${user.email}</p>
@@ -51,8 +51,8 @@ async function displayContacts(users) {
 function generateRandomColor() {
   const letters = '0123456789ABCDEF'; // Damit Zufällig eine Farbe erstellt wird aus dieser Kombination
   let color = '#'; // Startet die Farbe mit '#' damit Farbe gesetzt werden kann
-  for (let i = 0; i < loadedUserArray.length; i++) { // Schleife für 6 Zeichen, um eine vollständige Farbe zu erstellen
-      color += letters[Math.floor(Math.random() * 16)]; // Wählt ein zufälliges Zeichen aus der Zifferkombination aus
+  for (let i = 0; i < 6; i++) { // Schleife für 6 Zeichen, um eine vollständige Farbe zu erstellen
+    color += letters[Math.floor(Math.random() * 16)]; // Wählt ein zufälliges Zeichen aus der Zifferkombination aus
   }
   return color; // Gibt die generierte Farbe zurück
 }
@@ -72,13 +72,9 @@ async function addContactS(
   }
 
   let data = {
-    firstName: `firstName`,
-    lastName: `lastName`,
     username: userNameInput.value,
     email: emailInput.value,
     contactNumber: phoneInput.value,
-    avatarUrl: "asbachuralt.com",
-    assignedTasks: { taskName: "Adding Data" },
   };
 
   let response = await fetch(BASE_URL + path + ".json", {
@@ -118,7 +114,7 @@ function cleanInputFields() {
 
 function renderContactDetails(i) {
   let contactDetail = document.getElementById('render-contact-details');
-  
+
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
   let user = sortedUsers[i];
 
@@ -168,7 +164,7 @@ function renderContactDetails(i) {
       </div>
   `;
   contactDetail.style = `width: 100%; left: 0;`;
-  document.getElementById('initials-detail').style.background = `${colors[i - 1]}`;
+  document.getElementById('initials-detail').style.background = `${colors[i]}`;
 }
 
 // Funktion um Intitialen aus einem Namen zu holen
