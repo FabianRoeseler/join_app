@@ -119,7 +119,8 @@ function cleanInputFields() {
 
 function renderContactDetails(i) {
   let contactDetail = document.getElementById('render-contact-details');
-
+  let contactDetailsMobile = document.getElementById('render-contact-details-mobile');
+  
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) => a.username.localeCompare(b.username));
   let user = sortedUsers[i];
 
@@ -168,6 +169,10 @@ function renderContactDetails(i) {
           </div>
       </div>
   `;
+
+contactDetailsMobile.innerHTML = /*html*/`
+
+`;
   contactDetail.style = `width: 100%; left: 0;`;
   document.getElementById('initials-detail').style.background = `${colors[i]}`;
 }
