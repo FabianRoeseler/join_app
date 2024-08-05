@@ -243,8 +243,83 @@ h1 {
         justify-content: space-between;
         padding-bottom: 24px;
     }
+
+    .add-contact-close {
+        background-image: url(../assets/img/close_white.png);
+        top: calc(-352px + 28px);
+        right: 20px;
+    }
 }
 
 @media(max-width: 520px) {
 
+    .add-contact-headline {
+        font-size: 47px;
+    }
+
+    .add-contact-top-left-section {
+        display: flex;
+        padding: 130px 20px;
+        height: 352px;
+        width: 396px;
+
+    }
+
+    .add-contact-bottom-right-section {
+        width: 396px;
+        padding-top: 100px;
+    }
+
+    .add-contact-logo {
+        display: none;
+    }
+
+    .add-contact-text {
+        font-size: 20px;
+    }
+
+    .add-contact-close {
+        top: calc(-352px + 20px);
+        right: 20px;
+    }
+
+    .add-contact-avatar {
+        position: absolute;
+        top: -70px;
+    }
+
+    .btn-cancel {
+        display: none !important;
+    }
+
+    .button-add-container {
+        justify-content: center;
+        padding-bottom: 54px;
+    }
+
+    .add-imput {
+        width: 363px;
+        height: 40px;
+        background-position-x: calc(365px - 48px);
+    }
+
+    .btn-create {
+        padding: 12px !important;
+    }
+
+}
+
+@media(max-width: 420px) {
+    .add-contact-bottom-right-section {
+        width: 320px;
+    }
+
+    .add-contact-top-left-section {
+        width: 320px;
+    }
+
+    .add-imput {
+        width: 300px;
+        background-position-x: calc(300px - 48px);
+    }
 }
