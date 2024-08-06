@@ -317,22 +317,23 @@ function renderEdit(i) {
       <span class="edit-contact-avatar"></span>
       <div class="edit-contact-bottom-rightmost-section">
         <div type="reset" onclick="closeEditContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
-        <form class="edit-contact-form">
+        <form onsubmit="saveContact()" return false class="edit-contact-form">
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}">
+            <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}" required>
           </div>
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}">
+            <input class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}" required>
           </div>
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}">
+            <input class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}" required>
           </div>
-        </form>
+      
         <div class="button-edit-container">
           <button onclick="deleteContact(${i})" class="btn-cancel">
             Delete
           </button>
-          <button onclick="saveContact()" class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+          <button type="submit" class="btn-create btn-create:hover ::root">Save<img src="../assets/img/check.svg"></button>
+          </form>
         </div> 
       </div>
     </div>

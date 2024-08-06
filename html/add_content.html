@@ -19,23 +19,25 @@
                  <span class="add-contact-avatar"></span>
                 <div class="add-contact-bottom-rightmost-section">
                     <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="add-contact-close add-contact-close-imge"></div>
-                    <form class="add-contact-form">
+                    <form onsubmit="addContactS(); return false" class="add-contact-form">
+                        <!-- <input type="email"> -->
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name">
+                            <input class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name" required>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email">
+                            <input class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email" required>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone">
+                            <input class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone" required>
                         </div>
-                    </form>
+
                     <div class="button-add-container">
                         <button type="reset" onclick="closeContactPopup()" class="btn-cancel">
                             Cancel
                             <img class="btn-cancel-icon" src="../assets/img/iconoir_cancel.svg">
                         </button>
-                        <button onclick="addContactS();" class="btn-create">Create contact<img src="../assets/img/check.svg"></button>
+                        <button type="submit" value="" class="btn-create">Create contact<img src="../assets/img/check.svg"></button>
+                    </form>
                     </div>
             </div>
     <script src="../js/add_contact.js"></script>
