@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="stylesheet" href="../css/add_task.css">
+    <link rel="stylesheet" href="../css/templates.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body onload="includeHTML()">
+    <div w3-include-html="./templates/desktop_template.html"></div>
+    
+    <div class="addtask-main-content">
+        <div class="addtask-top-container">
+            <h1>Add Task</h1>
+        </div>
+        <form>
+            <div class="addtask-form-container">
+                <div class="addtask-form-left-top">
+                    <div id="addTaskTitle">
+                        <label>
+                            Title
+                            <span style="color: #ff8190">*</span>
+                        </label>
+                        <div id="errorMassageTitle"></div>
+                        <input id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
+                    </div>
+                    <div id="addTaskDiscription">
+                        <label>Discription</label>
+                        <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="addtask-form-right-bottom"></div>
+            </div>
+            <div class="addtask-bottom-container">
+                <span>
+                    <span style="color: #ff8190">*</span>
+                    This field is required
+                </span>
+                <button class="btn-cancel">Clear</button>
+                <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+            </div>
+        </form>
+    </div>
+    <script src="../js/templates.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/add_task.js"></script>
+</body>
+</html>

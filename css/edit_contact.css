@@ -246,7 +246,7 @@ h1 {
 
     .edit-contact-close {
         background-image: url(../assets/img/close_white.png);
-        top: calc(-352px + 28px);
+        top: calc(-352px + 70px);
         right: 20px;
     }
 
