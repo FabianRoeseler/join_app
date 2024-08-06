@@ -240,6 +240,7 @@ body {
     filter: invert(56%) sepia(76%) saturate(745%) hue-rotate(166deg) brightness(91%) contrast(95%);
 }
 
-.validSpanField{
+.validSpanField {
 color: red;
+margin-left: 10px;
 }
