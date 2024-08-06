@@ -55,6 +55,9 @@
     padding: 0 20px;
     border-radius: 15px;
 }
+.contact:hover {
+    background-color: rgb(236, 235, 235);
+}
 
 .initials {
     width: 42px;
@@ -263,9 +266,10 @@ hr {
     margin-bottom: 24px;
 }
 .details-mobile-round-btn {
-    position: absolute;
-    right: 24px;
-    bottom: 42px;
+    position: sticky;
+    /* right: 24px;
+    bottom: 42px; */
+    right: 0;
     height: 56px;
     width: 56px;
     background-color: var(--darkGray);
