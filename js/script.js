@@ -35,7 +35,7 @@ async function displayContacts(users) {
 
     let initial = user.username[0].toUpperCase();
     if (initial !== lastInitial) {
-      container.innerHTML += `<h3>${initial}</h3><hr>`;
+      container.innerHTML += `<div class="contact-list-letter"><h3>${initial}</h3></div><hr>`;
       lastInitial = initial;
     }
     console.log(colors[0]);
@@ -44,8 +44,8 @@ async function displayContacts(users) {
         <div class="initials" style="background-color: ${color};">${getInitials(
       user.username
     )}</div>
-          <div class="contact-info">
-            <p class="name"><span>${user.username}</span></p>
+          <div id="contact-info${i}" class="contact-info">
+            <p id="name${i}" class="name"><span>${user.username}</span></p>
             <p class="email">${user.email}</p>
           </div>
         </div>
@@ -120,9 +120,7 @@ function cleanInputFields() {
 
 function renderContactDetails(i) {
   let contactDetail = document.getElementById("render-contact-details");
-  let contactDetailsMobile = document.getElementById(
-    "render-contact-details-mobile"
-  );
+  let contactDetailsMobile = document.getElementById("render-contact-details-mobile");
 
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
@@ -149,7 +147,7 @@ function renderContactDetails(i) {
                 </div>
             </div>
         </div>
-        <div onclick="openMobileEditMenu(); stop(event)" id="details-mobile-round-btn">
+        <div onclick="openMobileEditMenu(); stop(event)" id="details-mobile-round-btn" class="details-mobile-round-btn">
           <img src="../assets/img/kebab-menu.svg" alt="kebab menu">
         </div>
         <div id="mobile-edit-menu">

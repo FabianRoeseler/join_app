@@ -20,7 +20,6 @@
     box-sizing: border-box;
     font-family: "Inter";
     opacity: 1;
-    /* flex: 1; */
 }
 #contact-list {
     padding: 0 40px;
@@ -53,34 +52,40 @@
     align-items: center;
     margin-bottom: 15px;
     cursor: pointer;
+    padding: 0 20px;
+    border-radius: 15px;
 }
 
 .initials {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
+    border: solid 2px white;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-weight: bold;
     margin-right: 15px;
-    font-size: 1.1em;
+    margin-right: 32px;
+    font-size: 14px;
 }
 
 .contact-info {
     flex: 1;
 }
 
-.contact-info .name span {
-    font-size: 1em;
-    font-weight: bold;
+.name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
     color: #000;
 }
 
-.contact-info .email {
-    font-size: 0.9em;
+.email {
+    font-size: 16px;
+    font-weight: 400;
     color: #007CEE;
+    margin-top: 0;
     text-decoration: none;
 }
 
@@ -88,6 +93,16 @@ hr {
     border: none;
     border-top: 1px solid #ccc;
     margin: 10px 0;
+}
+
+.contact-list-letter {
+    margin-left: 30px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+}
+.contact-list-letter h3 {
+    font-size: 20px;
 }
 
 /* styling contact details */
@@ -194,7 +209,6 @@ hr {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    /* gap: 30px; */
     margin-bottom: 48px;
 }
 .contact-details-head-mobile h1 {
@@ -210,9 +224,6 @@ hr {
     background-color: var(--darkLightBlue);
     border-radius: 3px;
     margin-top: 12px;
-}
-#render-contact-details-mobile {
-    /* padding-left: 10px; */
 }
 .back-arrow {
     position: absolute;
@@ -251,7 +262,7 @@ hr {
     font-size: 20px;
     margin-bottom: 24px;
 }
-#details-mobile-round-btn {
+.details-mobile-round-btn {
     position: absolute;
     right: 24px;
     bottom: 42px;
@@ -265,9 +276,9 @@ hr {
     box-shadow: 0px 4px 4px 0px #00000040;
     cursor: pointer;
 }
+
 #mobile-edit-menu {
     position: absolute;
-    /* left: 100%; */
     right: 0;
     bottom: 20px;
     height: 100px;
