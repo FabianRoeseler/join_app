@@ -239,3 +239,7 @@ body {
 .cancel-cross:hover {
     filter: invert(56%) sepia(76%) saturate(745%) hue-rotate(166deg) brightness(91%) contrast(95%);
 }
+
+.validSpanField{
+color: red;
+}
