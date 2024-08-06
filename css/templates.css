@@ -166,8 +166,8 @@ menu a:hover {
     justify-content: center;
     gap: 10px;
 }
-.sidebar-mobile a:hover {
-    background-color: #2A3D59;
+.sidebar-mobile-click {
+    background-color: var(--darkBlue);
     width: 100px;
     height: 100%;
     /* padding: 10px 10px 10px 0; */
