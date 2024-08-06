@@ -243,4 +243,5 @@ body {
 .validSpanField {
 color: red;
 margin-left: 10px;
+transition: 2s;
 }

@@ -19,19 +19,18 @@
                  <span class="add-contact-avatar"></span>
                 <div class="add-contact-bottom-rightmost-section">
                     <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="add-contact-close add-contact-close-imge"></div>
-                    <form onsubmit="addContactS(); return false" class="add-contact-form">
-                        <!-- <input type="email"> -->
+                    <form onsubmit="validateName(); return false" name="addContactForm" class="add-contact-form">
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name" required><br>
-                            <span class="validSpanField">Please fill your name</span>
+                            <input class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name" name="addName"><br>
+                            <span class="validSpanField" id="validSpanFieldName"></span>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email" required><br>
-                            <span class="validSpanField">Please fill your e-mail</span>
+                            <input class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email" name="addEmail"><br>
+                            <span class="validSpanField" id="validSpanFieldEmail"></span>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone" required><br>
-                            <span class="validSpanField">Please fill your phonenumber</span>
+                            <input class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone" name="addPhone"><br>
+                            <span class="validSpanField" id="validSpanFieldPhone"></span>
                         </div>
 
                     <div class="button-add-container">

@@ -20,13 +20,13 @@
         <div class="contactDiv">
             <div class="btn-section">
                 <div class="btn-cont">
-                    <button onclick="openAddContact()" class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
+                    <button onclick="openAddContact(); clearValidateFields()" class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
                 </div>
             </div>
             <div id="contact-list">
                 <!-- Dynamische Kontakte werden hier generiert -->
             </div>
-            <div onclick="openAddContact(); stop(event)" id="details-mobile-add-btn" class="details-mobile-round-btn">
+            <div onclick="openAddContact(); clearValidateFields(); stop(event)" id="details-mobile-add-btn" class="details-mobile-round-btn">
                 <img src="../assets/img/person_add.svg" alt="add contact button">
             </div>      
         </div>
@@ -59,7 +59,6 @@
     <script src="../js/script.js"></script>
     <script src="../js/add_contact.js"></script>
     <script src="../js/edit_contact.js"></script>
-    <!-- <script src="../js/contactSalmai.js" defer></script> -->
 </body>
 
 </html>

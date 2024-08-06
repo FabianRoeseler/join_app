@@ -359,3 +359,45 @@ function closeMobileEditMenu() {
 function stop(event) {
   event.stopPropagation()
 }
+
+function clearValidateFields() {
+  let xName = document.getElementById("validSpanFieldName");
+  let xEmail = document.getElementById("validSpanFieldEmail");
+  let xPhone = document.getElementById("validSpanFieldPhone");
+  xName.innerHTML = "";
+  xEmail.innerHTML = "";
+  xPhone.innerHTML = "";
+}
+
+function validateName() {
+  let x = document.forms["addContactForm"]["addName"].value;
+  let xName = document.getElementById("validSpanFieldName");
+  if (x == "") {
+    xName.innerHTML = "Please fill your name";
+    return false;}
+    else {
+    return validateEmail();
+  }
+}
+
+function validateEmail() {
+  let x = document.forms["addContactForm"]["addEmail"].value;
+  let xEmail = document.getElementById("validSpanFieldEmail");
+  if (x == "") {
+    xEmail.innerHTML = "Please fill your email";
+    return false }
+    else {
+    return validatePhone();
+  }
+}
+
+function validatePhone() {
+  let x = document.forms["addContactForm"]["addPhone"].value;
+  let xPhone = document.getElementById("validSpanFieldPhone");
+  if (x == "") {
+    xPhone.innerHTML = "Please fill your phone";
+  return false }
+    else {
+    addContactS(); return false;
+  }
+}
