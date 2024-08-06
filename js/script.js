@@ -88,7 +88,6 @@ async function addContactS(path = "users") {
   });
 
   cleanInputFields();
-  window.location.reload();
   return await response.json();
 }
 
@@ -290,8 +289,8 @@ async function saveContact() {
 
   // Aktualisiert die Anzeige der Kontakte
   await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
-  closeEditContactPopup(); // Schließen des Bearbeitungs-Popups
-  window.location.reload();
+  closeEditContactPopup(); // Schließen des Bearbeitungs-Popups 
+  document.getElementById('render-contact-details').innerHTML = '';
 }
 
 function renderEdit(i) {
@@ -382,9 +381,10 @@ function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
   let xName = document.getElementById("validSpanFieldName");
   if (x == "") {
-    xName.innerHTML = "Please fill your name"; 
-    return false }
-    else {
+    xName.innerHTML = "Please fill your name";
+    return false
+  }
+  else {
     return validateEmail();
   }
 }
@@ -394,8 +394,9 @@ function validateEmail() {
   let xEmail = document.getElementById("validSpanFieldEmail");
   if (x == "") {
     xEmail.innerHTML = "Please fill your email";
-    return false }
-    else {
+    return false
+  }
+  else {
     return validatePhone();
   }
 }
@@ -405,9 +406,15 @@ function validatePhone() {
   let xPhone = document.getElementById("validSpanFieldPhone");
   if (x == "") {
     xPhone.innerHTML = "Please fill your phone";
-  return false }
-    else {
-    addContactS(); return false;
+    return false
+  }
+  else {
+    addContactS();
+    closeContactPopup();
+    setTimeout(() => {
+      loadData();
+    }, 500);
+    return false;
   }
 }
 
@@ -416,9 +423,10 @@ function editValidateName() {
   let x = document.forms["editForm"]["editName"].value;
   let xName = document.getElementById("editValidSpanFieldName");
   if (x == "") {
-    xName.innerHTML = "Please fill your name"; 
-    return false;}
-    else {
+    xName.innerHTML = "Please fill your name";
+    return false;
+  }
+  else {
     return editValidateEmail();
   }
 }
@@ -428,8 +436,9 @@ function editValidateEmail() {
   let xEmail = document.getElementById("editValidSpanFieldEmail");
   if (x == "") {
     xEmail.innerHTML = "Please fill your email";
-    return false }
-    else {
+    return false
+  }
+  else {
     return editValidatePhone();
   }
 }
@@ -439,8 +448,9 @@ function editValidatePhone() {
   let xPhone = document.getElementById("editValidSpanFieldPhone");
   if (x == "") {
     xPhone.innerHTML = "Please fill your phone";
-  return false }
-    else {
+    return false
+  }
+  else {
     saveContact(); return false;
   }
 }
