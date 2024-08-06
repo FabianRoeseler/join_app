@@ -103,7 +103,8 @@ async function deleteContact(i) {
   let response = await fetch(BASE_URL + "users/" + userId + ".json", {
     method: "DELETE",
   });
-  window.location.reload();
+  await loadData();
+  document.getElementById('render-contact-details').innerHTML = '';
   return await response.json();
 }
 
@@ -318,15 +319,15 @@ function renderEdit(i) {
         <div type="reset" onclick="closeEditContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
         <form onsubmit="editValidateName(); return false" class="edit-contact-form" name="editForm">
           <div class="input-edit-container">
-            <input onkeyup="clearValidateFields()" name="editName" class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}"><br> 
+            <input onkeyup="clearEditFields()" name="editName" class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}"><br> 
             <span class="validSpanField" id="editValidSpanFieldName"></span>
           </div>
           <div class="input-edit-container">
-            <input onkeyup="clearValidateFields()" name="editEmail" class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}"><br> 
+            <input onkeyup="clearEditFields()" name="editEmail" class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}"><br> 
             <span class="validSpanField" id="editValidSpanFieldEmail"></span>
           </div>
           <div class="input-edit-container">
-            <input onkeyup="clearValidateFields()" name="editPhone" class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}"><br> 
+            <input onkeyup="clearEditFields()" name="editPhone" class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}"><br> 
             <span class="validSpanField" id="editValidSpanFieldPhone"></span>
           </div>
       
@@ -366,16 +367,21 @@ function clearValidateFields() {
   let xName = document.getElementById("validSpanFieldName");
   let xEmail = document.getElementById("validSpanFieldEmail");
   let xPhone = document.getElementById("validSpanFieldPhone");
-  let yName = document.getElementById("editValidSpanFieldName");
-  let yEmail = document.getElementById("editValidSpanFieldEmail");
-  let yPhone = document.getElementById("editValidSpanFieldPhone");
   xName.innerHTML = "";
   xEmail.innerHTML = "";
   xPhone.innerHTML = "";
+}
+
+function clearEditFields() {
+  let yName = document.getElementById("editValidSpanFieldName");
+  let yEmail = document.getElementById("editValidSpanFieldEmail");
+  let yPhone = document.getElementById("editValidSpanFieldPhone");
   yName.innerHTML = "";
   yEmail.innerHTML = "";
   yPhone.innerHTML = "";
 }
+
+
 
 function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
