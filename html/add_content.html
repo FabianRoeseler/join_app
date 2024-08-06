@@ -21,15 +21,15 @@
                     <div type="reset" onclick="closeContactPopup()" id="contactCloseButton" class="add-contact-close add-contact-close-imge"></div>
                     <form onsubmit="validateName(); return false" name="addContactForm" class="add-contact-form">
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name" name="addName"><br>
+                            <input onkeyup="clearValidateFields()" class="add-imput add-imput-name" id="addInputNameA" type="text" placeholder="Name" name="addName" ><br>
                             <span class="validSpanField" id="validSpanFieldName"></span>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email" name="addEmail"><br>
+                            <input onkeyup="clearValidateFields()" class="add-imput add-imput-email" id="addInputEmailB" type="email" placeholder="Email" name="addEmail"><br>
                             <span class="validSpanField" id="validSpanFieldEmail"></span>
                         </div>
                         <div class="input-add-container">
-                            <input class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone" name="addPhone"><br>
+                            <input onkeyup="clearValidateFields()" class="add-imput add-imput-phone" id="addInputPhoneC" type="number" placeholder="Phone" name="addPhone" ><br>
                             <span class="validSpanField" id="validSpanFieldPhone"></span>
                         </div>
 

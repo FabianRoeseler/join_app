@@ -317,15 +317,18 @@ function renderEdit(i) {
       <span class="edit-contact-avatar"></span>
       <div class="edit-contact-bottom-rightmost-section">
         <div type="reset" onclick="closeEditContactPopup()" id="contactCloseButton" class="edit-contact-close"></div>
-        <form onsubmit="saveContact()" return false class="edit-contact-form">
+        <form onsubmit="editValidateName(); return false" class="edit-contact-form" name="editForm">
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}" required>
+            <input onkeyup="clearValidateFields()" name="editName" class="edit-imput edit-imput-name" id="editInputName" type="text" placeholder="Name" value="${user.username}"><br> 
+            <span class="validSpanField" id="editValidSpanFieldName"></span>
           </div>
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}" required>
+            <input onkeyup="clearValidateFields()" name="editEmail" class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}"><br> 
+            <span class="validSpanField" id="editValidSpanFieldEmail"></span>
           </div>
           <div class="input-edit-container">
-            <input class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}" required>
+            <input onkeyup="clearValidateFields()" name="editPhone" class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}"><br> 
+            <span class="validSpanField" id="editValidSpanFieldPhone"></span>
           </div>
       
         <div class="button-edit-container">
@@ -364,17 +367,23 @@ function clearValidateFields() {
   let xName = document.getElementById("validSpanFieldName");
   let xEmail = document.getElementById("validSpanFieldEmail");
   let xPhone = document.getElementById("validSpanFieldPhone");
+  let yName = document.getElementById("editValidSpanFieldName");
+  let yEmail = document.getElementById("editValidSpanFieldEmail");
+  let yPhone = document.getElementById("editValidSpanFieldPhone");
   xName.innerHTML = "";
   xEmail.innerHTML = "";
   xPhone.innerHTML = "";
+  yName.innerHTML = "";
+  yEmail.innerHTML = "";
+  yPhone.innerHTML = "";
 }
 
 function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
   let xName = document.getElementById("validSpanFieldName");
   if (x == "") {
-    xName.innerHTML = "Please fill your name";
-    return false;}
+    xName.innerHTML = "Please fill your name"; 
+    return false }
     else {
     return validateEmail();
   }
@@ -399,5 +408,39 @@ function validatePhone() {
   return false }
     else {
     addContactS(); return false;
+  }
+}
+
+// Wiederholung
+function editValidateName() {
+  let x = document.forms["editForm"]["editName"].value;
+  let xName = document.getElementById("editValidSpanFieldName");
+  if (x == "") {
+    xName.innerHTML = "Please fill your name"; 
+    return false;}
+    else {
+    return editValidateEmail();
+  }
+}
+
+function editValidateEmail() {
+  let x = document.forms["editForm"]["editEmail"].value;
+  let xEmail = document.getElementById("editValidSpanFieldEmail");
+  if (x == "") {
+    xEmail.innerHTML = "Please fill your email";
+    return false }
+    else {
+    return editValidatePhone();
+  }
+}
+
+function editValidatePhone() {
+  let x = document.forms["editForm"]["editPhone"].value;
+  let xPhone = document.getElementById("editValidSpanFieldPhone");
+  if (x == "") {
+    xPhone.innerHTML = "Please fill your phone";
+  return false }
+    else {
+    saveContact(); return false;
   }
 }
