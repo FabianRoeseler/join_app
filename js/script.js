@@ -290,6 +290,7 @@ async function saveContact() {
   // Aktualisiert die Anzeige der Kontakte
   await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
   closeEditContactPopup(); // Schließen des Bearbeitungs-Popups 
+  closeContactDetailsMobile();
   document.getElementById('render-contact-details').innerHTML = '';
 }
 
