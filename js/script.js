@@ -39,7 +39,7 @@ async function displayContacts(users) {
     }
     console.log(colors[0]);
     container.innerHTML += /*html*/ `
-      <div onclick="renderContactDetails(${i})" class="contact">
+      <div onclick="renderContactDetails(${i}), contactCardClick(this, ${i})" class="contact">
         <div class="initials" style="background-color: ${color};">${getInitials(
       user.username
     )}</div>
@@ -51,6 +51,34 @@ async function displayContacts(users) {
     `;
   }
 }
+
+// Funktion zum Klicken auf Kontaktkarten
+function contactCardClick(contactCard, i) {
+  let nameElement = document.getElementById(`name${i}`);
+  
+  if (contactCard.classList.contains('contact-card-click')) {
+      contactCard.classList.remove('contact-card-click');
+      nameElement.classList.remove('contact-name');
+  } else {
+      closeAllContactClicks();
+      contactCard.classList.add('contact-card-click');
+      nameElement.classList.add('contact-name');
+      renderContactDetails(i);
+  }
+}
+
+// alle Kontaktkarten verlieren ihren aktiven Zustand, wenn eine neue Karte angeklickt wird
+function closeAllContactClicks() {
+  let contactCards = document.getElementsByClassName('contact');
+  for (let contactCard of contactCards) {
+      contactCard.classList.remove('contact-card-click');
+  }
+  let nameElements = document.getElementsByClassName('contact-name');
+  for (let nameElement of nameElements) {
+      nameElement.classList.remove('contact-name');
+  }
+}
+
 
 function generateRandomColor() {
   const letters = "0123456789ABCDEF"; // Damit Zufällig eine Farbe erstellt wird aus dieser Kombination
