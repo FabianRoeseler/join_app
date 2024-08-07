@@ -200,7 +200,15 @@ hr {
 .blue {
     color: #007CEE;
 }
+.contact-success {
+    height: 74px;
+    width: 326px;
+    background-color: var(--darkGray);
+    color: white;
+}
+
 /* contact details mobile styling */
+
 #contact-details-mobile {
     position: relative;
     padding-top: 0;
