@@ -314,3 +314,11 @@ hr {
     overflow: hidden;
     transition: .5s ease;
 }
+
+.contact-card-click {
+    background-color: rgb(42, 54, 71) !important;
+}
+
+.contact-name {
+    color: white !important;
+}
