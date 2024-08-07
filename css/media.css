@@ -43,9 +43,6 @@
     .main-cont {
         padding-left: 0;
     }
-    .contactDiv {
-        height: 743px;
-    }
     .sidebar {
         display: none;
     }
@@ -105,6 +102,9 @@
     }
     .sidebar-mobile {
         padding: 0 10px;
+    }
+    #contact-list {
+        padding: 0 20px;
     }
 }
 

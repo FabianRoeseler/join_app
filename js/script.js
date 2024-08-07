@@ -1,9 +1,8 @@
-let colors = [];
-
 const BASE_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let loadedUserArray = {};
+let colors = [];
 
 // Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
 async function loadData() {
@@ -175,9 +174,9 @@ function renderContactDetails(i) {
             </div>
           </div>
     `;
-    document
-      .getElementById("contact-details-mobile")
-      .classList.remove("d-none");
+    document.getElementById("contact-details-mobile").classList.remove("d-none");
+    document.getElementById('details-mobile-add-btn').classList.add('d-none');
+
   } else {
     contactDetail.innerHTML = /*html*/ `
       <div class="render-details-head">
@@ -348,6 +347,7 @@ function renderEdit(i) {
 
 function closeContactDetailsMobile() {
   document.getElementById("contact-details-mobile").classList.add("d-none");
+  document.getElementById('details-mobile-add-btn').classList.remove('d-none');
 }
 
 function openMobileEditMenu() {

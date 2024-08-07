@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact List</title>
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <link rel="stylesheet" href="../css/styleContactSalmai.css">
+    <link rel="stylesheet" href="../css/contacts.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/templates.css">
     <link rel="stylesheet" href="../css/add_contact.css">
@@ -26,9 +26,6 @@
             <div id="contact-list">
                 <!-- Dynamische Kontakte werden hier generiert -->
             </div>
-            <div onclick="openAddContact(); clearValidateFields(); stop(event)" id="details-mobile-add-btn" class="details-mobile-round-btn">
-                <img src="../assets/img/person_add.svg" alt="add contact button">
-            </div>      
         </div>
         <div class="contact-details">
             <div class="contact-details-head">
@@ -48,13 +45,16 @@
             </div>
             <div id="render-contact-details-mobile"></div>
           </div>
+          <div onclick="openAddContact(); clearValidateFields(); stop(event)" id="details-mobile-add-btn" class="details-mobile-round-btn">
+            <img src="../assets/img/person_add.svg" alt="add contact button">
+        </div>      
     </div>
     <div id="overlay"></div>  
     <div id="addContact" class="add-contact-box add-contact-box-animation-slidein" w3-include-html="./add_content.html"></div>
     <div id="overlayEdit"></div>
     <div id="editContact" class="edit-contact-box edit-contact-box-animation-slidein"></div>
     <div id="editContact" class="edit-contact-box edit-contact-box-animation-slidein"></div>
-    <div w3-include-html="./templates/desktop_template.html"></div>
+    <div w3-include-html="./templates/header_sidebar.html"></div>
     <script src="../js/templates.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/add_contact.js"></script>
