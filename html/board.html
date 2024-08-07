@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/style_board.css">
     <script src="../js/templates.js"></script>
 
 
@@ -14,7 +15,37 @@
 <body onload="includeHTML()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
 
-<h1>Board</h1>
+    <div class="board">
+        <div class="header">
+            <h1>Board</h1>
+            <div class="search-add-container">
+                <div class="search-container">
+                    <input type="text" placeholder="Find Task">
+                    <div class="separator"></div>
+                    <button type="button"><object data="./img/search.svg" type="image/svg+xml" class="search-icon"></object></button>
+                </div>
+                <button class="add-task">Add task <object data="./capa1.svg" type="image/svg+xml" class="icon"></object></button>
+            </div>
+        </div>
+        <div class="column-container">
+            <div class="column">
+                <span>To do</span>
+                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            </div>
+            <div class="column">
+                <span>In progress</span>
+                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            </div>
+            <div class="column">
+                <span>Await feedback</span>
+                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            </div>
+            <div class="column">
+                <span>Done</span>
+                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
