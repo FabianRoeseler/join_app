@@ -58,6 +58,9 @@
     .btn-cont {
         display: none;
     }
+    .main-cont {
+        padding-bottom: 100px;
+    }
 }
 @media(max-width: 600px) {
     .sidebar-mobile {
