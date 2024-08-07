@@ -14,37 +14,86 @@
 <body onload="includeHTML()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
     
-    <div class="addtask-main-content">
-        <div class="addtask-top-container">
-            <h1>Add Task</h1>
-        </div>
-        <form>
-            <div class="addtask-form-container">
-                <div class="addtask-form-left-top">
-                    <div id="addTaskTitle">
-                        <label>
-                            Title
-                            <span style="color: #ff8190">*</span>
-                        </label>
-                        <div id="errorMassageTitle"></div>
-                        <input id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
+    <div class="addtask-fullscreen-content">
+        <div class="addtask-main-content">
+            <h1>Add Task</h1>        
+            <form>
+                <div class="addtask-form-container">
+                    <div class="addtask-form-left-top">
+                        <div class="field-text-flex"  id="addTaskTitle">
+                            <label>
+                                Title
+                                <span style="color: #ff8190">*</span>
+                            </label>
+                            <div id="errorMassageTitle"></div>
+                            <input id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
+                        </div>
+
+                        <div class="field-text-flex" id="addTaskDiscription">
+                            <label>Discription</label>
+                            <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div class="field-text-flex"  id="addTaskAssignedTo">
+                            <label>Assegned to</label>
+                            <input id="userNameInput" class="arrow-drop-menu" type="text" placeholder="Select contact to assign" maxlength="40"></input>
+                            <div id="dropDownUserMenu"></div>
+                        </div>
+
                     </div>
-                    <div id="addTaskDiscription">
-                        <label>Discription</label>
-                        <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30" rows="10"></textarea>
+
+                    <div class="addtask-form-right-bottom">
+                        <div class="field-text-flex"  id="addTaskDueDate">
+                            <label>
+                                Due date
+                                <span style="color: #ff8190">*</span>
+                            </label>
+                            <div id="errorMassageTitle"></div>
+                            <input id="addTaskInputDueDate" type="date" min="#">
+                        </div>
+
+                        <div class="prio-content field-text-flex">
+                            <label>Prio</label>
+                            <div class="prio-btn-content">
+                                <button id="urgent" class="prio-button" type="button">Urgent</button>
+                                <button id="medium" class="prio-button" type="button">Medium</button>
+                                <button id="low" class="prio-button" type="button">Low</button>
+                            </div>
+                        </div>
+
+                        <div class="field-text-flex"  id="addTaskCategory">
+                            <label>
+                                Category
+                                <span style="color: #ff8190">*</span>
+                            </label>
+                            <input id="userNameCategory" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40"></input>
+                            <div id="dropDownUserMenu"></div>
+                        </div>
+                        
+                        <div class="field-text-flex"  id="addTaskSubtasks">
+                            <label>
+                                Subtasks
+                                <span style="color: #ff8190">*</span>
+                            </label>
+                            <input id="userNameSubtasks" class="plus-minus-drop-menu" type="text" placeholder="Select task category" maxlength="40"></input>
+                            <div id="dropDownUserMenu"></div>
+                            <ul id="subtasksContent"></ul>
+                        </div>
+
                     </div>
+
                 </div>
-                <div class="addtask-form-right-bottom"></div>
-            </div>
-            <div class="addtask-bottom-container">
-                <span>
-                    <span style="color: #ff8190">*</span>
-                    This field is required
-                </span>
-                <button class="btn-cancel">Clear</button>
-                <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
-            </div>
+                <div class="addtask-bottom-container">
+                    <span>
+                        <span style="color: #ff8190">*</span>
+                        This field is required
+                    </span>
+                    <button class="btn-cancel">Clear</button>
+                    <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+                </div>
         </form>
+        </div>
+
     </div>
     <script src="../js/templates.js"></script>
     <script src="../js/script.js"></script>
