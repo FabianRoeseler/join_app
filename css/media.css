@@ -54,6 +54,17 @@
     }
     header {
         justify-content: flex-end;
+        height: 90px;
+    }
+    .header-logo {
+        height: 48px;
+    }
+    #profile-initials-header {
+        height: 48px;
+        width: 48px;
+        font-size: 18px;
+        font-weight: 600;
+        border: solid 2px #2A3647
     }
     .btn-cont {
         display: none;

@@ -13,6 +13,7 @@
     margin-left: 232px;
     padding: 50px;
     background-color: #f8f9fa;
+    z-index: -1;
 }
 
 .header-container {

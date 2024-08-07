@@ -2,6 +2,7 @@
 
 header {
     position: fixed;
+    height: 100px;
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -9,7 +10,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px 20px 348px;
+    padding: 0px 40px 0px 348px;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px 0px #0000001A;
 }
@@ -53,10 +54,10 @@ header {
 }
 #dropdown {
     position: absolute;
-    top: 103px;
+    top: 96px;
     z-index: 1;
-    width: 140px;
-    height: 150px;
+    width: auto;
+    height: auto;
     right: 20px;
     border-radius: 20px 0 20px 20px;
     padding: 10px;
@@ -66,6 +67,7 @@ header {
     justify-content: space-evenly;
     gap: 8px;
     box-shadow: 0px 0px 4px 0px #0000001A;
+
 }
 #dropdown a {
     text-decoration: none;
@@ -73,7 +75,7 @@ header {
     font-size: 16px;
     font-weight: 300;
     line-height: 19.2px;
-    text-align: left;
+    /* text-align: left; */
     padding: 8px 16px 8px 16px;
 }
 #dropdown a:hover {
@@ -101,11 +103,11 @@ nav {
     align-items: center;
 }
 menu {
+    width: auto;
     height: 229px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     gap: 15px;
     margin: 72px 0 72px 0;
     padding-left: 0;
@@ -114,15 +116,14 @@ menu {
 
 }
 menu a {
-    width: 168px;
     text-decoration: none;
     color: #CDCDCD;
     font-size: 16px;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     gap: 8px;
-    padding: 8px 0 8px 64px;
-    
+    padding: 8px 63px;
 }
 menu a:hover {
     background-color: #2A3D59;
@@ -151,7 +152,7 @@ menu a:hover {
 /* sidebar mobile styling */
 
 .sidebar-mobile {
-    height: 100px;
+    height: 90px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -163,6 +164,8 @@ menu a:hover {
     padding: 0 100px;
 }
 .sidebar-mobile a {
+    width: 90px;
+    height: 86px;
     text-decoration: none;
     color: white;
     display: flex;
@@ -170,6 +173,11 @@ menu a:hover {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    font-size: 14px;
+}
+.sidebar-mobile a:hover {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
 }
 .sidebar-mobile-click {
     background-color: var(--darkBlue);
