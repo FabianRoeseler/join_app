@@ -13,5 +13,11 @@ async function includeHTML() {
 }
 
 function openDropdown() {
+
+    // if (window.innerWidth < 830) {
+    //     document.getElementById('dropdown').classList.add('dropdown-style-mobile');
+    //     document.getElementById('dropdown').classList.toggle('toggle-style-dropdown');
+    // } else {
     document.getElementById('dropdown').classList.toggle('d-none');
+    // }
 }

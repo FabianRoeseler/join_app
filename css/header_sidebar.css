@@ -54,7 +54,7 @@ header {
 }
 #dropdown {
     position: absolute;
-    top: 96px;
+    top: 100px;
     z-index: 1;
     width: auto;
     height: auto;
@@ -67,8 +67,18 @@ header {
     justify-content: space-evenly;
     gap: 8px;
     box-shadow: 0px 0px 4px 0px #0000001A;
-
 }
+/* .dropdown-style-mobile {
+    top: 90px;
+    left: 100%;
+    right: 0;
+    width: 0;
+    transition: .5s ease;
+}
+.toggle-style-dropdown {
+    width: auto;
+    left: 0;
+} */
 #dropdown a {
     text-decoration: none;
     color: #CDCDCD;
