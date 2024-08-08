@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_board.css">
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
-    <link rel="stylesheet" href="../css/style_board.css">
     <script src="../js/templates.js"></script>
 
 
 </head>
 <body onload="includeHTML()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
-
+    <div class="main-cont">
     <div class="board">
         <div class="header">
             <h1>Board</h1>
@@ -46,6 +46,46 @@
             </div>
         </div>
     </div>
+
+    <div class="task">
+        <div id="task-category" class="user-story">User Story</div>
+              <span id="task-title">Kochwelt Page & Recipe Recommender</span>
+        <span id="task-description">Build start page with recipe recommendation...</span>
+        <div class="subtasks">
+            <div id="subtask-progress">
+                    <div id="progress-bar${i}" class="progress-bar"></div>
+            </div>
+            <div id="subtask-counter">1/2 Subtasks</div>
+        </div>
+        <div class="assigned-prio-cont">
+            <div id="assigned-initials">
+                <div class="test-initials">AM</div>
+                <div class="test-initials bg-green">EM</div>
+                <div class="test-initials bg-violet">MB</div>
+            </div>
+            <div id="task-prio">
+                <img class="prio-icons" src="../assets/img/prio_medium.svg" alt="prio medium">
+            </div>
+        </div>
+    </div>
+
+    <div class="task">
+        <div id="task-category" class="technical-task">Technical Task</div>
+        <span id="task-title">HTML Base Template Creation</span>
+        <span id="task-description">Create reusable HTML base templates...</span>
+        <div class="assigned-prio-cont">
+            <div id="assigned-initials">
+                <div class="test-initials">AM</div>
+                <div class="test-initials bg-green">EM</div>
+                <div class="test-initials bg-violet">MB</div>
+            </div>
+            <div id="task-prio">
+                <img class="prio-icons" src="../assets/img/prio_low.svg" alt="prio medium">
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

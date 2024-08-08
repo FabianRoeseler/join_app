@@ -3,6 +3,19 @@ body {
     background-color: #f5f5f5;
 }
 
+/* board styling */
+
+.main-cont {
+    position: fixed;
+    padding-top: 102px;
+    padding-left: 232px;
+    /* display: flex; */
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+
+}
+
 .board {
     padding: 20px;
 }
@@ -100,4 +113,118 @@ body {
 .icon:hover {
     filter: invert(41%) sepia(91%) saturate(3000%) hue-rotate(175deg) brightness(95%) contrast(102%);
     transition: filter 0.3s ease-in-out;
+}
+
+
+/* task styling */
+
+.task {
+    background-color: white;
+    width: 250px;
+    height: auto;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.user-story {
+    font-size: 16px;
+    width: 40%;
+    padding: 8px;
+    background-color: #0038FF;
+    color: white;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.technical-task {
+    font-size: 16px;
+    width: 50%;
+    padding: 8px;
+    background-color: #1FD7C1;
+    color: white;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#task-title {
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+}
+#task-description {
+    font-size: 16px;
+    color: lightgray;
+    word-wrap: break-word;
+    margin-bottom: 30px;
+}
+.subtasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+#subtask-counter {
+    font-size: 14px;
+}
+#subtask-progress {
+    height: 14px;
+    width: 100%;
+    background-color: #e2e2e2;
+    border-radius: 15px;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+  }
+.progress-bar {
+    height: 14px;
+    width : 50%;
+    background-color: #4589FF;
+    border-radius: 15px;
+}
+
+.test-initials {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: orange;
+    border: solid 2px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    /* margin-right: 15px;
+    margin-right: 32px; */
+    font-size: 16px;
+    margin-left: -12px;
+}
+.bg-green {
+    background-color: rgb(0, 124, 128);
+}
+.bg-violet {
+    background-color: rgb(66, 42, 199);
+}
+.assigned-prio-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#assigned-initials {
+    display: flex;
+    margin-left: 12px;
+
+}
+.prio-icons {
+    height: 12px
 }
