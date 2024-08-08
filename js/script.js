@@ -39,11 +39,9 @@ async function displayContacts(users) {
     }
     console.log(colors[0]);
     container.innerHTML += /*html*/ `
-      <div onclick="renderContactDetails(${i}), contactCardClick(this, ${i})" class="contact">
-        <div class="initials" style="background-color: ${color};">${getInitials(
-      user.username
-    )}</div>
-          <div id="contact-info${i}" class="contact-info">
+      <div onclick="renderContactDetails(${i}), contactCardClick(this, ${i})" id="contact-info${i}" class="contact">
+        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+          <div class="contact-info">
             <p id="name${i}" class="name"><span>${user.username}</span></p>
             <p class="email">${user.email}</p>
           </div>
@@ -51,6 +49,15 @@ async function displayContacts(users) {
     `;
   }
 }
+
+// function highlightContact(i) {
+//   for (let j = 0; j < colors.length; j++) {
+//     document.getElementById(`contact-info${j}`).style.background = `white`;
+//     document.getElementById(`name${j}`).style.color = `black`;  
+//   }
+//   document.getElementById(`contact-info${i}`).style.background = `var(--darkGray)`;
+//   document.getElementById(`name${i}`).style.color = `white`;  
+// }
 
 // Funktion zum Klicken auf Kontaktkarten
 function contactCardClick(contactCard, i) {
@@ -63,7 +70,7 @@ function contactCardClick(contactCard, i) {
       closeAllContactClicks();
       contactCard.classList.add('contact-card-click');
       nameElement.classList.add('contact-name');
-      renderContactDetails(i);
+      // renderContactDetails(i);
   }
 }
 
@@ -115,7 +122,21 @@ async function addContactS(path = "users") {
   });
 
   cleanInputFields();
+  // showSuccessPopUp();
   return await response.json();
+}
+
+function showSuccessPopUp() {
+  if (window.innerWidth < 1350) {
+  document.getElementById('contact-success').style = `left: 30px;`;
+  } else {
+    document.getElementById('contact-success').style = `left: 64px;`;
+  }
+  setTimeout(closeSuccessPopUp, 800);
+}
+
+function closeSuccessPopUp() {
+  document.getElementById('contact-success').style = `left: 100%;`;
 }
 
 async function deleteContact(i) {
@@ -132,6 +153,7 @@ async function deleteContact(i) {
   });
   await loadData();
   document.getElementById('render-contact-details').innerHTML = '';
+  closeContactDetailsMobile();
   return await response.json();
 }
 
@@ -175,10 +197,10 @@ function renderContactDetails(i) {
             </div>
         </div>
         <div onclick="openMobileEditMenu(); stop(event)" id="details-mobile-round-btn" class="details-mobile-round-btn">
-          <img src="../assets/img/kebab-menu.svg" alt="kebab menu">
+          <img src="../assets/img/kebab-menu.svg" alt="more options">
         </div>
         <div id="mobile-edit-menu">
-            <div class="edit-delete-child">
+            <div class="edit-delete-child-mobile">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_207322_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                         <rect width="24" height="24" fill="#D9D9D9"/>
@@ -189,7 +211,7 @@ function renderContactDetails(i) {
                 </svg>
                 <span onclick="openEditContact(); renderEdit(${i})">Edit</span>
             </div>
-            <div onclick="deleteContact(${i})" class="edit-delete-child">
+            <div onclick="deleteContact(${i})" class="edit-delete-child-mobile">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_207322_4146" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                         <rect width="24" height="24" fill="#D9D9D9"/>
