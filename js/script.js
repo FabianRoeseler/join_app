@@ -61,7 +61,6 @@ function contactCardClick(contactCard, i) {
       closeAllContactClicks();
       contactCard.classList.add('contact-card-click');
       nameElement.classList.add('contact-name');
-      // renderContactDetails(i);
   }
 }
 
@@ -328,11 +327,10 @@ async function saveContact() {
     return;
   }
 
-  // Aktualisiert die Anzeige der Kontakte
-  await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
   closeEditContactPopup(); // Schließen des Bearbeitungs-Popups 
   closeContactDetailsMobile();
   document.getElementById('render-contact-details').innerHTML = '';
+  await loadData();
 }
 
 function renderEdit(i) {
