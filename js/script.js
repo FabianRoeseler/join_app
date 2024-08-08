@@ -50,15 +50,6 @@ async function displayContacts(users) {
   }
 }
 
-// function highlightContact(i) {
-//   for (let j = 0; j < colors.length; j++) {
-//     document.getElementById(`contact-info${j}`).style.background = `white`;
-//     document.getElementById(`name${j}`).style.color = `black`;  
-//   }
-//   document.getElementById(`contact-info${i}`).style.background = `var(--darkGray)`;
-//   document.getElementById(`name${i}`).style.color = `white`;  
-// }
-
 // Funktion zum Klicken auf Kontaktkarten
 function contactCardClick(contactCard, i) {
   let nameElement = document.getElementById(`name${i}`);
