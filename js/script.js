@@ -122,7 +122,7 @@ async function addContactS(path = "users") {
   });
 
   cleanInputFields();
-  // showSuccessPopUp();
+  showSuccessPopUp();
   return await response.json();
 }
 
