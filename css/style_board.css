@@ -31,6 +31,7 @@ body {
 .search-add-container {
     display: flex;
     align-items: center;
+    gap: 32px;
 }
 
 .search-container {
