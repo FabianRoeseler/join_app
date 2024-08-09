@@ -2,6 +2,16 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
 }
+.click-board {
+    background-color: var(--darkBlue);
+}
+.click-board:hover {
+    background-color: var(--darkBlue);
+}
+.click-board-mobile {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
+}
 
 /* board styling */
 
