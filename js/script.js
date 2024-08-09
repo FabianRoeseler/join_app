@@ -81,6 +81,7 @@ function closeAllContactClicks() {
   }
 }
 
+
 function generateRandomColor() {
   const letters = "0123456789ABCDEF"; // Damit Zufällig eine Farbe erstellt wird aus dieser Kombination
   let color = "#"; // Startet die Farbe mit '#' damit Farbe gesetzt werden kann
@@ -434,6 +435,8 @@ function clearEditFields() {
   yEmail.innerHTML = "";
   yPhone.innerHTML = "";
 }
+
+
 
 function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
