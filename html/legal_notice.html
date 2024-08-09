@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum</title>
+    <link rel="stylesheet" href="../css/styleLegalNotice.css">
+    <link rel="stylesheet" href="../css/header_sidebar.css"> <!-- Optional, falls benötigt -->
+    <link rel="stylesheet" href="../css/media.css"> <!-- Optional, falls benötigt -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/templates.js"></script> <!-- Einbindung des JS-Templates -->
+</head>
+
+<body style="background-color: #f8f9fa;" onload="includeHTML()"> <!-- Hinzufügen des onload-Attributs -->
+    <div w3-include-html="./templates/header_sidebar.html"></div> <!-- Optional, falls verwendet -->
+    <div class="content">
+        <div class="header-container">
+            <h1>Imprint</h1>
+            <div class="back-arrow" onclick="goBack()">
+                <img src="../assets/img/Vector.svg" alt="Zurück">
+            </div>
+        </div>
+        <h2>Exploring the Board</h2>
+        <ul>
+            <li>[Student Names List]</li>
+            <li>[Address of the JOIN operator - e.g. one of the students]</li>
+            <li>[Postcode and city]</li>
+        </ul>
+
+        <h2>Acceptance of terms</h2>
+        <p>By accessing and using Join (Product), you acknowledge and agree to the following terms and conditions, and
+            any policies, guidelines, or amendments thereto that may be presented to you from time to time.</p>
+
+        <h2>Scope and ownership of the product</h2>
+        <p>Join has been developed as part of a student group project in a web development bootcamp at the Developer
+            Akademie GmbH. It has an educational purpose and is not intended for extensive personal & business usage.
+        </p>
+
+        <h2>Proprietary rights</h2>
+        <p>Aside from the design owned by Developer Akademie GmbH, we, the listed students, retain all proprietary
+            rights in Join, including any associated copyrighted material, trademarks, and other proprietary
+            information.</p>
+
+        <h2>Use of the product</h2>
+        <p>Join is intended to be used for lawful purposes only, in accordance with all applicable laws and regulations.
+            Any use of Join for illegal activities, or to harass, harm, threaten, or intimidate another person, is
+            strictly prohibited.</p>
+
+        <h2>Disclaimer of warranties and limitation of liability</h2>
+        <p>Join is provided "as is" without warranty of any kind, whether express or implied, including but not limited
+            to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+
+        <h2>Indemnity</h2>
+        <p>You agree to indemnify, defend and hold harmless us, the listed students, the Developer Akademie, and our
+            affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss,
+            damage, cost, or liability.</p>
+
+        <p>For any questions or notices, please contact us at [Contact Email]. <br><br> Date July 07, 2024</p>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
