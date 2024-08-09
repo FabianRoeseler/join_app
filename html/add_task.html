@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
+    <script src="../js/templates.js"></script>
 
 </head>
 <body onload="includeHTML()">
-    <div w3-include-html="./templates/header_sidebar.html"></div>
-    
+    <div style="z-index: 100;" w3-include-html="./templates/header_sidebar.html"></div>
     <div class="addtask-fullscreen-content">
         <div class="addtask-main-content">
             <h1>Add Task</h1>        
@@ -42,7 +42,7 @@
                         </div>
 
                     </div>
-
+                    <div class="separator"></div>
                     <div class="addtask-form-right-bottom">
                         <div class="field-text-flex"  id="addTaskDueDate">
                             <label>
@@ -67,8 +67,8 @@
                                 Category
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input id="userNameCategory" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40">
-                            <div id="dropDownUserMenu"></div>
+                            <input onclick="openCategories()" id="categoryInput" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40">
+                            <div id="dropDownCategoryMenu"></div>
                         </div>
                         
                         <div class="field-text-flex"  id="addTaskSubtasks">
@@ -96,7 +96,7 @@
         </div>
 
     </div>
-    <script src="../js/templates.js"></script>
+
     <script src="../js/script.js"></script>
     <script src="../js/add_task.js"></script>
 </body>

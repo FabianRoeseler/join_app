@@ -148,3 +148,29 @@ ul {
     align-items: center;
     gap: 4px;
 }
+
+.separator {
+    height: 424px;
+    width: 1px;
+    background-color: #D1D1D1;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.addtask-form-container {
+    display: flex;
+    justify-content: center;
+    padding-right: 250px;
+}
+
+#dropDownCategoryMenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 484px;
+    border-radius: 12px 8px 8px 12px;
+    max-height: 120px;
+    overflow-y: auto;
+    gap: 4px;
+}
