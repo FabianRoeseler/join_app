@@ -87,6 +87,7 @@ async function loadTasks() {
     let taskId = Object.keys(tasksArray).find(
       (key) => tasksArray[key] === sortedTasks[i]
     );
+    console.log(taskId);
   
     let response = await fetch(BASE_URL + "tasks/" + taskId + ".json", {
       method: "DELETE",
