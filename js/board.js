@@ -30,6 +30,54 @@ let tasks = [
 ]
 
 let currentDraggedElement;
+let tasksArray = {};
+
+const BASE_URL =
+  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
+
+async function loadTasks() {
+    let response = await fetch(BASE_URL + ".json");
+    const data = await response.json();
+    if (data && typeof data === "object" && data.tasks) {
+      tasksArray = data.tasks;
+      console.log("Tasks Array:", tasksArray); // remove later
+     /*  displayTasks(tasksArray); */ // activate when displazFunction is ready
+    }
+  }
+
+  async function addTask(path = "tasks") {
+   /*  let taskName = document.getElementById("inputfield"); */ // define the inputfields by ID
+  
+    let data = {
+
+        title: "Kochwelt Page & Recipe Recommender",
+        description: "Build start page with recipe recommendation",
+        assigned_to: ["AM", "EM", "MB"],
+        due_date: "06/10/2024",
+        prio: "medium",
+        prio_img: "../assets/img/prio_medium.svg",
+        category: ["User Story", "#0038FF"],
+        subtasks: ["subtask1", "subtask2"],
+        subtasks_done: ["subtask1"],
+        progress: "",
+        status: "to_do",
+
+/*         The Values of the Fields must be defined for the data!
+      username: userNameInput.value,
+      email: emailInput.value,
+      contactNumber: phoneInput.value */
+    };
+  
+    let response = await fetch(BASE_URL + path + ".json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    /* cleanInputFields(); */ // add a function to clean the inputfields
+    return await response.json();
+  }
 
 function updateHTML() {
     let to_do = tasks.filter(t => t['status'] == 'to_do');
