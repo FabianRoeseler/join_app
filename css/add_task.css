@@ -11,28 +11,47 @@ body {
     display: flex;
     width: 100%;
     height: 100%;
+    background-color: #F6F7F8;
+    z-index: -1;
+
 }
 
 .addtask-main-content {
-    position: relative;
+    position: fixed;
     padding-top: 80px;
-    padding-left: 64px;
-    background-color: #F6F7F8;
-    flex: 1;
+    /* padding-left: 64px; */
+    /* padding-right: 64px; */
+    /* background-color: #F6F7F8; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* flex: 1; */
     overflow-y: auto;
+    width: 82%
 }
-
+.addtask-main-content h1 {
+    width: 1027px;
+    font-size: 61px;
+}
 
 .addtask-form-left-top {
     display: flex;
     flex-direction: column;
-    margin-right: 48px;
+    /* margin-right: 48px; */
+    width: auto;
+    height: auto;
+}
+.addtask-form-right-bottom {
+    flex: 1;
 }
 
 .field-text-flex {
     display: flex;
     flex-direction: column;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+}
+#addTaskDiscriptionField {
+    width: auto;
 }
 
 input {
@@ -84,7 +103,7 @@ textarea {
 }
 
 #subtasksContent {
-    height: 130px;
+    height: auto;
     max-height: 130px;
     overflow-y: auto;
 }
@@ -153,14 +172,15 @@ ul {
     height: 424px;
     width: 1px;
     background-color: #D1D1D1;
-    margin-left: 24px;
-    margin-right: 24px;
+    margin-left: 28px;
+    margin-right: 28px;
 }
 
 .addtask-form-container {
     display: flex;
     justify-content: center;
-    padding-right: 250px;
+    /* padding-right: 250px; */
+    height: auto;
 }
 
 #dropDownCategoryMenu {
@@ -173,4 +193,12 @@ ul {
     max-height: 120px;
     overflow-y: auto;
     gap: 4px;
+}
+.addtask-bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+.addtask-buttons {
+    display: flex;
+    gap: 20px;
 }

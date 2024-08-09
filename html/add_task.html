@@ -17,7 +17,9 @@
     <div style="z-index: 100;" w3-include-html="./templates/header_sidebar.html"></div>
     <div class="addtask-fullscreen-content">
         <div class="addtask-main-content">
-            <h1>Add Task</h1>        
+            <div>
+            <h1>Add Task</h1>
+            </div>        
             <form>
                 <div class="addtask-form-container">
                     <div class="addtask-form-left-top">
@@ -89,10 +91,12 @@
                         <span style="color: #ff8190">*</span>
                         This field is required
                     </span>
-                    <button class="btn-cancel">Clear</button>
-                    <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+                    <div class="addtask-buttons">
+                        <button class="btn-cancel">Clear</button>
+                        <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+                    </div>
                 </div>
-        </form>
+            </form>
         </div>
 
     </div>
