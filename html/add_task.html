@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
+    <script src="../js/templates.js"></script>
 
 </head>
 <body onload="includeHTML()">
-    <div w3-include-html="./templates/header_sidebar.html"></div>
-    
+    <div style="z-index: 100;" w3-include-html="./templates/header_sidebar.html"></div>
     <div class="addtask-fullscreen-content">
         <div class="addtask-main-content">
             <h1>Add Task</h1>        
@@ -36,12 +37,12 @@
 
                         <div class="field-text-flex"  id="addTaskAssignedTo">
                             <label>Assegned to</label>
-                            <input id="userNameInput" class="arrow-drop-menu" type="text" placeholder="Select contact to assign" maxlength="40"></input>
+                            <input id="userNameInput" class="arrow-drop-menu" type="text" placeholder="Select contact to assign" maxlength="40">
                             <div id="dropDownUserMenu"></div>
                         </div>
 
                     </div>
-
+                    <div class="separator"></div>
                     <div class="addtask-form-right-bottom">
                         <div class="field-text-flex"  id="addTaskDueDate">
                             <label>
@@ -49,15 +50,15 @@
                                 <span style="color: #ff8190">*</span>
                             </label>
                             <div id="errorMassageTitle"></div>
-                            <input id="addTaskInputDueDate" type="date" min="#">
+                            <input id="addTaskInputDueDate" type="date" min="2024-08-08">
                         </div>
 
                         <div class="prio-content field-text-flex">
                             <label>Prio</label>
                             <div class="prio-btn-content">
-                                <button id="urgent" class="prio-button" type="button">Urgent <img src="../assets/img/Prio alta.png" alt=""></button>
-                                <button id="medium" class="prio-button" type="button">Medium <img src="../assets/img/Prio media.png" alt=""></button>
-                                <button id="low" class="prio-button" type="button">Low <img src="../assets/img/Prio baja.png" alt=""></button>
+                                <button id="urgent" class="prio-button" onclick="toggleButton('urgent')" type="button">Urgent <img id="urgentImg" src="../assets/img/Prio_urgent_color.png" alt=""></button>
+                                <button id="medium" class="prio-button" onclick="toggleButton('medium')" type="button">Medium <img id="mediumImg" src="../assets/img/Prio_medium_white.png" alt=""></button>
+                                <button id="low" class="prio-button" onclick="toggleButton('low')" type="button">Low <img id="lowImg" src="../assets/img/Prio_low_color.png" alt=""></button>
                             </div>
                         </div>
 
@@ -66,8 +67,8 @@
                                 Category
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input id="userNameCategory" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40"></input>
-                            <div id="dropDownUserMenu"></div>
+                            <input onclick="openCategories()" id="categoryInput" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40">
+                            <div id="dropDownCategoryMenu"></div>
                         </div>
                         
                         <div class="field-text-flex"  id="addTaskSubtasks">
@@ -75,7 +76,7 @@
                                 Subtasks
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input id="userNameSubtasks" class="plus-minus-drop-menu" type="text" placeholder="Select task category" maxlength="40"></input>
+                            <input id="userNameSubtasks" class="plus-minus-drop-menu" type="text" placeholder="Select task category" maxlength="40">
                             <div id="dropDownUserMenu"></div>
                             <ul id="subtasksContent"></ul>
                         </div>
@@ -95,7 +96,7 @@
         </div>
 
     </div>
-    <script src="../js/templates.js"></script>
+
     <script src="../js/script.js"></script>
     <script src="../js/add_task.js"></script>
 </body>
