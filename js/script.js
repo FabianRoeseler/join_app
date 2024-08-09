@@ -61,7 +61,6 @@ function contactCardClick(contactCard, i) {
       closeAllContactClicks();
       contactCard.classList.add('contact-card-click');
       nameElement.classList.add('contact-name');
-      // renderContactDetails(i);
   }
 }
 
@@ -327,11 +326,10 @@ async function saveContact() {
     return;
   }
 
-  // Aktualisiert die Anzeige der Kontakte
-  await loadData(); // Neuladen der Daten, um die geänderten Informationen anzuzeigen
   closeEditContactPopup(); // Schließen des Bearbeitungs-Popups 
   closeContactDetailsMobile();
   document.getElementById('render-contact-details').innerHTML = '';
+  await loadData();
 }
 
 function renderEdit(i) {
@@ -363,7 +361,7 @@ function renderEdit(i) {
             <span class="validSpanField" id="editValidSpanFieldName"></span>
           </div>
           <div class="input-edit-container">
-            <input onkeyup="clearEditFields()" name="editEmail" class="edit-imput edit-imput-email" id="editInputEmail" type="email" placeholder="Email" value="${user.email}"><br> 
+            <input onkeyup="clearEditFields()" name="editEmail" class="edit-imput edit-imput-email" id="editInputEmail" type="text" placeholder="Email" value="${user.email}"><br> 
             <span class="validSpanField" id="editValidSpanFieldEmail"></span>
           </div>
           <div class="input-edit-container">
@@ -434,17 +432,21 @@ function validateName() {
   }
 }
 
-function validateEmail() {
-  let x = document.forms["addContactForm"]["addEmail"].value;
-  let xEmail = document.getElementById("validSpanFieldEmail");
-  if (x == "") {
-    xEmail.innerHTML = "Please fill your email";
-    return false
+  function validateEmail() {
+    let x = document.forms["addContactForm"]["addEmail"].value;
+    let xEmail = document.getElementById("validSpanFieldEmail");
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  
+    if (x == "") {
+      xEmail.innerHTML = "Please fill your email";
+      return false;
+    } else if (!emailPattern.test(x)) {
+      xEmail.innerHTML = "Please enter a valid email address";
+      return false;
+    } else {
+      return validatePhone();
+    }
   }
-  else {
-    return validatePhone();
-  }
-}
 
 function validatePhone() {
   let x = document.forms["addContactForm"]["addPhone"].value;
@@ -479,11 +481,15 @@ function editValidateName() {
 function editValidateEmail() {
   let x = document.forms["editForm"]["editEmail"].value;
   let xEmail = document.getElementById("editValidSpanFieldEmail");
+  let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
   if (x == "") {
     xEmail.innerHTML = "Please fill your email";
-    return false
-  }
-  else {
+    return false;
+  } else if (!emailPattern.test(x)) {
+    xEmail.innerHTML = "Please enter a valid email address";
+    return false;
+  } else {
     return editValidatePhone();
   }
 }

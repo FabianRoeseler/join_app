@@ -143,3 +143,8 @@ ul {
     line-height: 25.2px;
 }
   
+#medium {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

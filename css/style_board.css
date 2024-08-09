@@ -9,7 +9,6 @@ body {
     position: fixed;
     padding-top: 102px;
     padding-left: 232px;
-    /* display: flex; */
     width: 100%;
     height: 100%;
     overflow: scroll;
@@ -17,28 +16,37 @@ body {
 }
 
 .board {
-    padding: 20px;
+    padding: 64px 64px 0 64px;
+    width: 74%;
+    height: 100%;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 61px;
 }
 
 .search-add-container {
     display: flex;
     align-items: center;
+    gap: 32px;
 }
 
 .search-container {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 5px 10px;
     background-color: white;
+    height: 35px;
+    width: 300px;
 }
 
 .search-container input {
@@ -46,6 +54,12 @@ body {
     outline: none;
     margin-right: 5px;
     flex-grow: 1;
+    height: 24px;
+}
+
+input::placeholder {
+    font-size: 20px;
+    color: #D1D1D1;
 }
 
 .search-container .separator {
@@ -63,8 +77,8 @@ body {
 }
 
 .search-icon {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 }
 
 .add-task {
@@ -88,13 +102,35 @@ body {
 .column-container {
     display: flex;
     justify-content: space-between;
+    gap: 32px;
+    height: 100%;
 }
-
+.board-category {
+    flex: 1;
+}
+#to-do-section {
+}
+.cat-placeholder {
+    background-color: #E7E7E7;
+    color: #A8A8A8;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    border-style: dotted;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
 .column {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 1em;
     font-weight: bold;
+    flex: 1;
+    margin-bottom: 15px;
 }
 
 .column span {
@@ -102,17 +138,19 @@ body {
 }
 
 .column .icon {
-    width: 20px;
-    cursor: pointer;
-}
-
-.icon {
+    width: 24px;
     cursor: pointer;
 }
 
 .icon:hover {
     filter: invert(41%) sepia(91%) saturate(3000%) hue-rotate(175deg) brightness(95%) contrast(102%);
-    transition: filter 0.3s ease-in-out;
+    /* transition: filter 0.3s ease-in-out; */
+}
+
+.fontSize-span{
+    font-size: 20px;
+    color: #42526E;
+    font-weight: bold;
 }
 
 
@@ -120,18 +158,25 @@ body {
 
 .task {
     background-color: white;
-    width: 250px;
+    width: auto;
     height: auto;
     padding: 20px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     cursor: pointer;
 }
-.user-story {
+.task:active {
+    transform: rotate(8deg);
+
+}
+.category-cont {
+    height: 100%;
+}
+.task-category {
     font-size: 16px;
-    width: 40%;
+    width: 60%;
     padding: 8px;
     background-color: #0038FF;
     color: white;
@@ -225,6 +270,7 @@ body {
     margin-left: 12px;
 
 }
-.prio-icons {
-    height: 12px
+.prio-icons  {
+    height: 24px;
+    width: 24px;
 }

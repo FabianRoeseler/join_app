@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
     <script src="../js/templates.js"></script>
+    <script src="../js/board.js"></script>
 
 
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML(), updateHTML()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
     <div class="main-cont">
     <div class="board">
@@ -22,65 +23,48 @@
                 <div class="search-container">
                     <input type="text" placeholder="Find Task">
                     <div class="separator"></div>
-                    <button type="button"><object data="../assets/img/search.svg" type="image/svg+xml" class="search-icon"></object></button>
+                    <button type="button">
+                        <object data="../assets/img/search.svg" type="image/svg+xml" class="search-icon"></object>
+                    </button>
                 </div>
-                <button class="btn-add-task">Add task <img src="../assets/img/add.svg" alt=""></button>
+                <button class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg" alt=""></button>
             </div>
         </div>
         <div class="column-container">
-            <div class="column">
-                <span>To do</span>
-                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            <div class="board-category">
+                <div class="column">
+                    <span class="fontSize-span">To do</span>
+                    <img src="../assets/img/plus.svg" class="icon"></img>
+                </div>
+                <div id="to_do" class="category-cont" ondrop="moveTo('to_do')" ondragover="allowDrop(event)">
+                    <!-- <div id="to-do-placeholder" class="cat-placeholder">No tasks To do</div> -->
+                </div>
             </div>
-            <div class="column">
-                <span>In progress</span>
-                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            <div class="board-category">
+                <div class="column">
+                    <span class="fontSize-span">In progress</span>
+                    <img src="../assets/img/plus.svg" class="icon"></img>
+                </div>
+                <div id="in_progress" class="category-cont" ondrop="moveTo('in_progress')" ondragover="allowDrop(event)">
+                    <!-- <div id="in-progress-placeholder" class="cat-placeholder">No tasks In progress</div> -->
+                </div>
             </div>
-            <div class="column">
-                <span>Await feedback</span>
-                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
+            <div class="board-category">
+                <div class="column">
+                    <span class="fontSize-span">Await feedback</span>
+                    <img src="../assets/img/plus.svg" class="icon"></img>
+                </div>
+                <div id="await_feedback" class="category-cont" ondrop="moveTo('await_feedback')" ondragover="allowDrop(event)">
+                    <!-- <div id="await-feedback-placeholder" class="cat-placeholder">No tasks Await feedback</div> -->
+                </div>
             </div>
-            <div class="column">
-                <span>Done</span>
-                <object data="../assets/img/plus.svg" type="image/svg+xml" class="icon"></object>
-            </div>
-        </div>
-    </div>
-
-    <div class="task">
-        <div id="task-category" class="user-story">User Story</div>
-              <span id="task-title">Kochwelt Page & Recipe Recommender</span>
-        <span id="task-description">Build start page with recipe recommendation...</span>
-        <div class="subtasks">
-            <div id="subtask-progress">
-                    <div id="progress-bar${i}" class="progress-bar"></div>
-            </div>
-            <div id="subtask-counter">1/2 Subtasks</div>
-        </div>
-        <div class="assigned-prio-cont">
-            <div id="assigned-initials">
-                <div class="test-initials">AM</div>
-                <div class="test-initials bg-green">EM</div>
-                <div class="test-initials bg-violet">MB</div>
-            </div>
-            <div id="task-prio">
-                <img class="prio-icons" src="../assets/img/prio_medium.svg" alt="prio medium">
-            </div>
-        </div>
-    </div>
-
-    <div class="task">
-        <div id="task-category" class="technical-task">Technical Task</div>
-        <span id="task-title">HTML Base Template Creation</span>
-        <span id="task-description">Create reusable HTML base templates...</span>
-        <div class="assigned-prio-cont">
-            <div id="assigned-initials">
-                <div class="test-initials">AM</div>
-                <div class="test-initials bg-green">EM</div>
-                <div class="test-initials bg-violet">MB</div>
-            </div>
-            <div id="task-prio">
-                <img class="prio-icons" src="../assets/img/prio_low.svg" alt="prio medium">
+            <div class="board-category">
+                <div class="column">
+                    <span class="fontSize-span">Done</span>
+                </div>
+                <div id="done" class="category-cont" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                    <!-- <div id="done-placeholder" class="cat-placeholder">No tasks Done</div> -->
+                </div>
             </div>
         </div>
     </div>
