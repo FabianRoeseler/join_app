@@ -172,8 +172,9 @@ function renderContactDetails(i) {
     a.username.localeCompare(b.username)
   );
   let user = sortedUsers[i];
-  let color = user.color || generateRandomColor(); // Verwende die gespeicherte Farbe
+  let color = userColors[user.username] || user.color || generateRandomColor(); // Stelle sicher, dass die Farbe entweder aus userColors oder aus dem Benutzerobjekt verwendet wird
   userColors[user.username] = color;
+  
 
 
 
@@ -323,6 +324,10 @@ async function saveContact() {
     (key) => loadedUserArray[key] === sortedUsers[userIndex]
   );
 
+  let color = userColors[sortedUsers[userIndex].username] || generateRandomColor(); 
+  userColors[updatedData.username] = color;
+  updatedData.color = color; // Speichere die Farbe auch in updatedDat
+
   // Senden der aktualisierten Daten an die Datenbank
   let response = await fetch(BASE_URL + "users/" + userId + ".json", {
     method: "PATCH",
@@ -342,7 +347,6 @@ async function saveContact() {
   closeContactDetailsMobile();
   document.getElementById('render-contact-details').innerHTML = '';
 
-  userColors[updatedData.username] = userColors[sortedUsers[userIndex].username];
 
   await loadData();
   displayContacts(loadedUserArray);
