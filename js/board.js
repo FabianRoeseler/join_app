@@ -75,7 +75,23 @@ async function loadTasks() {
       },
       body: JSON.stringify(data),
     });
+    await loadTasks();
     /* cleanInputFields(); */ // add a function to clean the inputfields
+    return await response.json();
+  }
+
+  async function deleteTask(i) {
+    // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
+    let sortedTasks = Object.values(tasksArray);
+    console.log(sortedTasks);
+    let taskId = Object.keys(tasksArray).find(
+      (key) => tasksArray[key] === sortedTasks[i]
+    );
+  
+    let response = await fetch(BASE_URL + "tasks/" + taskId + ".json", {
+      method: "DELETE",
+    });
+    await loadTasks();
     return await response.json();
   }
 
