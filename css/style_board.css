@@ -118,8 +118,6 @@ input::placeholder {
 .board-category {
     flex: 1;
 }
-#to-do-section {
-}
 .cat-placeholder {
     background-color: #E7E7E7;
     color: #A8A8A8;
@@ -240,11 +238,10 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 10px;
   }
-.progress-bar {
+#progress-bar {
     height: 14px;
-    width : 50%;
+    /* width : 10%; */
     background-color: #4589FF;
     border-radius: 15px;
 }

@@ -9,7 +9,7 @@ let tasks = [
         "prio_img" : "../assets/img/prio_medium.svg",
         "category" : ["User Story", "#0038FF"],
         "subtasks" : ["subtask1", "subtask2"],
-        "subtasks_done" : ["subtask1"],
+        "subtasks_done" : ["subtask1","2"],
         "progress" : "",
         "status" : "to_do"
     },
@@ -22,8 +22,8 @@ let tasks = [
         "prio" : "low",
         "prio_img" : "../assets/img/prio_low.svg",
         "category" : ["Technical Task", "#1FD7C1"],
-        "subtasks" : [],
-        "subtasks_done" : [],
+        "subtasks" : ["subtask1", "subtask2", "subtask3"],
+        "subtasks_done" : ["1"],
         "progress" : "",
         "status" : "in_progress"
     }
@@ -134,7 +134,7 @@ function generateToDoHTML(element) {
             <span id="task-description">${element.description}</span>
             <div class="subtasks">
                 <div id="subtask-progress">
-                    <div id="progress-bar" class="progress-bar"></div>
+                    <div id="progress-bar" style="width:${100/element.subtasks.length*element.subtasks_done.length}%"></div>
                 </div>
                 <div id="subtask-counter">${element.subtasks_done.length}/${element.subtasks.length} Subtasks</div>
             </div>

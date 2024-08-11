@@ -36,10 +36,12 @@ body {
     align-items: center;
     /* flex: 1; */
     overflow-y: auto;
-    width: 82%
+    width: 82%;
+    /* box-sizing: border-box;
+    width: 82%; */
 }
 .addtask-main-content h1 {
-    width: 1027px;
+    width: 937px;
     font-size: 61px;
 }
 
@@ -47,11 +49,12 @@ body {
     display: flex;
     flex-direction: column;
     /* margin-right: 48px; */
-    width: auto;
+    width: 440px;
     height: auto;
 }
 .addtask-form-right-bottom {
     flex: 1;
+    width: 440px;
 }
 
 .field-text-flex {
@@ -66,7 +69,7 @@ body {
 input {
     cursor: pointer;
     font-size: 20px;
-    width: 440px;
+    width: auto;
     border-radius: 10px;
     padding: 12px 21px;
     max-height: 48px;
@@ -87,14 +90,17 @@ label {
 
 textarea {
     cursor: pointer;
-    width: 440px;
-    margin-top: 8px;
+    /* width: 440px; */
+    /* margin-top: 8px; */
     height: 120px;
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     padding: 18px 16px;
     font-size: 20px;
     resize: none;
+}
+textarea::placeholder {
+    font-family: "Inter";
 }
 
 .arrow-drop-menu {
@@ -129,11 +135,14 @@ ul {
     border: 0;
     cursor: pointer;
     font-weight: 500;
-    font-size: 24px;
-    height: 56px;
+    font-size: 20px;
+    /* height: 56px; */
     padding: 8px 24px;
+    /* padding: 10px 16px; */
     border-radius: 10px;
     background-color: linear-gradient(180deg,#fff,#f5f5fa);
+    /* flex: 1;
+    background-color: white; */
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
     transition: all .2s ease-out;
 }
@@ -144,6 +153,7 @@ ul {
 
 .prio-btn-content {
     display: flex;
+    /* justify-content: space-between; */
     gap: 30px;
 }
 
