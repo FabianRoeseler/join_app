@@ -11,7 +11,6 @@ async function loadData() {
   const data = await response.json();
   if (data && typeof data === "object" && data.users) {
     loadedUserArray = data.users;
-    console.log("Loaded User Array:", loadedUserArray); // remove later
     displayContacts(loadedUserArray);
   }
 }
