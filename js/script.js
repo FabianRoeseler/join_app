@@ -5,8 +5,7 @@ let loadedUserArray = {};
 let colors = [];
 let userColors = {};
 
-
-// Laedt die Firebase DB Daten herunter und fuegt sich in das lokale "loadedUserArray".
+// Loading data from DB and moves it to an local object for display
 async function loadData() {
   let response = await fetch(BASE_URL + ".json");
   const data = await response.json();
@@ -17,35 +16,29 @@ async function loadData() {
   }
 }
 
-// Nimmt die Datenbankdaten und postet alle Kontakte auf die Seite
+// Displays the contactlist
 async function displayContacts(users) {
-  let container = document.getElementById("contact-list"); // Chose the DIV Window to render the Contacts in
-  container.innerHTML = ""; // Clearing Div Window
-
+  let container = document.getElementById("contact-list");
+  container.innerHTML = "";
   let sortedUsers = Object.values(users).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-
-  let lastInitial = ""; // Variable zur Speicherung des letzten Buchstabens für Gruppierung
-
+  let lastInitial = "";
   for (let i = 0; i < sortedUsers.length; i++) {
     let user = sortedUsers[i];
-
-    let color = user.color || generateRandomColor(); // Verwende die gespeicherte Farbe, wenn vorhanden
+    let color = user.color || generateRandomColor();
     userColors[user.username] = color;
     colors.push(color);
-
-
-
     let initial = user.username[0].toUpperCase();
     if (initial !== lastInitial) {
       container.innerHTML += `<div class="contact-list-letter"><h3>${initial}</h3></div><hr>`;
       lastInitial = initial;
     }
-    console.log(colors[0]);
     container.innerHTML += /*html*/ `
       <div onclick="renderContactDetails(${i}), contactCardClick(this, ${i})" id="contact-info${i}" class="contact">
-        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+        <div class="initials" style="background-color: ${color};">${getInitials(
+      user.username
+    )}</div>
           <div class="contact-info">
             <p id="name${i}" class="name"><span>${user.username}</span></p>
             <p class="email">${user.email}</p>
@@ -55,61 +48,53 @@ async function displayContacts(users) {
   }
 }
 
-// Funktion zum Klicken auf Kontaktkarten
+// Highlighting selected contact
 function contactCardClick(contactCard, i) {
   let nameElement = document.getElementById(`name${i}`);
-
-  if (contactCard.classList.contains('contact-card-click')) {
-    contactCard.classList.remove('contact-card-click');
-    nameElement.classList.remove('contact-name');
+  if (contactCard.classList.contains("contact-card-click")) {
+    contactCard.classList.remove("contact-card-click");
+    nameElement.classList.remove("contact-name");
   } else {
     closeAllContactClicks();
-    contactCard.classList.add('contact-card-click');
-    nameElement.classList.add('contact-name');
+    contactCard.classList.add("contact-card-click");
+    nameElement.classList.add("contact-name");
   }
 }
 
-// alle Kontaktkarten verlieren ihren aktiven Zustand, wenn eine neue Karte angeklickt wird
+// Unhighlighting non selected contacts
 function closeAllContactClicks() {
-  let contactCards = document.getElementsByClassName('contact');
+  let contactCards = document.getElementsByClassName("contact");
   for (let contactCard of contactCards) {
-    contactCard.classList.remove('contact-card-click');
+    contactCard.classList.remove("contact-card-click");
   }
-  let nameElements = document.getElementsByClassName('contact-name');
+  let nameElements = document.getElementsByClassName("contact-name");
   for (let nameElement of nameElements) {
-    nameElement.classList.remove('contact-name');
+    nameElement.classList.remove("contact-name");
   }
 }
 
-
+// Generating a random CSS Color for the contactlist
 function generateRandomColor() {
-  const letters = "0123456789ABCDEF"; // Damit Zufällig eine Farbe erstellt wird aus dieser Kombination
-  let color = "#"; // Startet die Farbe mit '#' damit Farbe gesetzt werden kann
+  const letters = "0123456789ABCDEF";
+  let color = "#";
   for (let i = 0; i < 6; i++) {
-    // Schleife für 6 Zeichen, um eine vollständige Farbe zu erstellen
-    color += letters[Math.floor(Math.random() * 16)]; // Wählt ein zufälliges Zeichen aus der Zifferkombination aus
+    color += letters[Math.floor(Math.random() * 16)];
   }
-  return color; // Gibt die generierte Farbe zurück
+  return color;
 }
 
+// Adds a new contact, generates color, saves it, user feedback, updates DB and Display
 async function addContactS(path = "users") {
   let userNameInput = document.getElementById("addInputNameA");
   let emailInput = document.getElementById("addInputEmailB");
   let phoneInput = document.getElementById("addInputPhoneC");
-
-  if (!userNameInput || !emailInput || !phoneInput) {
-    console.error("One or more input elements are missing.");
-    return;
-  }
-
-  let color = generateRandomColor(); // Generiere eine zufällige Farbe
+  let color = generateRandomColor();
   let data = {
     username: userNameInput.value,
     email: emailInput.value,
     contactNumber: phoneInput.value,
-    color: color // Speichere die Farbe im Datenbankeintrag
+    color: color,
   };
-
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
     headers: {
@@ -117,7 +102,6 @@ async function addContactS(path = "users") {
     },
     body: JSON.stringify(data),
   });
-
   cleanInputFields();
   showSuccessPopUp();
   return await response.json();
@@ -125,63 +109,62 @@ async function addContactS(path = "users") {
 
 function showSuccessPopUp() {
   if (window.innerWidth < 1350) {
-    document.getElementById('contact-success').style = `left: 30px;`;
+    document.getElementById("contact-success").style = `left: 30px;`;
   } else {
-    document.getElementById('contact-success').style = `left: 64px;`;
+    document.getElementById("contact-success").style = `left: 64px;`;
   }
-  setTimeout(closeSuccessPopUp, 800);
+  setTimeout(closeSuccessPopUp, 1200);
 }
 
 function closeSuccessPopUp() {
-  document.getElementById('contact-success').style = `left: 100%;`;
+  document.getElementById("contact-success").style = `left: 100%;`;
 }
 
+// Deletes the selected user from the contactlist
 async function deleteContact(i) {
-  // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
   let userId = Object.keys(loadedUserArray).find(
     (key) => loadedUserArray[key] === sortedUsers[i]
   );
-
   let response = await fetch(BASE_URL + "users/" + userId + ".json", {
     method: "DELETE",
   });
   await loadData();
-  document.getElementById('render-contact-details').innerHTML = '';
+  document.getElementById("render-contact-details").innerHTML = "";
   closeContactDetailsMobile();
   return await response.json();
 }
 
+// Cleaning the Inputfields for Add new contact form
 function cleanInputFields() {
   let userNameInput = document.getElementById("addInputNameA");
   let emailInput = document.getElementById("addInputEmailB");
   let phoneInput = document.getElementById("addInputPhoneC");
-
   if (userNameInput) userNameInput.value = "";
   if (emailInput) emailInput.value = "";
   if (phoneInput) phoneInput.value = "";
 }
 
+// HTML Rendering the Detail of a contact
 function renderContactDetails(i) {
   let contactDetail = document.getElementById("render-contact-details");
-  let contactDetailsMobile = document.getElementById("render-contact-details-mobile");
-
+  let contactDetailsMobile = document.getElementById(
+    "render-contact-details-mobile"
+  );
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
   let user = sortedUsers[i];
   let color = userColors[user.username] || user.color || generateRandomColor(); // Stelle sicher, dass die Farbe entweder aus userColors oder aus dem Benutzerobjekt verwendet wird
   userColors[user.username] = color;
-  
-
-
-
   if (window.innerWidth < 1170) {
     contactDetailsMobile.innerHTML = /*html*/ `
         <div class="render-details-head-mobile">
-          <div id="initials-detail" class="profile-initials-mobile">${getInitials(user.username)}</div>
+          <div id="initials-detail" class="profile-initials-mobile">${getInitials(
+            user.username
+          )}</div>
           <div class="profile-name-mobile">${user.username}</div>
         </div>
         </div>
@@ -190,7 +173,9 @@ function renderContactDetails(i) {
             <div>
                 <div class="single-info">
                     <span><b>Email</b></span>
-                    <span><a href="mailto:${user.email}">${user.email}</a></span>
+                    <span><a href="mailto:${user.email}">${
+      user.email
+    }</a></span>
                 </div>
                 <div class="single-info">
                     <span><b>Phone</b></span>
@@ -226,13 +211,16 @@ function renderContactDetails(i) {
             </div>
           </div>
     `;
-    document.getElementById("contact-details-mobile").classList.remove("d-none");
-    document.getElementById('details-mobile-add-btn').classList.add('d-none');
-
+    document
+      .getElementById("contact-details-mobile")
+      .classList.remove("d-none");
+    document.getElementById("details-mobile-add-btn").classList.add("d-none");
   } else {
     contactDetail.innerHTML = /*html*/ `
       <div class="render-details-head">
-      <div id="initials-detail" class="profile-initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+      <div id="initials-detail" class="profile-initials" style="background-color: ${color};">${getInitials(
+      user.username
+    )}</div>
               <div>
                   <div class="profile-name">${user.username}</div>
                   <div class="edit-delete-cont">
@@ -275,60 +263,45 @@ function renderContactDetails(i) {
           </div>
       </div>
   `;
-
     contactDetail.style = `width: 100%; left: 0;`;
-    document.getElementById("initials-detail").style.background = `${colors[i]}`;
+    document.getElementById(
+      "initials-detail"
+    ).style.background = `${colors[i]}`;
   }
 }
 
-// Funktion um Intitialen aus einem Namen zu holen
+// Getting the first character from the names
 function getInitials(name) {
-  // Teilt den Namen in Wörter auf und holt das erste Zeichen jedes Wortes
   return name
     .split(" ")
     .map((word) => word[0])
     .join("");
 }
 
+// Saving changes after a contact is edited from indexed user and handles the color
 async function saveContact() {
   let editNameInput = document.getElementById("editInputName");
   let editEmailInput = document.getElementById("editInputEmail");
   let editPhoneInput = document.getElementById("editInputPhone");
-
-  if (!editNameInput || !editEmailInput || !editPhoneInput) {
-    console.error("One or more input elements are missing.");
-    return;
-  }
-
-  // Sammelt die neuen Daten aus den Eingabefeldern
   let updatedData = {
     username: editNameInput.value,
     email: editEmailInput.value,
     contactNumber: editPhoneInput.value,
   };
-
-  // Verwendet den aktuell bearbeiteten Index
   let userIndex = window.currentlyEditingUserIndex;
-
-  // Findet den Benutzer anhand des Index
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-
   if (userIndex < 0 || userIndex >= sortedUsers.length) {
-    console.error("User index out of bounds.");
     return;
   }
-
   let userId = Object.keys(loadedUserArray).find(
     (key) => loadedUserArray[key] === sortedUsers[userIndex]
   );
-
-  let color = userColors[sortedUsers[userIndex].username] || generateRandomColor(); 
+  let color =
+    userColors[sortedUsers[userIndex].username] || generateRandomColor();
   userColors[updatedData.username] = color;
-  updatedData.color = color; // Speichere die Farbe auch in updatedDat
-
-  // Senden der aktualisierten Daten an die Datenbank
+  updatedData.color = color;
   let response = await fetch(BASE_URL + "users/" + userId + ".json", {
     method: "PATCH",
     headers: {
@@ -336,33 +309,20 @@ async function saveContact() {
     },
     body: JSON.stringify(updatedData),
   });
-
-  // Überprüfen auf Fehler bei der Anfrage
-  if (!response.ok) {
-    console.error("Failed to update the user.");
-    return;
-  }
-
-  closeEditContactPopup(); // Schließen des Bearbeitungs-Popups 
+  closeEditContactPopup();
   closeContactDetailsMobile();
-  document.getElementById('render-contact-details').innerHTML = '';
-
-
+  document.getElementById("render-contact-details").innerHTML = "";
   await loadData();
   displayContacts(loadedUserArray);
 }
 
 function renderEdit(i) {
-  window.currentlyEditingUserIndex = i; // Speichert den Index des aktuell bearbeiteten Benutzers
-
+  window.currentlyEditingUserIndex = i;
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-
   if (i >= 0 && i < sortedUsers.length) {
     let user = sortedUsers[i];
-    console.log(user);
-
     let editContainer = document.getElementById("editContact");
     editContainer.innerHTML = "";
     editContainer.innerHTML = /*html*/ `
@@ -388,7 +348,6 @@ function renderEdit(i) {
             <input onkeyup="clearEditFields()" name="editPhone" class="edit-imput edit-imput-phone" id="editInputPhone" type="number" placeholder="Phone" value="${user.contactNumber}"><br> 
             <span class="validSpanField" id="editValidSpanFieldPhone"></span>
           </div>
-      
         <div class="button-edit-container">
           <button onclick="deleteContact(${i})" class="btn-cancel">
             Delete
@@ -399,29 +358,32 @@ function renderEdit(i) {
       </div>
     </div>
     `;
-  } else {
-    console.error("Benutzer nicht gefunden oder ungültiger Index:", i);
   }
 }
 
 function closeContactDetailsMobile() {
   document.getElementById("contact-details-mobile").classList.add("d-none");
-  document.getElementById('details-mobile-add-btn').classList.remove('d-none');
+  document.getElementById("details-mobile-add-btn").classList.remove("d-none");
 }
 
 function openMobileEditMenu() {
-  document.getElementById("details-mobile-round-btn").style = `background-color: var(--darkLightBlue)`;
-  document.getElementById('mobile-edit-menu').style = `right: 12px; width: 116px`;
+  document.getElementById(
+    "details-mobile-round-btn"
+  ).style = `background-color: var(--darkLightBlue)`;
+  document.getElementById(
+    "mobile-edit-menu"
+  ).style = `right: 12px; width: 116px`;
 }
 
 function closeMobileEditMenu() {
-  document.getElementById('mobile-edit-menu').style = `right: 0; width: 0`;
+  document.getElementById("mobile-edit-menu").style = `right: 0; width: 0`;
 }
 
 function stop(event) {
-  event.stopPropagation()
+  event.stopPropagation();
 }
 
+// Clears the Errorfields on contact forms
 function clearValidateFields() {
   let xName = document.getElementById("validSpanFieldName");
   let xEmail = document.getElementById("validSpanFieldEmail");
@@ -431,6 +393,7 @@ function clearValidateFields() {
   xPhone.innerHTML = "";
 }
 
+// Clears the Errorfields on contact forms
 function clearEditFields() {
   let yName = document.getElementById("editValidSpanFieldName");
   let yEmail = document.getElementById("editValidSpanFieldEmail");
@@ -440,20 +403,19 @@ function clearEditFields() {
   yPhone.innerHTML = "";
 }
 
-
-
+// Checking regex for the name and points to the email if correct
 function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
   let xName = document.getElementById("validSpanFieldName");
   if (x == "") {
     xName.innerHTML = "Please fill your name";
-    return false
-  }
-  else {
+    return false;
+  } else {
     return validateEmail();
   }
 }
 
+// Checking regex for the email and points to the phonenumber
 function validateEmail() {
   let x = document.forms["addContactForm"]["addEmail"].value;
   let xEmail = document.getElementById("validSpanFieldEmail");
@@ -470,14 +432,14 @@ function validateEmail() {
   }
 }
 
+// checking regex for the phone and if correct adds the new contact
 function validatePhone() {
   let x = document.forms["addContactForm"]["addPhone"].value;
   let xPhone = document.getElementById("validSpanFieldPhone");
   if (x == "") {
     xPhone.innerHTML = "Please fill your phone";
-    return false
-  }
-  else {
+    return false;
+  } else {
     addContactS();
     closeContactPopup();
     setTimeout(() => {
@@ -487,19 +449,19 @@ function validatePhone() {
   }
 }
 
-// Wiederholung
+// Checking regex for the name and points to the email if correct
 function editValidateName() {
   let x = document.forms["editForm"]["editName"].value;
   let xName = document.getElementById("editValidSpanFieldName");
   if (x == "") {
     xName.innerHTML = "Please fill your name";
     return false;
-  }
-  else {
+  } else {
     return editValidateEmail();
   }
 }
 
+// Checking regex for the email and points to the phone if correct
 function editValidateEmail() {
   let x = document.forms["editForm"]["editEmail"].value;
   let xEmail = document.getElementById("editValidSpanFieldEmail");
@@ -516,14 +478,15 @@ function editValidateEmail() {
   }
 }
 
+// Checking regex for the phone and saves the contact if correct
 function editValidatePhone() {
   let x = document.forms["editForm"]["editPhone"].value;
   let xPhone = document.getElementById("editValidSpanFieldPhone");
   if (x == "") {
     xPhone.innerHTML = "Please fill your phone";
-    return false
-  }
-  else {
-    saveContact(); return false;
+    return false;
+  } else {
+    saveContact();
+    return false;
   }
 }
