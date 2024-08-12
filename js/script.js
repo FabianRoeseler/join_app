@@ -184,7 +184,7 @@ function renderContactDetails(i) {
     a.username.localeCompare(b.username)
   );
   let user = sortedUsers[i];
-  let color = userColors[user.username] || user.color || generateRandomColor(); // Stelle sicher, dass die Farbe entweder aus userColors oder aus dem Benutzerobjekt verwendet wird
+  let color = userColors[user.username] || user.color || generateRandomColor();
   userColors[user.username] = color;
   if (window.innerWidth < 1170) {
     contactDetailsMobile.innerHTML = /*html*/ `
