@@ -13,7 +13,7 @@
     <script src="../js/templates.js"></script>
 
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML(); document.getElementById('addTaskInputDueDate').min = new Date().toISOString().split('T')[0]">
     <div style="z-index: 100;" w3-include-html="./templates/header_sidebar.html"></div>
     <div class="addtask-fullscreen-content">
         <div class="addtask-main-content">
