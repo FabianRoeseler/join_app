@@ -121,6 +121,7 @@ async function addContactS(path = "users") {
   });
   cleanInputFields();
   showSuccessPopUp();
+  window.location.reload();
   return await response.json();
 }
 
