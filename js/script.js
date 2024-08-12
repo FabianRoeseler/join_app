@@ -5,7 +5,9 @@ let loadedUserArray = {};
 let colors = [];
 let userColors = {};
 
-// Loading data from DB and moves it to an local object for display
+/**
+ * Loading data from DB and moves it to an local object for display
+ */
 async function loadData() {
   let response = await fetch(BASE_URL + ".json");
   const data = await response.json();
@@ -15,7 +17,10 @@ async function loadData() {
   }
 }
 
-// Displays the contactlist
+/**
+ * Sorting and displaying the contactlist
+ * @param {*} users
+ */
 async function displayContacts(users) {
   let container = document.getElementById("contact-list");
   container.innerHTML = "";
@@ -47,7 +52,11 @@ async function displayContacts(users) {
   }
 }
 
-// Highlighting selected contact
+/**
+ * Highlighting selected contactcard
+ * @param {*} contactCard
+ * @param {*} i
+ */
 function contactCardClick(contactCard, i) {
   let nameElement = document.getElementById(`name${i}`);
   if (contactCard.classList.contains("contact-card-click")) {
@@ -60,7 +69,9 @@ function contactCardClick(contactCard, i) {
   }
 }
 
-// Unhighlighting non selected contacts
+/**
+ * Unhighlighting non selected contactcards
+ */
 function closeAllContactClicks() {
   let contactCards = document.getElementsByClassName("contact");
   for (let contactCard of contactCards) {
@@ -72,7 +83,10 @@ function closeAllContactClicks() {
   }
 }
 
-// Generating a random CSS Color for the contactlist
+/**
+ * Generating a random CSS Color for the contactlist
+ * @returns
+ */
 function generateRandomColor() {
   const letters = "0123456789ABCDEF";
   let color = "#";
@@ -82,7 +96,11 @@ function generateRandomColor() {
   return color;
 }
 
-// Adds a new contact, generates color, saves it, user feedback, updates DB and Display
+/**
+ * Adds a new contact, generates color, saves it, user feedback, updates DB and Display
+ * @param {*} path
+ * @returns
+ */
 async function addContactS(path = "users") {
   let userNameInput = document.getElementById("addInputNameA");
   let emailInput = document.getElementById("addInputEmailB");
@@ -119,7 +137,11 @@ function closeSuccessPopUp() {
   document.getElementById("contact-success").style = `left: 100%;`;
 }
 
-// Deletes the selected user from the contactlist
+/**
+ * Deletes the selected user from the contactlist
+ * @param {*} i
+ * @returns
+ */
 async function deleteContact(i) {
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
     a.username.localeCompare(b.username)
@@ -136,7 +158,9 @@ async function deleteContact(i) {
   return await response.json();
 }
 
-// Cleaning the Inputfields for Add new contact form
+/**
+ * Cleaning the Inputfields for Add new contact form
+ */
 function cleanInputFields() {
   let userNameInput = document.getElementById("addInputNameA");
   let emailInput = document.getElementById("addInputEmailB");
@@ -146,7 +170,10 @@ function cleanInputFields() {
   if (phoneInput) phoneInput.value = "";
 }
 
-// HTML Rendering the Detail of a contact
+/**
+ * HTML Rendering the Detail of a contact
+ * @param {*} i
+ */
 function renderContactDetails(i) {
   let contactDetail = document.getElementById("render-contact-details");
   let contactDetailsMobile = document.getElementById(
@@ -269,7 +296,11 @@ function renderContactDetails(i) {
   }
 }
 
-// Getting the first character from the names
+/**
+ * Getting the first character from the names
+ * @param {*} name
+ * @returns
+ */
 function getInitials(name) {
   return name
     .split(" ")
@@ -277,7 +308,10 @@ function getInitials(name) {
     .join("");
 }
 
-// Saving changes after a contact is edited from indexed user and handles the color
+/**
+ * Saving changes after a contact is edited from indexed user and handles the color
+ * @returns
+ */
 async function saveContact() {
   let editNameInput = document.getElementById("editInputName");
   let editEmailInput = document.getElementById("editInputEmail");
@@ -315,6 +349,10 @@ async function saveContact() {
   displayContacts(loadedUserArray);
 }
 
+/**
+ * Rendering the contactedit popup
+ * @param {*} i
+ */
 function renderEdit(i) {
   window.currentlyEditingUserIndex = i;
   let sortedUsers = Object.values(loadedUserArray).sort((a, b) =>
@@ -382,7 +420,9 @@ function stop(event) {
   event.stopPropagation();
 }
 
-// Clears the Errorfields on contact forms
+/**
+ * Clears the Errorfields on contact forms
+ */
 function clearValidateFields() {
   let xName = document.getElementById("validSpanFieldName");
   let xEmail = document.getElementById("validSpanFieldEmail");
@@ -392,7 +432,9 @@ function clearValidateFields() {
   xPhone.innerHTML = "";
 }
 
-// Clears the Errorfields on contact forms
+/**
+ * Clears the Errorfields on contact forms
+ */
 function clearEditFields() {
   let yName = document.getElementById("editValidSpanFieldName");
   let yEmail = document.getElementById("editValidSpanFieldEmail");
@@ -402,7 +444,10 @@ function clearEditFields() {
   yPhone.innerHTML = "";
 }
 
-// Checking regex for the name and points to the email if correct
+/**
+ * Checking regex for the name and points to the email if correct
+ * @returns
+ */
 function validateName() {
   let x = document.forms["addContactForm"]["addName"].value;
   let xName = document.getElementById("validSpanFieldName");
@@ -414,7 +459,10 @@ function validateName() {
   }
 }
 
-// Checking regex for the email and points to the phonenumber
+/**
+ * Checking regex for the email and points to the phonenumber
+ * @returns
+ */
 function validateEmail() {
   let x = document.forms["addContactForm"]["addEmail"].value;
   let xEmail = document.getElementById("validSpanFieldEmail");
@@ -431,7 +479,10 @@ function validateEmail() {
   }
 }
 
-// checking regex for the phone and if correct adds the new contact
+/**
+ * checking regex for the phone and if correct adds the new contact
+ * @returns
+ */
 function validatePhone() {
   let x = document.forms["addContactForm"]["addPhone"].value;
   let xPhone = document.getElementById("validSpanFieldPhone");
@@ -448,7 +499,10 @@ function validatePhone() {
   }
 }
 
-// Checking regex for the name and points to the email if correct
+/**
+ * Checking regex for the name and points to the email if correct
+ * @returns
+ */
 function editValidateName() {
   let x = document.forms["editForm"]["editName"].value;
   let xName = document.getElementById("editValidSpanFieldName");
@@ -460,7 +514,10 @@ function editValidateName() {
   }
 }
 
-// Checking regex for the email and points to the phone if correct
+/**
+ * Checking regex for the email and points to the phone if correct
+ * @returns
+ */
 function editValidateEmail() {
   let x = document.forms["editForm"]["editEmail"].value;
   let xEmail = document.getElementById("editValidSpanFieldEmail");
@@ -477,7 +534,10 @@ function editValidateEmail() {
   }
 }
 
-// Checking regex for the phone and saves the contact if correct
+/**
+ * Checking regex for the phone and saves the contact if correct
+ * @returns
+ */
 function editValidatePhone() {
   let x = document.forms["editForm"]["editPhone"].value;
   let xPhone = document.getElementById("editValidSpanFieldPhone");
