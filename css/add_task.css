@@ -221,3 +221,19 @@ ul {
     display: flex;
     gap: 20px;
 }
+
+/* Standardmäßig die Symbole ausblenden */
+#subtasksContent li button {
+    visibility: hidden;
+}
+
+/* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
+#subtasksContent li:hover button {
+    visibility: visible;
+}
+
+
+#subtasksContent li:hover {
+    background-color: #f0f0f0; 
+    border-radius: 8px;
+}
