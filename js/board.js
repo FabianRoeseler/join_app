@@ -1,4 +1,4 @@
-let tasks = [
+let dummy = [
   {
     id: 0,
     title: "Kochwelt Page & Recipe Recommender",
@@ -14,6 +14,34 @@ let tasks = [
     status: "to_do",
   },
   {
+    id: 0,
+    title: "Kochwelt Page & Recipe Recommender",
+    description: "Build start page with recipe recommendation",
+    assigned_to: ["AM", "EM", "MB"],
+    due_date: "06/10/2024",
+    prio: "medium",
+    prio_img: "../assets/img/prio_medium.svg",
+    category: ["User Story", "#0038FF"],
+    subtasks: ["subtask1", "subtask2"],
+    subtasks_done: ["subtask1", "2"],
+    progress: "",
+    status: "to_do",
+  },
+  {
+    id: 0,
+    title: "Kochwelt Page & Recipe Recommender",
+    description: "Build start page with recipe recommendation",
+    assigned_to: ["AM", "EM", "MB"],
+    due_date: "06/10/2024",
+    prio: "medium",
+    prio_img: "../assets/img/prio_medium.svg",
+    category: ["User Story", "#0038FF"],
+    subtasks: ["subtask1", "subtask2"],
+    subtasks_done: ["subtask1", "2"],
+    progress: "",
+    status: "await_feedback",
+  },
+  {
     id: 1,
     title: "HTML Base Template Creation",
     description: "Create reusable HTML base templates",
@@ -27,10 +55,30 @@ let tasks = [
     progress: "",
     status: "in_progress",
   },
+  {
+    id: 0,
+    title: "Kochwelt Page & Recipe Recommender",
+    description: "Build start page with recipe recommendation",
+    assigned_to: ["AM", "EM", "MB"],
+    due_date: "06/10/2024",
+    prio: "medium",
+    prio_img: "../assets/img/prio_medium.svg",
+    category: ["User Story", "#0038FF"],
+    subtasks: ["subtask1", "subtask2"],
+    subtasks_done: ["subtask1", "2"],
+    progress: "",
+    status: "done",
+  },
 ];
+
+let tasks = [];
 
 let currentDraggedElement;
 let tasksArray = {};
+let index_to_do = [];
+let index_in_progress = [];
+let index_await_feedback = [];
+let index_done = [];
 
 const BASE_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -40,7 +88,16 @@ async function loadTasks() {
   const data = await response.json();
   if (data && typeof data === "object" && data.tasks) {
     tasksArray = data.tasks;
+    let ObjEntries = Object.entries(tasksArray);
+    for (let index = 0; index < ObjEntries.length; index++) {
+        const task = ObjEntries[index][1];
+        tasks.push(task);
+    }
     console.log("Tasks Array:", tasksArray); // remove later
+    console.log("tasks", tasks);
+    // console.log("dummy", dummy)
+    updateHTML();
+    
     /*  displayTasks(tasksArray); */ // activate when displazFunction is ready
   }
 }
@@ -95,46 +152,99 @@ async function deleteTask(i) {
   return await response.json();
 }
 
-function updateHTML() {
-  let to_do = tasks.filter((t) => t["status"] == "to_do");
-  document.getElementById("to_do").innerHTML = "";
-  for (let i = 0; i < to_do.length; i++) {
-    const element = to_do[i];
-    document.getElementById("to_do").innerHTML += generateToDoHTML(element);
-  }
+function updateHTML() {  
+    index_to_do = [];
+    for (let j = 0; j < tasks.length; j++) {
+        if(tasks[j]["status"] === "to_do") {
+            index_to_do.push(j)
+        }      
+    }
+    let to_do = tasks.filter((t) => t["status"] == "to_do");
+    let to_do_container = document.getElementById('to_do');
+    if(to_do.length == 0) {
+      to_do_container.innerHTML = /*html*/`<div id="to-do-placeholder" class="cat-placeholder">No tasks To do</div>`;
+    } else {
+    document.getElementById("to_do").innerHTML = "";
+    for (let i = 0; i < to_do.length; i++) {
+        const element = to_do[i];
+        document.getElementById("to_do").innerHTML += generateToDoHTML(element, i);
+    }
+    }
 
+
+  index_in_progress = [];
+  for (let j = 0; j < tasks.length; j++) {
+      if(tasks[j]["status"] === "in_progress") {
+          index_in_progress.push(j)
+      }      
+  }
   let in_progress = tasks.filter((t) => t["status"] == "in_progress");
+  let in_progress_container = document.getElementById('in_progress');
+  if(in_progress.length == 0) {
+    in_progress_container.innerHTML = /*html*/`<div id="in-progress-placeholder" class="cat-placeholder">No tasks In progress</div>`;
+  } else {
   document.getElementById("in_progress").innerHTML = "";
   for (let i = 0; i < in_progress.length; i++) {
     const element = in_progress[i];
     document.getElementById("in_progress").innerHTML +=
-      generateToDoHTML(element);
+    generateInProgressHTML(element, i);
   }
+}
 
+
+  index_await_feedback = [];
+  for (let j = 0; j < tasks.length; j++) {
+      if(tasks[j]["status"] === "await_feedback") {
+          index_await_feedback.push(j)
+      }      
+  }
   let await_feedback = tasks.filter((t) => t["status"] == "await_feedback");
+  let await_feedback_container = document.getElementById('await_feedback');
+  if(await_feedback.length == 0) {
+    await_feedback_container.innerHTML = /*html*/`<div id="await-feedback-placeholder" class="cat-placeholder">No tasks Await feedback</div>`;
+  } else {
   document.getElementById("await_feedback").innerHTML = "";
   for (let i = 0; i < await_feedback.length; i++) {
     const element = await_feedback[i];
     document.getElementById("await_feedback").innerHTML +=
-      generateToDoHTML(element);
-  }
-
-  let done = tasks.filter((t) => t["status"] == "done");
-  document.getElementById("done").innerHTML = "";
-  for (let i = 0; i < done.length; i++) {
-    const element = done[i];
-    document.getElementById("done").innerHTML += generateToDoHTML(element);
+      generateAwaitFeedbackHTML(element, i);
   }
 }
 
-function generateToDoHTML(element) {
+
+  index_done = [];
+  for (let j = 0; j < tasks.length; j++) {
+      if(tasks[j]["status"] === "done") {
+          index_done.push(j)
+      }      
+  }
+  let done = tasks.filter((t) => t["status"] == "done");
+  let done_container = document.getElementById('done');
+  if(done.length == 0) {
+    done_container.innerHTML = /*html*/`<div id="done-placeholder" class="cat-placeholder">No tasks Done</div>`;
+  } else {
+  document.getElementById("done").innerHTML = "";
+  for (let i = 0; i < done.length; i++) {
+    const element = done[i];
+    document.getElementById("done").innerHTML += generateDoneHTML(element, i);
+  }
+}
+}
+
+function generateToDoHTML(element, i) {
   return /*html*/ `
-        <div draggable="true" ondragstart="startDragging(${
-          element["id"]
-        })" class="task">
-            <div class="task-category" style="background : ${
-              element.category[1]
-            }">${element.category[0]}</div>
+        <div draggable="true" ondragstart="startDragging(${index_to_do[i]})" class="task">
+            <div class="task-head">
+                <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                <img onclick="toggleKebabDropdown(${index_to_do[i]})" src="../assets/img/kebab.svg" alt="more options">
+                <div id="kebab-dropdown${index_to_do[i]}" class="kebab-dropdown d-none">
+                    <p>Move to</p>
+                    <span onclick="moveToInProgress(${index_to_do[i]})">In progress</span>
+                    <span onclick="moveToAwaitFeedback(${index_to_do[i]})">Await feedback</span>
+                    <span onclick="moveToDone(${index_to_do[i]})">Done</span>
+                </div>
+            
+            </div>
             <span id="task-title">${element.title}</span>
             <span id="task-description">${element.description}</span>
             <div class="subtasks">
@@ -168,6 +278,147 @@ function generateToDoHTML(element) {
     `;
 }
 
+function generateInProgressHTML(element, i) {
+    return /*html*/ `
+          <div draggable="true" ondragstart="startDragging(${index_in_progress[i]})" class="task">
+              <div class="task-head">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_in_progress[i]})" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_in_progress[i]}" class="kebab-dropdown d-none">
+                        <p>Move to</p>
+                        <span onclick="moveToInProgress(${index_in_progress[i]})">In progress</span>
+                        <span onclick="moveToAwaitFeedback(${index_in_progress[i]})">Await feedback</span>
+                        <span onclick="moveToDone(${index_in_progress[i]})">Done</span>
+                  </div>
+              
+              </div>
+              <span id="task-title">${element.title}</span>
+              <span id="task-description">${element.description}</span>
+              <div class="subtasks">
+                  <div id="subtask-progress">
+                      <div id="progress-bar" style="width:${
+                        (100 / element.subtasks.length) *
+                        element.subtasks_done.length
+                      }%"></div>
+                  </div>
+                  <div id="subtask-counter">${element.subtasks_done.length}/${
+      element.subtasks.length
+    } Subtasks</div>
+              </div>
+              <div class="assigned-prio-cont">
+                  <div id="assigned-initials">
+                      <div class="test-initials">${element.assigned_to[0]}</div>
+                      <div class="test-initials bg-green">${
+                        element.assigned_to[1]
+                      }</div>
+                      <div class="test-initials bg-violet">${
+                        element.assigned_to[2]
+                      }</div>
+                  </div>
+                  <div id="task-prio">
+                      <img class="prio-icons" src="${
+                        element.prio_img
+                      }" alt="prio icon">
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+function generateAwaitFeedbackHTML(element, i) {
+    return /*html*/ `
+          <div draggable="true" ondragstart="startDragging(${index_await_feedback[i]})" class="task">
+              <div class="task-head">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_await_feedback[i]})" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_await_feedback[i]}" class="kebab-dropdown d-none">
+                        <p>Move to</p>
+                        <span onclick="moveToInProgress(${index_await_feedback[i]})">In progress</span>
+                        <span onclick="moveToAwaitFeedback(${index_await_feedback[i]})">Await feedback</span>
+                        <span onclick="moveToDone(${index_await_feedback[i]})">Done</span>
+                  </div>
+              
+              </div>
+              <span id="task-title">${element.title}</span>
+              <span id="task-description">${element.description}</span>
+              <div class="subtasks">
+                  <div id="subtask-progress">
+                      <div id="progress-bar" style="width:${
+                        (100 / element.subtasks.length) *
+                        element.subtasks_done.length
+                      }%"></div>
+                  </div>
+                  <div id="subtask-counter">${element.subtasks_done.length}/${
+      element.subtasks.length
+    } Subtasks</div>
+              </div>
+              <div class="assigned-prio-cont">
+                  <div id="assigned-initials">
+                      <div class="test-initials">${element.assigned_to[0]}</div>
+                      <div class="test-initials bg-green">${
+                        element.assigned_to[1]
+                      }</div>
+                      <div class="test-initials bg-violet">${
+                        element.assigned_to[2]
+                      }</div>
+                  </div>
+                  <div id="task-prio">
+                      <img class="prio-icons" src="${
+                        element.prio_img
+                      }" alt="prio icon">
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+  function generateDoneHTML(element, i) {
+    return /*html*/ `
+          <div draggable="true" ondragstart="startDragging(${index_done[i]})" class="task">
+              <div class="task-head">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_done[i]})" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_done[i]}" class="kebab-dropdown d-none">
+                        <p>Move to</p>
+                        <span onclick="moveToInProgress(${index_done[i]})">In progress</span>
+                        <span onclick="moveToAwaitFeedback(${index_done[i]})">Await feedback</span>
+                        <span onclick="moveToDone(${index_done[i]})">Done</span>
+                  </div>
+              
+              </div>
+              <span id="task-title">${element.title}</span>
+              <span id="task-description">${element.description}</span>
+              <div class="subtasks">
+                  <div id="subtask-progress">
+                      <div id="progress-bar" style="width:${
+                        (100 / element.subtasks.length) *
+                        element.subtasks_done.length
+                      }%"></div>
+                  </div>
+                  <div id="subtask-counter">${element.subtasks_done.length}/${
+      element.subtasks.length
+    } Subtasks</div>
+              </div>
+              <div class="assigned-prio-cont">
+                  <div id="assigned-initials">
+                      <div class="test-initials">${element.assigned_to[0]}</div>
+                      <div class="test-initials bg-green">${
+                        element.assigned_to[1]
+                      }</div>
+                      <div class="test-initials bg-violet">${
+                        element.assigned_to[2]
+                      }</div>
+                  </div>
+                  <div id="task-prio">
+                      <img class="prio-icons" src="${
+                        element.prio_img
+                      }" alt="prio icon">
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
 function startDragging(id) {
   currentDraggedElement = id;
 }
@@ -179,4 +430,24 @@ function allowDrop(ev) {
 function moveTo(status) {
   tasks[currentDraggedElement]["status"] = status;
   updateHTML();
+}
+
+function moveToInProgress(id) {
+    tasks[id]["status"] = "in_progress";
+    updateHTML();
+}
+
+function moveToAwaitFeedback(id) {
+    tasks[id]["status"] = "await_feedback";
+    updateHTML();
+}
+
+function moveToDone(id) {
+    tasks[id]["status"] = "done";
+    updateHTML();
+  }
+
+ 
+function toggleKebabDropdown(i) {
+    document.getElementById(`kebab-dropdown${i}`).classList.toggle('d-none');
 }
