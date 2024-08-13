@@ -176,8 +176,9 @@ function moveTo(status) {
 }
 
 function moveToToDo(id) {
-    tasks[id]["status"] = "to_do";
-  updateHTML(); 
+  tasks[id]["status"] = "to_do";
+  updateHTML();
+  saveProgress(); 
 }
 
 function moveToInProgress(id) {

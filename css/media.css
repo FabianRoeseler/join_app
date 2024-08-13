@@ -16,6 +16,9 @@
     .contact-details-mobile {
         display: none;
     }
+    #contact-details-mobile {
+        display: none;
+    }
 }
 @media(max-width: 1192px) {
     .contact-details {
@@ -30,9 +33,6 @@
         display: none;
     }
     .dropdown-help {
-        display: none;
-    }
-    #contact-details-mobile {
         display: none;
     }
     #details-mobile-add-btn {

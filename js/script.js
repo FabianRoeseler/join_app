@@ -173,7 +173,7 @@ function renderContactDetails(i) {
   let color = userColors[user.username] || user.color || generateRandomColor();
   userColors[user.username] = color;
 
-  let isMobile = window.innerWidth < 1170;
+  let isMobile = window.innerWidth < 1192;
   let htmlContent = generateContactDetailsHTML(i, user, color, isMobile);
 
   if (isMobile) {
