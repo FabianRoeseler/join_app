@@ -1,6 +1,5 @@
 let tasks = [];
 let currentDraggedElement;
-let tasksArray = {};
 let index_to_do = [];
 let index_in_progress = [];
 let index_await_feedback = [];
@@ -154,6 +153,7 @@ function updateHTML() {
   }
 }
 
+<<<<<<< HEAD
 function generateToDoHTML(element, i) {
   return /*html*/ `
         <div draggable="true" ondragstart="startDragging(${
@@ -394,6 +394,8 @@ function generateDoneHTML(element, i) {
       `;
 }
 
+=======
+>>>>>>> 8efcb25 (optimized sub-optimal code)
 function startDragging(id) {
   currentDraggedElement = id;
 }
@@ -405,39 +407,38 @@ function allowDrop(ev) {
 function moveTo(status) {
   tasks[currentDraggedElement]["status"] = status;
   updateHTML();
+  saveProgress();
 }
 
 function moveToInProgress(id) {
   tasks[id]["status"] = "in_progress";
   updateHTML();
+  saveProgress();
 }
 
 function moveToAwaitFeedback(id) {
   tasks[id]["status"] = "await_feedback";
   updateHTML();
+  saveProgress();
 }
 
 function moveToDone(id) {
   tasks[id]["status"] = "done";
   updateHTML();
+  saveProgress();
 }
 
 function toggleKebabDropdown(i) {
   document.getElementById(`kebab-dropdown${i}`).classList.toggle("d-none");
 }
 
-async function saveProgress() {
-  let data = {
-    status: "done",
-  };
-  let taskId = ``;
-  let response = await fetch(BASE_URL + "tasks/" + taskId + ".json", {
-    method: "PATCH",
+async function saveProgress(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(tasksArray),
   });
-  await response.json();
-  window.location.reload();
+  return await response.json();
 }
