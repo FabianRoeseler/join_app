@@ -117,6 +117,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     gap: 32px;
+    height: 100%;
 }
 .board-category {
     flex: 1;
@@ -129,7 +130,10 @@ input::placeholder {
     border: 1px solid #A8A8A8;
     border-style: dotted;
     box-shadow: 0px 0px 4px 0px #00000029;
-    padding: 15px;
+    padding: 20px;
+    height: 16px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center
@@ -173,7 +177,7 @@ input::placeholder {
     min-width: 180px;
     max-width: 180px;
     height: auto;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -190,21 +194,24 @@ input::placeholder {
     align-items: flex-start;
 }
 .task-head img {
-    height: 32px;
+    height: 30px;
     cursor: pointer;
     z-index: 99;
+    background-color: #ffffff;
+    border-radius: 16px;
 }
 .kebab-dropdown {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 8px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(236, 234, 234);
     color: var(--darkGray);
     font-weight: 600;
-    padding: 20px 65px 20px 20px;
+    padding: 50px 20px 20px 60px;
     border-radius: 12px 0 0 12px;
     box-shadow: 0px 0px 4px 0px #00000029;
 }
@@ -218,6 +225,15 @@ input::placeholder {
 }
 .category-cont {
     height: 100%;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.highlight-category-cont {
+    background-color: #E7E7E7;
 }
 .task-category {
     font-size: 16px;
@@ -333,7 +349,12 @@ input::placeholder {
 }
 
 
-
+@media(max-width: 1340px) {
+    .board {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
 @media(max-width: 1300px) {
     .header {
         flex-direction: column;
@@ -346,20 +367,27 @@ input::placeholder {
     }
     .column-container {
         flex-direction: column;
+        /* gap: 40px; */
     }
     .task {
         width: 200px;
     }
     .category-cont {
-        display: flex;
+        flex-direction: row;
         padding-left: 0;
-        width: 100%;
-        overflow-x : scroll;
-        overflow: hidden;
+        scrollbar-color: gray;
+        scrollbar-width: thin;    
+        height: auto;
+        overflow: auto;
+        white-space: nowrap;
     } 
     .task {
         margin-left: 15px;
-    }   
+        white-space: normal;
+    }  
+    #done {
+        padding-bottom: 50px;
+    } 
 }
 @media(max-width: 950px) {
     .board {
@@ -369,9 +397,6 @@ input::placeholder {
 }
 @media(min-width: 830px) {
     .btn-add-task-mobile {
-        display: none;
-    }
-    .task-head img {
         display: none;
     }
 }
