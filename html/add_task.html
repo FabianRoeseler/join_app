@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
-    <script src="../js/templates.js"></script>
-
 </head>
 
 <body
@@ -43,7 +41,7 @@
 
                         <div class="field-text-flex" id="addTaskAssignedTo">
                             <label>Assigned to</label>
-                            <input id="userNameInput" class="arrow-drop-menu" type="text"
+                            <input onclick="showUsers()" id="userNameInput" class="arrow-drop-menu" type="text"
                                 placeholder="Select contact to assign" maxlength="40">
                             <div id="dropDownUserMenu"></div>
                         </div>
@@ -117,6 +115,7 @@
 
     <script src="../js/script.js"></script>
     <script src="../js/add_task.js"></script>
+    <script src="../js/templates.js"></script>
 </body>
 
 </html>

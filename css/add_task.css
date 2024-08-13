@@ -22,7 +22,6 @@ body {
     height: 100%;
     background-color: #F6F7F8;
     z-index: -1;
-
 }
 
 .addtask-main-content {
@@ -108,13 +107,11 @@ textarea::placeholder {
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
-    background-position-x: calc(460px - 10px);
-
+    background-position-x: calc(415px - 10px);
 } 
 
 #openUserImge {
     cursor: pointer;
-
 }
 
 #subtasksContent {
@@ -135,14 +132,11 @@ ul {
     border: 0;
     cursor: pointer;
     font-weight: 500;
-    font-size: 20px;
-    /* height: 56px; */
-    padding: 8px 24px;
-    /* padding: 10px 16px; */
+    font-size: 24px;
+    height: 56px;
+    padding: 10px 16px;
     border-radius: 10px;
     background-color: linear-gradient(180deg,#fff,#f5f5fa);
-    /* flex: 1;
-    background-color: white; */
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
     transition: all .2s ease-out;
 }
@@ -153,7 +147,7 @@ ul {
 
 .prio-btn-content {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     gap: 30px;
 }
 
@@ -207,12 +201,28 @@ ul {
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 484px;
+    width: 440px;
     border-radius: 12px 8px 8px 12px;
     max-height: 120px;
     overflow-y: auto;
     gap: 4px;
+    z-index: 1000;
+    top: 560px;
 }
+
+#dropDownUserMenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 440px;
+    border-radius: 12px 8px 8px 12px;
+    max-height: 120px;
+    overflow-y: auto;
+    gap: 4px;
+    top: 660px;
+}
+
 .addtask-bottom-container {
     display: flex;
     justify-content: space-between;
