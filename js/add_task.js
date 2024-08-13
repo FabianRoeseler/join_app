@@ -3,6 +3,7 @@ let selectedPrio = null;
 let categoriesContainerClick = false;
 let assignedContainerClick = false; // Zustand der Dropdown-Menüs (offen/geschlossen)
 let userList = []; // Liste der Benutzer, die aus der Datenbank geladen werden
+let subtaskIdCounter = 0; // Zähler für eindeutige IDs
 let categories = [
     "User Story",
     "Technical Task",
@@ -94,7 +95,6 @@ function hideCategories() {
     let icon = document.getElementById("categoryInput");
     icon.style.transform = "rotate(0deg)";
     categoryList.innerHTML = "";
-<<<<<<< HEAD
 }
 
 ////////////Assigned to function////////////////////////
@@ -182,10 +182,8 @@ function hideUsers() {
     icon.style.transform = "rotate(0deg)";
     userListElement.innerHTML = "";
 }
-=======
-  }
 
-  let subtaskIdCounter = 0; // Zähler für eindeutige IDs
+////////////Subtask function////////////////////////
 
   // Funktion zum Hinzufügen einer Unteraufgabe
   function addSubtask() {
@@ -255,4 +253,3 @@ function hideUsers() {
       document.getElementById('subtaskInput').value = ''; // Leert das Eingabefeld
   }
   
->>>>>>> bab686bed6bd23e979b6783eeb594075ecc127f5
