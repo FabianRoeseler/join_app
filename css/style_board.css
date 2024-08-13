@@ -19,16 +19,20 @@ body {
     position: fixed;
     padding-top: 102px;
     padding-left: 232px;
-    /* width: 100%; */
-    /* height: 100%; */
-    /* overflow-y: scroll; */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     z-index: -1;
 }
 
 .board {
+    width: 100%;
+    height: 100%;
+    scrollbar-color: gray;
+    scrollbar-width: thin;
+    overflow-y: scroll;
     padding: 64px 64px 0 64px;
-    /* width: 74%; */
-    height: 80%;
+    box-sizing: border-box;
 }
 
 .header {
@@ -113,7 +117,6 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     gap: 32px;
-    height: 100%;
 }
 .board-category {
     flex: 1;
@@ -135,7 +138,7 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1em;
+    font-size: 20px;
     font-weight: bold;
     flex: 1;
     margin-bottom: 15px;
@@ -165,8 +168,10 @@ input::placeholder {
 /* task styling */
 
 .task {
+    position: relative;
     background-color: white;
-    width: auto;
+    min-width: 180px;
+    max-width: 180px;
     height: auto;
     padding: 20px;
     border-radius: 20px;
@@ -178,6 +183,38 @@ input::placeholder {
 .task:active {
     transform: rotate(8deg);
 
+}
+.task-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.task-head img {
+    height: 32px;
+    cursor: pointer;
+    z-index: 99;
+}
+.kebab-dropdown {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: rgb(255, 255, 255);
+    color: var(--darkGray);
+    font-weight: 600;
+    padding: 20px 65px 20px 20px;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 0px 0px 4px 0px #00000029;
+}
+.kebab-dropdown p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+.kebab-dropdown span:hover {
+    color: var(--darkLightBlue);
 }
 .category-cont {
     height: 100%;
@@ -297,7 +334,7 @@ input::placeholder {
 
 
 
-@media(max-width: 1120px) {
+@media(max-width: 1300px) {
     .header {
         flex-direction: column;
         align-items: flex-start;
@@ -313,41 +350,34 @@ input::placeholder {
     .task {
         width: 200px;
     }
-    .board {
-        scrollbar-color: gray;
-        scrollbar-width: thin;
-        overflow-y: scroll;
-        /* flex: 1; */
-        /* height: 100%;     */
-        /* width: 100% */
-    }
-    .main-cont {
-        width: 80%;
-        height: 100%;
-    }
+    .category-cont {
+        display: flex;
+        padding-left: 0;
+        width: 100%;
+        overflow-x : scroll;
+        overflow: hidden;
+    } 
+    .task {
+        margin-left: 15px;
+    }   
 }
 @media(max-width: 950px) {
     .board {
         padding-left: 40px;
-        padding-right: 80px;
+        padding-right: 40px;
     }
 }
 @media(min-width: 830px) {
     .btn-add-task-mobile {
         display: none;
     }
+    .task-head img {
+        display: none;
+    }
 }
 @media(max-width: 830px) {
     .btn-add-task {
         display: none;
-    }
-    .main-cont {
-        width: 100%;
-    }
-    .board {
-        padding-top: 40px;
-        padding-right: 40px;
-        height: 77%;
     }
     .btn-add-task-mobile {
         position: absolute;
@@ -358,6 +388,13 @@ input::placeholder {
         margin-top: 0;
         font-size: 47px;
     }
+    .fontSize-span {
+        font-size: 27px;
+        color: #2A3647;
+    }
+    .column .icon {
+        width: 30px;
+    }    
 }
 @media(max-width: 600px) {
     .search-container {
