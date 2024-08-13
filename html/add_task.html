@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +14,19 @@
     <script src="../js/templates.js"></script>
 
 </head>
-<body onload="includeHTML(); document.getElementById('addTaskInputDueDate').min = new Date().toISOString().split('T')[0]">
+
+<body
+    onload="includeHTML(); document.getElementById('addTaskInputDueDate').min = new Date().toISOString().split('T')[0]">
     <div style="z-index: 100;" w3-include-html="./templates/header_sidebar.html"></div>
     <div class="addtask-fullscreen-content">
         <div class="addtask-main-content">
             <div>
-            <h1>Add Task</h1>
-            </div>        
+                <h1>Add Task</h1>
+            </div>
             <form>
                 <div class="addtask-form-container">
                     <div class="addtask-form-left-top">
-                        <div class="field-text-flex"  id="addTaskTitle">
+                        <div class="field-text-flex" id="addTaskTitle">
                             <label>
                                 Title
                                 <span style="color: #ff8190">*</span>
@@ -34,19 +37,21 @@
 
                         <div class="field-text-flex" id="addTaskDiscription">
                             <label>Description</label>
-                            <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30" rows="10"></textarea>
+                            <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30"
+                                rows="10"></textarea>
                         </div>
 
-                        <div class="field-text-flex"  id="addTaskAssignedTo">
+                        <div class="field-text-flex" id="addTaskAssignedTo">
                             <label>Assigned to</label>
-                            <input id="userNameInput" class="arrow-drop-menu" type="text" placeholder="Select contact to assign" maxlength="40">
+                            <input id="userNameInput" class="arrow-drop-menu" type="text"
+                                placeholder="Select contact to assign" maxlength="40">
                             <div id="dropDownUserMenu"></div>
                         </div>
 
                     </div>
                     <div class="separator"></div>
                     <div class="addtask-form-right-bottom">
-                        <div class="field-text-flex"  id="addTaskDueDate">
+                        <div class="field-text-flex" id="addTaskDueDate">
                             <label>
                                 Due date
                                 <span style="color: #ff8190">*</span>
@@ -58,28 +63,37 @@
                         <div class="prio-content field-text-flex">
                             <label>Prio</label>
                             <div class="prio-btn-content">
-                                <button id="urgent" class="prio-button" onclick="toggleButton('urgent')" type="button">Urgent <img id="urgentImg" src="../assets/img/Prio_urgent_color.png" alt=""></button>
-                                <button id="medium" class="prio-button" onclick="toggleButton('medium')" type="button">Medium <img id="mediumImg" src="../assets/img/Prio_medium_white.png" alt=""></button>
-                                <button id="low" class="prio-button" onclick="toggleButton('low')" type="button">Low <img id="lowImg" src="../assets/img/Prio_low_color.png" alt=""></button>
+                                <button id="urgent" class="prio-button" onclick="toggleButton('urgent')"
+                                    type="button">Urgent <img id="urgentImg" src="../assets/img/Prio_urgent_color.png"
+                                        alt=""></button>
+                                <button id="medium" class="prio-button" onclick="toggleButton('medium')"
+                                    type="button">Medium <img id="mediumImg" src="../assets/img/Prio_medium_white.png"
+                                        alt=""></button>
+                                <button id="low" class="prio-button" onclick="toggleButton('low')" type="button">Low
+                                    <img id="lowImg" src="../assets/img/Prio_low_color.png" alt=""></button>
                             </div>
                         </div>
 
-                        <div class="field-text-flex"  id="addTaskCategory">
+                        <div class="field-text-flex" id="addTaskCategory">
                             <label>
                                 Category
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input onclick="openCategories()" id="categoryInput" class="arrow-drop-menu" type="text" placeholder="Select task category" maxlength="40">
+                            <input onclick="openCategories()" id="categoryInput" class="arrow-drop-menu" type="text"
+                                placeholder="Select task category" maxlength="40">
                             <div id="dropDownCategoryMenu"></div>
                         </div>
-                        
-                        <div class="field-text-flex"  id="addTaskSubtasks">
+
+                        <div class="field-text-flex" id="addTaskSubtasks">
                             <label>
                                 Subtasks
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input id="userNameSubtasks" class="plus-minus-drop-menu" type="text" placeholder="Select task category" maxlength="40">
-                            <div id="dropDownUserMenu"></div>
+                            <div style="display: flex; gap: 5px;">
+                                <button type="button" onclick="clearSubtaskInput()">✖</button>
+                                <input id="subtaskInput" class="plus-minus-drop-menu" type="text" placeholder="Add a new subtask" maxlength="40">
+                                <button type="button" onclick="addSubtask()">+</button>
+                            </div>
                             <ul id="subtasksContent"></ul>
                         </div>
 
@@ -104,4 +118,5 @@
     <script src="../js/script.js"></script>
     <script src="../js/add_task.js"></script>
 </body>
+
 </html>
