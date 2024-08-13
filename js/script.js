@@ -277,6 +277,7 @@ function openMobileEditMenu() {
 
 function closeMobileEditMenu() {
   document.getElementById("mobile-edit-menu").style = `right: 0; width: 0`;
+  document.getElementById("details-mobile-round-btn").style = `background-color: var(--darkGray)`;
 }
 
 function stop(event) {
