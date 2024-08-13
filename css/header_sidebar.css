@@ -85,7 +85,6 @@ header {
     font-size: 16px;
     font-weight: 300;
     line-height: 19.2px;
-    /* text-align: left; */
     padding: 8px 16px 8px 16px;
 }
 #dropdown a:hover {
@@ -96,7 +95,7 @@ header {
 
 nav {
     position: fixed;
-    width: 232px;
+    width: 234px;
     height: 100%;
     background: #2A3647;
     box-shadow: 0px 0px 4px 0px #0000001A;
@@ -133,7 +132,7 @@ menu a {
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
-    padding: 8px 63px;
+    padding: 8px 59px 8px 70px;
 }
 menu a:hover {
     background-color: #2A3D59;
@@ -184,17 +183,6 @@ menu a:hover {
     justify-content: center;
     gap: 10px;
     font-size: 14px;
-}
-.sidebar-mobile a:hover {
-    background-color: var(--darkBlue);
-    border-radius: 16px;
-}
-.sidebar-mobile-click {
-    background-color: var(--darkBlue);
-    width: 100px;
-    height: 100%;
-    /* padding: 10px 10px 10px 0; */
-    border-radius: 10px;
 }
 .sidebar-mobile a img {
     height: 32px;

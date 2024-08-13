@@ -1,0 +1,10 @@
+.click-summary {
+    background-color: var(--darkBlue);
+}
+.click-summary:hover {
+    background-color: var(--darkBlue);
+}
+.click-summary-mobile {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
+}

@@ -118,9 +118,6 @@
     }
 }
 @media(max-width: 375px) {
-    header {
-        height: 96px;
-    }
     #profile-initials-header {
         position: absolute;
         right: 80px;

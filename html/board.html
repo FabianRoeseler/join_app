@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_board.css">
     <link rel="stylesheet" href="../css/header_sidebar.css">
@@ -13,7 +14,7 @@
 
 
 </head>
-<body onload="includeHTML(), updateHTML()">
+<body onload="loadTasks(), includeHTML(), updateHTML()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
     <div class="main-cont">
     <div class="board">
@@ -28,6 +29,7 @@
                     </button>
                 </div>
                 <button class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg" alt=""></button>
+                <div class="btn-add-task-mobile"><img src="../assets/img/add.svg" alt=""></div>
             </div>
         </div>
         <div class="column-container">

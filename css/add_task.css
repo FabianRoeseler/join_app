@@ -1,7 +1,16 @@
 body {
     margin: 0;
     font-family: "Inter", Sans-Serif;
-    
+}
+.click-add-task {
+    background-color: var(--darkBlue);
+}
+.click-add-task:hover {
+    background-color: var(--darkBlue);
+}
+.click-add-task-mobile {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
 }
 
 .addtask-fullscreen-content {
@@ -15,31 +24,50 @@ body {
 }
 
 .addtask-main-content {
-    position: relative;
+    position: fixed;
     padding-top: 80px;
-    padding-left: 64px;
-    background-color: #F6F7F8;
-    flex: 1;
+    /* padding-left: 64px; */
+    /* padding-right: 64px; */
+    /* background-color: #F6F7F8; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* flex: 1; */
     overflow-y: auto;
+    width: 82%;
+    /* box-sizing: border-box;
+    width: 82%; */
 }
-
+.addtask-main-content h1 {
+    width: 937px;
+    font-size: 61px;
+}
 
 .addtask-form-left-top {
     display: flex;
     flex-direction: column;
-    margin-right: 48px;
+    /* margin-right: 48px; */
+    width: 440px;
+    height: auto;
+}
+.addtask-form-right-bottom {
+    flex: 1;
+    width: 440px;
 }
 
 .field-text-flex {
     display: flex;
     flex-direction: column;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+}
+#addTaskDiscriptionField {
+    width: auto;
 }
 
 input {
     cursor: pointer;
     font-size: 20px;
-    width: 440px;
+    width: auto;
     border-radius: 10px;
     padding: 12px 21px;
     max-height: 48px;
@@ -60,14 +88,17 @@ label {
 
 textarea {
     cursor: pointer;
-    width: 440px;
-    margin-top: 8px;
+    /* width: 440px; */
+    /* margin-top: 8px; */
     height: 120px;
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     padding: 18px 16px;
     font-size: 20px;
     resize: none;
+}
+textarea::placeholder {
+    font-family: "Inter";
 }
 
 .arrow-drop-menu {
@@ -85,7 +116,7 @@ textarea {
 }
 
 #subtasksContent {
-    height: 130px;
+    height: auto;
     max-height: 130px;
     overflow-y: auto;
 }
@@ -102,11 +133,14 @@ ul {
     border: 0;
     cursor: pointer;
     font-weight: 500;
-    font-size: 24px;
-    height: 56px;
+    font-size: 20px;
+    /* height: 56px; */
     padding: 8px 24px;
+    /* padding: 10px 16px; */
     border-radius: 10px;
     background-color: linear-gradient(180deg,#fff,#f5f5fa);
+    /* flex: 1;
+    background-color: white; */
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
     transition: all .2s ease-out;
 }
@@ -117,6 +151,7 @@ ul {
 
 .prio-btn-content {
     display: flex;
+    /* justify-content: space-between; */
     gap: 30px;
 }
 
@@ -154,14 +189,15 @@ ul {
     height: 424px;
     width: 1px;
     background-color: #D1D1D1;
-    margin-left: 24px;
-    margin-right: 24px;
+    margin-left: 28px;
+    margin-right: 28px;
 }
 
 .addtask-form-container {
     display: flex;
     justify-content: center;
-    padding-right: 250px;
+    /* padding-right: 250px; */
+    height: auto;
 }
 
 #dropDownCategoryMenu {
@@ -174,4 +210,28 @@ ul {
     max-height: 120px;
     overflow-y: auto;
     gap: 4px;
+}
+.addtask-bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+.addtask-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Standardmäßig die Symbole ausblenden */
+#subtasksContent li button {
+    visibility: hidden;
+}
+
+/* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
+#subtasksContent li:hover button {
+    visibility: visible;
+}
+
+
+#subtasksContent li:hover {
+    background-color: #f0f0f0; 
+    border-radius: 8px;
 }
