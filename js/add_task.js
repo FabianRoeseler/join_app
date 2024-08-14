@@ -154,50 +154,70 @@ function displayDropdownUserList(userList) {
 
         let initial = user.username[0].toUpperCase();
         if (initial !== lastInitial) {
+
             lastInitial = initial;
         }
 
         dropdownMenu.innerHTML += /*html*/ `
-            <div onclick="selectUser(${i}) contactCardClickAssigned(this, ${i})" id="contact-info${i}" class="contact-assigned">
+            <div onclick="toggleUserSelection(${i})" id="contact-info${i}" class="contact-assigned">
                 <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
                 <div class="contact-info">
-                    <p id="name${i}" class="name"><span>${user.username}</span></p>
+                    <p id="name${i}" class="name-assigned"><span>${user.username}</span></p>
                 </div>
             </div>
         `;
     });
 }
 
-// Highlighting selected contactcard
-function contactCardClickAssigned(contactCardAssigned, i) {
-    let nameElementAssigned = document.getElementById(`name${i}`);
-    if (contactCardAssigned.classList.contains("contact-card-click-assigned")) {
-        contactCardAssigned.classList.remove("contact-card-click-assigned");
-        nameElementAssigned.classList.remove("contact-name-assigned");
+// Funktion zum Auswählen und Anzeigen von Benutzern
+function toggleUserSelection(index) {
+    let user = Object.values(userList)[index];
+    let contentAssignedUsers = document.getElementById("contentAssignedUsers");
+    let selectedUsers = Array.from(contentAssignedUsers.children).map(child => child.dataset.username);
+    
+    let contactElementAssigned = document.getElementById(`contact-info${index}`);
+    // Überprüfen, ob der Benutzer bereits ausgewählt ist
+    if (selectedUsers.includes(user.username)) {
+        // Benutzer entfernen
+        removeUserFromSelection(user.username);
+        // Entferne die Stile
+        contactElementAssigned.classList.remove('contact-card-click-assigned');
+        contactElementAssigned.querySelector('.name-assigned').classList.remove('contact-name-assigned');
     } else {
-        closeAllContactClicksAssigned();
-        contactCardAssigned.classList.add("contact-card-click-assigned");
-        nameElementAssigned.classList.add("contact-name-assigned");
+        // Benutzer hinzufügen
+        addUserToSelection(user);
+        // Füge die Stile hinzu
+        contactElementAssigned.classList.add('contact-card-click-assigned');
+        contactElementAssigned.querySelector('.name-assigned').classList.add('contact-name-assigned');
     }
 }
 
-// Unhighlighting non selected contactcards
-function closeAllContactClicksAssigned() {
-    let contactCardsAssigned = document.getElementsByClassName("contact-assigned");
-    for (let contactCardAssigned of contactCardsAssigned) {
-        contactCardAssigned.classList.remove("contact-card-click-assigned");
-    }
-    let nameElementsAssigned = document.getElementsByClassName("contact-name-assigned");
-    for (let nameElementAssigned of nameElementsAssigned) {
-        nameElementAssigned.classList.remove("contact-name-assigned");
-    }
+// Funktion zum Hinzufügen eines Benutzers zur Auswahl
+function addUserToSelection(user) {
+    let contentAssignedUsers = document.getElementById("contentAssignedUsers");
+    
+    // Erstellen eines neuen Elements für den ausgewählten Benutzer
+    let userDiv = document.createElement("div");
+    userDiv.className = "assigned-user";
+    userDiv.dataset.username = user.username;
+    userDiv.innerHTML = `
+        <div class="initials" style="background-color: ${user.color || generateRandomColor()};">
+            ${getInitials(user.username)}
+        </div>
+        <button onclick="removeUserFromSelection('${user.username}')">🗑️</button>
+    `;
+    
+    contentAssignedUsers.appendChild(userDiv);
 }
 
-// Diese Funktion wird aufgerufen, wenn ein Benutzer aus dem Dropdown-Menü ausgewählt wird
-function selectUser(index) {
-    let user = Object.values(userList)[index]; // Greift auf den Benutzer mit dem angegebenen Index zu
-    document.getElementById("userNameInput").value = user.username; // Setzt den Benutzernamen ins Input-Feld
-    document.getElementById("dropDownUserMenu").innerHTML = ""; // Leert das Dropdown-Menü
+// Funktion zum Entfernen eines Benutzers aus der Auswahl
+function removeUserFromSelection(username) {
+    let contentAssignedUsers = document.getElementById("contentAssignedUsers");
+    let userDiv = Array.from(contentAssignedUsers.children).find(child => child.dataset.username === username);
+    
+    if (userDiv) {
+        contentAssignedUsers.removeChild(userDiv);
+    }
 }
 
 // Funktion schließt das Benutzer-Dropdown-Menü und setzt den Zustand des Dropdown-Menüs auf geschlossen zurück
@@ -298,21 +318,4 @@ function clearSubtaskInput() {
     const input = document.getElementById('subtaskInput');
     input.value = '';
     document.getElementById('clearButton').style.display = 'none';
-}
-
-function showClearButton() {
-    const input = document.getElementById('subtaskInput');
-    if (input.value.trim() !== '') {
-        document.getElementById('clearButton').style.display = 'inline';
-    }
-}
-
-function toggleClearButton() {
-    const input = document.getElementById('subtaskInput');
-    const clearButton = document.getElementById('clearButton');
-    if (input.value.trim() === '') {
-        clearButton.style.display = 'none';
-    } else {
-        clearButton.style.display = 'inline';
-    }
 }
