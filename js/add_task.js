@@ -74,7 +74,7 @@ function selectCategory(categoryTask) {
 // open the dropdown menu
 function openCategories() {
     let categoryList = document.getElementById("dropDownCategoryMenu");
-    let icon = document.getElementById("categoryInput");
+    let icon = document.getElementById("arrowDropMenuCategory");
     icon.style.transform = "rotate(180deg)";
     categoryList.innerHTML = "";
     if (!categoriesContainerClick) {

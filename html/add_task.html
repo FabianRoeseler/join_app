@@ -42,8 +42,9 @@
 
                         <div class="field-text-flex" id="addTaskAssignedTo">
                             <label>Assigned to</label>
-                            <input onclick="showUsers()" id="userNameInput" class="arrow-drop-menu" type="text"
+                            <input onclick="showUsers()" id="userNameInput" type="text"
                                 placeholder="Select contact to assign" maxlength="40">
+                            <img id="arrowDropMenuAssigned" src="../assets/img/arrow_drop_down.png" alt="">
                             <div id="dropDownUserMenu"></div>
                             <div id="contentAssignedUsers"></div>
                         </div>
@@ -79,8 +80,9 @@
                                 Category
                                 <span style="color: #ff8190">*</span>
                             </label>
-                            <input onclick="openCategories()" id="categoryInput" class="arrow-drop-menu" type="text"
+                            <input id="categoryInput" type="text"
                                 placeholder="Select task category" maxlength="40">
+                            <img onclick="openCategories()" id="arrowDropMenuCategory" src="../assets/img/arrow_drop_down.png" alt="">
                             <div id="dropDownCategoryMenu"></div>
                         </div>
 
