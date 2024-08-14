@@ -90,9 +90,14 @@
                                 <span style="color: #ff8190">*</span>
                             </label>
                             <div class="subtask-input-wrapper">
-                                <input id="subtaskInput" class="plus-minus-drop-menu" type="text" placeholder="Add a new subtask" maxlength="40" onfocus="showClearButton()" oninput="toggleClearButton()">
-                                <button id="clearButton" type="button" onclick="clearSubtaskInput()" style="display: none;">✖</button>
-                                <button type="button" onclick="addSubtask()">+</button>
+                                <input id="subtaskInput" class="plus-minus-drop-menu" type="text"
+                                    placeholder="Add a new subtask" maxlength="40" onfocus="showClearButton()"
+                                    oninput="toggleClearButton()">
+                                <div class="input-icons">
+                                    <button id="clearButton" type="button" onclick="clearSubtaskInput()"
+                                        style="display: none;">✖</button>
+                                    <button type="button" onclick="addSubtask()">+</button>
+                                </div>
                             </div>
                             <ul id="subtasksContent"></ul>
                         </div>
@@ -107,7 +112,8 @@
                     </span>
                     <div class="addtask-buttons">
                         <button class="btn-cancel">Clear<img src="../assets/img/iconoir_cancel.svg"></button>
-                        <button onclick="addTask()" class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+                        <button onclick="addTask()" class="btn-create">Create task<img
+                                src="../assets/img/check.svg"></button>
                     </div>
                 </div>
             </form>

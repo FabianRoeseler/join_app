@@ -268,12 +268,6 @@ ul {
     border-radius: 8px;
 }
 
-.subtask-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
 #subtaskInput {
     flex: 1;
 }
@@ -291,3 +285,32 @@ ul {
     color: #ff0000; /* Optional: Hover-Effekt für das "Kreuz"-Symbol */
 }
 
+.subtask-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.subtask-input-wrapper input {
+    flex: 1;
+    padding-right: 50px; /* Platz für die Symbole */
+}
+
+.input-icons {
+    position: absolute;
+    right: 10px; /* Positionierung der Symbole am rechten Rand des Input-Felds */
+    display: flex;
+    gap: 5px;
+}
+
+.input-icons button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.input-icons button:hover {
+    color: #ff0000; /* Optional: Hover-Effekt für die Symbole */
+}
