@@ -314,3 +314,17 @@ ul {
 .input-icons button:hover {
     color: #ff0000; /* Optional: Hover-Effekt für die Symbole */
 }
+
+.input-icons {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.divider {
+    width: 1px;
+    height: 20px; 
+    background-color: #D1D1D1;
+}
