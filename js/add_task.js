@@ -264,19 +264,25 @@ function addSubtask() {
 
 // Funktion zum Bearbeiten einer Unteraufgabe
 function editSubtask(liId, spanId, inputId) {
-    const spanElement = document.getElementById(spanId); // Hole das span-Element
-    const li = document.getElementById(liId); // Hole das li-Element
-    const currentText = spanElement.textContent; // Textinhalt des span-Elements
+    const spanElement = document.getElementById(spanId);
+    const li = document.getElementById(liId);
+    const currentText = spanElement.textContent;
 
-    // Ersetze den span-Inhalt durch ein Eingabefeld und Buttons
-    const editSubtaskHTML = `
-          <input id="${inputId}" type="text" value="${currentText}">
-          <button onclick="saveSubtask('${liId}', '${inputId}')">✔️</button>
-          <button onclick="deleteSubtask('${liId}')">🗑️</button>
-      `;
+    const editSubtaskHTML = /*html*/`
+        <div class="subtask-input-wrapper edit-mode">
+            <input id="${inputId}" class="edit-subtask-input" type="text" value="${currentText}">
+            <div class="input-icons">
+                <img src ="../assets/img/deletecopy.svg" onclick="deleteSubtask('${liId}')">
+                <div class="divider"></div>
+                <img src="../assets/img/check1.svg" onclick="saveSubtask('${liId}', '${inputId}')">
+            </div>
+        </div>
+    `;
 
-    li.innerHTML = editSubtaskHTML; // Setze den neuen Inhalt für das li-Element
+    li.innerHTML = editSubtaskHTML;
 }
+
+
 
 // Funktion zum Speichern einer bearbeiteten Unteraufgabe
 function saveSubtask(liId, inputId) {

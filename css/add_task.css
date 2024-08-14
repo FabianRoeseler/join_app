@@ -131,6 +131,9 @@ textarea::placeholder {
     height: auto;
     max-height: 130px;
     overflow-y: auto;
+    list-style-type: disc; /* Stellt sicher, dass die Aufzählungspunkte Kreise (discs) sind */
+    padding-left: 20px; /* Platz für die Aufzählungspunkte */
+    color: black; /* Setzt die Farbe der Aufzählungspunkte auf schwarz */
 }
 
 ul {
@@ -333,8 +336,9 @@ ul {
 
 .input-icons {
     position: absolute;
-    right: 10px; /* Positionierung der Symbole am rechten Rand des Input-Felds */
+    right: 10px;
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 
@@ -371,17 +375,17 @@ ul {
 
 .subtask-item {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
-    padding: 8px 10px; 
-    border-radius: 8px; 
-    background-color: #f8f8f8; 
-    cursor: pointer; 
-    list-style-position: inside; 
-    color: #000000; 
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    list-style-position: inside;
+    color: #000000;
+    height: 40px; /* Gleiche Höhe wie das Bearbeitungs-Input-Feld */
 }
-
 
 #subtasksContent li::marker {
     font-size: 14px; 
@@ -398,4 +402,48 @@ ul {
 
 .subtask-item:hover .subtask-icon button {
     visibility: visible; 
+}
+
+.edit-subtask-input {
+    flex: 1;
+    padding-right: 50px; /* Platz für die Symbole */
+    height: 13px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+}
+
+.divider {
+    width: 1px;
+    height: 20px;
+    background-color: #D1D1D1;
+}
+
+/* Wrapper für das Bearbeitungs-Input-Feld, wenn es im Bearbeitungsmodus ist */
+.subtask-input-wrapper.edit-mode {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    height: 40px; 
+    background-color: #f0f0f0; 
+    border-radius: 8px;
+}
+
+/* Styling für das Bearbeitungs-Input-Feld */
+.edit-subtask-input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    padding: 8px 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: white; 
+    outline: none; 
+}
+
+
+.divider {
+    width: 1px;
+    height: 20px;
+    background-color: #D1D1D1;
 }
