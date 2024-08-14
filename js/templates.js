@@ -12,6 +12,10 @@ async function includeHTML() {
   }
 }
 
+function stop(event){
+  event.stopPropagation();
+}
+
 function openDropdown() {
   // if (window.innerWidth < 830) {
   //     document.getElementById('dropdown').classList.add('dropdown-style-mobile');
@@ -185,14 +189,14 @@ function generateEditContactHTML(user, index) {
 
 function generateToDoHTML(element, i) {
   return /*html*/ `
-        <div draggable="true" ondragstart="startDragging(${index_to_do[i]})" class="task">
+        <div id="task${i}" draggable="true" ondragstart="startDragging(${index_to_do[i]}, ${i})" onclick="openTaskDetails()" class="task">
             <div class="task-head">
                 <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
-                <img onclick="toggleKebabDropdown(${index_to_do[i]})" src="../assets/img/kebab.svg" alt="more options">
+                <img onclick="toggleKebabDropdown(${index_to_do[i]}), stop(event)" src="../assets/img/kebab.svg" alt="more options">
                 <div id="kebab-dropdown${index_to_do[i]}" class="kebab-dropdown d-none">
-                    <span onclick="moveToInProgress(${index_to_do[i]})">In progress</span>
-                    <span onclick="moveToAwaitFeedback(${index_to_do[i]})">Await feedback</span>
-                    <span onclick="moveToDone(${index_to_do[i]})">Done</span>
+                    <span onclick="moveToInProgress(${index_to_do[i]}, stop(event))">In progress</span>
+                    <span onclick="moveToAwaitFeedback(${index_to_do[i]}, stop(event))">Await feedback</span>
+                    <span onclick="moveToDone(${index_to_do[i]}, stop(event))">Done</span>
                 </div>
             
             </div>
@@ -231,26 +235,26 @@ function generateToDoHTML(element, i) {
 
 function generateInProgressHTML(element, i) {
   return /*html*/ `
-          <div draggable="true" ondragstart="startDragging(${
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_in_progress[i]
-          })" class="task">
+          })" onclick="openTaskDetails()" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
                   }">${element.category[0]}</div>
                   <img onclick="toggleKebabDropdown(${
                     index_in_progress[i]
-                  })" src="../assets/img/kebab.svg" alt="more options">
+                  }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
                   <div id="kebab-dropdown${
                     index_in_progress[i]
                   }" class="kebab-dropdown d-none">
-                        <span onclick="moveToToDo(${index_in_progress[i]})">To do</span>
+                        <span onclick="moveToToDo(${index_in_progress[i]}), stop(event)">To do</span>
                         <span onclick="moveToAwaitFeedback(${
                           index_in_progress[i]
-                        })">Await feedback</span>
+                        }), stop(event)">Await feedback</span>
                         <span onclick="moveToDone(${
                           index_in_progress[i]
-                        })">Done</span>
+                        }), stop(event)">Done</span>
                   </div>
               
               </div>
@@ -289,26 +293,26 @@ function generateInProgressHTML(element, i) {
 
 function generateAwaitFeedbackHTML(element, i) {
   return /*html*/ `
-          <div draggable="true" ondragstart="startDragging(${
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_await_feedback[i]
-          })" class="task">
+          })" onclick="openTaskDetails()" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
                   }">${element.category[0]}</div>
                   <img onclick="toggleKebabDropdown(${
                     index_await_feedback[i]
-                  })" src="../assets/img/kebab.svg" alt="more options">
+                  }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
                   <div id="kebab-dropdown${
                     index_await_feedback[i]
                   }" class="kebab-dropdown d-none">
-                        <span onclick="moveToToDo(${index_await_feedback[i]})">To do</span>
+                        <span onclick="moveToToDo(${index_await_feedback[i]}), stop(event)">To do</span>
                         <span onclick="moveToInProgress(${
                           index_await_feedback[i]
-                        })">In progress</span>
+                        }), stop(event)">In progress</span>
                         <span onclick="moveToDone(${
                           index_await_feedback[i]
-                        })">Done</span>
+                        }), stop(event)">Done</span>
                   </div>
               
               </div>
@@ -347,26 +351,26 @@ function generateAwaitFeedbackHTML(element, i) {
 
 function generateDoneHTML(element, i) {
   return /*html*/ `
-          <div draggable="true" ondragstart="startDragging(${
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_done[i]
-          })" class="task">
+          })" onclick="openTaskDetails()" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
                   }">${element.category[0]}</div>
                   <img onclick="toggleKebabDropdown(${
                     index_done[i]
-                  })" src="../assets/img/kebab.svg" alt="more options">
+                  }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
                   <div id="kebab-dropdown${
                     index_done[i]
                   }" class="kebab-dropdown d-none">
-                        <span onclick="moveToToDo(${index_done[i]})">To do</span>
+                        <span onclick="moveToToDo(${index_done[i]}), stop(event)">To do</span>
                         <span onclick="moveToInProgress(${
                           index_done[i]
-                        })">In progress</span>
+                        }), stop(event)">In progress</span>
                         <span onclick="moveToAwaitFeedback(${
                           index_done[i]
-                        })">Await feedback</span>
+                        }), stop(event)">Await feedback</span>
                   </div>
               
               </div>

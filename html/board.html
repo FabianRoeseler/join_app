@@ -39,7 +39,6 @@
                     <img src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="to_do" class="category-cont" ondrop="moveTo('to_do')" ondragover="allowDrop(event), highlightCont('to_do')" ondragleave="removeHighlight('to_do')">
-                    <!-- <div id="to-do-placeholder" class="cat-placeholder">No tasks To do</div> -->
                 </div>
             </div>
             <div class="board-category">
@@ -48,7 +47,6 @@
                     <img src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="in_progress" class="category-cont" ondrop="moveTo('in_progress')" ondragover="allowDrop(event), highlightCont('in_progress')" ondragleave="removeHighlight('in_progress')">
-                    <!-- <div id="in-progress-placeholder" class="cat-placeholder">No tasks In progress</div> -->
                 </div>
             </div>
             <div class="board-category">
@@ -57,7 +55,6 @@
                     <img src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="await_feedback" class="category-cont" ondrop="moveTo('await_feedback')" ondragover="allowDrop(event), highlightCont('await_feedback')" ondragleave="removeHighlight('await_feedback')">
-                    <!-- <div id="await-feedback-placeholder" class="cat-placeholder">No tasks Await feedback</div> -->
                 </div>
             </div>
             <div class="board-category">
@@ -65,13 +62,14 @@
                     <span class="fontSize-span">Done</span>
                 </div>
                 <div id="done" class="category-cont" ondrop="moveTo('done')" ondragover="allowDrop(event), highlightCont('done')" ondragleave="removeHighlight('done')">
-                    <!-- <div id="done-placeholder" class="cat-placeholder">No tasks Done</div> -->
                 </div>
             </div>
         </div>
     </div>
-
-</div>
+    </div>
+    <div onclick="closeTaskDetails()" id="task-details-overlay" class="d-none">
+        <div id="task-details-Popup" onclick="stop(event)"></div>
+    </div>
 
 </body>
 </html>
