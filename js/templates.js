@@ -187,9 +187,9 @@ function generateEditContactHTML(user, index) {
   `;
 }
 
-function generateToDoHTML(element, i, id) {
+function generateToDoHTML(element, i) {
   return /*html*/ `
-        <div id="task${i}" draggable="true" ondragstart="startDragging(${index_to_do[i]}, ${i})" onclick="openTaskDetails(${id})" class="task">
+        <div id="task${i}" draggable="true" ondragstart="startDragging(${index_to_do[i]}, ${i})" onclick="openTaskDetails(${index_to_do[i]})" class="task">
             <div class="task-head">
                 <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
                 <img onclick="toggleKebabDropdown(${index_to_do[i]}), stop(event)" src="../assets/img/kebab.svg" alt="more options">
@@ -233,11 +233,11 @@ function generateToDoHTML(element, i, id) {
     `;
 }
 
-function generateInProgressHTML(element, i, id) {
+function generateInProgressHTML(element, i) {
   return /*html*/ `
           <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_in_progress[i]
-          })" onclick="openTaskDetails(${id})" class="task">
+          })" onclick="openTaskDetails(${index_in_progress[i]})" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
@@ -291,11 +291,11 @@ function generateInProgressHTML(element, i, id) {
       `;
 }
 
-function generateAwaitFeedbackHTML(element, i, id) {
+function generateAwaitFeedbackHTML(element, i) {
   return /*html*/ `
           <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_await_feedback[i]
-          })" onclick="openTaskDetails(${id})" class="task">
+          })" onclick="openTaskDetails(${index_await_feedback[i]})" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
@@ -349,11 +349,11 @@ function generateAwaitFeedbackHTML(element, i, id) {
       `;
 }
 
-function generateDoneHTML(element, i, id) {
+function generateDoneHTML(element, i) {
   return /*html*/ `
           <div id="task${i}" draggable="true" ondragstart="startDragging(${
             index_done[i]
-          })" onclick="openTaskDetails(${id})" class="task">
+          })" onclick="openTaskDetails(${index_done[i]})" class="task">
               <div class="task-head">
                   <div class="task-category" style="background : ${
                     element.category[1]
