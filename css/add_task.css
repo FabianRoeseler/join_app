@@ -267,26 +267,22 @@ ul {
     gap: 20px;
 }
 
-/* Standardmäßig die Symbole ausblenden */
-#subtasksContent li button {
-    visibility: hidden;
-}
-
 /* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
-#subtasksContent li:hover button {
-    visibility: visible;
+.subtask-icon button {
+    visibility: hidden; /* Versteckt das Mülleimer-Symbol standardmäßig */
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Schiebt das Mülleimer-Symbol ganz nach rechts */
 }
 
-
-#subtasksContent li:hover {
+.subtask-item:hover {
     background-color: #f0f0f0; 
     border-radius: 8px;
 }
 
-.subtask-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+#subtasksContent li:hover button {
+    visibility: visible; /* Zeigt das Mülleimer-Symbol bei Hover */
 }
 
 #subtaskInput {
@@ -306,3 +302,82 @@ ul {
     color: #ff0000; /* Optional: Hover-Effekt für das "Kreuz"-Symbol */
 }
 
+.subtask-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.subtask-input-wrapper input {
+    flex: 1;
+    padding-right: 50px; /* Platz für die Symbole */
+}
+
+.input-icons {
+    position: absolute;
+    right: 10px; /* Positionierung der Symbole am rechten Rand des Input-Felds */
+    display: flex;
+    gap: 5px;
+}
+
+.input-icons button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.input-icons button:hover {
+    color: #ff0000; /* Optional: Hover-Effekt für die Symbole */
+}
+
+.input-icons {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.divider {
+    width: 1px;
+    height: 20px; 
+    background-color: #D1D1D1;
+}
+
+#subtasksContent {
+    list-style-type: disc; /* Setzt das Listensymbol auf einen Punkt */
+    padding-left: 20px; /* Platz für das Symbol schaffen */
+}
+
+.subtask-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px;
+    padding: 8px 10px; 
+    border-radius: 8px; 
+    background-color: #f8f8f8; 
+    cursor: pointer; 
+    list-style-position: inside; 
+    color: #000000; 
+}
+
+
+#subtasksContent li::marker {
+    font-size: 14px; 
+    color: #000000;
+}
+
+.subtask-text {
+    flex-grow: 1;
+}
+
+.subtask-icon {
+    margin-left: auto;
+}
+
+.subtask-item:hover .subtask-icon button {
+    visibility: visible; 
+}
