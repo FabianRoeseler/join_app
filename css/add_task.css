@@ -253,14 +253,15 @@ ul {
 }
 
 /* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
-#subtasksContent li button {
+.subtask-icon button {
     visibility: hidden; /* Versteckt das Mülleimer-Symbol standardmäßig */
-    background: none; /* Kein Hintergrund für das Symbol */
-    border: none; /* Kein Rahmen für das Symbol */
-    cursor: pointer; /* Zeigt den Zeiger-Cursor beim Hover */
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Schiebt das Mülleimer-Symbol ganz nach rechts */
 }
 
-#subtasksContent li:hover {
+.subtask-item:hover {
     background-color: #f0f0f0; 
     border-radius: 8px;
 }
@@ -335,13 +336,33 @@ ul {
     padding-left: 20px; /* Platz für das Symbol schaffen */
 }
 
-#subtasksContent li {
-    margin-bottom: 10px; /* Abstand zwischen den Listenelementen */
-    list-style-position: inside; /* Sorgt dafür, dass der Punkt innerhalb des Li-Elements bleibt */
-    color: #000000; /* Farbe für den Text des Listenelements */
+.subtask-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px;
+    padding: 8px 10px; 
+    border-radius: 8px; 
+    background-color: #f8f8f8; 
+    cursor: pointer; 
+    list-style-position: inside; 
+    color: #000000; 
 }
 
+
 #subtasksContent li::marker {
-    font-size: 14px; /* Größe des Markers (Bullet Point) */
-    color: #000000; /* Farbe des Bullet Points */
+    font-size: 14px; 
+    color: #000000;
+}
+
+.subtask-text {
+    flex-grow: 1;
+}
+
+.subtask-icon {
+    margin-left: auto;
+}
+
+.subtask-item:hover .subtask-icon button {
+    visibility: visible; 
 }
