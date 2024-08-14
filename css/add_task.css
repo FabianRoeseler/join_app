@@ -252,20 +252,21 @@ ul {
     gap: 20px;
 }
 
-/* Standardmäßig die Symbole ausblenden */
-#subtasksContent li button {
-    visibility: hidden;
-}
-
 /* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
-#subtasksContent li:hover button {
-    visibility: visible;
+#subtasksContent li button {
+    visibility: hidden; /* Versteckt das Mülleimer-Symbol standardmäßig */
+    background: none; /* Kein Hintergrund für das Symbol */
+    border: none; /* Kein Rahmen für das Symbol */
+    cursor: pointer; /* Zeigt den Zeiger-Cursor beim Hover */
 }
-
 
 #subtasksContent li:hover {
     background-color: #f0f0f0; 
     border-radius: 8px;
+}
+
+#subtasksContent li:hover button {
+    visibility: visible; /* Zeigt das Mülleimer-Symbol bei Hover */
 }
 
 #subtaskInput {
