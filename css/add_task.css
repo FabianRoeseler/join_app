@@ -106,19 +106,20 @@ textarea::placeholder {
     height: 5px;
     width: 8px;
     cursor: pointer;
-    position: absolute;
-    right: 85px;
-    top: 66.5%;
+    position: relative;
+    left: 410px;
+    bottom: 25px;
     z-index: 1000;
+
 }
 
 #arrowDropMenuAssigned {
     height: 5px;
     width: 8px;
     cursor: pointer;
-    position: absolute;
-    right: 580px;
-    top: 79%;
+    position: relative;
+    left: 410px;
+    bottom: 25px;
     z-index: 1000;
 } 
 
