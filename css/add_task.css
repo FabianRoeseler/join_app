@@ -223,6 +223,26 @@ ul {
     top: 660px;
 }
 
+.addtask-category {
+    padding: 4px;
+}
+
+.contact-assigned {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 20px;
+    border-radius: 15px;
+}
+
+.contact-card-click-assigned {
+    background-color: rgb(42, 54, 71) !important;
+}
+
+.contact-name-assigned {
+    color: white !important;
+}
+
 .addtask-bottom-container {
     display: flex;
     justify-content: space-between;

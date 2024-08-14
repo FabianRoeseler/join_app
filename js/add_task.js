@@ -132,6 +132,8 @@ async function showUsers() {
         userListElement.style.border = "1px solid #CDCDCD";
         displayDropdownUserList(userList); // userList definiert und gefüllt
     } else {
+        assignedContainerClick = false;
+        userListElement.style.border = "0px";
         hideUsers();
     }
 }
@@ -152,12 +154,11 @@ function displayDropdownUserList(userList) {
 
         let initial = user.username[0].toUpperCase();
         if (initial !== lastInitial) {
-            dropdownMenu.innerHTML += `<div class="contact-list-letter"><h3>${initial}</h3></div><hr>`;
             lastInitial = initial;
         }
 
         dropdownMenu.innerHTML += /*html*/ `
-            <div onclick="selectUser(${i})" id="contact-info${i}" class="contact">
+            <div onclick="selectUser(${i}) contactCardClickAssigned(this, ${i})" id="contact-info${i}" class="contact-assigned">
                 <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
                 <div class="contact-info">
                     <p id="name${i}" class="name"><span>${user.username}</span></p>
@@ -166,6 +167,31 @@ function displayDropdownUserList(userList) {
         `;
     });
 }
+
+// Highlighting selected contactcard
+function contactCardClickAssigned(contactCardAssigned, i) {
+    let nameElementAssigned = document.getElementById(`name${i}`);
+    if (contactCardAssigned.classList.contains("contact-card-click-assigned")) {
+      contactCardAssigned.classList.remove("contact-card-click-assigned");
+      nameElementAssigned.classList.remove("contact-name-assigned");
+    } else {
+      closeAllContactClicksAssigned();
+      contactCardAssigned.classList.add("contact-card-click-assigned");
+      nameElementAssigned.classList.add("contact-name-assigned");
+    }
+  }
+  
+// Unhighlighting non selected contactcards
+  function closeAllContactClicksAssigned() {
+    let contactCardsAssigned = document.getElementsByClassName("contact-assigned");
+    for (let contactCardAssigned of contactCardsAssigned) {
+      contactCardAssigned.classList.remove("contact-card-click-assigned");
+    }
+    let nameElementsAssigned = document.getElementsByClassName("contact-name-assigned");
+    for (let nameElementAssigned of nameElementsAssigned) {
+      nameElementAssigned.classList.remove("contact-name-assigned");
+    }
+  }
 
 // Diese Funktion wird aufgerufen, wenn ein Benutzer aus dem Dropdown-Menü ausgewählt wird
 function selectUser(index) {

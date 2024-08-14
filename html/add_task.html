@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
     <link rel="stylesheet" href="../fonts/Inter/static/Inter-Regular.ttf">
+    <link rel="stylesheet" href="../css/contacts.css">
 </head>
 
 <body
@@ -44,6 +45,7 @@
                             <input onclick="showUsers()" id="userNameInput" class="arrow-drop-menu" type="text"
                                 placeholder="Select contact to assign" maxlength="40">
                             <div id="dropDownUserMenu"></div>
+                            <div id="contentAssignedUsers"></div>
                         </div>
 
                     </div>
@@ -105,7 +107,7 @@
                     </span>
                     <div class="addtask-buttons">
                         <button class="btn-cancel">Clear<img src="../assets/img/iconoir_cancel.svg"></button>
-                        <button class="btn-create">Create task<img src="../assets/img/check.svg"></button>
+                        <button onclick="addTask()" class="btn-create">Create task<img src="../assets/img/check.svg"></button>
                     </div>
                 </div>
             </form>
