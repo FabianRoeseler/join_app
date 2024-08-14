@@ -219,7 +219,7 @@ async function saveProgress(path = "tasks") {
 function openTaskDetails() {
     document.getElementById('task-details-overlay').classList.remove('d-none');
     let taskDetails = document.getElementById('task-details-Popup');
-    taskDetails.style = `left: 50%`;
+    // taskDetails.style = `left: 50%`;
 
     taskDetails.innerHTML = /*html*/`
         <div class="task-details">
@@ -237,7 +237,7 @@ function openTaskDetails() {
                 <span class="task-subtitles">Priority:</span>
                 <div class="prio-cont">
                     <span>${tasks[0].prio}</span>
-                    <img src="${tasks[0].prio}${tasks[0].prio_img}">
+                    <img src="../assets/img/prio_medium.svg">
                 </div>
             </div>
             <div class="assigned-to">
@@ -312,7 +312,7 @@ function renderSubtasks() {
 
 function closeTaskDetails() {
     document.getElementById('task-details-overlay').classList.add('d-none');
-    document.getElementById('task-details-Popup').style = `left: 100%`;
+    // document.getElementById('task-details-Popup').style = `left: 100%`;
 }
 
 function setSubtaskCheck(i) {
