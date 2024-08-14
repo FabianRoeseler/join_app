@@ -328,3 +328,19 @@ ul {
     height: 20px; 
     background-color: #D1D1D1;
 }
+
+#subtasksContent {
+    list-style-type: disc; /* Setzt das Listensymbol auf einen Punkt */
+    padding-left: 20px; /* Platz für das Symbol schaffen */
+}
+
+#subtasksContent li {
+    margin-bottom: 10px; /* Abstand zwischen den Listenelementen */
+    list-style-position: inside; /* Sorgt dafür, dass der Punkt innerhalb des Li-Elements bleibt */
+    color: #000000; /* Farbe für den Text des Listenelements */
+}
+
+#subtasksContent li::marker {
+    font-size: 14px; /* Größe des Markers (Bullet Point) */
+    color: #000000; /* Farbe des Bullet Points */
+}
