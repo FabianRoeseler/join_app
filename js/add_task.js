@@ -265,12 +265,17 @@ function saveSubtask(liId, inputId) {
 
     // Übernehme den bearbeiteten Text und stelle die ursprüngliche Ansicht wieder her
     const saveSubtaskHTML = `
-          <span id="span-${liId}" onclick="editSubtask('${liId}', 'span-${liId}', 'input-${liId}')">${input.value}</span>
-          <button onclick="deleteSubtask('${liId}')">🗑️</button>
-      `;
+        <div class="subtask-text">
+            <span id="span-${liId}" onclick="editSubtask('${liId}', 'span-${liId}', 'input-${liId}')">${input.value}</span>
+        </div>
+        <div class="subtask-icon">
+            <button id="deleteBtn-${liId}" onclick="deleteSubtask('${liId}')">🗑️</button>
+        </div>
+    `;
 
     li.innerHTML = saveSubtaskHTML; // Setze den neuen Inhalt für das li-Element
 }
+
 
 // Funktion zum Löschen einer Unteraufgabe
 function deleteSubtask(liId) {
