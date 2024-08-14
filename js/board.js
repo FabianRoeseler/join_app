@@ -1,15 +1,18 @@
 let tasks = [];
+let taskKeys = [];
 let currentDraggedElement;
 let index_to_do = [];
 let index_in_progress = [];
 let index_await_feedback = [];
 let index_done = [];
 let checkStatus = true;
+let currentId = 4;
 
 const BASE_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function loadTasks() {
+  tasks = []
   let response = await fetch(BASE_URL + ".json");
   const data = await response.json();
   if (data && typeof data === "object" && data.tasks) {
@@ -17,10 +20,15 @@ async function loadTasks() {
     let ObjEntries = Object.entries(tasksArray);
     for (let index = 0; index < ObjEntries.length; index++) {
       const task = ObjEntries[index][1];
+      const taskKey = ObjEntries[index][0];
       tasks.push(task);
+      taskKeys.push(taskKey);
     }
     console.log("Tasks Array:", tasksArray); // remove later
     console.log("tasks", tasks);
+    console.log("ObjEntries", ObjEntries);
+    console.log("taskKeys", taskKeys);
+    
     updateHTML();
   }
 }
@@ -29,6 +37,7 @@ async function addTask(path = "tasks") {
   /*  let taskName = document.getElementById("inputfield"); */ // define the inputfields by ID
 
   let data = {
+    id : currentId++,
     title: "Kochwelt Page & Recipe Recommender",
     description: "Build start page with recipe recommendation",
     assigned_to: ["AM", "EM", "MB"],
@@ -61,12 +70,14 @@ async function addTask(path = "tasks") {
 
 async function deleteTask(i) {
   // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
+  closeTaskDetails();
+
   let sortedTasks = Object.values(tasksArray);
-  console.log(sortedTasks);
+  console.log("sortedTasks",sortedTasks);
   let taskId = Object.keys(tasksArray).find(
     (key) => tasksArray[key] === sortedTasks[i]
   );
-  console.log(taskId);
+  console.log("taskId",taskId);
 
   let response = await fetch(BASE_URL + "tasks/" + taskId + ".json", {
     method: "DELETE",
@@ -161,9 +172,9 @@ function updateHTML() {
   }
 }
 
-function startDragging(id, i) {
+function startDragging(id) {
   currentDraggedElement = id;
-  document.getElementById(`task${i}`).style = `transform: rotate(8deg)`;
+  // document.getElementById(`task${i}`).style = `transform: rotate(8deg)`;
 }
 
 function allowDrop(ev) {
@@ -228,9 +239,11 @@ function openTaskDetails(id) {
     let taskDetails = document.getElementById('task-details-Popup');
     // taskDetails.style = `left: 50%`;
 
-    console.log("status", id);
-    let task = tasks[id];
-    
+    // console.log("status", id);
+  
+    for (let j = 0; j < tasks.length; j++) {
+      if (tasks[j]["id"] === id) {
+        let task = tasks[j];
 
     taskDetails.innerHTML = /*html*/`
         <div class="task-details">
@@ -260,7 +273,7 @@ function openTaskDetails(id) {
                 <div id="subtasks-details"></div>
             </div>
             <div class="delete-edit-cont">
-            <div onclick="" class="delete-edit-single">
+            <div onclick="deleteTask(${j})" class="delete-edit-single">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_207322_4146" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                         <rect width="24" height="24" fill="#D9D9D9"/>
@@ -289,6 +302,8 @@ function openTaskDetails(id) {
     `;
     renderAssignedContacts();
     renderSubtasks();
+  }
+  } 
 }
 
 function renderAssignedContacts() {

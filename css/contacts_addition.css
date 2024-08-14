@@ -1,0 +1,10 @@
+.click-contacts {
+    background-color: var(--darkBlue);
+}
+.click-contacts:hover {
+    background-color: var(--darkBlue);
+}
+.click-contacts-mobile {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
+}

@@ -74,7 +74,7 @@ function selectCategory(categoryTask) {
 // open the dropdown menu
 function openCategories() {
     let categoryList = document.getElementById("dropDownCategoryMenu");
-    let icon = document.getElementById("categoryInput");
+    let icon = document.getElementById("arrowDropMenuCategory");
     icon.style.transform = "rotate(180deg)";
     categoryList.innerHTML = "";
     if (!categoriesContainerClick) {
@@ -92,7 +92,7 @@ function openCategories() {
 function hideCategories() {
     categoriesContainerClick = false;
     let categoryList = document.getElementById("dropDownCategoryMenu");
-    let icon = document.getElementById("categoryInput");
+    let icon = document.getElementById("arrowDropMenuCategory");
     icon.style.transform = "rotate(0deg)";
     categoryList.innerHTML = "";
 }
@@ -124,7 +124,7 @@ async function loadContacts() {
 // Funktion öffnet das Dropdown-Menü für Benutzer und lädt die Liste der Benutzer
 async function showUsers() {
     let userListElement = document.getElementById("dropDownUserMenu");
-    let icon = document.getElementById("userNameInput");
+    let icon = document.getElementById("arrowDropMenuAssigned");
     icon.style.transform = "rotate(180deg)";
     await loadContacts(); // Lade die Kontakte
     if (!assignedContainerClick) {
@@ -224,7 +224,7 @@ function removeUserFromSelection(username) {
 function hideUsers() {
     assignedContainerClick = false;
     let userListElement = document.getElementById("dropDownUserMenu");
-    let icon = document.getElementById("userNameInput");
+    let icon = document.getElementById("arrowDropMenuAssigned");
     icon.style.transform = "rotate(0deg)";
     userListElement.innerHTML = "";
 }

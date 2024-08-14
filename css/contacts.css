@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%
 }
-.click-contacts {
+/* .click-contacts {
     background-color: var(--darkBlue);
 }
 .click-contacts:hover {
@@ -15,7 +15,7 @@
 .click-contacts-mobile {
     background-color: var(--darkBlue);
     border-radius: 16px;
-}
+} */
 
 /* styling contact list */
 
