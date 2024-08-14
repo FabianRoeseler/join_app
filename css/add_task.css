@@ -227,12 +227,27 @@ ul {
     padding: 4px;
 }
 
+#contentAssignedUsers {
+    display: flex;
+    padding: 6px;
+}
+
+.name-assigned {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+}
+
 .contact-assigned {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 0 20px;
+    padding: 6px;
     border-radius: 15px;
+}
+
+.contact-assigned:hover {
+    background-color: rgb(236, 235, 235);
 }
 
 .contact-card-click-assigned {
