@@ -279,3 +279,25 @@ function hideUsers() {
       document.getElementById('subtaskInput').value = ''; // Leert das Eingabefeld
   }
   
+  function clearSubtaskInput() {
+    const input = document.getElementById('subtaskInput');
+    input.value = '';
+    document.getElementById('clearButton').style.display = 'none';
+}
+
+function showClearButton() {
+    const input = document.getElementById('subtaskInput');
+    if (input.value.trim() !== '') {
+        document.getElementById('clearButton').style.display = 'inline';
+    }
+}
+
+function toggleClearButton() {
+    const input = document.getElementById('subtaskInput');
+    const clearButton = document.getElementById('clearButton');
+    if (input.value.trim() === '') {
+        clearButton.style.display = 'none';
+    } else {
+        clearButton.style.display = 'inline';
+    }
+}
