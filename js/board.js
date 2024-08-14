@@ -90,9 +90,10 @@ function updateHTML() {
     document.getElementById("to_do").innerHTML = "";
     for (let i = 0; i < to_do.length; i++) {
       const element = to_do[i];
+      const id = to_do[i].id;
       document.getElementById("to_do").innerHTML += generateToDoHTML(
         element,
-        i
+        i, id
       );
     }
   }
@@ -111,8 +112,10 @@ function updateHTML() {
     document.getElementById("in_progress").innerHTML = "";
     for (let i = 0; i < in_progress.length; i++) {
       const element = in_progress[i];
+      const id = in_progress[i].id;
+
       document.getElementById("in_progress").innerHTML +=
-        generateInProgressHTML(element, i);
+        generateInProgressHTML(element, i, id);
     }
   }
 
@@ -130,8 +133,10 @@ function updateHTML() {
     document.getElementById("await_feedback").innerHTML = "";
     for (let i = 0; i < await_feedback.length; i++) {
       const element = await_feedback[i];
+      const id = await_feedback[i].id;
+
       document.getElementById("await_feedback").innerHTML +=
-        generateAwaitFeedbackHTML(element, i);
+        generateAwaitFeedbackHTML(element, i, id);
     }
   }
 
@@ -149,7 +154,9 @@ function updateHTML() {
     document.getElementById("done").innerHTML = "";
     for (let i = 0; i < done.length; i++) {
       const element = done[i];
-      document.getElementById("done").innerHTML += generateDoneHTML(element, i);
+      const id = done[i].id;
+
+      document.getElementById("done").innerHTML += generateDoneHTML(element, i, id);
     }
   }
 }
@@ -216,27 +223,31 @@ async function saveProgress(path = "tasks") {
   return await response.json();
 }
 
-function openTaskDetails() {
+function openTaskDetails(id) {
     document.getElementById('task-details-overlay').classList.remove('d-none');
     let taskDetails = document.getElementById('task-details-Popup');
     // taskDetails.style = `left: 50%`;
 
+    console.log("status", id);
+    let task = tasks[id];
+    
+
     taskDetails.innerHTML = /*html*/`
         <div class="task-details">
             <div class="task-head">
-                <div class="task-category-detail" style="background : ${tasks[0].category[1]}">${tasks[0].category[0]}</div>
+                <div class="task-category-detail" style="background : ${task.category[1]}">${task.category[0]}</div>
                 <img onclick="closeTaskDetails()" src="../assets/img/iconoir_cancel.svg" alt="close">
             </div>
-            <span class="task-details-title">${tasks[0].title}</span>
-            <span class="task-details-description">${tasks[0].description}</span>
+            <span class="task-details-title">${task.title}</span>
+            <span class="task-details-description">${task.description}</span>
             <div class="date-priority-style">
                 <span class="task-subtitles">Due date:</span>
-                <span>${tasks[0].due_date}</span>
+                <span>${task.due_date}</span>
             </div>
             <div class="date-priority-style">
                 <span class="task-subtitles">Priority:</span>
                 <div class="prio-cont">
-                    <span>${tasks[0].prio}</span>
+                    <span>${task.prio}</span>
                     <img src="../assets/img/prio_medium.svg">
                 </div>
             </div>
