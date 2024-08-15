@@ -246,11 +246,15 @@ function addSubtask() {
         // Erstelle das neue li-Element als HTML-String
         const newSubtaskHTML = /*html*/`
     <li id="${liId}" class="subtask-item">
+        <div class="dot"></div>
         <div class="subtask-text">
             <span id="${spanId}" onclick="editSubtask('${liId}', '${spanId}', '${inputId}')">${subtaskInput.value}</span>
         </div>
         <div class="subtask-icon">
-            <button onclick="deleteSubtask('${liId}')">🗑️</button>
+            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
+            <div class="divider"></div>
+            <img onclick="deleteSubtask('${liId}')" src="../assets/img/delete.svg" alt="delete">
+            <!-- <button onclick="deleteSubtask('${liId}')">🗑️</button> -->
         </div>
     </li>
 `;
@@ -260,6 +264,8 @@ function addSubtask() {
 
         subtaskInput.value = ''; // Leert das Eingabefeld
     }
+    document.getElementById('clear-add-icons').classList.add('d-none');
+    document.getElementById('subtasks-plus-icon').classList.remove('d-none'); 
 }
 
 // Funktion zum Bearbeiten einer Unteraufgabe
@@ -271,10 +277,10 @@ function editSubtask(liId, spanId, inputId) {
     const editSubtaskHTML = /*html*/`
         <div class="subtask-input-wrapper edit-mode">
             <input id="${inputId}" class="edit-subtask-input" type="text" value="${currentText}">
-            <div class="input-icons">
+            <div class="input-icons-edit">
                 <img src ="../assets/img/deletecopy.svg" onclick="deleteSubtask('${liId}')">
                 <div class="divider"></div>
-                <img src="../assets/img/check1.svg" onclick="saveSubtask('${liId}', '${inputId}')">
+                <img src="../assets/img/check1.svg" onclick="saveSubtask('${liId}', '${inputId}', '${spanId}')">
             </div>
         </div>
     `;
@@ -285,17 +291,20 @@ function editSubtask(liId, spanId, inputId) {
 
 
 // Funktion zum Speichern einer bearbeiteten Unteraufgabe
-function saveSubtask(liId, inputId) {
+function saveSubtask(liId, inputId, spanId) {
     const li = document.getElementById(liId); // Hole das li-Element
     const input = document.getElementById(inputId); // Hole das Input-Element
 
     // Übernehme den bearbeiteten Text und stelle die ursprüngliche Ansicht wieder her
     const saveSubtaskHTML = `
         <div class="subtask-text">
+            <div class="dot"></div>
             <span id="span-${liId}" onclick="editSubtask('${liId}', 'span-${liId}', 'input-${liId}')">${input.value}</span>
         </div>
         <div class="subtask-icon">
-            <button id="deleteBtn-${liId}" onclick="deleteSubtask('${liId}')">🗑️</button>
+            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
+            <div class="divider"></div>
+            <img id="deleteBtn-${liId}" onclick="deleteSubtask('${liId}')" src="../assets/img/delete.svg" alt="delete">
         </div>
     `;
 
@@ -318,4 +327,13 @@ function clearSubtaskInput() {
     const input = document.getElementById('subtaskInput');
     input.value = '';
     document.getElementById('clearButton').style.display = 'none';
+}
+
+function showClearButton() {
+    document.getElementById('clear-add-icons').classList.remove('d-none');
+    document.getElementById('subtasks-plus-icon').classList.add('d-none');
+}
+
+function clearImput() {
+    document.getElementById('subtaskInput').value = '';
 }
