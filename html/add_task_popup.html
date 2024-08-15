@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task PopUp</title>
+    <link rel="stylesheet" href="../css/add_task_popup.css">
+    <link rel="stylesheet" href="../css/add_task.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <button onclick="openAddContact()">Add Task PopUp</button>
+    </div>
+    
+    <div class="popup-container">
+        <div class="popup-box">
+            <div type="reset" onclick="closeAddTaskPopup()" id="addtaskCloseButton" class="add-task-close add-task-close-imge"></div>
+            <div class="addtask-popup-main-content">
+                <div>
+                    <h1>Add Task</h1>
+                </div>
+                <form>
+                    <div class="addtask-form-container">
+                        <div class="addtask-form-left-top">
+                            <div class="field-text-flex" id="addTaskTitle">
+                                <label>
+                                    Title
+                                    <span style="color: #ff8190">*</span>
+                                </label>
+                                <div id="errorMassageTitle"></div>
+                                <input id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
+                            </div>
+    
+                            <div class="field-text-flex" id="addTaskDiscription">
+                                <label>Description</label>
+                                <textarea id="addTaskDiscriptionField" placeholder="Enter a Descriptio" cols="30"
+                                    rows="10"></textarea>
+                            </div>
+    
+                            <div class="field-text-flex" id="addTaskAssignedTo">
+                                <label>Assigned to</label>
+                                <input onclick="showUsers()" id="userNameInput" type="text"
+                                    placeholder="Select contact to assign" maxlength="40">
+                                <img onclick="showUsers()" id="arrowDropMenuAssigned" src="../assets/img/arrow_drop_down.png" alt="">
+                                <div id="dropDownUserMenu"></div>
+                                <div id="contentAssignedUsers"></div>
+                            </div>
+    
+                        </div>
+                        <div class="separator"></div>
+                        <div class="addtask-form-right-bottom">
+                            <div class="field-text-flex" id="addTaskDueDate">
+                                <label>
+                                    Due date
+                                    <span style="color: #ff8190">*</span>
+                                </label>
+                                <div id="errorMassageTitle"></div>
+                                <input id="addTaskInputDueDate" type="date" min="2024-08-08">
+                            </div>
+    
+                            <div class="prio-content field-text-flex">
+                                <label>Prio</label>
+                                <div class="prio-btn-content">
+                                    <button id="urgent" class="prio-button" onclick="toggleButton('urgent')"
+                                        type="button">Urgent <img id="urgentImg" src="../assets/img/Prio_urgent_color.png"
+                                            alt=""></button>
+                                    <button id="medium" class="prio-button" onclick="toggleButton('medium')"
+                                        type="button">Medium <img id="mediumImg" src="../assets/img/Prio_medium_color.png"
+                                            alt=""></button>
+                                    <button id="low" class="prio-button" onclick="toggleButton('low')" type="button">Low
+                                        <img id="lowImg" src="../assets/img/Prio_low_color.png" alt=""></button>
+                                </div>
+                            </div>
+    
+                            <div class="field-text-flex" id="addTaskCategory">
+                                <label>
+                                    Category
+                                    <span style="color: #ff8190">*</span>
+                                </label>
+                                <input onclick="openCategories()" id="categoryInput" type="text"
+                                    placeholder="Select task category" maxlength="40">
+                                <img onclick="openCategories()" id="arrowDropMenuCategory" src="../assets/img/arrow_drop_down.png" alt="">
+                                <div id="dropDownCategoryMenu"></div>
+                            </div>
+    
+                            <div class="field-text-flex" id="addTaskSubtasks">
+                                <label>
+                                    Subtasks
+                                    <span style="color: #ff8190">*</span>
+                                </label>
+                                <div class="subtask-input-wrapper">
+                                    <input id="subtaskInput" class="plus-minus-drop-menu" type="text"
+                                        placeholder="Add a new subtask" maxlength="40" onfocus="showClearButton()">
+                                    <div class="input-icons">
+                                        <div id="clear-add-icons" class="d-none">
+                                        <img onclick="clearImput()" src="../assets/img/close.svg" alt="">
+                                        <!-- <svg id="clearButton" onclick="clearSubtaskInput()" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none; margin-top: 2px;">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg> -->
+                                        <div class="divider"></div>
+                                        <img onclick="addSubtask()" src="../assets/img/check1.svg">
+                                        </div>
+                                        <img id="subtasks-plus-icon" src="../assets/img/add1.svg" type="button" onclick="addSubtask()">
+                                    </div>
+                                </div>
+                                <ul id="subtasksContent"></ul>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                    <div class="addtask-bottom-container">
+                        <span>
+                            <span style="color: #ff8190">*</span>
+                            This field is required
+                        </span>
+                        <div class="addtask-buttons">
+                            <button class="btn-cancel">Clear<img class="btn-cancel-icon" src="../assets/img/iconoir_cancel.svg"></button>
+                            <button onclick="addTask()" class="btn-create">Create task<img
+                                    src="../assets/img/check.svg"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="../js/add_task.js"></script>
+    <script src="../js/add_task_popup.js"></script>
+</body>
+</html>

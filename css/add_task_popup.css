@@ -1,0 +1,122 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font-family: "Inter", Sans-Serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.popup-box {
+    /* max-width: 500px; */
+    padding: 45px;
+    z-index: 1;
+    margin: 30px 15px;
+    background-color: white;
+    border-radius: 24px;
+}
+
+#overlayAddTaskPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 400;
+}
+
+.add-task-close {
+    position: relative;
+    left: 900px;
+    right: px;
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+    background-image: url(../assets/img/close.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.addtask-popup-main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        scrollbar-color: gray;
+        scrollbar-width: thin;
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+}
+
+.addtask-popup-main-content h1 {
+    width: 937px;
+    font-size: 61px;
+}
+
+.add-task-close:hover {
+    content: url('../assets/img/icon_close_hover.png');
+}
+
+
+@media(max-width: 1230px) {
+
+    .addtask-popup-main-content h1 {
+        width: 440px;
+    }
+    .separator {
+        display: none;
+    }
+
+}
+@media(max-width: 830px) {
+
+    .addtask-popup-main-content {
+        padding-top: 0;
+    }
+    .addtask-popup-main-content h1 {
+        font-size: 47px;
+    }
+ 
+}
+@media(max-width: 500px) {
+
+}
