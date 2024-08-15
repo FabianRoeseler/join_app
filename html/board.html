@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="../css/style_board.css">
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/add_task_popup.css">
+    <link rel="stylesheet" href="../css/add_task.css">
     <script src="../js/templates.js"></script>
     <script src="../js/board.js"></script>
+    <script src="../js/add_task.js"></script>
+    <script src="../js/add_task_popup.js"></script>
 
 
 </head>
@@ -28,7 +32,7 @@
                         <object data="../assets/img/search.svg" type="image/svg+xml" class="search-icon"></object>
                     </button>
                 </div>
-                <button onclick="addTask()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg" alt=""></button>
+                <button onclick="addTask(); openAddTaskPopup()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg" alt=""></button>
                 <div class="btn-add-task-mobile"><img src="../assets/img/add.svg" alt=""></div>
             </div>
         </div>
@@ -70,6 +74,8 @@
     <div onclick="closeTaskDetails()" id="task-details-overlay" class="d-none">
         <div id="task-details-Popup" onclick="stop(event)"></div>
     </div>
+    <div id="overlayAddTaskPopup"></div>  
+    <div id="addTaskPopup" class="add-task-box" w3-include-html="./add_task_popup.html"></div>
 
 </body>
 </html>

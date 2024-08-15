@@ -68,7 +68,7 @@ body {
     width: auto;
 }
 
-input {
+.input-addtask {
     cursor: pointer;
     font-size: 20px;
     width: auto;
