@@ -1,5 +1,6 @@
 let tasks = [];
 let dbKeys = [];
+let storedUsernames = [];
 let currentDraggedElement;
 let index_to_do = [];
 let index_in_progress = [];
@@ -33,9 +34,19 @@ async function loadTasks() {
   }
 }
 
+function storeInitials() {
+  let selectedInitials = document.querySelectorAll(".initials");
+  let storedInitials = [];
+
+  selectedInitials.forEach(function (initial) {
+    storedInitials.push(initial.innerHTML);
+  });
+  return storedInitials;
+}
+
 async function addTask() {
   let selectedUser = document.querySelectorAll(".assigned-user");
-  let storedUsernames = [];
+  let initials = storeInitials();
 
   // Alle ausgewählten Benutzer sammeln
   for (let c = 0; c < selectedUser.length; c++) {
@@ -52,7 +63,8 @@ async function addTask() {
   let data = {
     title: taskTitle.value,
     description: descriptionName.value,
-    assigned_to: storedUsernames, // Direkt das Array verwenden
+    assigned_to: initials,
+    assigned_to_names: storedUsernames,
     due_date: taskDate.value,
     prio_img: "../assets/img/prio_medium.svg",
     subtasks: ["subtask1", "subtask2"],
@@ -311,7 +323,7 @@ function openTaskDetails(i) {
   renderSubtasks();
 }
 
-function renderAssignedContacts() {
+function renderAssignedContacts(storedUsernames) {
   let contacts = document.getElementById("assigned-contacts");
   contacts.innerHTML = "";
 
@@ -319,7 +331,7 @@ function renderAssignedContacts() {
     contacts.innerHTML += /*html*/ `
             <div class="assigned-single-contact">
                 <div class="test-initials">${tasks[0].assigned_to[i]}</div>
-                <span>Test Name</span>
+                <span>${storedUsernames}</span>
             </div>
             `;
   }
