@@ -7,7 +7,7 @@ let index_await_feedback = [];
 let index_done = [];
 let checkStatus = true;
 
-const BASE_URL =
+const ADD_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function loadTasks() {
@@ -27,14 +27,13 @@ async function loadTasks() {
     console.log("Tasks Array:", tasksArray); // remove later
     console.log("tasks", tasks);
     console.log("ObjEntries", ObjEntries);
-    console.log("dbKeys", dbKeys)
-    
+    console.log("dbKeys", dbKeys);
+
     updateHTML();
   }
 }
 
-async function addTask(path = "tasks") {
-  /*  let taskName = document.getElementById("inputfield"); */ // define the inputfields by ID
+/* async function addTask(path = "tasks") {
 
   let data = {
     title: "Kochwelt Page & Recipe Recommender",
@@ -48,11 +47,6 @@ async function addTask(path = "tasks") {
     subtasks_done: ["subtask1"],
     progress: "",
     status: "to_do",
-
-    /*         The Values of the Fields must be defined for the data!
-      username: userNameInput.value,
-      email: emailInput.value,
-      contactNumber: phoneInput.value */
   };
 
   let response = await fetch(BASE_URL + path + ".json", {
@@ -63,9 +57,8 @@ async function addTask(path = "tasks") {
     body: JSON.stringify(data),
   });
   await loadTasks();
-  /* cleanInputFields(); */ // add a function to clean the inputfields
   return await response.json();
-}
+} */
 
 async function deleteTask(i) {
   // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
@@ -77,7 +70,7 @@ async function deleteTask(i) {
   //   (key) => tasksArray[key] === sortedTasks[i]
   // );
   let taskKey = dbKeys[i];
-  console.log("taskKey",taskKey);
+  console.log("taskKey", taskKey);
 
   let response = await fetch(BASE_URL + "tasks/" + taskKey + ".json", {
     method: "DELETE",
@@ -103,7 +96,7 @@ function updateHTML() {
       const element = to_do[i];
       const key = dbKeys[index_to_do[i]];
       // console.log("key", key);
-      
+
       document.getElementById("to_do").innerHTML += generateToDoHTML(
         element,
         i
@@ -128,7 +121,6 @@ function updateHTML() {
       const key = dbKeys[index_in_progress[i]];
       // console.log("key", key);
 
-
       document.getElementById("in_progress").innerHTML +=
         generateInProgressHTML(element, i);
     }
@@ -150,7 +142,6 @@ function updateHTML() {
       const element = await_feedback[i];
       const key = dbKeys[index_await_feedback[i]];
       // console.log("key", key);
-
 
       document.getElementById("await_feedback").innerHTML +=
         generateAwaitFeedbackHTML(element, i);
@@ -174,7 +165,6 @@ function updateHTML() {
       const key = dbKeys[index_done[i]];
       // console.log("key", key);
 
-
       document.getElementById("done").innerHTML += generateDoneHTML(element, i);
     }
   }
@@ -190,11 +180,11 @@ function allowDrop(ev) {
 }
 
 function highlightCont(id) {
-    document.getElementById(id).classList.add('highlight-category-cont');
+  document.getElementById(id).classList.add("highlight-category-cont");
 }
 
 function removeHighlight(id) {
-    document.getElementById(id).classList.remove('highlight-category-cont');
+  document.getElementById(id).classList.remove("highlight-category-cont");
 }
 
 function moveTo(status) {
@@ -206,7 +196,7 @@ function moveTo(status) {
 function moveToToDo(id) {
   tasks[id]["status"] = "to_do";
   updateHTML();
-  saveProgress(); 
+  saveProgress();
 }
 
 function moveToInProgress(id) {
@@ -243,13 +233,13 @@ async function saveProgress(path = "tasks") {
 }
 
 function openTaskDetails(i) {
-    document.getElementById('task-details-overlay').classList.remove('d-none');
-    let taskDetails = document.getElementById('task-details-Popup');
-    // taskDetails.style = `left: 50%`;
-  
-    let task = tasks[i];
+  document.getElementById("task-details-overlay").classList.remove("d-none");
+  let taskDetails = document.getElementById("task-details-Popup");
+  // taskDetails.style = `left: 50%`;
 
-    taskDetails.innerHTML = /*html*/`
+  let task = tasks[i];
+
+  taskDetails.innerHTML = /*html*/ `
         <div class="task-details">
             <div class="task-head">
                 <div class="task-category-detail" style="background : ${task.category[1]}">${task.category[0]}</div>
@@ -304,30 +294,30 @@ function openTaskDetails(i) {
 
         </div>
     `;
-    renderAssignedContacts();
-    renderSubtasks();
+  renderAssignedContacts();
+  renderSubtasks();
 }
 
 function renderAssignedContacts() {
-    let contacts = document.getElementById('assigned-contacts');
-    contacts.innerHTML = '';
+  let contacts = document.getElementById("assigned-contacts");
+  contacts.innerHTML = "";
 
-    for (let i = 0; i < tasks[0].assigned_to.length; i++) {
-        contacts.innerHTML += /*html*/ `
+  for (let i = 0; i < tasks[0].assigned_to.length; i++) {
+    contacts.innerHTML += /*html*/ `
             <div class="assigned-single-contact">
                 <div class="test-initials">${tasks[0].assigned_to[i]}</div>
                 <span>Test Name</span>
             </div>
             `;
-    }
+  }
 }
 
 function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks-details');
-    subtasks.innerHTML = '';
+  let subtasks = document.getElementById("subtasks-details");
+  subtasks.innerHTML = "";
 
-    for (let i = 0; i < tasks[0].subtasks.length; i++) {
-        subtasks.innerHTML += /*html*/`
+  for (let i = 0; i < tasks[0].subtasks.length; i++) {
+    subtasks.innerHTML += /*html*/ `
             <div class="subtask-cont">
                 <div onclick="setSubtaskCheck(${i})">
                     <img id="checkbox${i}" src="../assets/img/checkbox-empty.svg">
@@ -335,22 +325,22 @@ function renderSubtasks() {
                 <div>${tasks[0].subtasks[i]}</div>
             </div>
         `;
-    }
+  }
 }
 
 function closeTaskDetails() {
-    document.getElementById('task-details-overlay').classList.add('d-none');
-    // document.getElementById('task-details-Popup').style = `left: 100%`;
+  document.getElementById("task-details-overlay").classList.add("d-none");
+  // document.getElementById('task-details-Popup').style = `left: 100%`;
 }
 
 function setSubtaskCheck(i) {
-    let check = document.getElementById(`checkbox${i}`);
+  let check = document.getElementById(`checkbox${i}`);
 
-    if (checkStatus) {
-        check.src = '../assets/img/checkbox-check.svg';
-        checkStatus = false;
-    } else {
-        check.src = '../assets/img/checkbox-empty.svg';
-        checkStatus = true;
-    }
+  if (checkStatus) {
+    check.src = "../assets/img/checkbox-check.svg";
+    checkStatus = false;
+  } else {
+    check.src = "../assets/img/checkbox-empty.svg";
+    checkStatus = true;
+  }
 }
