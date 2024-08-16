@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-    <div class="popup-container">
-        <div id="addTaskPopup" class="add-task-box">
+
             <div type="reset" onclick="closeAddTaskPopup()" id="addtaskCloseButton" class="add-task-close add-task-close-imge"></div>
             <div class="addtask-popup-main-content">
                 <div>
@@ -26,7 +24,7 @@
                                     <span style="color: #ff8190">*</span>
                                 </label>
                                 <div id="errorMassageTitle"></div>
-                                <input id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
+                                <input class="input-addtask" id="addTaskInputTitle" type="text" placeholder="Enter a title" maxlength="40">
                             </div>
     
                             <div class="field-text-flex" id="addTaskDiscription">
@@ -37,7 +35,7 @@
     
                             <div class="field-text-flex" id="addTaskAssignedTo">
                                 <label>Assigned to</label>
-                                <input onclick="showUsers()" id="userNameInput" type="text"
+                                <input class="input-addtask" onclick="showUsers()" id="userNameInput" type="text"
                                     placeholder="Select contact to assign" maxlength="40">
                                 <img onclick="showUsers()" id="arrowDropMenuAssigned" src="../assets/img/arrow_drop_down.png" alt="">
                                 <div id="dropDownUserMenu"></div>
@@ -53,7 +51,7 @@
                                     <span style="color: #ff8190">*</span>
                                 </label>
                                 <div id="errorMassageTitle"></div>
-                                <input id="addTaskInputDueDate" type="date" min="2024-08-08">
+                                <input class="input-addtask" id="addTaskInputDueDate" type="date" min="2024-08-08">
                             </div>
     
                             <div class="prio-content field-text-flex">
@@ -75,7 +73,7 @@
                                     Category
                                     <span style="color: #ff8190">*</span>
                                 </label>
-                                <input onclick="openCategories()" id="categoryInput" type="text"
+                                <input class="input-addtask" onclick="openCategories()" id="categoryInput" type="text"
                                     placeholder="Select task category" maxlength="40">
                                 <img onclick="openCategories()" id="arrowDropMenuCategory" src="../assets/img/arrow_drop_down.png" alt="">
                                 <div id="dropDownCategoryMenu"></div>
@@ -87,7 +85,7 @@
                                     <span style="color: #ff8190">*</span>
                                 </label>
                                 <div class="subtask-input-wrapper">
-                                    <input id="subtaskInput" class="plus-minus-drop-menu" type="text"
+                                    <input class="input-addtask" id="subtaskInput" class="plus-minus-drop-menu" type="text"
                                         placeholder="Add a new subtask" maxlength="40" onfocus="showClearButton()">
                                     <div class="input-icons">
                                         <div id="clear-add-icons" class="d-none">
