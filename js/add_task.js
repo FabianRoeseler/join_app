@@ -86,6 +86,7 @@ function openCategories() {
         categoryList.style.border = "0px";
         hideCategories();
     }
+    document.getElementById('categoryInput').classList.toggle('outline');
 }
 
 // close the dropdown menu
@@ -136,6 +137,7 @@ async function showUsers() {
         userListElement.style.border = "0px";
         hideUsers();
     }
+    document.getElementById('userNameInput').classList.toggle('outline');
 }
 
 // Funktion rendert die Liste der Benutzer im Dropdown-Menü
@@ -201,10 +203,12 @@ function addUserToSelection(user) {
     userDiv.className = "assigned-user";
     userDiv.dataset.username = user.username;
     userDiv.innerHTML = `
-        <div class="initials" style="background-color: ${user.color || generateRandomColor()};">
-            ${getInitials(user.username)}
+        <div class="rendered-initials-cont">
+            <div class="initials" style="background-color: ${user.color || generateRandomColor()};">
+                ${getInitials(user.username)}
+            </div>
+            <img onclick="removeUserFromSelection('${user.username}')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
         </div>
-        <button onclick="removeUserFromSelection('${user.username}')">🗑️</button>
     `;
     
     contentAssignedUsers.appendChild(userDiv);
@@ -286,6 +290,8 @@ function editSubtask(liId, spanId, inputId) {
     `;
 
     li.innerHTML = editSubtaskHTML;
+    li.classList.add('subtask-item-on-focus');
+    li.classList.remove('subtask-item');
 }
 
 
@@ -309,6 +315,9 @@ function saveSubtask(liId, inputId, spanId) {
     `;
 
     li.innerHTML = saveSubtaskHTML; // Setze den neuen Inhalt für das li-Element
+    li.classList.remove('subtask-item-on-focus');
+    li.classList.add('subtask-item');
+
 }
 
 
