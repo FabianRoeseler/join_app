@@ -33,32 +33,45 @@ async function loadTasks() {
   }
 }
 
-/* async function addTask(path = "tasks") {
+async function addTask() {
+  let selectedUser = document.querySelectorAll(".assigned-user");
+  let storedUsernames = [];
+
+  // Alle ausgewählten Benutzer sammeln
+  for (let c = 0; c < selectedUser.length; c++) {
+    const element = selectedUser[c];
+    const username = element.dataset.username;
+    storedUsernames.push(username);
+  }
+
+  // Aufgabe mit allen gesammelten Benutzern speichern
+  let taskTitle = document.getElementById("addTaskInputTitle");
+  let descriptionName = document.getElementById("addTaskDiscriptionField");
+  let taskDate = document.getElementById("addTaskInputDueDate");
 
   let data = {
-    title: "Kochwelt Page & Recipe Recommender",
-    description: "Build start page with recipe recommendation",
-    assigned_to: ["AM", "EM", "MB"],
-    due_date: "06/10/2024",
-    prio: "medium",
+    title: taskTitle.value,
+    description: descriptionName.value,
+    assigned_to: storedUsernames, // Direkt das Array verwenden
+    due_date: taskDate.value,
     prio_img: "../assets/img/prio_medium.svg",
-    category: ["User Story", "#0038FF"],
     subtasks: ["subtask1", "subtask2"],
     subtasks_done: ["subtask1"],
+    category: ["User Story", "#0038FF"],
     progress: "",
     status: "to_do",
   };
 
-  let response = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(ADD_URL + "/tasks" + ".json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
-  await loadTasks();
+
   return await response.json();
-} */
+}
 
 async function deleteTask(i) {
   // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
