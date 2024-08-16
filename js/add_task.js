@@ -359,26 +359,31 @@ function clearImput() {
   document.getElementById("subtaskInput").value = "";
 }
 
-async function addTask(path = "tasks") {
+async function addTask() {
+  let selectedUsers = document.querySelectorAll(
+    "contentAssignedUsers .initials"
+  );
   let taskTitle = document.getElementById("addTaskInputTitle");
   let descriptionName = document.getElementById("addTaskDiscriptionField");
   let taskDate = document.getElementById("addTaskInputDueDate");
   // priobutton
-  let category = document.getElementById("categoryInput");
+  // let category = document.getElementById("categoryInput");
   // subtasks
 
   let data = {
     title: `${taskTitle.value}`,
     description: `${descriptionName.value}`,
-    assigned_to: ``,
+    assigned_to: `${selectedUsers.value}`,
     due_date: `${taskDate.value}`,
     prio_img: "../assets/img/prio_medium.svg",
-    category: "",
+    subtasks: "",
+    subtasks_done: "",
+    category: ["User Story", "#0038FF"],
     progress: "",
     status: "to_do",
   };
 
-  let response = await fetch(ADD_URL + path + ".json", {
+  let response = await fetch(ADD_URL + "/tasks" + ".json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

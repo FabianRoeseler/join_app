@@ -13,7 +13,7 @@ const ADD_URL =
 async function loadTasks() {
   tasks = [];
   dbKeys = [];
-  let response = await fetch(BASE_URL + ".json");
+  let response = await fetch(ADD_URL + ".json");
   const data = await response.json();
   if (data && typeof data === "object" && data.tasks) {
     tasksArray = data.tasks;
@@ -72,7 +72,7 @@ async function deleteTask(i) {
   let taskKey = dbKeys[i];
   console.log("taskKey", taskKey);
 
-  let response = await fetch(BASE_URL + "tasks/" + taskKey + ".json", {
+  let response = await fetch(ADD_URL + "tasks/" + taskKey + ".json", {
     method: "DELETE",
   });
   await loadTasks();
@@ -222,7 +222,7 @@ function toggleKebabDropdown(i) {
 }
 
 async function saveProgress(path = "tasks") {
-  let response = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(ADD_URL + path + ".json", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
