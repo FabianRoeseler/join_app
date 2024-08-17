@@ -15,6 +15,10 @@ let categories = [
   "Analyse/Research",
 ];
 
+const ADDTASK_URL =
+  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
+
+
 function toggleButton(prioState) {
   let button = document.getElementById(prioState);
   let img = document.getElementById(prioState + "Img");
@@ -99,9 +103,28 @@ function hideCategories() {
 
 ////////////Assigned to function////////////////////////
 
+// Diese Funktion gibt die ersten Buchstaben jedes Wortes als Initialen zurück
+function getInitials(username) {
+  // Zerlegt den übergebenen Namen in ein Array, Leerzeichen dienen als Trennzeichen 
+  const names = username.split(' ');
+  
+  // Nimmt den ersten Buchstaben des ersten Namens, wandelt ihn in einen Großbuchstaben
+  let initials = names[0].charAt(0).toUpperCase();
+  
+  // Überprüft, ob mehr als ein Name vorhanden ist
+  if (names.length > 1) {
+      // der erste Buchstabe des zweiten Namens wird in einen Großbuchstaben umgewandelt
+      initials += names[1].charAt(0).toUpperCase();
+  }
+  
+  // Gibt die berechneten Initialen zurück
+  return initials;
+}
+
+
 async function fetchContactsFromAPI() {
   try {
-    let response = await fetch(BASE_URL + ".json");
+    let response = await fetch(ADDTASK_URL + ".json");
     const data = await response.json();
     if (data && typeof data === "object" && data.users) {
       console.log("Loaded User Array:", data.users); // remove later
