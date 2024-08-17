@@ -119,7 +119,7 @@ function updateHTML() {
     document.getElementById("to_do").innerHTML = "";
     for (let i = 0; i < to_do.length; i++) {
       const element = to_do[i];
-      const key = dbKeys[index_to_do[i]];
+      // const key = dbKeys[index_to_do[i]];
       // console.log("key", key);
 
       document.getElementById("to_do").innerHTML += generateToDoHTML(
@@ -143,7 +143,7 @@ function updateHTML() {
     document.getElementById("in_progress").innerHTML = "";
     for (let i = 0; i < in_progress.length; i++) {
       const element = in_progress[i];
-      const key = dbKeys[index_in_progress[i]];
+      // const key = dbKeys[index_in_progress[i]];
       // console.log("key", key);
 
       document.getElementById("in_progress").innerHTML +=
@@ -165,7 +165,7 @@ function updateHTML() {
     document.getElementById("await_feedback").innerHTML = "";
     for (let i = 0; i < await_feedback.length; i++) {
       const element = await_feedback[i];
-      const key = dbKeys[index_await_feedback[i]];
+      // const key = dbKeys[index_await_feedback[i]];
       // console.log("key", key);
 
       document.getElementById("await_feedback").innerHTML +=
@@ -187,7 +187,7 @@ function updateHTML() {
     document.getElementById("done").innerHTML = "";
     for (let i = 0; i < done.length; i++) {
       const element = done[i];
-      const key = dbKeys[index_done[i]];
+      // const key = dbKeys[index_done[i]];
       // console.log("key", key);
 
       document.getElementById("done").innerHTML += generateDoneHTML(element, i);
@@ -368,4 +368,27 @@ function setSubtaskCheck(i) {
     check.src = "../assets/img/checkbox-empty.svg";
     checkStatus = true;
   }
+}
+
+async function findTask() {
+  tasks = [];
+  dbKeys = [];
+  let response = await fetch(ADD_URL + ".json");
+  const data = await response.json();
+  if (data && typeof data === "object" && data.tasks) {
+    tasksArray = data.tasks;
+    let ObjEntries = Object.entries(tasksArray);
+    for (let index = 0; index < ObjEntries.length; index++) {
+      const task = ObjEntries[index][1];
+      // const dbkey = ObjEntries[index][0];
+      tasks.push(task);
+      // dbKeys.push(dbkey);
+    }
+  }
+
+  let search = document.getElementById('search-input').value;
+  let filter = tasks.filter (x => x.title.toLowerCase().includes(search.toLowerCase()) || x.description.toLowerCase().includes(search.toLowerCase()));
+  tasks = filter;
+
+  updateHTML();
 }

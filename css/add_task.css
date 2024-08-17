@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: "Inter", Sans-Serif;
 }
-.click-add-task {
+/* .click-add-task {
     background-color: var(--darkBlue);
 }
 .click-add-task:hover {
@@ -11,7 +11,7 @@ body {
 .click-add-task-mobile {
     background-color: var(--darkBlue);
     border-radius: 16px;
-}
+} */
 .outline {
     outline: 1px solid var(--darkLightBlue);
 }
@@ -86,7 +86,7 @@ body {
 }
 .input-addtask:focus {
     outline: 1px solid var(--darkLightBlue);
-
+    border: 1px solid var(--darkLightBlue);
 }
 
 label {
@@ -114,6 +114,7 @@ textarea::placeholder {
 }
 textarea:focus {
     outline: 1px solid var(--darkLightBlue);
+    border: 1px solid var(--darkLightBlue);
 }
 
 #arrowDropMenuCategory {

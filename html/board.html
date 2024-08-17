@@ -26,14 +26,15 @@
             <h1>Board</h1>
             <div class="search-add-container">
                 <div class="search-container">
-                    <input type="text" placeholder="Find Task">
-                    <div class="separator"></div>
-                    <button type="button">
+                    <input onkeyup="findTask()" id="search-input" type="text" placeholder="Find Task">
+                    <div class="search-separator"></div>
+                    <img src="../assets/img/search.svg" alt="search">
+                    <!-- <button type="button">
                         <object data="../assets/img/search.svg" type="image/svg+xml" class="search-icon"></object>
-                    </button>
+                    </button> -->
                 </div>
-                <button onclick="addTask(); openAddTaskPopup()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg" alt=""></button>
-                <div class="btn-add-task-mobile"><img src="../assets/img/add.svg" alt=""></div>
+                <button onclick="addTask(); openAddTaskPopup()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg"></button>
+                <a href="./add_task.html" class="btn-add-task-mobile"><img src="../assets/img/add.svg" alt=""></a>
             </div>
         </div>
         <div class="column-container">

@@ -1,0 +1,10 @@
+.click-add-task {
+    background-color: var(--darkBlue);
+}
+.click-add-task:hover {
+    background-color: var(--darkBlue);
+}
+.click-add-task-mobile {
+    background-color: var(--darkBlue);
+    border-radius: 16px;
+}
