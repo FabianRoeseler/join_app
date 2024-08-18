@@ -54,6 +54,8 @@
     }
     header {
         justify-content: flex-end;
+        padding-left: 0;
+        padding-right: 40px;
         height: 90px;
     }
     #dropdown {
@@ -81,9 +83,6 @@
     .sidebar-mobile {
         padding: 0 40px;
     }
-    .initials-mobile {
-        position: absolute;
-    }
     #contact-details-mobile {
         padding-left: 48px;
     }
@@ -98,6 +97,17 @@
     }
 
 }
+@media(max-width: 500px) {
+    .header-logo {
+        left: 20px;
+    }
+    header {
+        padding-right: 20px;
+    }
+    #contact-list {
+        padding: 0 20px;
+    }
+}
 @media(max-width: 450px) {
     .sidebar-mobile {
         padding: 0 20px;
@@ -110,26 +120,13 @@
     }
 }
 @media(max-width: 420px) {
-    .header-icons {
-        margin-right: 20px;
-    }
     #contact-details-mobile {
         padding-left: 20px;
     }
 }
 @media(max-width: 375px) {
-    #profile-initials-header {
-        position: absolute;
-        right: 80px;
-    }
-    .header-logo {
-        left: 20px;
-    }
     .sidebar-mobile {
         padding: 0 10px;
-    }
-    #contact-list {
-        padding: 0 20px;
     }
     .initials {
         margin-right: 20px;

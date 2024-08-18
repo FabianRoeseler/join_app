@@ -259,9 +259,8 @@ async function saveProgress(path = "tasks") {
 
 function openTaskDetails(i) {
   document.getElementById("task-details-overlay").classList.remove("d-none");
+  document.getElementById("task-details-overlay").style = `left: 0`;
   let taskDetails = document.getElementById("task-details-Popup");
-  // taskDetails.style = `left: 50%`;
-
   let task = tasks[i];
 
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
