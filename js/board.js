@@ -142,6 +142,7 @@ function updateHTML() {
         element,
         i
       );
+      renderIntialsinSmallTask(element, `assigned-initials-to-do${i}`);
     }
   }
 
@@ -164,6 +165,8 @@ function updateHTML() {
 
       document.getElementById("in_progress").innerHTML +=
         generateInProgressHTML(element, i);
+      
+      renderIntialsinSmallTask(element,`assigned-initials-in-progress${i}`);
     }
   }
 
@@ -186,6 +189,8 @@ function updateHTML() {
 
       document.getElementById("await_feedback").innerHTML +=
         generateAwaitFeedbackHTML(element, i);
+
+      renderIntialsinSmallTask(element, `assigned-initials-await-feedback${i}`);
     }
   }
 
@@ -207,7 +212,18 @@ function updateHTML() {
       // console.log("key", key);
 
       document.getElementById("done").innerHTML += generateDoneHTML(element, i);
+      renderIntialsinSmallTask(element, `assigned-initials-done${i}`);
     }
+  }
+}
+
+function renderIntialsinSmallTask(element, initialsCont) {
+  for (let i = 0; i < element.assigned_to.length; i++) {
+    const initials = element.assigned_to[i];
+    
+    document.getElementById(initialsCont).innerHTML += `
+      <div class="test-initials">${initials}</div>
+    `; 
   }
 }
 
