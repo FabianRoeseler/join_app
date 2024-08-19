@@ -1,3 +1,15 @@
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Inter;
+    height: 100vh;
+    background-color: #F6F7F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .background-logo {
     position: fixed;
     top: 0;
@@ -12,8 +24,8 @@
 }
 
 .logo-first-page {
-        height: 200px;
-        width: 244px;
+        height: 344px;
+        width: auto;
         animation: top-left-glide 1s ease forwards;
         animation-delay: 0.5s;
         position: absolute;
@@ -23,6 +35,120 @@
         z-index: 100;    
 }
 
-.login-form {
-    
+@keyframes top-left-glide {
+    from {
+        top: 50%;
+        left: 50%;
+        height: 200px;
+        width: 244px;
+    }
+
+    to {
+        top: 10%;
+        left: 10%;
+        fill: #2A3647;
+        width: 100px;
+        height: 122px;
+    }
+}
+
+@keyframes background-switch {
+    from {
+        opacity: 1;
+        z-index: 10;
+    }
+
+    to {
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+.sign-up-box-container {
+    position: absolute;
+    top: 60px;
+    width: 98%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.sign-up-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 32px;
+}
+
+.login-card {
+    box-shadow: 0px 0 14px 3px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 48px 115px;
+    gap: 32px;
+}
+
+.login-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    gap: 16px;
+}
+
+.save-forgot-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hidden-continer {
+    color: #ff0000;
+    font-size: 12px;
+    display: none;
+
+}
+
+#forgotPassword {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+#loginFrom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 12px 21px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 380px;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.remember-me {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-login-flex {
+    display: flex;
+    justify-content: space-around;
 }
