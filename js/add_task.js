@@ -5,18 +5,27 @@ let assignedContainerClick = false; // Zustand der Dropdown-Menüs (offen/geschl
 let userList = []; // Liste der Benutzer, die aus der Datenbank geladen werden
 let subtaskIdCounter = 0; // Zähler für eindeutige IDs
 let categories = [
-  "User Story",
-  "Technical Task",
-  "Feature",
-  "Bug",
-  "Documentation",
-  "Design",
-  "Testing QA",
-  "Analyse/Research",
+  {
+    "category" : "User Story",
+    "bg-color" : "#0038FF"
+  },
+  {
+    "category" : "Technical Task",
+    "bg-color" : "#1FD7C1"
+  }
+  // "User Story",
+  // "Technical Task",
+  // "Feature",
+  // "Bug",
+  // "Documentation",
+  // "Design",
+  // "Testing QA",
+  // "Analyse/Research",
 ];
 let prioArr = [];
 let subtasksArray = [];
 let subtasksArray_done = [];
+let categoryArr = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -61,10 +70,11 @@ function renderCategories() {
   categoryContainer.innerHTML = "";
 
   for (let i = 0; i < categories.length; i++) {
-    const category = categories[i];
+    const category = categories[i]["category"];
+    const catColor = categories[i]["bg-color"];
 
     categoryContainer.innerHTML += `
-        <div class="addtask-category" onclick="selectCategory('${category}')">
+        <div class="addtask-category" onclick="selectCategory('${category}', '${catColor}')">
           ${category}
         </div>
       `;
@@ -72,13 +82,18 @@ function renderCategories() {
 }
 
 // wirdt gewählen eine Kategorie für die neue Aufgabe
-function selectCategory(categoryTask) {
+function selectCategory(categoryTask, catColor) {
   let categoryInput = document.getElementById("categoryInput");
   let categoryList = document.getElementById("dropDownCategoryMenu");
 
   categoryInput.value = categoryTask;
   hideCategories();
   categoryList.style.border = "0px";
+  categoryArr = [];
+  categoryArr.push(categoryTask);
+  categoryArr.push(catColor);
+  console.log(categoryArr);
+  
 }
 
 // open the dropdown menu

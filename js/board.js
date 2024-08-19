@@ -85,7 +85,7 @@ async function addTask() {
       prio: prioArr,
       subtasks: ["subtask1", "subtask2"],
       subtasks_done: ["subtask3"], // Initial leer, kann später aktualisiert werden
-      category: categoryInput.value,
+      category: categoryArr,
       status: "to_do",
   };
 
