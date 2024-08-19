@@ -4,34 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singup</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <script src="../js/login.js"></script>
+    <link rel="stylesheet" href="../css/login_signup.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="background-logo"></div>
     <img class="logo-first-page" src="../assets/img/logo_login_singup.jpg" alt="Logo">
 
-    <div class="sign-up-area-container">
-        <div class="sign-up-area">
-            <p href="">Not a Join user?</p>
-            <a href="./signup.html" class="">Sign up</a>
-        </div>
-    </div>
 
-    <div class="singup-card">
-        <h1>Log in</h1>
-        <form class="login-form">
+    <div class="login-card">
+        <a href="../html/index.html" class="">
+            <img src="../assets/img/blue_arrow_singup.jpg" alt="">
+        </a>
+        <h1>Sign up</h1>
+        <form class="login-form" id="loginFrom">
+            <div class="input-container" id="userInput">
+                <input 
+                class="input-login"
+                    type="text"
+                    placeholder="Name"
+                    name="userName"
+                    id="userName"
+                    required
+                >
+                <img src="../assets/img/person.jpg" alt="">
+            </div>
+            <div class="input-container" id="emailInput">
+                <input 
+                class="input-login"
+                    type="email"
+                    placeholder="Email"
+                    name="userEmail"
+                    id="userEmail"
+                    required
+                >
+                <img src="../assets/img/mail.jpg" alt="">
+            </div>
+            <div class="input-container">
+                <input 
+                    class="input-login"
+                    type="password"
+                    placeholder="Password"
+                    name="userPassword"
+                    id="userPassword"
+                    required
+                >
+                <img src="../assets/img/lock.png" alt="">
+            </div>
+            <div class="input-container">
+                <input 
+                    class="input-login"
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="userPassword"
+                    id="userPassword"
+                    required
+                >
+                <img src="../assets/img/lock.png" alt="">
+            </div>
+            <div class="hidden-continer" id="worngLogin">Your Email or Password doesn't exist.</div>
+            <div class="save-forgot-container">
+                <div class="remember-me">
+                    <input 
+                    class="input-login"
+                        type="checkbox"
+                        name="rebmemberMeCheckbox"
+                        id="rebmemberMeCheckbox"
+                    >
+                    <p>I accept the</p>
+                </div>
+                <a href="../html/privacy_policy.html">Privacy Policy</a>
+
+            </div>
+            <div class="btn-container btn-login-flex">
+                <button class="btn-filled">Sign Up</button>
+            </div>
 
         </form>
     </div>
 
-    <footer class="signup-footer">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Legal notice</a>
+    <footer class="login-footer">
+        <a href="../html/privacy_policy.html">Privacy Policy</a>
+        <a href="../html/legal_notice.html">Legal notice</a>
     </footer>
 
-    <div class="popup-container" id="popup-container">
-        <span class="popup" id="popup">You signed Up successfully</span>
-    </div>
+    <script src="../js/login_signup.js"></script>
 </body>
 </html>
