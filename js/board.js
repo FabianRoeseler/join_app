@@ -82,7 +82,7 @@ async function addTask() {
       assigned_to: initials,
       assigned_to_names: storedUsernames,
       due_date: taskDate.value,
-      prio: prio,
+      prio: prioArr,
       subtasks: ["subtask1", "subtask2"],
       subtasks_done: ["subtask3"], // Initial leer, kann später aktualisiert werden
       category: categoryInput.value,
