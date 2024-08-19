@@ -60,26 +60,12 @@ async function addTask() {
   let descriptionName = document.getElementById("addTaskDiscriptionField");
   let taskDate = document.getElementById("addTaskInputDueDate");
 
-  let data = {
-    title: taskTitle.value,
-    description: descriptionName.value,
-    assigned_to: initials,
-    assigned_to_names: storedUsernames,
-    due_date: taskDate.value,
-    prio_img: "../assets/img/prio_medium.svg",
-    subtasks: ["subtask1", "subtask2"],
-    subtasks_done: ["subtask1"],
-    category: ["User Story", "#0038FF"],
-    progress: "",
-    status: "to_do",
-  };
-
   let response = await fetch(ADD_URL + "/tasks" + ".json", {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(tasks),
   });
 
   return await response.json();
@@ -331,8 +317,12 @@ async function findTask() {
     }
   }
 
-  let search = document.getElementById('search-input').value;
-  let filter = tasks.filter (x => x.title.toLowerCase().includes(search.toLowerCase()) || x.description.toLowerCase().includes(search.toLowerCase()));
+  let search = document.getElementById("search-input").value;
+  let filter = tasks.filter(
+    (x) =>
+      x.title.toLowerCase().includes(search.toLowerCase()) ||
+      x.description.toLowerCase().includes(search.toLowerCase())
+  );
   tasks = filter;
 
   updateHTML();
