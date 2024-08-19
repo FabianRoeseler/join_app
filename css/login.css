@@ -152,3 +152,75 @@ body {
     display: flex;
     justify-content: space-around;
 }
+
+@media(max-width: 720px) {
+    .login-card {
+        padding: 48px 48px;
+    }
+
+    .logo-first-page {
+        transform: translate(-30%, -50%);
+    }
+
+    .sign-up-box-container {
+        width: 90%;
+    }
+
+    .logo-first-page {
+        left: 40%;
+    }
+}
+
+@media(max-width: 550px) {
+    .login-card {
+        box-shadow: none;
+    }
+
+    body {
+        background-color: #ffffff;
+    }
+}
+
+@media(max-width: 450px) {
+    .sign-up-box-container {
+        bottom: 120px;
+        top: auto;
+        justify-content: center;
+    }
+
+    body {
+        background-color: #ffffff;
+    }
+
+    .btn-login-flex {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #loginFrom {
+        align-items: center;
+    }
+
+    .save-forgot-container {
+  
+        flex-direction: column;
+    }
+
+    .logo-first-page {
+        transform: translate(-10%, -50%);
+    }
+
+    .input-container {
+        width: 260px;
+    }
+
+    .logo-first-page {
+        height: 250px;
+        width: auto;
+        top: 45%;
+        left: 25%;
+    }
+      
+}
