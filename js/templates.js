@@ -225,7 +225,7 @@ function generateToDoHTML(element, i) {
                 </div>
                 <div id="task-prio">
                     <img class="prio-icons" src="${
-                      element.prio_img
+                      element.prio[1]
                     }" alt="prio icon">
                 </div>
             </div>
@@ -283,7 +283,7 @@ function generateInProgressHTML(element, i) {
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
-                        element.prio_img
+                        element.prio[1]
                       }" alt="prio icon">
                   </div>
               </div>
@@ -341,7 +341,7 @@ function generateAwaitFeedbackHTML(element, i) {
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
-                        element.prio_img
+                        element.prio[1]
                       }" alt="prio icon">
                   </div>
               </div>
@@ -399,7 +399,7 @@ function generateDoneHTML(element, i) {
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
-                        element.prio_img
+                        element.prio[1]
                       }" alt="prio icon">
                   </div>
               </div>
