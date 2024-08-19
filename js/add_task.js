@@ -15,8 +15,8 @@ let categories = [
   "Analyse/Research",
 ];
 let prioArr = [];
-let subtasks = [];
-let subtasks_done = [];
+let subtasksArray = [];
+let subtasksArray_done = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -307,7 +307,7 @@ function addSubtask() {
         </div>
     </li>
 `;
-    subtasks.push(subtaskInput.value);
+    subtasksArray.push(subtaskInput.value);
     // Füge das neue li-Element zur bestehenden Liste hinzu
     subtasksContent.innerHTML += newSubtaskHTML;
 

@@ -50,40 +50,44 @@ async function addTask() {
 
   // Alle ausgewählten Benutzer sammeln
   for (let c = 0; c < selectedUser.length; c++) {
-    const element = selectedUser[c];
-    const username = element.dataset.username;
-    storedUsernames.push(username);
+      const element = selectedUser[c];
+      const username = element.dataset.username;
+      storedUsernames.push(username);
   }
 
   // Aufgabe mit allen gesammelten Benutzern speichern
   let taskTitle = document.getElementById("addTaskInputTitle");
   let descriptionName = document.getElementById("addTaskDiscriptionField");
   let taskDate = document.getElementById("addTaskInputDueDate");
+  let categoryInput = document.getElementById("categoryInput");
+  let prio = selectedPrio;
+  let subtasksContent = document.getElementById("subtasksContent");
+  let subtasks = Array.from(subtasksContent.getElementsByTagName("span")).map(span => span.textContent);
 
   let data = {
-    title: taskTitle.value,
-    description: descriptionName.value,
-    assigned_to: initials,
-    assigned_to_names: storedUsernames,
-    due_date: taskDate.value,
-    prio: prioArr,
-    subtasks: subtasks,
-    subtasks_done: ["subtask1"],
-    category: ["User Story", "#0038FF"],
-    // progress: "",
-    status: "to_do",
+      title: taskTitle.value,
+      description: descriptionName.value,
+      assigned_to: initials,
+      assigned_to_names: storedUsernames,
+      due_date: taskDate.value,
+      prio: prio,
+      subtasks: ["subtask1", "subtask2"],
+      subtasks_done: ["subtask3"], // Initial leer, kann später aktualisiert werden
+      category: categoryInput.value,
+      status: "to_do",
   };
 
   let response = await fetch(ADD_URL + "/tasks" + ".json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
   });
 
   return await response.json();
 }
+
 
 async function deleteTask(i) {
   // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
