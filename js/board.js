@@ -60,12 +60,26 @@ async function addTask() {
   let descriptionName = document.getElementById("addTaskDiscriptionField");
   let taskDate = document.getElementById("addTaskInputDueDate");
 
+  let data = {
+    title: taskTitle.value,
+    description: descriptionName.value,
+    assigned_to: initials,
+    assigned_to_names: storedUsernames,
+    due_date: taskDate.value,
+    prio_img: "../assets/img/prio_medium.svg",
+    subtasks: ["subtask1", "subtask2"],
+    subtasks_done: ["subtask1"],
+    category: ["User Story", "#0038FF"],
+    progress: "",
+    status: "to_do",
+  };
+
   let response = await fetch(ADD_URL + "/tasks" + ".json", {
-    method: "PUT",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(tasks),
+    body: JSON.stringify(data),
   });
 
   return await response.json();
