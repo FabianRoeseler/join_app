@@ -417,20 +417,20 @@ function generateTaskDetailsHTML(task, i) {
             </div>
             <span class="task-details-title">${task.title}</span>
             <span class="task-details-description">${task.description}</span>
-            <div class="date-priority-style">
+            <div class="task-details-date-style">
                 <span class="task-subtitles">Due date:</span>
                 <span>${task.due_date}</span>
             </div>
-            <div class="date-priority-style">
+            <div class="task-details-prio-style">
                 <span class="task-subtitles">Priority:</span>
                 <div class="prio-cont">
-                    <span>${task.prio}</span>
-                    <img src="../assets/img/prio_medium.svg">
+                    <span>${task.prio[0]}</span>
+                    <img src="${task.prio[1]}">
                 </div>
             </div>
             <div class="assigned-to">
                 <span class="task-subtitles">Assigned To:</span>
-                <div id="assigned-contacts"></div>
+                <div id="assigned-contacts">${task.assigned_to}</div>
             </div>
             <div class="subtasks-popup">
                 <span class="task-subtitles">Subtasks</span>

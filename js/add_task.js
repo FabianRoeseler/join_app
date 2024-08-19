@@ -14,6 +14,9 @@ let categories = [
   "Testing QA",
   "Analyse/Research",
 ];
+let prioArr = [];
+let subtasks = [];
+let subtasks = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -43,6 +46,9 @@ function toggleButton(prioState) {
     button.classList.add(`btn-${prioState}-active`);
     img.src = `../assets/img/Prio_${prioState}_white.png`;
     selectedPrio = prioState; // Speichere den aktivierten Button
+    let prioImgSource = `../assets/img/prio_${prioState}.svg`;
+    prioArr.push(prioState);
+    prioArr.push(prioImgSource);
   }
 }
 
@@ -301,7 +307,7 @@ function addSubtask() {
         </div>
     </li>
 `;
-
+    subtasks.push(subtaskInput.value);
     // Füge das neue li-Element zur bestehenden Liste hinzu
     subtasksContent.innerHTML += newSubtaskHTML;
 

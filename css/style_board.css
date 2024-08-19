@@ -460,10 +460,15 @@ input::placeholder {
 .task-subtitles {
     color: #42526E;
 }
-.date-priority-style {
+.task-details-date-style {
     display: flex;
     width: 180px;
     justify-content: space-between;
+}
+.task-details-prio-style {
+    display: flex;
+    width: 180px;
+    gap: 30px;
 }
 .delete-edit-cont {
     display: flex;

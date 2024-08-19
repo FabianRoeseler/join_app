@@ -66,11 +66,11 @@ async function addTask() {
     assigned_to: initials,
     assigned_to_names: storedUsernames,
     due_date: taskDate.value,
-    prio_img: "../assets/img/prio_medium.svg",
-    subtasks: ["subtask1", "subtask2"],
+    prio: prioArr,
+    subtasks: subtasks,
     subtasks_done: ["subtask1"],
     category: ["User Story", "#0038FF"],
-    progress: "",
+    // progress: "",
     status: "to_do",
   };
 
@@ -264,35 +264,35 @@ function openTaskDetails(i) {
   let task = tasks[i];
 
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
-  renderAssignedContacts();
-  renderSubtasks();
+  renderAssignedContacts(task);
+  renderSubtasks(task);
 }
 
-function renderAssignedContacts(storedUsernames) {
+function renderAssignedContacts(task) {
   let contacts = document.getElementById("assigned-contacts");
   contacts.innerHTML = "";
 
-  for (let i = 0; i < tasks[0].assigned_to.length; i++) {
+  for (let i = 0; i < task.assigned_to.length; i++) {
     contacts.innerHTML += /*html*/ `
             <div class="assigned-single-contact">
-                <div class="test-initials">${tasks[0].assigned_to[i]}</div>
-                <span>${storedUsernames}</span>
+                <div class="test-initials">${task.assigned_to[i]}</div>
+                <span>${task.assigned_to_names[i]}</span>
             </div>
             `;
   }
 }
 
-function renderSubtasks() {
+function renderSubtasks(task) {
   let subtasks = document.getElementById("subtasks-details");
   subtasks.innerHTML = "";
 
-  for (let i = 0; i < tasks[0].subtasks.length; i++) {
+  for (let i = 0; i < task.subtasks.length; i++) {
     subtasks.innerHTML += /*html*/ `
             <div class="subtask-cont">
                 <div onclick="setSubtaskCheck(${i})">
                     <img id="checkbox${i}" src="../assets/img/checkbox-empty.svg">
                 </div>
-                <div>${tasks[0].subtasks[i]}</div>
+                <div>${task.subtasks[i]}</div>
             </div>
         `;
   }
