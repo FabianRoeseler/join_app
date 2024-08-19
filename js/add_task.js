@@ -16,7 +16,7 @@ let categories = [
 ];
 let prioArr = [];
 let subtasks = [];
-let subtasks = [];
+let subtasks_done = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
