@@ -35,14 +35,26 @@ async function loadTasks() {
 }
 
 function storeInitials() {
-  let selectedInitials = document.querySelectorAll(".initials");
+  let selectedUsers = document.querySelectorAll(".assigned-user");
   let storedInitials = [];
 
-  selectedInitials.forEach(function (initial) {
-    storedInitials.push(initial.innerHTML);
+  selectedUsers.forEach(function(user) {
+      const username = user.dataset.username;
+      storedInitials.push(getInitials(username)); // Nutze die getInitials Funktion, um die Initialen korrekt zu generieren
   });
+
   return storedInitials;
 }
+
+function getInitials(username) {
+  const names = username.split(' ');
+  let initials = names[0].charAt(0).toUpperCase();
+  if (names.length > 1) {
+      initials += names[1].charAt(0).toUpperCase();
+  }
+  return initials;
+}
+
 
 async function addTask() {
   let selectedUser = document.querySelectorAll(".assigned-user");
@@ -277,14 +289,21 @@ function renderAssignedContacts(task) {
   contacts.innerHTML = "";
 
   for (let i = 0; i < task.assigned_to.length; i++) {
-    contacts.innerHTML += /*html*/ `
-            <div class="assigned-single-contact">
-                <div class="test-initials">${task.assigned_to[i]}</div>
-                <span>${task.assigned_to_names[i]}</span>
-            </div>
-            `;
+      const initials = task.assigned_to[i];
+      const username = task.assigned_to_names[i];
+
+      // Überprüfen, ob Benutzername oder Initialen undefiniert sind und überspringe das Rendering
+      if (initials && username) {
+          contacts.innerHTML += `
+              <div class="assigned-single-contact">
+                  <div class="test-initials">${initials}</div>
+                  <span>${username}</span>
+              </div>
+          `;
+      }
   }
 }
+
 
 function renderSubtasks(task) {
   let subtasks = document.getElementById("subtasks-details");

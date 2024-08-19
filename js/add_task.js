@@ -46,6 +46,7 @@ function toggleButton(prioState) {
     button.classList.add(`btn-${prioState}-active`);
     img.src = `../assets/img/Prio_${prioState}_white.png`;
     selectedPrio = prioState; // Speichere den aktivierten Button
+    prioArr = [];
     let prioImgSource = `../assets/img/prio_${prioState}.svg`;
     prioArr.push(prioState);
     prioArr.push(prioImgSource);
