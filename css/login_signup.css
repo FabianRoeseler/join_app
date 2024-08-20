@@ -39,6 +39,10 @@ h1 {
     z-index: 100;    
 }
 
+.sign-up-link {
+    text-decoration: none;
+}
+
 #blueArrowSingup {
     position: relative;
     right: 100px;
