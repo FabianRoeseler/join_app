@@ -1,76 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <link rel="stylesheet" href="../css/login_signup.css">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <link rel="stylesheet" href="../css/login_signup.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
     <div class="background-logo"></div>
-    <img class="logo-first-page" src="../assets/img/login_logo.png" alt="Logo">
+    <img
+      class="logo-first-page"
+      src="../assets/img/login_logo.png"
+      alt="Logo"
+    />
 
     <div class="sign-up-box-container">
-        <div class="sign-up-box">
-            <p href="">Not a Join user?</p>
-            <a href="../html/singup.html" class="btn-filled">Sign up</a>
-        </div>
+      <div class="sign-up-box">
+        <p href="">Not a Join user?</p>
+        <a href="../html/singup.html" class="btn-filled">Sign up</a>
+      </div>
     </div>
 
     <div class="login-card">
-        <h1>Log in</h1>
-        <form class="login-form" id="loginFrom">
-            <div class="input-container" id="emailInput">
-                <input 
-                class="input-login"
-                    type="email"
-                    placeholder="Email"
-                    name="userEmail"
-                    id="userEmail"
-                    required
-                >
-                <img src="../assets/img/mail.jpg" alt="">
-            </div>
-            <div class="input-container">
-                <input 
-                    class="input-login"
-                    type="password"
-                    placeholder="Password"
-                    name="userPassword"
-                    id="userPassword"
-                    required
-                >
-                <img src="../assets/img/lock.png" alt="">
-            </div>
-            <div class="hidden-continer" id="worngLogin">Your Email or Password doesn't exist.</div>
-            <div class="save-forgot-container">
-                <div class="remember-me">
-                    <input 
-                    class="input-login"
-                        type="checkbox"
-                        name="rebmemberMeCheckbox"
-                        id="rebmemberMeCheckbox"
-                    >
-                    <p>Remember me</p>
-                </div>
-                <p id="forgotPassword">I forgot my password</p>
-
-            </div>
-            <div class="btn-container btn-login-flex">
-                <button class="btn-filled">Log in</button>
-                <button class="btn-outline">Guest Log in</button>
-            </div>
-
-        </form>
+      <h1>Log in</h1>
+      <form class="login-form" id="loginFrom">
+        <div class="input-container" id="emailInput">
+          <input
+            class="input-login"
+            type="email"
+            placeholder="Email"
+            name="userEmail"
+            id="userEmail"
+            required
+          />
+          <img src="../assets/img/mail.jpg" alt="" />
+        </div>
+        <div class="input-container">
+          <input
+            class="input-login"
+            type="password"
+            placeholder="Password"
+            name="userPassword"
+            id="userPassword"
+            required
+          />
+          <img src="../assets/img/lock.png" alt="" />
+        </div>
+        <div class="hidden-continer" id="worngLogin">
+          Your Email or Password doesn't exist.
+        </div>
+        <div class="save-forgot-container">
+          <div class="remember-me">
+            <input
+              class="input-login"
+              type="checkbox"
+              name="rebmemberMeCheckbox"
+              id="rebmemberMeCheckbox"
+            />
+            <p>Remember me</p>
+          </div>
+          <p id="forgotPassword">I forgot my password</p>
+        </div>
+        <div class="btn-container btn-login-flex">
+          <button class="btn-filled">Log in</button>
+          <button class="btn-outline">
+            <a href="../html/board.html">Guest Login</a>
+          </button>
+        </div>
+      </form>
     </div>
 
     <footer class="login-footer">
-        <a href="../html/privacy_policy.html">Privacy Policy</a>
-        <a href="../html/legal_notice.html">Legal notice</a>
+      <a href="../html/privacy_policy.html">Privacy Policy</a>
+      <a href="../html/legal_notice.html">Legal notice</a>
     </footer>
 
     <script src="../js/login_signup.js"></script>
-</body>
+  </body>
 </html>
