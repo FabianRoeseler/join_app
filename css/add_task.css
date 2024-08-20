@@ -428,6 +428,7 @@ ul {
     padding: 5px;
     border-radius: 10px; */
 }
+
 .input-icons img {
     cursor: pointer;
     padding: 5px;
@@ -445,7 +446,7 @@ ul {
 }
 
 #clear-add-icons {
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
     display: flex;

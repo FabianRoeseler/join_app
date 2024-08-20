@@ -2,7 +2,7 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    font-family: Inter;
+    font-family: "Inter", Sans-Serif;
     height: 100vh;
     background-color: #F6F7F8;
     display: flex;
@@ -12,6 +12,13 @@ body {
 
 h1 {
     font-size: 61px;
+}
+
+.blue-line {
+    width: 150px;
+    border: 4px solid #29abe2;
+    margin-top: -50px;
+    border-radius: 10px;
 }
 
 .background-logo {
