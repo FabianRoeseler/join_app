@@ -468,7 +468,7 @@ function generateTaskDetailsHTML(task, i) {
   `;
 }
 
-
+//toggle
 function toggleEditView(i) {
   let detailView = document.getElementById(`task-details-view-${i}`);
   let editView = document.getElementById(`task-edit-view-${i}`);
