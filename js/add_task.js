@@ -23,9 +23,10 @@ let categories = [
   // "Analyse/Research",
 ];
 let prioArr = [];
-let subtasksArray = [];
-let subtasksArray_done = [];
+let subtasksArr = [];
+let subtasksArr_done = ["test"];
 let categoryArr = [];
+let assignedUsersArr = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -91,9 +92,7 @@ function selectCategory(categoryTask, catColor) {
   categoryList.style.border = "0px";
   categoryArr = [];
   categoryArr.push(categoryTask);
-  categoryArr.push(catColor);
-  console.log(categoryArr);
-  
+  categoryArr.push(catColor);  
 }
 
 // open the dropdown menu
@@ -222,7 +221,10 @@ function displayDropdownUserList(userList) {
 
 // Funktion zum Auswählen und Anzeigen von Benutzern
 function toggleUserSelection(index) {
-  let user = Object.values(userList)[index];
+  let sortedUsers = Object.values(userList).sort((a, b) =>
+    a.username.localeCompare(b.username)
+  );
+  let user = Object.values(sortedUsers)[index];
   let contentAssignedUsers = document.getElementById("contentAssignedUsers");
   let selectedUsers = Array.from(contentAssignedUsers.children).map(
     (child) => child.dataset.username
@@ -240,17 +242,19 @@ function toggleUserSelection(index) {
       .classList.remove("contact-name-assigned");
   } else {
     // Benutzer hinzufügen
-    addUserToSelection(user);
+    addUserToSelection(user, getInitials(user.username));
     // Füge die Stile hinzu
     contactElementAssigned.classList.add("contact-card-click-assigned");
     contactElementAssigned
       .querySelector(".name-assigned")
       .classList.add("contact-name-assigned");
+    console.log("addUser", user);
+    
   }
 }
 
 // Funktion zum Hinzufügen eines Benutzers zur Auswahl
-function addUserToSelection(user) {
+function addUserToSelection(user, userInitials) {
   let contentAssignedUsers = document.getElementById("contentAssignedUsers");
 
   // Erstellen eines neuen Elements für den ausgewählten Benutzer
@@ -271,6 +275,8 @@ function addUserToSelection(user) {
     `;
 
   contentAssignedUsers.appendChild(userDiv);
+  assignedUsersArr.push({"initials" : `${userInitials}`, "username" : `${user.username}`, "color" : `${user.color}`});
+  // console.log("assignedUsersArr", assignedUsersArr);
 }
 
 // Funktion zum Entfernen eines Benutzers aus der Auswahl
@@ -283,6 +289,15 @@ function removeUserFromSelection(username) {
   if (userDiv) {
     contentAssignedUsers.removeChild(userDiv);
   }
+
+  for (let i = 0; i < assignedUsersArr.length; i++) {
+    const element = assignedUsersArr[i];
+    if (element.username == username) {
+      assignedUsersArr.splice(i,1);
+    }
+  }
+  console.log("assignedUsersArr", assignedUsersArr);
+  
 }
 
 // Funktion schließt das Benutzer-Dropdown-Menü und setzt den Zustand des Dropdown-Menüs auf geschlossen zurück
@@ -323,9 +338,15 @@ function addSubtask() {
         </div>
     </li>
 `;
-    subtasksArray.push(subtaskInput.value);
+    subtasksArr.push(subtaskInput.value);
+    checkStatusArr.push("../assets/img/checkbox-empty.svg");
     // Füge das neue li-Element zur bestehenden Liste hinzu
     subtasksContent.innerHTML += newSubtaskHTML;
+
+    // console.log("subtasksArr", subtasksArr);
+    console.log("checkStatusArr", checkStatusArr);
+    
+    
 
     subtaskInput.value = ""; // Leert das Eingabefeld
   }

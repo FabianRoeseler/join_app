@@ -215,13 +215,6 @@ function generateToDoHTML(element, i) {
             </div>
             <div class="assigned-prio-cont">
                 <div id="assigned-initials-to-do${i}" class="initials-small-task">
-                    <!-- <div class="test-initials">${element.assigned_to[0]}</div>
-                    <div class="test-initials bg-green">${
-                      element.assigned_to[1]
-                    }</div>
-                    <div class="test-initials bg-violet">${
-                      element.assigned_to[2]
-                    }</div> -->
                 </div>
                 <div id="task-prio">
                     <img class="prio-icons" src="${
@@ -274,13 +267,6 @@ function generateInProgressHTML(element, i) {
               </div>
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-in-progress${i}" class="initials-small-task">
-                      <!-- <div class="test-initials">${element.assigned_to[0]}</div>
-                      <div class="test-initials bg-green">${
-                        element.assigned_to[1]
-                      }</div>
-                      <div class="test-initials bg-violet">${
-                        element.assigned_to[2]
-                      }</div> -->
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
@@ -332,13 +318,6 @@ function generateAwaitFeedbackHTML(element, i) {
               </div>
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-await-feedback${i}" class="initials-small-task">
-                      <!-- <div class="test-initials">${element.assigned_to[0]}</div>
-                      <div class="test-initials bg-green">${
-                        element.assigned_to[1]
-                      }</div>
-                      <div class="test-initials bg-violet">${
-                        element.assigned_to[2]
-                      }</div> -->
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
@@ -390,13 +369,6 @@ function generateDoneHTML(element, i) {
               </div>
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-done${i}" class="initials-small-task">
-                      <!-- <div class="test-initials">${element.assigned_to[0]}</div>
-                      <div class="test-initials bg-green">${
-                        element.assigned_to[1]
-                      }</div>
-                      <div class="test-initials bg-violet">${
-                        element.assigned_to[2]
-                      }</div> -->
                   </div>
                   <div id="task-prio">
                       <img class="prio-icons" src="${
@@ -425,7 +397,7 @@ function generateTaskDetailsHTML(task, i) {
             <div class="task-details-prio-style">
                 <span class="task-subtitles">Priority:</span>
                 <div class="prio-cont">
-                    <span>${task.prio[0]}</span>
+                    <span>${task.prio[0].charAt(0).toUpperCase()+task.prio[0].slice(1)}</span>
                     <img src="${task.prio[1]}">
                 </div>
             </div>

@@ -6,7 +6,7 @@ let index_to_do = [];
 let index_in_progress = [];
 let index_await_feedback = [];
 let index_done = [];
-let checkStatus = true;
+let checkStatusArr = [];
 
 const ADD_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -79,12 +79,14 @@ async function addTask() {
   let data = {
       title: taskTitle.value,
       description: descriptionName.value,
-      assigned_to: initials,
-      assigned_to_names: storedUsernames,
+      assigned_users: assignedUsersArr,
+      // assigned_to: initials,
+      // assigned_to_names: storedUsernames,
       due_date: taskDate.value,
       prio: prioArr,
-      subtasks: ["subtask1", "subtask2"],
-      subtasks_done: ["subtask3"], // Initial leer, kann später aktualisiert werden
+      subtasks: subtasksArr,
+      checkStatus: checkStatusArr,
+      subtasks_done: subtasksArr_done,
       category: categoryArr,
       status: "to_do",
   };
@@ -96,6 +98,8 @@ async function addTask() {
       },
       body: JSON.stringify(data),
   });
+
+  location.href = "../html/board.html"
 
   return await response.json();
 }
@@ -218,11 +222,11 @@ function updateHTML() {
 }
 
 function renderIntialsinSmallTask(element, initialsCont) {
-  for (let i = 0; i < element.assigned_to.length; i++) {
-    const initials = element.assigned_to[i];
+  for (let i = 0; i < element.assigned_users.length; i++) {
+    const user = element.assigned_users[i];
     
     document.getElementById(initialsCont).innerHTML += `
-      <div class="test-initials">${initials}</div>
+      <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
     `; 
   }
 }
@@ -297,41 +301,36 @@ function openTaskDetails(i) {
 
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
   renderAssignedContacts(task);
-  renderSubtasks(task);
+  renderSubtasks(task, i);
 }
 
 function renderAssignedContacts(task) {
   let contacts = document.getElementById("assigned-contacts");
   contacts.innerHTML = "";
 
-  for (let i = 0; i < task.assigned_to.length; i++) {
-      const initials = task.assigned_to[i];
-      const username = task.assigned_to_names[i];
+  for (let i = 0; i < task.assigned_users.length; i++) {
+      const user = task.assigned_users[i];
 
-      // Überprüfen, ob Benutzername oder Initialen undefiniert sind und überspringe das Rendering
-      if (initials && username) {
-          contacts.innerHTML += `
+      contacts.innerHTML += `
               <div class="assigned-single-contact">
-                  <div class="test-initials">${initials}</div>
-                  <span>${username}</span>
+                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
+                  <span>${user.username}</span>
               </div>
           `;
-      }
   }
 }
 
-
-function renderSubtasks(task) {
+function renderSubtasks(task, i) {
   let subtasks = document.getElementById("subtasks-details");
   subtasks.innerHTML = "";
 
-  for (let i = 0; i < task.subtasks.length; i++) {
+  for (let j = 0; j < task.subtasks.length; j++) {
     subtasks.innerHTML += /*html*/ `
             <div class="subtask-cont">
-                <div onclick="setSubtaskCheck(${i})">
-                    <img id="checkbox${i}" src="../assets/img/checkbox-empty.svg">
+                <div onclick="moveToSubtasksDone(${i}, ${j})">
+                    <img id="checkbox${j}" src="${task.checkStatus[j]}">
                 </div>
-                <div>${task.subtasks[i]}</div>
+                <div>${task.subtasks[j]}</div>
             </div>
         `;
   }
@@ -342,15 +341,26 @@ function closeTaskDetails() {
   // document.getElementById('task-details-Popup').style = `left: 100%`;
 }
 
-function setSubtaskCheck(i) {
-  let check = document.getElementById(`checkbox${i}`);
+function moveToSubtasksDone(i, j) {
+  let check = document.getElementById(`checkbox${j}`);
+  let task = tasks[i];
+  let checkStatus = task.checkStatus[j];
 
-  if (checkStatus) {
+  if (checkStatus == "../assets/img/checkbox-empty.svg") {
     check.src = "../assets/img/checkbox-check.svg";
-    checkStatus = false;
+    subtasksArr_done.push(task.subtasks[j])
+    task.subtasks_done = subtasksArr_done;
+    // task.checkStatus = "../assets/img/checkbox-check.svg";
+    // saveDoneSubtask(task, i, j);
+    // checkStatus = false;
+    saveProgress();
   } else {
     check.src = "../assets/img/checkbox-empty.svg";
-    checkStatus = true;
+    task.checkStatus = "../assets/img/checkbox-empty.svg";
+    let index = task["subtasks_done"].indexOf(task.subtasks[j])
+    task.subtasks_done.splice(index,1)
+    // task.checkStatus = true;
+    saveProgress();
   }
 }
 

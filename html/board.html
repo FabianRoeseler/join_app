@@ -33,7 +33,7 @@
                         <object data="../assets/img/search.svg" type="image/svg+xml" class="search-icon"></object>
                     </button> -->
                 </div>
-                <button onclick="addTask(); openAddTaskPopup()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg"></button>
+                <button onclick="openAddTaskPopup()" class="btn-add-task" style="height: 48px;">Add task <img src="../assets/img/add.svg"></button>
                 <a href="./add_task.html" class="btn-add-task-mobile"><img src="../assets/img/add.svg" alt=""></a>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="board-category">
                 <div class="column">
                     <span class="fontSize-span">To do</span>
-                    <img onclick="addTask(); openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
+                    <img onclick="openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="to_do" class="category-cont" ondrop="moveTo('to_do')" ondragover="allowDrop(event), highlightCont('to_do')" ondragleave="removeHighlight('to_do')">
                 </div>
@@ -49,7 +49,7 @@
             <div class="board-category">
                 <div class="column">
                     <span class="fontSize-span">In progress</span>
-                    <img onclick="addTask(); openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
+                    <img onclick="openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="in_progress" class="category-cont" ondrop="moveTo('in_progress')" ondragover="allowDrop(event), highlightCont('in_progress')" ondragleave="removeHighlight('in_progress')">
                 </div>
@@ -57,7 +57,7 @@
             <div class="board-category">
                 <div class="column">
                     <span class="fontSize-span">Await feedback</span>
-                    <img onclick="addTask(); openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
+                    <img onclick="openAddTaskPopup()" src="../assets/img/plus.svg" class="icon"></img>
                 </div>
                 <div id="await_feedback" class="category-cont" ondrop="moveTo('await_feedback')" ondragover="allowDrop(event), highlightCont('await_feedback')" ondragleave="removeHighlight('await_feedback')">
                 </div>

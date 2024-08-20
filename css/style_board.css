@@ -373,9 +373,6 @@ input::placeholder {
     height: 24px;
     width: 24px;
 }
-.prio-cont span::first-letter{
-    text-transform: capitalize;
-}
 .prio-cont img {
     margin-left: 8px;
 }
@@ -406,7 +403,7 @@ input::placeholder {
 }
 #task-details-Popup {
     height: auto;
-    width: 450px;
+    width: 500px;
     /* left: 100%; */
     background-color: white;
     border-radius: 28px;
@@ -430,8 +427,8 @@ input::placeholder {
 }
 .task-category-detail {
     font-size: 16px;
-    max-width: 140px;
-    padding: 8px;
+    max-width: 150px;
+    padding: 8px 16px;
     background-color: #0038FF;
     color: white;
     /* margin-bottom: 30px; */
@@ -608,6 +605,7 @@ input::placeholder {
         padding: 40px 20px 0 20px;
     }
     #task-details-Popup {
+        border-radius: 0;
         height: 100%;
         width: 100%;
     }
