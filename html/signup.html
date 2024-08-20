@@ -9,14 +9,18 @@
 </head>
 <body>
     <div class="background-logo"></div>
-    <img class="logo-first-page" src="../assets/img/logo_login_singup.jpg" alt="Logo">
+    <img class="logo-first-page" src="../assets/img/login_logo.png" alt="Logo">
 
 
-    <div class="login-card">
-        <a href="../html/index.html" class="">
-            <img src="../assets/img/blue_arrow_singup.jpg" alt="">
-        </a>
-        <h1>Sign up</h1>
+    <div class="sign-up-card">
+        <div class="sign-up-arrow">
+            <a href="../html/index.html" id="blueArrowSingup">
+                <img src="../assets/img/blue_arrow_singup.jpg" alt="">
+            </a>
+
+            <h1>Sign up</h1>
+        </div>
+
         <form class="login-form" id="loginFrom">
             <div class="input-container" id="userInput">
                 <input 
@@ -29,6 +33,7 @@
                 >
                 <img src="../assets/img/person.jpg" alt="">
             </div>
+
             <div class="input-container" id="emailInput">
                 <input 
                 class="input-login"
@@ -40,6 +45,7 @@
                 >
                 <img src="../assets/img/mail.jpg" alt="">
             </div>
+
             <div class="input-container">
                 <input 
                     class="input-login"
@@ -51,6 +57,7 @@
                 >
                 <img src="../assets/img/lock.png" alt="">
             </div>
+
             <div class="input-container">
                 <input 
                     class="input-login"
@@ -62,25 +69,28 @@
                 >
                 <img src="../assets/img/lock.png" alt="">
             </div>
+
             <div class="hidden-continer" id="worngLogin">Your Email or Password doesn't exist.</div>
+
             <div class="save-forgot-container">
-                <div class="remember-me">
+                <div class="sign-up-me">
                     <input 
-                    class="input-login"
+                        class="input-login"
                         type="checkbox"
                         name="rebmemberMeCheckbox"
                         id="rebmemberMeCheckbox"
                     >
                     <p>I accept the</p>
+                    <a href="../html/privacy_policy.html">Privacy Policy</a>
                 </div>
-                <a href="../html/privacy_policy.html">Privacy Policy</a>
-
             </div>
+
             <div class="btn-container btn-login-flex">
                 <button class="btn-filled">Sign Up</button>
             </div>
 
         </form>
+
     </div>
 
     <footer class="login-footer">
