@@ -350,7 +350,7 @@ function moveToSubtasksDone(i, j) {
     check.src = "../assets/img/checkbox-check.svg";
     subtasksArr_done.push(task.subtasks[j])
     task.subtasks_done = subtasksArr_done;
-    // task.checkStatus = "../assets/img/checkbox-check.svg";
+    task.checkStatus = "../assets/img/checkbox-check.svg";
     // saveDoneSubtask(task, i, j);
     // checkStatus = false;
     saveProgress();
