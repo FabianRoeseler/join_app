@@ -57,3 +57,39 @@ function validateTaskCategory() {
     return addTask();
   }
 }
+
+function validatePopupTaskTitle() {
+  let x = document.getElementById("addTaskPopupInputTitle").value;
+  let xName = document.getElementById("addPopupTitleError");
+  if (x == "") {
+    xName.innerHTML = "Please enter a Title";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validatePopupTaskDate();
+  }
+}
+
+function validatePopupTaskDate() {
+  let x = document.getElementById("addTaskPopupInputDueDate").value;
+  let xName = document.getElementById("addPopupDateError");
+  if (!/\d/.test(x)) {
+    xName.innerHTML = "Please enter a valid Date";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validatePopupTaskCategory();
+  }
+}
+
+function validatePopupTaskCategory() {
+  let x = document.getElementById("categoryInput").value;
+  let xName = document.getElementById("addPopupCategoryError");
+  if (x == "") {
+    xName.innerHTML = "Please select a Category";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return addTaskPopupBoard();
+  }
+}

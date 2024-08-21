@@ -34,12 +34,13 @@
                                 placeholder="Enter a title" 
                                 maxlength="40"
                             />
+                            <span id="addPopupTitleError" class="validSpanTitle"></span>
                     </div>
-    
+                    
                     <div class="field-text-flex" id="addTaskDiscription">
                             <label>Description</label>
                             <textarea 
-                                id="addTaskDiscriptionField" 
+                                id="addTaskPopupDiscriptionField" 
                                 placeholder="Enter a Descriptio" 
                                 cols="30"
                                 rows="10">
@@ -76,10 +77,11 @@
                             <div id="errorMassageTitle"></div>
                             <input 
                                 class="input-addtask"
-                                id="addTaskInputDueDate" 
+                                id="addTaskPopupInputDueDate" 
                                 type="date" 
                                 min="2024-08-08"
                             />
+                            <span id="addPopupDateError" class="validSpanDate"></span>
                         </div>
     
                         <div class="prio-content field-text-flex">
@@ -143,12 +145,13 @@
                                 src="../assets/img/arrow_drop_down.png" 
                             />
                             <div id="dropDownCategoryMenu"></div>
-                        </div>
-    
+                            <span id="addPopupCategoryError" class="validSpanCategory"></span>
+                          </div>
+                          
                         <div class="field-text-flex" id="addTaskSubtasks">
-                            <label>
+                                <label>
                                 Subtasks
-                                <span style="color: #ff8190">*</span>
+                                <!-- <span style="color: #ff8190">*</span> -->
                             </label>
                             <div class="subtask-input-wrapper">
                                 <input 
@@ -197,10 +200,10 @@
                                     src="../assets/img/iconoir_cancel.svg"
                                 />
                             </button>
-                            <button onclick="addTask()" class="btn-create">
+                            <div onclick="validatePopupTaskTitle()" class="btn-create">
                                 Create task
                                 <img src="../assets/img/check.svg"/>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </form>
