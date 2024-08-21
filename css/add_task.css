@@ -233,6 +233,7 @@ ul {
 #addTaskCategory {
     position: relative;
 }
+
 #categoryInput {
     z-index: 1001;
 }

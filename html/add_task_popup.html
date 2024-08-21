@@ -19,16 +19,16 @@
             <h1>Add Task</h1>
         </div>
         <form>
-            <div class="addtask-form-container">
-                <div class="addtask-form-left-top">
-                    <div class="field-text-flex" id="addTaskTitle">
+            <div class="addtask-popup-form-container">
+                <div class="addtask-popup-form-left-top">
+                    <div class="field-popup-text-flex">
                         <label>
                             Title
                             <span style="color: #ff8190">*</span>
                         </label>
-                        <div id="errorMassageTitle"></div>
+                        <div id="errorMassageTitlePopup"></div>
                             <input 
-                                class="input-addtask" 
+                                class="input-popup-addtask" 
                                 id="addTaskPopupInputTitle" 
                                 type="text" 
                                 placeholder="Enter a title" 
@@ -37,7 +37,7 @@
                             <span id="addPopupTitleError" class="validSpanTitle"></span>
                     </div>
                     
-                    <div class="field-text-flex" id="addTaskDiscription">
+                    <div class="field-popup-text-flex" id="addTaskPopupDiscription">
                             <label>Description</label>
                             <textarea 
                                 id="addTaskPopupDiscriptionField" 
@@ -47,12 +47,12 @@
                             </textarea>
                     </div>
     
-                    <div class="field-text-flex" id="addTaskAssignedTo">
+                    <div class="field-popup-text-flex" id="addTaskPopupAssignedTo">
                             <label>Assigned to</label>
                             <input 
-                                class="input-addtask" 
+                                class="input-popup-addtask" 
                                 onclick="showUsers()" 
-                                id="userNameInput" 
+                                id="userNameInputPopup" 
                                 type="text"
                                 placeholder="Select contact to assign" 
                                 maxlength="40">
@@ -60,7 +60,8 @@
                                 onclick="showUsers()" 
                                 id="arrowDropMenuAssigned" 
                                 src="../assets/img/arrow_drop_down.png" 
-                                alt=""/>
+                                alt=""
+                                />
                             <div id="dropDownUserMenu"></div>
                             <div id="contentAssignedUsers"></div>
                     </div>
@@ -68,15 +69,15 @@
                 </div>
 
                     <div class="separator-popup"></div>
-                    <div class="addtask-form-right-bottom">
-                        <div class="field-text-flex" id="addTaskDueDate">
+                    <div class="addtask-popup-form-right-bottom">
+                        <div class="field-popup-text-flex" id="addTaskDueDate">
                             <label>
                                 Due date
                                 <span style="color: #ff8190">*</span>
                             </label>
                             <div id="errorMassageTitle"></div>
                             <input 
-                                class="input-addtask"
+                                class="input-popup-addtask"
                                 id="addTaskPopupInputDueDate" 
                                 type="date" 
                                 min="2024-08-08"
@@ -84,7 +85,7 @@
                             <span id="addPopupDateError" class="validSpanDate"></span>
                         </div>
     
-                        <div class="prio-content field-text-flex">
+                        <div class="prio-content field-popup-text-flex">
                             <label>Prio</label>
                             <div class="prio-btn-content">
                                 <button 
@@ -126,13 +127,13 @@
                             </div>
                         </div>
     
-                        <div class="field-text-flex" id="addTaskCategory">
+                        <div class="field-popup-text-flex" id="addTaskPopupCategory">
                             <label>
                                 Category
                                 <span style="color: #ff8190">*</span>
                             </label>
                             <input 
-                                class="input-addtask" 
+                                class="input-popup-addtask" 
                                 onclick="openCategories()" 
                                 id="categoryInput" 
                                 type="text"
@@ -148,14 +149,14 @@
                             <span id="addPopupCategoryError" class="validSpanCategory"></span>
                           </div>
                           
-                        <div class="field-text-flex" id="addTaskSubtasks">
+                        <div class="field-popup-text-flex" id="addTaskSubtasks">
                                 <label>
                                 Subtasks
                                 <!-- <span style="color: #ff8190">*</span> -->
                             </label>
                             <div class="subtask-input-wrapper">
                                 <input 
-                                    class="input-addtask" 
+                                    class="input-popup-addtask" 
                                     id="subtaskInput" 
                                     class="plus-minus-drop-menu" 
                                     type="text"
@@ -187,8 +188,8 @@
                             </div>   
                         </div>    
                     </div>
-                    <div class="addtask-bottom-container">
-                        <span>
+                    <div class="addtask-popup-bottom-container">
+                        <span id="spanFieldRequired">
                             <span style="color: #ff8190">*</span>
                             This field is required
                         </span>
@@ -206,9 +207,9 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>        
     </div>
 
     <script src="../js/script.js"></script>
