@@ -30,6 +30,18 @@ function validateTaskTitle() {
     return false;
   } else {
     xName.innerHTML = "";
+    return validateTaskDate();
+  }
+}
+
+function validateTaskDate() {
+  let x = document.getElementById("addTaskInputDueDate").value;
+  let xName = document.getElementById("addDateError");
+  if (!/\d/.test(x)) {
+    xName.innerHTML = "Please enter a valid Date";
+    return false;
+  } else {
+    xName.innerHTML = "";
     /* return validateEmail(); */
   }
 }
