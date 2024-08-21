@@ -412,15 +412,30 @@ function generateTaskDetailsHTML(task, i) {
 </div>
 <div class="subtasks-popup">
     <span class="task-subtitles">Subtasks</span>
-    <div id="editSubtasksDetails-${i}">
-        ${task.subtasks && task.subtasks.length > 0
-      ? task.subtasks.map(subtask => `
-                <div class="subtask-item">
-                    <input type="text" value="${subtask.subtask}" class="edit-subtask-input" />
-                </div>`).join('')
-      : "No subtasks available"}
+    <div class="subtask-input-wrapper">
+      <input id="subtaskInput" class="input-addtask" type="text" placeholder="Add new subtask">
+      <div class="input-icons">
+        <button onclick="addSubtask()">+</button>
+      </div>
     </div>
+    <ul id="subtasksContent">
+        ${task.subtasks && task.subtasks.length > 0 
+            ? task.subtasks.map((subtask, index) => `
+                <li id="subtask-${index}" class="subtask-item">
+                    <div class="dot"></div>
+                    <div class="subtask-text">
+                        <span id="span-${index}" onclick="editSubtask('subtask-${index}', 'span-${index}', 'input-${index}')">${subtask.subtask}</span>
+                    </div>
+                    <div class="subtask-icon">
+                        <img onclick="editSubtask('subtask-${index}', 'span-${index}', 'input-${index}')" src="../assets/img/edit.svg" alt="edit">
+                        <div class="divider"></div>
+                        <img onclick="deleteSubtask('subtask-${index}')" src="../assets/img/delete.svg" alt="delete">
+                    </div>
+                </li>`).join('') 
+            : "No subtasks available"}
+    </ul>
 </div>
+
           <div class="save-cancel-cont">
               <button onclick="saveEditedTask(${i})">Save</button>
               <button onclick="toggleEditView(${i})">Cancel</button>
