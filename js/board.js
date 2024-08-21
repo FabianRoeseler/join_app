@@ -6,7 +6,7 @@ let index_to_do = [];
 let index_in_progress = [];
 let index_await_feedback = [];
 let index_done = [];
-let checkStatusArr = [];
+// let checkStatusArr = [];
 
 const ADD_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -85,8 +85,8 @@ async function addTask() {
       due_date: taskDate.value,
       prio: prioArr,
       subtasks: subtasksArr,
-      checkStatus: checkStatusArr,
-      subtasks_done: subtasksArr_done,
+      // checkStatus: checkStatusArr,
+      // subtasks_done: subtasksArr_done,
       category: categoryArr,
       status: "to_do",
   };
@@ -146,7 +146,19 @@ function updateHTML() {
         element,
         i
       );
-      renderIntialsinSmallTask(element, `assigned-initials-to-do${i}`);
+      if("subtasks" in element) {
+        renderSubtaskProgress(element, `subtasks-progess-to-do${i}`)
+      } else {
+        document.getElementById(`subtasks-progess-to-do${i}`).classList.add('d-none')
+      }
+      if("assigned_users" in element) {
+        renderIntialsinSmallTask(element, `assigned-initials-to-do${i}`);
+      }
+      if("description" in element) {
+        renderTaskDescription(element, `task-description-to-do${i}`);      
+      } else {
+        document.getElementById(`task-description-to-do${i}`).classList.add('d-none')
+      }
     }
   }
 
@@ -170,7 +182,19 @@ function updateHTML() {
       document.getElementById("in_progress").innerHTML +=
         generateInProgressHTML(element, i);
       
-      renderIntialsinSmallTask(element,`assigned-initials-in-progress${i}`);
+      if("subtasks" in element) {
+        renderSubtaskProgress(element, `subtasks-progess-in-progress${i}`)
+      } else {
+        document.getElementById(`subtasks-progess-in-progress${i}`).classList.add('d-none')
+      }
+      if("assigned_users" in element) {
+        renderIntialsinSmallTask(element,`assigned-initials-in-progress${i}`);
+      }
+      if("description" in element) {
+        renderTaskDescription(element, `task-description-in-progress${i}`);      
+      } else {
+        document.getElementById(`task-description-in-progress${i}`).classList.add('d-none')
+      }
     }
   }
 
@@ -194,7 +218,19 @@ function updateHTML() {
       document.getElementById("await_feedback").innerHTML +=
         generateAwaitFeedbackHTML(element, i);
 
-      renderIntialsinSmallTask(element, `assigned-initials-await-feedback${i}`);
+      if("subtasks" in element) {
+        renderSubtaskProgress(element, `subtasks-progess-await-feedback${i}`)
+      } else {
+        document.getElementById(`subtasks-progess-await-feedback${i}`).classList.add('d-none')
+      }
+      if("assigned_users" in element) {
+        renderIntialsinSmallTask(element, `assigned-initials-await-feedback${i}`);
+      }
+      if("description" in element) {
+        renderTaskDescription(element, `task-description-await-feedback${i}`);      
+      } else {
+        document.getElementById(`task-description-await-feedback${i}`).classList.add('d-none')
+      }
     }
   }
 
@@ -216,7 +252,19 @@ function updateHTML() {
       // console.log("key", key);
 
       document.getElementById("done").innerHTML += generateDoneHTML(element, i);
-      renderIntialsinSmallTask(element, `assigned-initials-done${i}`);
+      if("subtasks" in element) {
+        renderSubtaskProgress(element, `subtasks-progess-done${i}`)
+      } else {
+        document.getElementById(`subtasks-progess-done${i}`).classList.add('d-none')
+      }
+      if("assigned_users" in element) {
+        renderIntialsinSmallTask(element, `assigned-initials-done${i}`);
+      }
+      if("description" in element) {
+        renderTaskDescription(element, `task-description-done${i}`);      
+      } else {
+        document.getElementById(`task-description-done${i}`).classList.add('d-none')
+      }
     }
   }
 }
@@ -300,8 +348,26 @@ function openTaskDetails(i) {
   let task = tasks[i];
 
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
-  renderAssignedContacts(task);
-  renderSubtasks(task, i);
+  if("assigned_users" in task) {
+    renderAssignedContacts(task)
+    } else {
+    document.getElementById(`assigned-users-cont${i}`).classList.add('d-none')
+  }
+  if("subtasks" in task) {
+    renderSubtasks(task, i);
+    } else {
+    document.getElementById(`subtasks-cont${i}`).classList.add('d-none')
+  }
+  if("description" in task) {
+    renderDescriptionInTaskDetails(task, i);      
+  } else {
+    document.getElementById(`task-description-await-feedback${i}`).classList.add('d-none')
+  }
+
+}
+
+function renderDescriptionInTaskDetails(task, i) {
+  document.getElementById(`task-details-description${i}`).innerHTML = `${task.description}`;
 }
 
 function renderAssignedContacts(task) {
@@ -321,19 +387,53 @@ function renderAssignedContacts(task) {
 }
 
 function renderSubtasks(task, i) {
-  let subtasks = document.getElementById("subtasks-details");
+  let subtasks = document.getElementById(`subtasks-details${i}`);
   subtasks.innerHTML = "";
 
   for (let j = 0; j < task.subtasks.length; j++) {
     subtasks.innerHTML += /*html*/ `
             <div class="subtask-cont">
                 <div onclick="moveToSubtasksDone(${i}, ${j})">
-                    <img id="checkbox${j}" src="${task.checkStatus[j]}">
+                    <img id="checkbox${j}" src="${task.subtasks[j].checkbox_img}">
                 </div>
-                <div>${task.subtasks[j]}</div>
+                <div>${task.subtasks[j].subtask}</div>
             </div>
         `;
   }
+}
+
+function renderSubtaskProgress(element, id) {
+  let progress = document.getElementById(id);
+
+  if("subtasks_done" in element) {
+    progress.innerHTML = /*html*/`
+    <div id="subtask-progress">
+        <div id="progress-bar" style="width:${
+              (100 / element.subtasks.length) *
+              element.subtasks_done.length
+              }%"></div>
+    </div>
+    <div id="subtask-counter">${element.subtasks_done.length}/${
+    element.subtasks.length
+    } Subtasks</div>
+    `;
+  } else {
+    progress.innerHTML = /*html*/`
+    <div id="subtask-progress">
+        <div id="progress-bar" style="width:${
+              (100 / element.subtasks.length) *
+              0
+              }%"></div>
+    </div>
+    <div id="subtask-counter">0/${
+    element.subtasks.length
+    } Subtasks</div>
+    `;
+  }
+}
+
+function renderTaskDescription(element, id) {
+  document.getElementById(id).innerHTML = `${element.description}`;
 }
 
 function closeTaskDetails() {
@@ -344,23 +444,33 @@ function closeTaskDetails() {
 function moveToSubtasksDone(i, j) {
   let check = document.getElementById(`checkbox${j}`);
   let task = tasks[i];
-  let checkStatus = task.checkStatus[j];
+  let subtask = task.subtasks[j].subtask;
 
-  if (checkStatus == "../assets/img/checkbox-empty.svg") {
+   if (task.subtasks[j]["checkbox_img"] === "../assets/img/checkbox-empty.svg") {
+      if("subtasks_done" in tasks[i]) {
+        subtasksArr_done = tasks[i].subtasks_done;
+        check.src = "../assets/img/checkbox-check.svg";
+        subtasksArr_done.push(subtask)
+        tasks[i].subtasks_done = subtasksArr_done;
+        task.subtasks[j]["checkbox_img"] = "../assets/img/checkbox-check.svg";
+        saveProgress();
+        updateHTML();
+      } else {
+    subtasksArr_done = [];
     check.src = "../assets/img/checkbox-check.svg";
-    subtasksArr_done.push(task.subtasks[j])
-    task.subtasks_done = subtasksArr_done;
-    // task.checkStatus = "../assets/img/checkbox-check.svg";
-    // saveDoneSubtask(task, i, j);
-    // checkStatus = false;
+    subtasksArr_done.push(subtask)
+    tasks[i].subtasks_done = subtasksArr_done;
+    task.subtasks[j]["checkbox_img"] = "../assets/img/checkbox-check.svg";
     saveProgress();
+    updateHTML();
+    }
   } else {
     check.src = "../assets/img/checkbox-empty.svg";
-    task.checkStatus = "../assets/img/checkbox-empty.svg";
-    let index = task["subtasks_done"].indexOf(task.subtasks[j])
+    task.subtasks[j]["checkbox_img"] = "../assets/img/checkbox-empty.svg";
+    let index = task["subtasks_done"].indexOf(subtask)
     task.subtasks_done.splice(index,1)
-    // task.checkStatus = true;
     saveProgress();
+    updateHTML();
   }
 }
 

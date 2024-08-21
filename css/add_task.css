@@ -107,6 +107,7 @@ textarea {
     border-radius: 10px;
     padding: 18px 16px;
     font-size: 20px;
+    font-family: "Inter";
     resize: none;
 }
 textarea::placeholder {

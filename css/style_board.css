@@ -269,6 +269,7 @@ input::placeholder {
 }
 .highlight-category-cont {
     background-color: #E7E7E7;
+    height: auto;
 }
 .task-category {
     font-size: 16px;
@@ -301,7 +302,7 @@ input::placeholder {
     word-wrap: break-word;
     margin-bottom: 12px;
 }
-#task-description {
+.task-description {
     font-size: 16px;
     color: lightgray;
     word-wrap: break-word;

@@ -24,7 +24,7 @@ let categories = [
 ];
 let prioArr = [];
 let subtasksArr = [];
-let subtasksArr_done = ["test"];
+let subtasksArr_done = [];
 let categoryArr = [];
 let assignedUsersArr = [];
 
@@ -338,13 +338,14 @@ function addSubtask() {
         </div>
     </li>
 `;
-    subtasksArr.push(subtaskInput.value);
-    checkStatusArr.push("../assets/img/checkbox-empty.svg");
+    // subtasksArr.push(subtaskInput.value);
+    // checkStatusArr.push("../assets/img/checkbox-empty.svg");
+    subtasksArr.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`})
     // Füge das neue li-Element zur bestehenden Liste hinzu
     subtasksContent.innerHTML += newSubtaskHTML;
 
     // console.log("subtasksArr", subtasksArr);
-    console.log("checkStatusArr", checkStatusArr);
+    console.log("subtasksArr", subtasksArr);
     
     
 
