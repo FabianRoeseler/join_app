@@ -388,7 +388,7 @@ function generateTaskDetailsHTML(task, i) {
           <textarea id="editDescription-${i}" class="task-details-description">${task.description}</textarea>
           <div class="task-details-date-style">
               <span class="task-subtitles">Due date:</span>
-              <input type="date" id="editDueDate-${i}" value="${task.due_date}">
+              <input type="date" id="editDueDate-${i}" value="${task.due_date}" class="input-addtask" placeholder="Select a due date">
           </div>
           <div class="task-details-prio-style">
               <span class="task-subtitles">Priority:</span>
