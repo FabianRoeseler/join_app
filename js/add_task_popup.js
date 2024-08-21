@@ -42,6 +42,18 @@ function validateTaskDate() {
     return false;
   } else {
     xName.innerHTML = "";
-    /* return validateEmail(); */
+    return validateTaskCategory();
+  }
+}
+
+function validateTaskCategory() {
+  let x = document.getElementById("categoryInput").value;
+  let xName = document.getElementById("addCategoryError");
+  if (x == "") {
+    xName.innerHTML = "Please select a Category";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return addTask();
   }
 }
