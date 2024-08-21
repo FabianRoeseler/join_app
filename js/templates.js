@@ -384,7 +384,7 @@ function generateTaskDetailsHTML(task, i) {
               <div class="task-category-detail" style="background : ${task.category[1]}">${task.category[0]}</div>
               <img onclick="closeTaskDetails()" src="../assets/img/iconoir_cancel.svg" alt="close">
           </div>
-          <input type="text" id="editTitle-${i}" value="${task.title}" class="task-details-title">
+          <input type="text" id="editTaskTitle-${i}" value="${task.title}" class="input-addtask" placeholder="Enter a title...">
           <textarea id="editDescription-${i}" class="task-details-description">${task.description}</textarea>
           <div class="task-details-date-style">
               <span class="task-subtitles">Due date:</span>
