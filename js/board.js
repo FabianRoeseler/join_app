@@ -83,7 +83,7 @@ async function addTask() {
   return await response.json();
 }
 
-async function addTaskPopup() {
+async function addTaskPopupBoard() {
   let taskTitle = document.getElementById("addTaskPopupInputTitle");
   let descriptionName = document.getElementById("addTaskPopupDiscriptionField");
   let taskDate = document.getElementById("addTaskPopupInputDueDate");

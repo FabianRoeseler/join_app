@@ -34,8 +34,9 @@
                                 placeholder="Enter a title" 
                                 maxlength="40"
                             />
+                            <span id="addPopupTitleError" class="validSpanTitle"></span>
                     </div>
-    
+                    
                     <div class="field-text-flex" id="addTaskDiscription">
                             <label>Description</label>
                             <textarea 
@@ -80,6 +81,7 @@
                                 type="date" 
                                 min="2024-08-08"
                             />
+                            <span id="addPopupDateError" class="validSpanDate"></span>
                         </div>
     
                         <div class="prio-content field-text-flex">
@@ -143,10 +145,11 @@
                                 src="../assets/img/arrow_drop_down.png" 
                             />
                             <div id="dropDownCategoryMenu"></div>
-                        </div>
-    
+                            <span id="addPopupCategoryError" class="validSpanCategory"></span>
+                          </div>
+                          
                         <div class="field-text-flex" id="addTaskSubtasks">
-                            <label>
+                                <label>
                                 Subtasks
                                 <!-- <span style="color: #ff8190">*</span> -->
                             </label>
@@ -197,7 +200,7 @@
                                     src="../assets/img/iconoir_cancel.svg"
                                 />
                             </button>
-                            <div onclick="addTaskPopup()" class="btn-create">
+                            <div onclick="validatePopupTaskTitle()" class="btn-create">
                                 Create task
                                 <img src="../assets/img/check.svg"/>
                             </div>
