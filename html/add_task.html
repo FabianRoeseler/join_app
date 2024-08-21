@@ -6,7 +6,7 @@
     <title>Add Task</title>
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../css/add_task.css" />
-    <link rel="stylesheet" href="../css/add_task_addition.css">
+    <link rel="stylesheet" href="../css/add_task_addition.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/header_sidebar.css" />
     <link rel="stylesheet" href="../css/media.css" />
@@ -42,7 +42,7 @@
                   maxlength="40"
                 />
               </div>
-
+              <span id="addTitleError" class="validSpanTitle"></span>
               <div class="field-text-flex" id="addTaskDiscription">
                 <label>Description</label>
                 <textarea
@@ -87,6 +87,9 @@
                   type="date"
                   min="2024-08-08"
                 />
+                <span id="addDateError" class="validSpanDate"
+                  >Please select a valid Date</span
+                >
               </div>
 
               <div class="prio-content field-text-flex">
@@ -154,12 +157,15 @@
                   alt=""
                 />
                 <div id="dropDownCategoryMenu"></div>
+                <span id="addCategoryError" class="validSpanCategory"
+                  >Please select a Category</span
+                >
               </div>
 
               <div class="field-text-flex" id="addTaskSubtasks">
                 <label>
                   Subtasks
-                  <span style="color: #ff8190">*</span>
+                  <span style="color: #ff8190"></span>
                 </label>
                 <div class="subtask-input-wrapper">
                   <input
@@ -212,7 +218,7 @@
                   src="../assets/img/iconoir_cancel.svg"
                 />
               </button>
-              <div onclick="addTask()" class="btn-create">
+              <div onclick="validateTaskTitle()" class="btn-create">
                 Create task<img src="../assets/img/check.svg" />
               </div>
             </div>
@@ -225,5 +231,6 @@
     <script src="../js/board.js"></script>
     <script src="../js/add_task.js"></script>
     <script src="../js/templates.js"></script>
+    <script src="../js/add_task_popup.js"></script>
   </body>
 </html>

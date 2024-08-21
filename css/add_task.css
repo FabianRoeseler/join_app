@@ -445,6 +445,27 @@ ul {
     gap: 5px;
 }
 
+.validSpanTitle {
+  color: rgb(255, 0, 0);
+  margin-left: 10px;
+  margin-top: -20px;
+  font-size: 14px;
+}
+
+.validSpanDate {
+  color: rgb(255, 0, 0);
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.validSpanCategory {
+  color: rgb(255, 0, 0);
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
 #clear-add-icons {
     position: relative;
     top: 0;
