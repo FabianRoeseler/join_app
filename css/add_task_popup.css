@@ -82,15 +82,15 @@ img {
 }
 
 .addtask-popup-main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        scrollbar-color: gray;
-        scrollbar-width: thin;
-        overflow-y: auto;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scrollbar-color: gray;
+    scrollbar-width: thin;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .addtask-popup-main-content h1 {
@@ -102,14 +102,40 @@ img {
     content: url('../assets/img/icon_close_hover.png');
 }
 
+.separator-popup {
+    height: 424px;
+    width: 1px;
+    background-color: #D1D1D1;
+    margin-left: 28px;
+    margin-right: 28px;
+}
+
+.addtask-popup-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
 
 @media(max-width: 1230px) {
 
     .addtask-popup-main-content h1 {
-        width: 440px;
+        width: 450px;
+        padding-left: 90px;
     }
-    .separator {
+    .separator-popup {
         display: none;
+    }
+
+    .add-task-box {
+        position: absolute;
+        top: 58%;
+    }
+
+    .add-task-close {
+        position: absolute;
+        left: 480px;
+        top: 20px;
     }
 
 }
@@ -120,9 +146,16 @@ img {
     }
     .addtask-popup-main-content h1 {
         font-size: 47px;
+
+    }
+
+    .add-task-box {
+        top: 57%;
     }
  
 }
 @media(max-width: 500px) {
-
+    .add-task-box {
+        top: 69%;
+    }
 }
