@@ -83,6 +83,34 @@ async function addTask() {
   return await response.json();
 }
 
+async function addTaskPopup() {
+  let taskTitle = document.getElementById("addTaskPopupInputTitle");
+  let descriptionName = document.getElementById("addTaskPopupDiscriptionField");
+  let taskDate = document.getElementById("addTaskPopupInputDueDate");
+  let data = {
+    title: taskTitle.value,
+    description: descriptionName.value,
+    assigned_users: assignedUsersArr,
+    due_date: taskDate.value,
+    prio: prioArr,
+    subtasks: subtasksArr,
+    category: categoryArr,
+    status: "to_do",
+  };
+
+  let response = await fetch(ADD_URL + "/tasks" + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  location.href = "../html/board.html";
+
+  return await response.json();
+}
+
 async function deleteTask(i) {
   // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
   closeTaskDetails();

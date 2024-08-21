@@ -39,7 +39,7 @@
                     <div class="field-text-flex" id="addTaskDiscription">
                             <label>Description</label>
                             <textarea 
-                                id="addTaskDiscriptionField" 
+                                id="addTaskPopupDiscriptionField" 
                                 placeholder="Enter a Descriptio" 
                                 cols="30"
                                 rows="10">
@@ -76,7 +76,7 @@
                             <div id="errorMassageTitle"></div>
                             <input 
                                 class="input-addtask"
-                                id="addTaskInputDueDate" 
+                                id="addTaskPopupInputDueDate" 
                                 type="date" 
                                 min="2024-08-08"
                             />
@@ -197,10 +197,10 @@
                                     src="../assets/img/iconoir_cancel.svg"
                                 />
                             </button>
-                            <button onclick="addTask()" class="btn-create">
+                            <div onclick="addTaskPopup()" class="btn-create">
                                 Create task
                                 <img src="../assets/img/check.svg"/>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </form>
