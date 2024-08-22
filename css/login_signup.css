@@ -135,6 +135,14 @@ h1 {
     padding: 40px;
     gap: 16px;
 }
+.login-footer a {
+    text-decoration: none;
+    color: #A8A8A8;
+}
+.login-footer a:hover {
+    color: var(--darkLightBlue);
+    font-weight: 500;
+}
 
 .save-forgot-container {
     display: flex;

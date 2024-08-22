@@ -120,9 +120,6 @@ menu {
     gap: 15px;
     margin: 72px 0 72px 0;
     padding-left: 0;
-
-    /* padding-right: 45px; */
-
 }
 menu a {
     text-decoration: none;
