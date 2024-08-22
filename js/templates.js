@@ -198,7 +198,6 @@ function generateToDoHTML(element, i) {
                     <span onclick="moveToAwaitFeedback(${index_to_do[i]}, stop(event))">Await feedback</span>
                     <span onclick="moveToDone(${index_to_do[i]}, stop(event))">Done</span>
                 </div>
-            
             </div>
             <span id="task-title">${element.title}</span>
             <span id="task-description-to-do${i}" class="task-description"></span>
@@ -233,7 +232,6 @@ function generateInProgressHTML(element, i) {
                         <span onclick="moveToDone(${index_in_progress[i]
     }), stop(event)">Done</span>
                   </div>
-              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-in-progress${i}" class="task-description"></span>
@@ -267,7 +265,6 @@ function generateAwaitFeedbackHTML(element, i) {
                         <span onclick="moveToDone(${index_await_feedback[i]
     }), stop(event)">Done</span>
                   </div>
-              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-await-feedback${i}" class="task-description"></span>
@@ -301,7 +298,6 @@ function generateDoneHTML(element, i) {
                         <span onclick="moveToAwaitFeedback(${index_done[i]
     }), stop(event)">Await feedback</span>
                   </div>
-              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-done${i}" class="task-description"></span>

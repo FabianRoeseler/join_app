@@ -5,9 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header_sidebar.css">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <script src="../js/login_signup.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../js/summary.js"></script>
 
 </head>
-<body>
-    
+<body onload="includeHTML(), renderKeyMetrics(), updateGreeting()">
+    <div w3-include-html="./templates/header_sidebar.html"></div>
+    <div class="main-cont">
+        <div class="summary-cont">
+            <div class="summary-head">
+                <h1 class="headline">Join 360</h1>
+                <span class="sub-headline">Key Metrics at a Glance</span>
+                <div class="summary-head-line"></div>
+            </div>
+            <div class="summary-main">
+                <div class="key-metrics">
+                    <div class="metrics-do-done">
+                        <a href="./board.html" class="metric-do metrics-styling">
+                            <div class="circle-icon-cont">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_207322_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                    <rect width="24" height="24" fill="#D9D9D9"/>
+                                    </mask>
+                                    <g mask="url(#mask0_207322_3882)">
+                                    <path d="M5 19H6.4L15.025 10.375L13.625 8.975L5 17.6V19ZM19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3042 2.75 17.8625 2.75C18.4208 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.57083 21.275 6.1125C21.2917 6.65417 21.1083 7.11667 20.725 7.5L19.3 8.925ZM17.85 10.4L7.25 21H3V16.75L13.6 6.15L17.85 10.4Z" fill="#ffffff"/>
+                                    </g>
+                                </svg>                            
+                            </div>
+                            <div class="to-do-count">
+                                <div id="render-to-do-count" class="count-number"></div>
+                                <span>To-do</span>
+                            </div>
+                        </a>
+                        <a href="./board.html" class="metric-done metrics-styling">
+                            <div class="circle-icon-cont">
+                                <svg width="36" height="28" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.69474 9.15L14.1697 0.675C14.3697 0.475 14.6072 0.375 14.8822 0.375C15.1572 0.375 15.3947 0.475 15.5947 0.675C15.7947 0.875 15.8947 1.1125 15.8947 1.3875C15.8947 1.6625 15.7947 1.9 15.5947 2.1L6.39474 11.3C6.19474 11.5 5.96141 11.6 5.69474 11.6C5.42807 11.6 5.19474 11.5 4.99474 11.3L0.694738 7C0.494738 6.8 0.398905 6.5625 0.407238 6.2875C0.415572 6.0125 0.519738 5.775 0.719738 5.575C0.919738 5.375 1.15724 5.275 1.43224 5.275C1.70724 5.275 1.94474 5.375 2.14474 5.575L5.69474 9.15Z" fill="#ffffff"/>
+                                </svg> 
+                            </div>                           
+                            <div class="done-count">
+                                <div id="render-done-count" class="count-number"></div>
+                                <span>Done</span>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./board.html" class="urgent-tasks">
+                        <div class="urgent-tasks-count">
+                            <div class="urgent-icon-cont">
+                                <img src="../assets/img/urgent_white.svg" alt="urgent">
+                            </div>
+                            <div class="urgent-count">
+                                <div id="render-urgent-count" class="count-number"></div>
+                                <span>Urgent</span>
+                            </div>
+                        </div>
+                        <div class="urgent-tasks-separator"></div>
+                        <div class="upcoming-deadline">
+                            <div class="upcoming-deadline-text">
+                                <div id="rendered-deadline"></div>
+                                <span>Upcoming Deadline</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="overview-tasks">
+                        <a href="./board.html" class="tasks-in-board metrics-styling flex-direct-column">
+                            <div id="tasks-in-board-count" class="count-number"></div>
+                            <span>Tasks in Board</span>
+                        </a>
+                        <a href="./board.html" class="tasks-in-progress metrics-styling flex-direct-column">
+                            <div id="tasks-in-progress-count" class="count-number"></div>
+                            <span>Tasks in Progress</span>
+                        </a>
+                        <a href="./board.html" class="tasks-in-await-feedback metrics-styling flex-direct-column">
+                            <div id="tasks-await-feedback-count" class="count-number"></div>
+                            <span>Awaiting Feedback</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="greeting-user-outer-cont">
+                    <div class="greeting-user-inner-cont">
+                        <div class="greeting" id="variable-greeting"></div>
+                        <div class="username" id="greeting-user-name">Sofia Müller</div>
+                    </div>
+                </div>
+            </div>
+            <div class="greeting-user-outer-mobile d-none">
+                <div class="greeting-user-inner-mobile">
+                    <div class="greeting-mobile" id="variable-greeting-mobile"></div>
+                    <div class="username-mobile" id="greeting-user-name-mobile">Sofia Müller</div>
+                </div>
+            </div>
+            <div class="greeting-user-outer-mobile d-none">
+                <div class="greeting-user-inner-mobile">
+                    <div class="greeting-mobile" id="variable-greeting-mobile"></div>
+                    <div class="username-mobile" id="greeting-user-name-guest"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

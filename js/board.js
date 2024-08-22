@@ -112,7 +112,6 @@ async function addTaskPopupBoard() {
 }
 
 async function deleteTask(i) {
-  // Sortiere die Benutzer und ermittle den Benutzer anhand des Index
   closeTaskDetails();
 
   // let sortedTasks = Object.values(tasksArray);
