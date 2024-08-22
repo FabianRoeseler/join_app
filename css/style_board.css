@@ -452,11 +452,26 @@ input::placeholder {
 }
 .subtask-cont {
     display: flex;
+    align-items: center;
     gap: 10px;
     margin-top: 12px;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
-.subtask-cont img {
+.subtask-cont:hover {
+    background-color: #eeeeee;
+}
+.subtask-cont-img {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+}
+.subtask-cont:hover .subtask-cont-img {
+    background-color: #bbbbbb;
+    border-radius: 10px;
 }
 .task-subtitles {
     color: #42526E;

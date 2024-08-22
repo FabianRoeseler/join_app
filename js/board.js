@@ -420,7 +420,7 @@ function renderSubtasks(task, i) {
   for (let j = 0; j < task.subtasks.length; j++) {
     subtasks.innerHTML += /*html*/ `
             <div class="subtask-cont">
-                <div onclick="moveToSubtasksDone(${i}, ${j})">
+                <div class="subtask-cont-img" onclick="moveToSubtasksDone(${i}, ${j})">
                     <img id="checkbox${j}" src="${task.subtasks[j].checkbox_img}">
                 </div>
                 <div>${task.subtasks[j].subtask}</div>
