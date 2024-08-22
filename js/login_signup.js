@@ -14,7 +14,7 @@ function addUser() {
   }
 
   if (document.getElementById("acceptPp").checked != true) {
-    alert("Please accept the Privacy Policy");
+    alert("Please accept the Privacy");
     return false;
   }
 
