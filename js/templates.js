@@ -198,6 +198,7 @@ function generateToDoHTML(element, i) {
                     <span onclick="moveToAwaitFeedback(${index_to_do[i]}, stop(event))">Await feedback</span>
                     <span onclick="moveToDone(${index_to_do[i]}, stop(event))">Done</span>
                 </div>
+            
             </div>
             <span id="task-title">${element.title}</span>
             <span id="task-description-to-do${i}" class="task-description"></span>
@@ -232,6 +233,7 @@ function generateInProgressHTML(element, i) {
                         <span onclick="moveToDone(${index_in_progress[i]
     }), stop(event)">Done</span>
                   </div>
+              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-in-progress${i}" class="task-description"></span>
@@ -265,6 +267,7 @@ function generateAwaitFeedbackHTML(element, i) {
                         <span onclick="moveToDone(${index_await_feedback[i]
     }), stop(event)">Done</span>
                   </div>
+              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-await-feedback${i}" class="task-description"></span>
@@ -298,6 +301,7 @@ function generateDoneHTML(element, i) {
                         <span onclick="moveToAwaitFeedback(${index_done[i]
     }), stop(event)">Await feedback</span>
                   </div>
+              
               </div>
               <span id="task-title">${element.title}</span>
               <span id="task-description-done${i}" class="task-description"></span>
@@ -388,11 +392,20 @@ function generateTaskDetailsHTML(task, i) {
           </div>
           <div class="task-details-prio-style">
               <span class="task-subtitles">Priority:</span>
-              <div class="prio-cont">
-                  <button onclick="setPriority('urgent', ${i})" id="editPrioUrgent-${i}">Urgent</button>
-                  <button onclick="setPriority('medium', ${i})" id="editPrioMedium-${i}">Medium</button>
-                  <button onclick="setPriority('low', ${i})" id="editPrioLow-${i}">Low</button>
-              </div>
+              <div class="prio-btn-content">
+    <button id="urgent" class="prio-button ${task.prio === 'urgent' ? 'btn-urgent-active' : ''}" onclick="toggleButton('urgent')" type="button">
+        Urgent
+        <img id="urgentImg" src="../assets/img/Prio_urgent_${task.prio === 'urgent' ? 'white' : 'color'}.png" alt="Urgent Icon" />
+    </button>
+    <button id="medium" class="prio-button ${task.prio === 'medium' ? 'btn-medium-active' : ''}" onclick="toggleButton('medium')" type="button">
+        Medium
+        <img id="mediumImg" src="../assets/img/Prio_medium_${task.prio === 'medium' ? 'white' : 'color'}.png" alt="Medium Icon" />
+    </button>
+    <button id="low" class="prio-button ${task.prio === 'low' ? 'btn-low-active' : ''}" onclick="toggleButton('low')" type="button">
+        Low
+        <img id="lowImg" src="../assets/img/Prio_low_${task.prio === 'low' ? 'white' : 'color'}.png" alt="Low Icon" />
+    </button>
+</div>
           </div>
           <div class="assigned-to">
     <span class="task-subtitles">Assigned To:</span>
