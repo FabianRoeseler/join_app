@@ -54,7 +54,7 @@ img {
     display: flex;
     min-width: fit-content;
     position: fixed;
-    top: 45%;
+    top: 46%;
     right: -1200px; 
     transform: translate(50%, -50%);
     transition: right 0.5s ease; 
@@ -221,7 +221,7 @@ img {
 
     .add-task-box {
         position: absolute;
-        top: 67%;
+        top: 75%;
     }
 
     .add-task-close {
@@ -251,7 +251,7 @@ img {
     }
 
     .add-task-box {
-        top: 65%;
+        top: 75%;
     }
 
     #spanFieldRequired {
@@ -267,7 +267,7 @@ img {
     }
 
     .add-task-box {
-        top: 78%;
+        top: 86%;
     }
 
     .addtask-popup-form-left-top {
