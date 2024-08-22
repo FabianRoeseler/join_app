@@ -407,18 +407,35 @@ function generateTaskDetailsHTML(task, i) {
     </button>
 </div>
           </div>
-          <div class="assigned-to">
-    <span class="task-subtitles">Assigned To:</span>
-    <div id="editAssignedContacts-${i}">
-        ${task.assigned_users && task.assigned_users.length > 0
-      ? task.assigned_users.map(user => `
-                <div class="assigned-single-contact">
-                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
-                  <span>${user.username}</span>
-                </div>`).join('')
-      : "No one assigned"}
+          <div class="field-text-flex" id="addTaskAssignedTo">
+    <label>Assigned to</label>
+    <input
+        class="input-addtask"
+        onclick="showUsers()"
+        id="userNameInput"
+        type="text"
+        placeholder="Select contact to assign"
+        maxlength="40"
+    />
+    <img
+        onclick="showUsers()"
+        id="arrowDropMenuAssigned"
+        src="../assets/img/arrow_drop_down.png"
+        alt=""
+    />
+    <div id="dropDownUserMenu"></div>
+    <div id="contentAssignedUsers">
+        ${task.assigned_users.map(user => `
+            <div class="assigned-user">
+                <div class="initials" style="background-color: ${user.color};">
+                    ${getInitials(user.username)}
+                </div>
+                <!-- Das unerwünschte Symbol wurde entfernt -->
+            </div>
+        `).join('')}
     </div>
 </div>
+
 <div class="subtasks-popup">
     <span class="task-subtitles">Subtasks</span>
     <div class="subtask-input-wrapper">
@@ -428,8 +445,8 @@ function generateTaskDetailsHTML(task, i) {
       </div>
     </div>
     <ul id="subtasksContent">
-        ${task.subtasks && task.subtasks.length > 0 
-            ? task.subtasks.map((subtask, index) => `
+        ${task.subtasks && task.subtasks.length > 0
+      ? task.subtasks.map((subtask, index) => `
                 <li id="subtask-${index}" class="subtask-item">
                     <div class="dot"></div>
                     <div class="subtask-text">
@@ -440,8 +457,8 @@ function generateTaskDetailsHTML(task, i) {
                         <div class="divider"></div>
                         <img onclick="deleteSubtask('subtask-${index}')" src="../assets/img/delete.svg" alt="delete">
                     </div>
-                </li>`).join('') 
-            : "No subtasks available"}
+                </li>`).join('')
+      : "No subtasks available"}
     </ul>
 </div>
 
