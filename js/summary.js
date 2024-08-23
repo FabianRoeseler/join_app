@@ -20,10 +20,14 @@ async function renderKeyMetrics() {
     let doneCount = tasks.filter((t) => t["status"] == "done").length;
     document.getElementById('render-done-count').innerHTML = `${doneCount}`;
 
-    let urgentCount = tasks.filter((t) => t["prio"][0] == "urgent").length;
-    document.getElementById('render-urgent-count').innerHTML = `${urgentCount}`;
-
-    getnextUrgentDate();
+    if ("prio" in tasks) {
+        let urgentCount = tasks.filter((t) => t["prio"][0] == "urgent").length;
+        document.getElementById('render-urgent-count').innerHTML = `${urgentCount}`;
+        getnextUrgentDate();    
+    } else {
+        document.getElementById('render-urgent-count').innerHTML = `0`;
+        document.getElementById('upcoming-deadline').innerHTML = `No Urgent Deadlines`;     
+    }
 
     let allTasks = tasks.length;
     document.getElementById('tasks-in-board-count').innerHTML = `${allTasks}`;
@@ -34,9 +38,7 @@ async function renderKeyMetrics() {
     let awaitFeedbackCount = tasks.filter((t) => t["status"] == "await_feedback").length;
     document.getElementById('tasks-await-feedback-count').innerHTML = `${awaitFeedbackCount}`;
 
-
     console.log(urgentCount);
-    
 }
 
 function getnextUrgentDate() {
