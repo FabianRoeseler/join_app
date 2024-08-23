@@ -14,6 +14,7 @@
 >
 
     <div type="reset" onclick="closeAddTaskPopup()" id="addtaskCloseButton" class="add-task-close add-task-close-imge"></div>
+    <div class="addtask-popup-cont">
     <div class="addtask-popup-main-content">
         <div>
             <h1>Add Task</h1>
@@ -188,29 +189,31 @@
                             </div>   
                         </div>    
                     </div>
-                    <div class="addtask-popup-bottom-container">
-                        <span id="spanFieldRequired">
-                            <span style="color: #ff8190">*</span>
-                            This field is required
-                        </span>
-                        <div class="addtask-popup-buttons">
-                            <button class="btn-cancel">
-                                Clear
-                                <img 
-                                    class="btn-cancel-icon" 
-                                    src="../assets/img/iconoir_cancel.svg"
-                                />
-                            </button>
-                            <div onclick="validatePopupTaskTitle()" class="btn-create">
-                                Create task
-                                <img src="../assets/img/check.svg"/>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </form>        
     </div>
+    <div class="addtask-popup-bottom-container">
+        <span id="spanFieldRequired">
+            <span style="color: #ff8190">*</span>
+            This field is required
+        </span>
+        <div class="addtask-popup-buttons">
+            <button class="btn-cancel">
+                Clear
+                <img 
+                    class="btn-cancel-icon" 
+                    src="../assets/img/iconoir_cancel.svg"
+                />
+            </button>
+            <div onclick="validatePopupTaskTitle()" class="btn-create">
+                Create task
+                <img src="../assets/img/check.svg"/>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <script src="../js/script.js"></script>
     <script src="../js/board.js"></script>
