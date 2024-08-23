@@ -9,7 +9,10 @@ async function addUser() {
     alert("An account with this email already exists!");
   } else {
     addUserToDb();
-    alert("User registered successfully!");
+    showCreatedUserSuccessPopUp();
+    setTimeout(function () {
+      window.location.href = "../html/index.html";
+    }, 1500);
   }
 
   document.getElementById("userName").value = "";
@@ -159,5 +162,13 @@ function validatePrivacyInput() {
   } else {
     xName.innerHTML = "";
     return addUser();
+  }
+}
+
+function showCreatedUserSuccessPopUp() {
+  if (window.innerWidth < 1350) {
+    document.getElementById("userCreatedSuccess").style = `left: 30px;`;
+  } else {
+    document.getElementById("userCreatedSuccess").style = `left: 64px;`;
   }
 }
