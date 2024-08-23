@@ -82,7 +82,6 @@ async function login() {
     );
 
     if (user) {
-      console.log("Benutzer gefunden:", user);
       loginSuccessfullPopUp();
       users = [];
       setTimeout(function () {
@@ -135,7 +134,7 @@ function validatePasswordInput() {
 function validateConfirmPasswordInput() {
   let x = document.getElementById("confirmUserPassword").value;
   let xName = document.getElementById("addConfirmPasswordError");
-  if (x == "") {
+  if (x == "" || x != document.getElementById("userPassword").value) {
     xName.innerHTML = "Please confirm your Password";
     return false;
   } else {
