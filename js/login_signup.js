@@ -74,31 +74,17 @@ async function addUserToDb() {
 }
 
 async function login() {
-  let userEmail = document.getElementById("userEmail").value;
-  let userPassword = document.getElementById("userPassword").value;
-
-  console.log("Eingegebene E-Mail:", userEmail);
-  console.log("Eingegebenes Passwort:", userPassword);
-
+  let userEmail = document.getElementById("enterUserEmail").value;
+  let userPassword = document.getElementById("enterUserPassword").value;
   // Stelle sicher, dass die Benutzerliste geladen ist
   let response = await loadUserFromDb();
-
   // Überprüfen, ob die Benutzer erfolgreich geladen wurden
-  if (users.length > 0) {
+  if (response && response.length > 0) {
+    let users = response; // Benutzerliste aus der response extrahieren
     // Suche nach dem Benutzer im Array users
     let user = users.find(
       (u) => u.email === userEmail && u.password === userPassword
     );
-
-    if (user) {
-      console.log("Benutzer gefunden:", user);
-      // Weiterleiten oder andere Aktionen
-    } else {
-      console.log("Benutzer nicht gefunden");
-      document.getElementById("worngLogin").style.display = "block";
-    }
-  } else {
-    console.error("Benutzerliste konnte nicht geladen werden oder ist leer.");
   }
 }
 
@@ -170,5 +156,33 @@ function showCreatedUserSuccessPopUp() {
     document.getElementById("userCreatedSuccess").style = `left: 60%;`;
   } else {
     document.getElementById("userCreatedSuccess").style = `left: 60%;`;
+  }
+}
+
+function validateLoginEmailInput() {
+  let x = document.getElementById("enterUserEmail").value;
+  let xName = document.getElementById("loginEmailInputError");
+  let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (x == "") {
+    xName.innerHTML = "Please enter your Email";
+    return false;
+  } else if (!emailRegex.test(x)) {
+    xName.innerHTML = "Please enter a valid Email address";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validateLoginPasswordInput();
+  }
+}
+
+function validateLoginPasswordInput() {
+  let x = document.getElementById("enterUserPassword").value;
+  let xName = document.getElementById("loginPasswordInputError");
+  if (x == "") {
+    xName.innerHTML = "Please enter your Password";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return login();
   }
 }

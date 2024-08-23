@@ -35,22 +35,24 @@
             type="email"
             placeholder="Email"
             name="userEmail"
-            id="userEmail"
+            id="enterUserEmail"
             required
           />
           <img src="../assets/img/mail.jpg" alt="" />
         </div>
+        <span id="loginEmailInputError" class="loginError"></span>
         <div class="input-container">
           <input
             class="input-login"
             type="password"
             placeholder="Password"
             name="userPassword"
-            id="userPassword"
+            id="enterUserPassword"
             required
           />
           <img src="../assets/img/lock.png" alt="" />
         </div>
+        <span id="loginPasswordInputError" class="loginError"></span>
         <div class="hidden-continer" id="worngLogin">
           Your Email or Password doesn't exist.
         </div>
@@ -67,7 +69,9 @@
           <p id="forgotPassword">I forgot my password</p>
         </div>
         <div class="btn-container btn-login-flex">
-          <button class="btn-filled">Log in</button>
+          <button onclick="validateLoginEmailInput()" class="btn-filled">
+            Log in
+          </button>
           <a class="btn-outline sign-up-link" href="../html/board.html">
             Guest Login
           </a>

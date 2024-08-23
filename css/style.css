@@ -246,3 +246,10 @@ color: red;
 margin-left: 10px;
 transition: 2s;
 }
+
+.loginError {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: -15px;
+}
