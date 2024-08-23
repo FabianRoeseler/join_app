@@ -37,10 +37,29 @@ const REG_URL =
 /**
  * Loading registered Userdata from DB and moves it to an local object for display
  */
+
+// async function loadUserFromDb() {
+//   let response = await fetch(REG_URL + ".json");
+//   const registeredUsers = await response.json();
+
+//   users = Object.values(registeredUsers); // Benutzerdaten in das Array speichert
+
+//   console.log(registeredUsers);
+// }
+
 async function loadUserFromDb() {
   let response = await fetch(REG_URL + ".json");
-  const registeredUsers = await response.json();
-  console.log(registeredUsers);
+
+  if (response.ok) {
+    const registeredUsers = await response.json();
+    users = Object.keys(registeredUsers).map(key => ({
+      ...registeredUsers[key],
+      id: key
+    }));
+    console.log('Abgerufene Benutzer:', users);
+  } else {
+    console.error(`Fehler beim Laden der Benutzer: HTTP-Status ${response.status}`);
+  }
 }
 
 async function addUserToDb() {
@@ -60,4 +79,31 @@ async function addUserToDb() {
     body: JSON.stringify(data),
   });
   return await response.json();
+}
+
+async function login() {
+  let userEmail = document.getElementById('userEmail').value;
+  let userPassword = document.getElementById('userPassword').value;
+
+  console.log('Eingegebene E-Mail:', userEmail);
+  console.log('Eingegebenes Passwort:', userPassword);
+  
+  // Stelle sicher, dass die Benutzerliste geladen ist
+  let response = await loadUserFromDb();
+
+  // Überprüfen, ob die Benutzer erfolgreich geladen wurden
+  if (users.length > 0) {
+    // Suche nach dem Benutzer im Array users
+    let user = users.find(u => u.email === userEmail && u.password === userPassword);
+  
+    if (user) {
+      console.log('Benutzer gefunden:', user);
+      // Weiterleiten oder andere Aktionen
+    } else {
+      console.log('Benutzer nicht gefunden');
+      document.getElementById('worngLogin').style.display = 'block';
+    }
+  } else {
+    console.error('Benutzerliste konnte nicht geladen werden oder ist leer.');
+  }
 }
