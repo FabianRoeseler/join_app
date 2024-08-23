@@ -167,8 +167,8 @@ function validatePrivacyInput() {
 
 function showCreatedUserSuccessPopUp() {
   if (window.innerWidth < 1350) {
-    document.getElementById("userCreatedSuccess").style = `left: 30px;`;
+    document.getElementById("userCreatedSuccess").style = `left: 60%;`;
   } else {
-    document.getElementById("userCreatedSuccess").style = `left: 64px;`;
+    document.getElementById("userCreatedSuccess").style = `left: 60%;`;
   }
 }
