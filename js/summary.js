@@ -38,7 +38,6 @@ async function renderKeyMetrics() {
     let awaitFeedbackCount = tasks.filter((t) => t["status"] == "await_feedback").length;
     document.getElementById('tasks-await-feedback-count').innerHTML = `${awaitFeedbackCount}`;
 
-    console.log(urgentCount);
 }
 
 function getnextUrgentDate() {
