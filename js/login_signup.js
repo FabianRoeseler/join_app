@@ -1,20 +1,7 @@
 let users = [];
 
 async function addUser() {
-  let username = document.getElementById("userName").value;
   let email = document.getElementById("userEmail").value;
-  let password = document.getElementById("userPassword").value;
-  let confirmPassword = document.getElementById("confirmUserPassword").value;
-
-  /*   if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return false;
-  } */
-
-  /*   if (document.getElementById("acceptPp").checked != true) {
-    alert("Please accept the Privacy");
-    return false;
-  } */
 
   const userExists = users.some((user) => user.email === email);
 
