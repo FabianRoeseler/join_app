@@ -76,8 +76,10 @@ async function addTask() {
     },
     body: JSON.stringify(data),
   });
-
+  showTaskCreatedPopUp();
+  setTimeout(function() {
   location.href = "../html/board.html";
+}, 1200);
 
   return await response.json();
 }

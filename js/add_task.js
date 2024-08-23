@@ -443,3 +443,17 @@ function showClearButton() {
 function clearImput() {
   document.getElementById("subtaskInput").value = "";
 }
+
+//Pop-Up successfully
+function showTaskCreatedPopUp() {
+    if (window.innerWidth < 1350) {
+        document.getElementById("task-success").style = `left: 30px;`;
+    } else {
+        document.getElementById("task-success").style = `left: 64px;`;
+    }
+    setTimeout(closeTaskCreatedPopUp, 1200);
+}
+
+function closeTaskCreatedPopUp() {
+    document.getElementById("task-success").style = `left: 100%;`;
+}

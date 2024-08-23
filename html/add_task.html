@@ -215,7 +215,7 @@
                   src="../assets/img/iconoir_cancel.svg"
                 />
               </button>
-              <div onclick="validateTaskTitle()" class="btn-create">
+              <div onclick="validateTaskTitle();" class="btn-create">
                 Create task<img src="../assets/img/check.svg" />
               </div>
             </div>
@@ -223,6 +223,12 @@
         </form>
       </div>
     </div>
+
+    <div id="render-task-details"></div>
+    <div id="task-success" class="task-success">
+      Task successfully created
+    </div>
+
 
     <script src="../js/script.js"></script>
     <script src="../js/board.js"></script>
