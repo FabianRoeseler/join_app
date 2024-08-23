@@ -42,15 +42,13 @@ async function loadUserFromDb() {
 
   if (response.ok) {
     const registeredUsers = await response.json();
-    users = Object.keys(registeredUsers).map((key) => ({
+    const users = Object.keys(registeredUsers).map((key) => ({
       ...registeredUsers[key],
       id: key,
     }));
-    console.log("Abgerufene Benutzer:", users);
+    return users;
   } else {
-    console.error(
-      `Fehler beim Laden der Benutzer: HTTP-Status ${response.status}`
-    );
+    return [];
   }
 }
 
@@ -76,15 +74,21 @@ async function addUserToDb() {
 async function login() {
   let userEmail = document.getElementById("enterUserEmail").value;
   let userPassword = document.getElementById("enterUserPassword").value;
-  // Stelle sicher, dass die Benutzerliste geladen ist
-  let response = await loadUserFromDb();
-  // Überprüfen, ob die Benutzer erfolgreich geladen wurden
-  if (response && response.length > 0) {
-    let users = response; // Benutzerliste aus der response extrahieren
-    // Suche nach dem Benutzer im Array users
+
+  let users = await loadUserFromDb();
+  if (users && users.length > 0) {
     let user = users.find(
       (u) => u.email === userEmail && u.password === userPassword
     );
+
+    if (user) {
+      console.log("Benutzer gefunden:", user);
+      loginSuccessfullPopUp();
+      users = [];
+      setTimeout(function () {
+        window.location.href = "../html/summary.html";
+      }, 1500);
+    }
   }
 }
 
@@ -156,6 +160,14 @@ function showCreatedUserSuccessPopUp() {
     document.getElementById("userCreatedSuccess").style = `left: 60%;`;
   } else {
     document.getElementById("userCreatedSuccess").style = `left: 60%;`;
+  }
+}
+
+function loginSuccessfullPopUp() {
+  if (window.innerWidth < 1350) {
+    document.getElementById("loginSuccess").style = `left: 60%;`;
+  } else {
+    document.getElementById("loginSuccess").style = `left: 60%;`;
   }
 }
 
