@@ -6,7 +6,6 @@ let index_to_do = [];
 let index_in_progress = [];
 let index_await_feedback = [];
 let index_done = [];
-// let checkStatusArr = [];
 
 const ADD_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -114,11 +113,6 @@ async function addTaskPopupBoard() {
 async function deleteTask(i) {
   closeTaskDetails();
 
-  // let sortedTasks = Object.values(tasksArray);
-  // console.log("sortedTasks",sortedTasks);
-  // let taskId = Object.keys(tasksArray).find(
-  //   (key) => tasksArray[key] === sortedTasks[i]
-  // );
   let taskKey = dbKeys[i];
   console.log("taskKey", taskKey);
 
@@ -523,3 +517,167 @@ async function findTask() {
 
   updateHTML();
 }
+
+async function openEdit(i) {
+  let taskDetails = document.getElementById("task-details-Popup");
+  taskDetails.innerHTML = generateTaskDetailsEditHTML(i);
+
+  let taskKey = dbKeys[i];
+  
+  let response = await fetch(ADD_URL + "tasks/" + taskKey + ".json");
+  const data = await response.json();
+
+  fillEditForm(data);
+}
+
+function fillEditForm(data) {
+  let title = document.getElementById('editTitle');
+  let description = document.getElementById('editDescription');
+  let date = document.getElementById('editDueDate');
+
+  categoryArr.push(data.category[0]);
+  categoryArr.push(data.category[1]);
+
+  title.value = data.title;
+
+  if ("description" in data) {
+    description.value = data.description;
+  }
+
+  date.value = data.due_date;
+
+  if ("prio" in data) {
+    document.getElementById(data.prio[0]).click();
+    prioArrEdit.push(data.prio[0]);
+    prioArrEdit.push(data.prio[1]);
+  }
+
+  if ("assigned_users" in data) {
+    assignedUsersEdit = [];
+    for (let i = 0; i < data.assigned_users.length; i++) {
+      const user = data.assigned_users[i];      
+      assignedUsersEdit.push({"initials" : `${user.initials}`, "username" : `${user.username}`, "color" : `${user.color}`});
+      }
+      renderSelectedUsersEdit();
+  }
+
+  if ("subtasks" in data) {
+    subtasksEdit = [];
+    for (let i = 0; i < data.subtasks.length; i++) {
+      const element = data.subtasks[i];
+
+      subtasksEdit.push({"checkbox_img" : `${element.checkbox_img}`, "subtask" : `${element.subtask}`});
+      console.log("subtasksArr", subtasksArr);
+    }
+    renderSubtasksEdit();
+  }
+
+  // editStatusArr.push(data.status);
+}
+
+function renderSelectedUsersEdit() {
+  let selectedUsers = document.getElementById('contentAssignedUsers');
+  selectedUsers.innerHTML = "";
+  for (let i = 0; i < assignedUsersEdit.length; i++) {
+    const user = assignedUsersEdit[i];
+
+    selectedUsers.innerHTML += /*html*/`
+        <div class="rendered-initials-cont">
+          <div class="initials" style="background-color: ${user.color};">
+              ${user.initials}
+          </div>
+          <img onclick="removeFromUsersArr('${
+            user.username
+          }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
+      </div>            
+      `;
+    }
+}
+
+function renderSubtasksEdit() {
+  let selectedSubtasks = document.getElementById('subtasksContent');
+  selectedSubtasks.innerHTML = "";
+  for (let i = 0; i < subtasksEdit.length; i++) {
+    const element = subtasksEdit[i];
+
+    const liId = "subtask-" + subtaskIdCounter; // Erzeuge eine eindeutige ID für das li-Element
+    const spanId = "span-" + subtaskIdCounter; // ID für das span-Element
+    const inputId = "input-" + subtaskIdCounter; // ID für das Input-Element
+
+    selectedSubtasks.innerHTML += /*html*/ `
+    <li id="${liId}" class="subtask-item">
+        <div class="dot"></div>
+        <div class="subtask-text">
+            <span id="${spanId}" onclick="editSubtask('${liId}', '${spanId}', '${inputId}')">${element.subtask}</span>
+        </div>
+        <div class="subtask-icon">
+            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
+            <div class="divider"></div>
+            <img onclick="deleteFromSubtaskArr('${element.subtask}')" src="../assets/img/delete.svg" alt="delete">
+        </div>
+    </li>
+    `;
+  }
+
+}
+
+function removeFromUsersArr(username) {
+  for (let i = 0; i < assignedUsersEdit.length; i++) {
+    const element = assignedUsersEdit[i];
+    if (element.username == username) {
+      assignedUsersEdit.splice(i,1);
+    }
+  }
+  renderSelectedUsersEdit();
+}
+
+function deleteFromSubtaskArr(subtask) {
+  for (let i = 0; i < subtasksEdit.length; i++) {
+    const element = subtasksEdit[i];
+    if (element.subtask == subtask) {
+      subtasksEdit.splice(i,1);
+    }
+  }
+  renderSubtasksEdit();
+}
+
+async function saveEdit(i) {
+  let taskTitle = document.getElementById("editTitle");
+  let descriptionName = document.getElementById("editDescription");
+  let taskDate = document.getElementById("editDueDate");
+  let data = {
+    title: taskTitle.value,
+    description: descriptionName.value,
+    assigned_users: assignedUsersEdit,
+    due_date: taskDate.value,
+    prio: prioArrEdit,
+    subtasks: subtasksEdit,
+    // category: categoryArr,
+    // status: editStatusArr
+  };
+
+  let taskKey = dbKeys[i];
+
+  let response = await fetch(ADD_URL + "tasks/" + taskKey + ".json", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  location.href = "../html/board.html";
+  updateHTML();
+
+  return await response.json();
+
+}
+
+function closeEdit(i) {
+  let task = tasks[i];
+  let taskDetails = document.getElementById("task-details-Popup");
+  taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
+}
+
+
+

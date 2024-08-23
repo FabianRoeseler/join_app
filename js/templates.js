@@ -362,7 +362,7 @@ function generateTaskDetailsHTML(task, i) {
             <span>Delete</span>
           </div>
           <div class="separator-line"></div>
-          <div class="delete-edit-single">
+          <div onclick="openEdit(${i})" class="delete-edit-single">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_207322_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                 <rect width="24" height="24" fill="#D9D9D9"/>
@@ -370,14 +370,18 @@ function generateTaskDetailsHTML(task, i) {
               <g mask="url(#mask0_207322_3882)">
                 <path d="M5 19H6.4L15.025 10.375L13.625 8.975L5 17.6V19ZM19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3042 2.75 17.8625 2.75C18.4208 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.57083 21.275 6.1125C21.2917 6.65417 21.1083 7.11667 20.725 7.5L19.3 8.925ZM17.85 10.4L7.25 21H3V16.75L13.6 6.15L17.85 10.4Z" fill="#2A3647"/>
               </g>
-            </svg>                
-            <span onclick="toggleEditView(${i})">Edit</span>
+            </svg>    
+            <span>Edit</span>
           </div>
         </div>
       </div>
     </div>
+  `;
+}
 
-    <div id="task-edit-view-${i}" style="display: none;">
+function generateTaskEditSalmai() {
+  return /*html*/`
+        <div id="task-edit-view-${i}" style="display: none;">
       <div class="task-details">
         <div class="task-details-main-part">
           <div class="task-head">
@@ -484,4 +488,160 @@ function toggleEditView(i) {
     detailView.style.display = "block";
     editView.style.display = "none";
   }
+}
+
+function generateTaskDetailsEditHTML(i) {
+  return /*html*/`
+      <div class="edit-cancel-cont">
+        <img onclick="closeEdit(${i})" src="../assets/img/iconoir_cancel.svg" class="edit-cancel" alt="close">
+      </div>
+      <div class="task-details-edit overflow-hidden">
+        <form>
+            <div class="addtask-form-left-top">
+              <div class="field-text-flex">
+                <label>
+                  Title
+                  <span style="color: #ff8190">*</span>
+                </label>
+                <input
+                  class="input-addtask"
+                  id="editTitle"
+                  type="text"
+                  placeholder="Enter a title"
+                  maxlength="40"
+                />
+              </div>
+
+              <div class="field-text-flex" id="addTaskDiscription">
+                <label>Description</label>
+                <textarea
+                  id="editDescription"
+                  placeholder="Enter a Descriptio"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+
+              <div class="field-text-flex" id="addTaskDueDate">
+                <label>
+                  Due date
+                  <span style="color: #ff8190">*</span>
+                </label>
+                <input
+                  class="input-addtask"
+                  id="editDueDate"
+                  type="date"
+                  min="2024-08-08"
+                />
+                <span id="addDateError" class="validSpanDate"></span>
+              </div>
+
+              <div class="prio-content field-text-flex">
+                <label>Prio</label>
+                <div class="prio-btn-content">
+                  <button
+                    id="urgent"
+                    class="prio-button"
+                    onclick="toggleButton('urgent')"
+                    type="button"
+                  >
+                    Urgent
+                    <img
+                      id="urgentImg"
+                      src="../assets/img/Prio_urgent_color.png"
+                      alt=""
+                    />
+                  </button>
+                  <button
+                    id="medium"
+                    class="prio-button"
+                    onclick="toggleButton('medium')"
+                    type="button"
+                  >
+                    Medium
+                    <img
+                      id="mediumImg"
+                      src="../assets/img/Prio_medium_color.png"
+                      alt=""
+                    />
+                  </button>
+                  <button
+                    id="low"
+                    class="prio-button"
+                    onclick="toggleButton('low')"
+                    type="button"
+                  >
+                    Low
+                    <img
+                      id="lowImg"
+                      src="../assets/img/Prio_low_color.png"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-text-flex" id="addTaskAssignedTo">
+                <label>Assigned to</label>
+                <input
+                  class="input-addtask"
+                  onclick="showUsers()"
+                  id="userNameInput"
+                  type="text"
+                  placeholder="Select contact to assign"
+                  maxlength="40"
+                />
+                <img
+                  onclick="showUsers()"
+                  id="arrowDropMenuAssigned"
+                  src="../assets/img/arrow_drop_down.png"
+                  alt=""
+                />
+                <div id="dropDownUserMenu"></div>
+                <div id="contentAssignedUsers"></div>
+              </div>
+              <div class="field-text-flex" id="addTaskSubtasks">
+                <label>
+                  Subtasks
+                </label>
+                <div class="subtask-input-wrapper">
+                  <input
+                    class="input-addtask"
+                    id="subtaskInput"
+                    class="plus-minus-drop-menu"
+                    type="text"
+                    placeholder="Add a new subtask"
+                    maxlength="40"
+                    onfocus="showClearButton()"
+                  />
+                  <div class="input-icons">
+                    <div id="clear-add-icons" class="d-none">
+                      <img
+                        onclick="clearImput()"
+                        src="../assets/img/close.svg"
+                        alt=""
+                      />
+                      <div class="divider"></div>
+                      <img
+                        onclick="addSubtask()"
+                        src="../assets/img/check1.svg"
+                      />
+                    </div>
+                    <img
+                      id="subtasks-plus-icon"
+                      src="../assets/img/add1.svg"
+                      type="button"
+                      onclick="addSubtask()"
+                    />
+                  </div>
+                </div>
+                <ul id="subtasksContent"></ul>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="addtask-buttons ok-button">
+          <div onclick="saveEdit(${i})" class="btn-create">Ok<img src="../assets/img/check.svg" /></div>
+      </div>
+  `;
 }

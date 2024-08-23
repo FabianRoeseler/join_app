@@ -23,16 +23,21 @@ let categories = [
   // "Analyse/Research",
 ];
 let prioArr = [];
+let prioArrEdit = [];
 let subtasksArr = [];
+let subtasksEdit = [];
 let subtasksArr_done = [];
 let categoryArr = [];
 let assignedUsersArr = [];
+let assignedUsersEdit = [];
+// let editStatusArr = [];
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
 function toggleButton(prioState) {
+  prioArrEdit = [];
   let button = document.getElementById(prioState);
   let img = document.getElementById(prioState + "Img");
 
@@ -60,6 +65,11 @@ function toggleButton(prioState) {
     let prioImgSource = `../assets/img/prio_${prioState}.svg`;
     prioArr.push(prioState);
     prioArr.push(prioImgSource);
+    prioArrEdit.push(prioState);
+    prioArrEdit.push(prioImgSource);
+
+    console.log("prioArr", prioArr);
+    
   }
 }
 
@@ -276,6 +286,7 @@ function addUserToSelection(user, userInitials) {
 
   contentAssignedUsers.appendChild(userDiv);
   assignedUsersArr.push({"initials" : `${userInitials}`, "username" : `${user.username}`, "color" : `${user.color}`});
+  assignedUsersEdit.push({"initials" : `${userInitials}`, "username" : `${user.username}`, "color" : `${user.color}`});
   // console.log("assignedUsersArr", assignedUsersArr);
 }
 
@@ -296,6 +307,14 @@ function removeUserFromSelection(username) {
       assignedUsersArr.splice(i,1);
     }
   }
+
+  for (let i = 0; i < assignedUsersEdit.length; i++) {
+    const element = assignedUsersEdit[i];
+    if (element.username == username) {
+      assignedUsersEdit.splice(i,1);
+    }
+  }
+
   console.log("assignedUsersArr", assignedUsersArr);
   
 }
@@ -334,13 +353,12 @@ function addSubtask() {
             <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
             <div class="divider"></div>
             <img onclick="deleteSubtask('${liId}')" src="../assets/img/delete.svg" alt="delete">
-            <!-- <button onclick="deleteSubtask('${liId}')">🗑️</button> -->
         </div>
     </li>
 `;
-    // subtasksArr.push(subtaskInput.value);
-    // checkStatusArr.push("../assets/img/checkbox-empty.svg");
-    subtasksArr.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`})
+    subtasksArr.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`});
+    subtasksEdit.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`});
+
     // Füge das neue li-Element zur bestehenden Liste hinzu
     subtasksContent.innerHTML += newSubtaskHTML;
 

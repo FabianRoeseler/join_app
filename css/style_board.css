@@ -163,7 +163,8 @@ input::placeholder {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    text-align: center;
 }
 .column {
     display: flex;
@@ -211,6 +212,7 @@ input::placeholder {
     justify-content: space-between;
     margin-bottom: 15px;
     cursor: pointer;
+    color: #2A3647;
 }
 .task-head {
     display: flex;
@@ -218,7 +220,7 @@ input::placeholder {
     align-items: flex-start;
 }
 .task-head img {
-    height: 24px;
+    height: 28px;
     cursor: pointer;
     z-index: 99;
     background-color: #ffffff;
@@ -264,8 +266,8 @@ input::placeholder {
     padding-bottom: 10px;
 }
 .highlight-category-cont {
-    background-color: #E7E7E7;
-    height: auto;
+    background-color: #ececec;
+    padding: 10px;
 }
 .task-category {
     font-size: 16px;
@@ -294,7 +296,7 @@ input::placeholder {
 }
 #task-title {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     word-wrap: break-word;
     margin-bottom: 12px;
 }
@@ -507,6 +509,41 @@ input::placeholder {
     width: 2px;
     background-color: lightgray;
 }
+.ok-button {
+    justify-content: flex-end;
+}
+
+.task-details-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* scrollbar-color: gray;
+    scrollbar-width: thin; */
+    overflow-y: auto;
+    width: 100%;
+    height: 80vh;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.task-details-edit::-webkit-scrollbar {
+    display: none;
+}
+.edit-cancel-cont {
+    display: flex;
+    justify-content: flex-end;
+}
+.edit-cancel {
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    z-index: 99;
+    background-color: #ffffff;
+    border-radius: 16px;
+}
+.edit-cancel:hover {
+    background-color: rgb(241, 241, 241);
+}
 
 
 
@@ -517,7 +554,7 @@ input::placeholder {
         padding-right: 48px;
     }
 }
-@media(max-width: 1300px) {
+@media(max-width: 1312px) {
     .header {
         flex-direction: column;
         align-items: flex-start;
@@ -534,6 +571,7 @@ input::placeholder {
     .task {
         width: 200px;
         min-height: 300px;
+        margin-bottom: 0;
     }
     .category-cont {
         flex-direction: row;
