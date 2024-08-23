@@ -6,15 +6,15 @@ async function addUser() {
   let password = document.getElementById("userPassword").value;
   let confirmPassword = document.getElementById("confirmUserPassword").value;
 
-  if (password !== confirmPassword) {
+  /*   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return false;
-  }
+  } */
 
-  if (document.getElementById("acceptPp").checked != true) {
+  /*   if (document.getElementById("acceptPp").checked != true) {
     alert("Please accept the Privacy");
     return false;
-  }
+  } */
 
   const userExists = users.some((user) => user.email === email);
 
@@ -52,13 +52,15 @@ async function loadUserFromDb() {
 
   if (response.ok) {
     const registeredUsers = await response.json();
-    users = Object.keys(registeredUsers).map(key => ({
+    users = Object.keys(registeredUsers).map((key) => ({
       ...registeredUsers[key],
-      id: key
+      id: key,
     }));
-    console.log('Abgerufene Benutzer:', users);
+    console.log("Abgerufene Benutzer:", users);
   } else {
-    console.error(`Fehler beim Laden der Benutzer: HTTP-Status ${response.status}`);
+    console.error(
+      `Fehler beim Laden der Benutzer: HTTP-Status ${response.status}`
+    );
   }
 }
 
@@ -82,28 +84,93 @@ async function addUserToDb() {
 }
 
 async function login() {
-  let userEmail = document.getElementById('userEmail').value;
-  let userPassword = document.getElementById('userPassword').value;
+  let userEmail = document.getElementById("userEmail").value;
+  let userPassword = document.getElementById("userPassword").value;
 
-  console.log('Eingegebene E-Mail:', userEmail);
-  console.log('Eingegebenes Passwort:', userPassword);
-  
+  console.log("Eingegebene E-Mail:", userEmail);
+  console.log("Eingegebenes Passwort:", userPassword);
+
   // Stelle sicher, dass die Benutzerliste geladen ist
   let response = await loadUserFromDb();
 
   // Überprüfen, ob die Benutzer erfolgreich geladen wurden
   if (users.length > 0) {
     // Suche nach dem Benutzer im Array users
-    let user = users.find(u => u.email === userEmail && u.password === userPassword);
-  
+    let user = users.find(
+      (u) => u.email === userEmail && u.password === userPassword
+    );
+
     if (user) {
-      console.log('Benutzer gefunden:', user);
+      console.log("Benutzer gefunden:", user);
       // Weiterleiten oder andere Aktionen
     } else {
-      console.log('Benutzer nicht gefunden');
-      document.getElementById('worngLogin').style.display = 'block';
+      console.log("Benutzer nicht gefunden");
+      document.getElementById("worngLogin").style.display = "block";
     }
   } else {
-    console.error('Benutzerliste konnte nicht geladen werden oder ist leer.');
+    console.error("Benutzerliste konnte nicht geladen werden oder ist leer.");
+  }
+}
+
+function validateNameInput() {
+  let x = document.getElementById("userName").value;
+  let xName = document.getElementById("addNameError");
+  if (x == "") {
+    xName.innerHTML = "Please enter your Name";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validateEmailInput();
+  }
+}
+
+function validateEmailInput() {
+  let x = document.getElementById("userEmail").value;
+  let xName = document.getElementById("addEmailError");
+  let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (x == "") {
+    xName.innerHTML = "Please enter your Email";
+    return false;
+  } else if (!emailRegex.test(x)) {
+    xName.innerHTML = "Please enter a valid Email address";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validatePasswordInput();
+  }
+}
+
+function validatePasswordInput() {
+  let x = document.getElementById("userPassword").value;
+  let xName = document.getElementById("addPasswordError");
+  if (x == "") {
+    xName.innerHTML = "Please enter a Password";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validateConfirmPasswordInput();
+  }
+}
+
+function validateConfirmPasswordInput() {
+  let x = document.getElementById("confirmUserPassword").value;
+  let xName = document.getElementById("addConfirmPasswordError");
+  if (x == "") {
+    xName.innerHTML = "Please confirm your Password";
+    return false;
+  } else {
+    xName.innerHTML = "";
+    return validatePrivacyInput();
+  }
+}
+
+function validatePrivacyInput() {
+  let x = document.getElementById("acceptPp").checked;
+  let xName = document.getElementById("addPrivacyError");
+  if (x != true) {
+    xName.innerHTML = "Please accept our Privacy Policy";
+  } else {
+    xName.innerHTML = "";
+    return addUser();
   }
 }

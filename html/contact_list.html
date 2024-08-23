@@ -1,57 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact List</title>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <link rel="stylesheet" href="../css/contacts.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/header_sidebar.css">
-    <link rel="stylesheet" href="../css/add_contact.css">
-    <link rel="stylesheet" href="../css/edit_contact.css">
-    <link rel="stylesheet" href="../css/media.css">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <link rel="stylesheet" href="../css/contacts.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/header_sidebar.css" />
+    <link rel="stylesheet" href="../css/add_contact.css" />
+    <link rel="stylesheet" href="../css/edit_contact.css" />
+    <link rel="stylesheet" href="../css/media.css" />
+  </head>
 
-</head>
-
-<body onload="includeHTML(), loadData()">
+  <body onload="includeHTML(), loadData()">
     <div class="main-cont">
-        <div class="contactDiv">
-            <div class="btn-section">
-                <div class="btn-cont">
-                    <button onclick="openAddContact(); clearValidateFields()" class="btn-add-contact full-width">Add new contact<img src="../assets/img/person_add.svg"></button>
-                </div>
-            </div>
-            <div id="contact-list">
-                <!-- Dynamische Kontakte werden hier generiert -->
-            </div>
-        </div>
-        <div class="contact-details">
-            <div class="contact-details-head">
-                <h1>Contacts</h1>
-                <span>Better with a team</span>
-            </div>
-            <div id="render-contact-details"></div>
-            <div id="contact-success" class="contact-success">Contact successfully created</div>
-        </div>
-        <div onclick="closeMobileEditMenu()" id="contact-details-mobile" class="d-none">
-            <div onclick="closeContactDetailsMobile()" class="back-arrow">
-                <img src="../assets/img/back-arrow.svg" alt="back arrow">
-            </div>
-            <div class="contact-details-head-mobile">
-                <h1>Contacts</h1>
-                <span>Better with a team</span>
-                <div class="details-head-line"></div>
-            </div>
-            <div id="render-contact-details-mobile"></div>
+      <div class="contactDiv">
+        <div class="btn-section">
+          <div class="btn-cont">
+            <button
+              onclick="openAddContact(); clearValidateFields()"
+              class="btn-add-contact full-width"
+            >
+              Add new contact<img src="../assets/img/person_add.svg" />
+            </button>
           </div>
-          <div onclick="openAddContact(); clearValidateFields(); stop(event)" id="details-mobile-add-btn" class="details-mobile-round-btn">
-            <img src="../assets/img/person_add.svg" alt="add contact button">
-        </div>      
+        </div>
+        <div id="contact-list">
+          <!-- Dynamische Kontakte werden hier generiert -->
+        </div>
+      </div>
+      <div class="contact-details">
+        <div class="contact-details-head">
+          <h1>Contacts</h1>
+          <span>Better with a team</span>
+        </div>
+        <div id="render-contact-details"></div>
+        <div id="contact-success" class="contact-success">
+          Contact successfully created
+        </div>
+      </div>
+      <div
+        onclick="closeMobileEditMenu()"
+        id="contact-details-mobile"
+        class="d-none"
+      >
+        <div onclick="closeContactDetailsMobile()" class="back-arrow">
+          <img src="../assets/img/back-arrow.svg" alt="back arrow" />
+        </div>
+        <div class="contact-details-head-mobile">
+          <h1>Contacts</h1>
+          <span>Better with a team</span>
+          <div class="details-head-line"></div>
+        </div>
+        <div id="render-contact-details-mobile"></div>
+      </div>
+      <div
+        onclick="openAddContact(); clearValidateFields(); stop(event)"
+        id="details-mobile-add-btn"
+        class="details-mobile-round-btn"
+      >
+        <img src="../assets/img/person_add.svg" alt="add contact button" />
+      </div>
     </div>
-    <div id="overlay"></div>  
-    <div id="addContact" class="add-contact-box" w3-include-html="./add_content.html"></div>
+    <div id="overlay"></div>
+    <div
+      id="addContact"
+      class="add-contact-box"
+      w3-include-html="./add_content.html"
+    ></div>
     <div id="overlayEdit"></div>
     <div id="editContact" class="edit-contact-box"></div>
     <div w3-include-html="./templates/header_sidebar.html"></div>
@@ -59,6 +76,5 @@
     <script src="../js/script.js"></script>
     <script src="../js/add_contact.js"></script>
     <script src="../js/edit_contact.js"></script>
-</body>
-
+  </body>
 </html>

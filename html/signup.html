@@ -25,7 +25,7 @@
 
       <i class="blue-line"></i>
 
-      <form onsubmit="addUser()" class="login-form" id="loginFrom">
+      <form class="login-form" id="loginFrom">
         <div class="input-container" id="userInput">
           <input
             class="input-login"
@@ -33,10 +33,10 @@
             placeholder="Name"
             name="userName"
             id="userName"
-            required
           />
           <img src="../assets/img/person.jpg" alt="" />
         </div>
+        <span id="addNameError" class="signUpError"></span>
 
         <div class="input-container" id="emailInput">
           <input
@@ -45,10 +45,10 @@
             placeholder="Email"
             name="userEmail"
             id="userEmail"
-            required
           />
           <img src="../assets/img/mail.jpg" alt="" />
         </div>
+        <span id="addEmailError" class="signUpError"></span>
 
         <div class="input-container">
           <input
@@ -61,6 +61,7 @@
           />
           <img src="../assets/img/lock.png" alt="" />
         </div>
+        <span id="addPasswordError" class="signUpError"></span>
 
         <div class="input-container">
           <input
@@ -73,6 +74,7 @@
           />
           <img src="../assets/img/lock.png" alt="" />
         </div>
+        <span id="addConfirmPasswordError" class="signUpError"></span>
 
         <div class="hidden-continer" id="wrongLogin">
           Your Email or Password doesn't exist.
@@ -92,16 +94,27 @@
             >
           </div>
         </div>
+        <span id="addPrivacyError" class="signUpPrivacyError"></span>
 
         <div class="btn-container btn-login-flex">
-          <button type="submit" class="btn-filled">Sign Up</button>
+          <div onclick="validateNameInput()" class="btn-filled">Sign Up</div>
         </div>
       </form>
     </div>
 
     <footer class="login-footer">
-      <a href="./read_only_privacy_policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-      <a href="./read_only_legal_notice.html" target="_blank" rel="noopener noreferrer">Legal notice</a>
+      <a
+        href="./read_only_privacy_policy.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Privacy Policy</a
+      >
+      <a
+        href="./read_only_legal_notice.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Legal notice</a
+      >
     </footer>
 
     <script src="../js/login_signup.js"></script>
