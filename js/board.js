@@ -138,8 +138,6 @@ function updateHTML() {
     document.getElementById("to_do").innerHTML = "";
     for (let i = 0; i < to_do.length; i++) {
       const element = to_do[i];
-      // const key = dbKeys[index_to_do[i]];
-      // console.log("key", key);
 
       document.getElementById("to_do").innerHTML += generateToDoHTML(
         element,
@@ -161,6 +159,11 @@ function updateHTML() {
         document
           .getElementById(`task-description-to-do${i}`)
           .classList.add("d-none");
+      }
+      if ("prio" in element) {
+        renderTaskPrio(element, `task-prio-to-do${i}`)
+      } else {
+        document.getElementById(`task-prio-to-do${i}`).classList.add('d-none');
       }
     }
   }
@@ -202,6 +205,12 @@ function updateHTML() {
           .getElementById(`task-description-in-progress${i}`)
           .classList.add("d-none");
       }
+      if ("prio" in element) {
+        renderTaskPrio(element, `task-prio-in-progress${i}`)
+      } else {
+        document.getElementById(`task-prio-in-progress${i}`).classList.add('d-none');
+      }
+
     }
   }
 
@@ -245,6 +254,12 @@ function updateHTML() {
           .getElementById(`task-description-await-feedback${i}`)
           .classList.add("d-none");
       }
+      if ("prio" in element) {
+        renderTaskPrio(element, `task-prio-await-feedback${i}`)
+      } else {
+        document.getElementById(`task-prio-await-feedback${i}`).classList.add('d-none');
+      }
+
     }
   }
 
@@ -282,6 +297,11 @@ function updateHTML() {
         document
           .getElementById(`task-description-done${i}`)
           .classList.add("d-none");
+      }
+      if ("prio" in element) {
+        renderTaskPrio(element, `task-prio-done${i}`)
+      } else {
+        document.getElementById(`task-prio-done${i}`).classList.add('d-none');
       }
     }
   }
@@ -359,68 +379,11 @@ async function saveProgress(path = "tasks") {
   return await response.json();
 }
 
-function openTaskDetails(i) {
-  document.getElementById("task-details-overlay").classList.remove("d-none");
-  document.getElementById("task-details-overlay").style = `left: 0`;
-  let taskDetails = document.getElementById("task-details-Popup");
-  let task = tasks[i];
 
-  taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
-  if ("assigned_users" in task) {
-    renderAssignedContacts(task);
-  } else {
-    document.getElementById(`assigned-users-cont${i}`).classList.add("d-none");
-  }
-  if ("subtasks" in task) {
-    renderSubtasks(task, i);
-  } else {
-    document.getElementById(`subtasks-cont${i}`).classList.add("d-none");
-  }
-  if ("description" in task) {
-    renderDescriptionInTaskDetails(task, i);
-  } else {
-    document
-      .getElementById(`task-description-await-feedback${i}`)
-      .classList.add("d-none");
-  }
-}
+// render functions for small task view
 
-function renderDescriptionInTaskDetails(task, i) {
-  document.getElementById(
-    `task-details-description${i}`
-  ).innerHTML = `${task.description}`;
-}
-
-function renderAssignedContacts(task) {
-  let contacts = document.getElementById("assigned-contacts");
-  contacts.innerHTML = "";
-
-  for (let i = 0; i < task.assigned_users.length; i++) {
-    const user = task.assigned_users[i];
-
-    contacts.innerHTML += `
-              <div class="assigned-single-contact">
-                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
-                  <span>${user.username}</span>
-              </div>
-          `;
-  }
-}
-
-function renderSubtasks(task, i) {
-  let subtasks = document.getElementById(`subtasks-details${i}`);
-  subtasks.innerHTML = "";
-
-  for (let j = 0; j < task.subtasks.length; j++) {
-    subtasks.innerHTML += /*html*/ `
-            <div class="subtask-cont">
-                <div class="subtask-cont-img" onclick="moveToSubtasksDone(${i}, ${j})">
-                    <img id="checkbox${j}" src="${task.subtasks[j].checkbox_img}">
-                </div>
-                <div>${task.subtasks[j].subtask}</div>
-            </div>
-        `;
-  }
+function renderTaskDescription(element, id) {
+  document.getElementById(id).innerHTML = `${element.description}`;
 }
 
 function renderSubtaskProgress(element, id) {
@@ -449,9 +412,162 @@ function renderSubtaskProgress(element, id) {
   }
 }
 
-function renderTaskDescription(element, id) {
-  document.getElementById(id).innerHTML = `${element.description}`;
+function renderAssignedContacts(task) {
+  let contacts = document.getElementById("assigned-contacts");
+  contacts.innerHTML = "";
+
+  for (let i = 0; i < task.assigned_users.length; i++) {
+    const user = task.assigned_users[i];
+
+    contacts.innerHTML += `
+              <div class="assigned-single-contact">
+                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
+                  <span>${user.username}</span>
+              </div>
+          `;
+  }
 }
+
+function renderTaskPrio(element, id) {
+  document.getElementById(id).innerHTML = `<img class="prio-icons" src="${element.prio[1]
+    }" alt="prio icon">`;
+}
+
+// end of render functions for small task view
+
+
+function openTaskDetails(i) {
+  document.getElementById("task-details-overlay").classList.remove("d-none");
+  document.getElementById("task-details-overlay").style = `left: 0`;
+  let taskDetails = document.getElementById("task-details-Popup");
+  let task = tasks[i];
+
+  taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
+  if ("assigned_users" in task) {
+    renderAssignedContacts(task);
+  } else {
+    document.getElementById(`assigned-users-cont${i}`).classList.add("d-none");
+  }
+  if ("subtasks" in task) {
+    renderSubtasks(task, i);
+  } else {
+    document.getElementById(`subtasks-cont${i}`).classList.add("d-none");
+  }
+  if ("description" in task) {
+    renderDescriptionInTaskDetails(task, i);
+  } else {
+    document
+      .getElementById(`task-details-description${i}`)
+      .classList.add("d-none");
+  }
+  if ("prio" in task) {
+    renderPrioInTaskDetails(task, i);
+  } else {
+    document.getElementById(`task-details-prio${i}`).classList.add('d-none');
+  }
+}
+
+
+// render functions for detail task view
+
+function renderDescriptionInTaskDetails(task, i) {
+  document.getElementById(
+    `task-details-description${i}`
+  ).innerHTML = `${task.description}`;
+}
+
+function renderPrioInTaskDetails(task, i) {
+  let prio = document.getElementById(`prio-cont${i}`);
+  prio.innerHTML = `
+      <span>${task.prio[0].charAt(0).toUpperCase() + task.prio[0].slice(1)}</span>
+      <img src="${task.prio[1]}">
+  `;
+}
+
+function renderSubtasks(task, i) {
+  let subtasks = document.getElementById(`subtasks-details${i}`);
+  subtasks.innerHTML = "";
+
+  for (let j = 0; j < task.subtasks.length; j++) {
+    subtasks.innerHTML += /*html*/ `
+            <div class="subtask-cont">
+                <div class="subtask-cont-img" onclick="moveToSubtasksDone(${i}, ${j})">
+                    <img id="checkbox${j}" src="${task.subtasks[j].checkbox_img}">
+                </div>
+                <div>${task.subtasks[j].subtask}</div>
+            </div>
+        `;
+  }
+}
+
+function renderSelectedUsersEdit() {
+  let selectedUsers = document.getElementById('contentAssignedUsers');
+  selectedUsers.innerHTML = "";
+  for (let i = 0; i < assignedUsersEdit.length; i++) {
+    const user = assignedUsersEdit[i];
+
+    selectedUsers.innerHTML += /*html*/`
+        <div class="rendered-initials-cont">
+          <div class="initials" style="background-color: ${user.color};">
+              ${user.initials}
+          </div>
+          <img onclick="removeFromUsersArr('${
+            user.username
+          }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
+      </div>            
+      `;
+    }
+}
+
+function renderSubtasksEdit() {
+  let selectedSubtasks = document.getElementById('subtasksContent');
+  selectedSubtasks.innerHTML = "";
+  for (let i = 0; i < subtasksEdit.length; i++) {
+    const element = subtasksEdit[i];
+
+    const liId = "subtask-" + subtaskIdCounter; // Erzeuge eine eindeutige ID für das li-Element
+    const spanId = "span-" + subtaskIdCounter; // ID für das span-Element
+    const inputId = "input-" + subtaskIdCounter; // ID für das Input-Element
+
+    selectedSubtasks.innerHTML += /*html*/ `
+    <li id="${liId}" class="subtask-item">
+        <div class="dot"></div>
+        <div class="subtask-text">
+            <span id="${spanId}" onclick="editSubtask('${liId}', '${spanId}', '${inputId}')">${element.subtask}</span>
+        </div>
+        <div class="subtask-icon">
+            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
+            <div class="divider"></div>
+            <img onclick="deleteFromSubtaskArr('${element.subtask}')" src="../assets/img/delete.svg" alt="delete">
+        </div>
+    </li>
+    `;
+  }
+
+}
+
+function removeFromUsersArr(username) {
+  for (let i = 0; i < assignedUsersEdit.length; i++) {
+    const element = assignedUsersEdit[i];
+    if (element.username == username) {
+      assignedUsersEdit.splice(i,1);
+    }
+  }
+  renderSelectedUsersEdit();
+}
+
+function deleteFromSubtaskArr(subtask) {
+  for (let i = 0; i < subtasksEdit.length; i++) {
+    const element = subtasksEdit[i];
+    if (element.subtask == subtask) {
+      subtasksEdit.splice(i,1);
+    }
+  }
+  renderSubtasksEdit();
+}
+
+// end of render functions for detail task view
+
 
 function closeTaskDetails() {
   document.getElementById("task-details-overlay").classList.add("d-none");
@@ -571,75 +687,8 @@ function fillEditForm(data) {
     }
     renderSubtasksEdit();
   }
-
-  // editStatusArr.push(data.status);
 }
 
-function renderSelectedUsersEdit() {
-  let selectedUsers = document.getElementById('contentAssignedUsers');
-  selectedUsers.innerHTML = "";
-  for (let i = 0; i < assignedUsersEdit.length; i++) {
-    const user = assignedUsersEdit[i];
-
-    selectedUsers.innerHTML += /*html*/`
-        <div class="rendered-initials-cont">
-          <div class="initials" style="background-color: ${user.color};">
-              ${user.initials}
-          </div>
-          <img onclick="removeFromUsersArr('${
-            user.username
-          }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
-      </div>            
-      `;
-    }
-}
-
-function renderSubtasksEdit() {
-  let selectedSubtasks = document.getElementById('subtasksContent');
-  selectedSubtasks.innerHTML = "";
-  for (let i = 0; i < subtasksEdit.length; i++) {
-    const element = subtasksEdit[i];
-
-    const liId = "subtask-" + subtaskIdCounter; // Erzeuge eine eindeutige ID für das li-Element
-    const spanId = "span-" + subtaskIdCounter; // ID für das span-Element
-    const inputId = "input-" + subtaskIdCounter; // ID für das Input-Element
-
-    selectedSubtasks.innerHTML += /*html*/ `
-    <li id="${liId}" class="subtask-item">
-        <div class="dot"></div>
-        <div class="subtask-text">
-            <span id="${spanId}" onclick="editSubtask('${liId}', '${spanId}', '${inputId}')">${element.subtask}</span>
-        </div>
-        <div class="subtask-icon">
-            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
-            <div class="divider"></div>
-            <img onclick="deleteFromSubtaskArr('${element.subtask}')" src="../assets/img/delete.svg" alt="delete">
-        </div>
-    </li>
-    `;
-  }
-
-}
-
-function removeFromUsersArr(username) {
-  for (let i = 0; i < assignedUsersEdit.length; i++) {
-    const element = assignedUsersEdit[i];
-    if (element.username == username) {
-      assignedUsersEdit.splice(i,1);
-    }
-  }
-  renderSelectedUsersEdit();
-}
-
-function deleteFromSubtaskArr(subtask) {
-  for (let i = 0; i < subtasksEdit.length; i++) {
-    const element = subtasksEdit[i];
-    if (element.subtask == subtask) {
-      subtasksEdit.splice(i,1);
-    }
-  }
-  renderSubtasksEdit();
-}
 
 async function saveEdit(i) {
   let taskTitle = document.getElementById("editTitle");
@@ -652,8 +701,6 @@ async function saveEdit(i) {
     due_date: taskDate.value,
     prio: prioArrEdit,
     subtasks: subtasksEdit,
-    // category: categoryArr,
-    // status: editStatusArr
   };
 
   let taskKey = dbKeys[i];

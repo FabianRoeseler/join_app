@@ -206,10 +206,7 @@ function generateToDoHTML(element, i) {
             <div class="assigned-prio-cont">
                 <div id="assigned-initials-to-do${i}" class="initials-small-task">
                 </div>
-                <div id="task-prio">
-                    <img class="prio-icons" src="${element.prio[1]
-    }" alt="prio icon">
-                </div>
+                <div id="task-prio-to-do${i}"></div>
             </div>
         </div>
     `;
@@ -241,10 +238,7 @@ function generateInProgressHTML(element, i) {
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-in-progress${i}" class="initials-small-task">
                   </div>
-                  <div id="task-prio">
-                      <img class="prio-icons" src="${element.prio[1]
-    }" alt="prio icon">
-                  </div>
+                  <div id="task-prio-in-progress${i}"></div>
               </div>
           </div>
       `;
@@ -275,10 +269,7 @@ function generateAwaitFeedbackHTML(element, i) {
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-await-feedback${i}" class="initials-small-task">
                   </div>
-                  <div id="task-prio">
-                      <img class="prio-icons" src="${element.prio[1]
-    }" alt="prio icon">
-                  </div>
+                  <div id="task-prio-await-feedback${i}"></div>
               </div>
           </div>
       `;
@@ -309,10 +300,7 @@ function generateDoneHTML(element, i) {
               <div class="assigned-prio-cont">
                   <div id="assigned-initials-done${i}" class="initials-small-task">
                   </div>
-                  <div id="task-prio">
-                      <img class="prio-icons" src="${element.prio[1]
-    }" alt="prio icon">
-                  </div>
+                  <div id="task-prio-done${i}"></div>
               </div>
           </div>
       `;
@@ -333,12 +321,9 @@ function generateTaskDetailsHTML(task, i) {
               <span class="task-subtitles">Due date:</span>
               <span>${task.due_date}</span>
           </div>
-          <div class="task-details-prio-style">
+          <div id="task-details-prio${i}" class="task-details-prio-style">
               <span class="task-subtitles">Priority:</span>
-              <div class="prio-cont">
-                  <span>${task.prio[0].charAt(0).toUpperCase() + task.prio[0].slice(1)}</span>
-                  <img src="${task.prio[1]}">
-              </div>
+              <div class="prio-cont${i}"></div>
           </div>
           <div id="assigned-users-cont${i}" class="assigned-to">
               <span class="task-subtitles">Assigned To:</span>
