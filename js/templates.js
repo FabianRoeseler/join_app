@@ -323,7 +323,7 @@ function generateTaskDetailsHTML(task, i) {
           </div>
           <div id="task-details-prio${i}" class="task-details-prio-style">
               <span class="task-subtitles">Priority:</span>
-              <div class="prio-cont${i}"></div>
+              <div id="prio-cont${i}" class="prio-cont"></div>
           </div>
           <div id="assigned-users-cont${i}" class="assigned-to">
               <span class="task-subtitles">Assigned To:</span>

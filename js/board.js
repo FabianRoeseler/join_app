@@ -480,7 +480,7 @@ function renderDescriptionInTaskDetails(task, i) {
 
 function renderPrioInTaskDetails(task, i) {
   let prio = document.getElementById(`prio-cont${i}`);
-  prio.innerHTML = `
+  prio.innerHTML = /*html*/`
       <span>${task.prio[0].charAt(0).toUpperCase() + task.prio[0].slice(1)}</span>
       <img src="${task.prio[1]}">
   `;
