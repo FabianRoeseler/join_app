@@ -82,6 +82,7 @@ async function login() {
     );
 
     if (user) {
+      setUserGreeting(user);
       loginSuccessfullPopUp();
       users = [];
       setTimeout(function () {
@@ -89,6 +90,26 @@ async function login() {
       }, 1500);
     }
   }
+}
+
+/**
+ * Getting the first character from the names
+ * @param {*} name
+ * @returns
+ */
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
+}
+
+
+function setUserGreeting(user) {
+  let initials = getInitials(user.username)
+  // document.getElementById('profile-initials-header').innerHTML = `${initials}`;
+  document.getElementById('greeting-user-name').innerHTML = `${user.username}`;
+  document.getElementById('greeting-user-name-mobile').innerHTML = `${user.username}`;
 }
 
 function validateNameInput() {

@@ -254,7 +254,6 @@ ul {
     z-index: 1000;
     top: 40px;
     padding-top: 52px;
-    padding-left: 10px;
 }
 #dropDownCategoryMenu::-webkit-scrollbar {
     display: none;
@@ -315,8 +314,9 @@ ul {
 }
 
 .addtask-category {
-    padding: 4px;
+    padding: 4px 0 4px 21px;    
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .addtask-category:hover {
@@ -325,7 +325,9 @@ ul {
 
 #contentAssignedUsers {
     display: flex;
-    padding: 6px;
+    padding: 12px 6px;
+    flex-wrap: wrap;
+    row-gap: 10px;
 }
 
 .name-assigned {

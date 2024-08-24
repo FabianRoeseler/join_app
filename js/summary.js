@@ -14,21 +14,28 @@ async function renderKeyMetrics() {
       }
     }
 
+    fillKeyMetrics(tasks);
+}
+
+function fillKeyMetrics(tasks) {
     let toDoCount = tasks.filter((t) => t["status"] == "to_do").length;
     document.getElementById('render-to-do-count').innerHTML = `${toDoCount}`;
 
     let doneCount = tasks.filter((t) => t["status"] == "done").length;
     document.getElementById('render-done-count').innerHTML = `${doneCount}`;
 
-    if ("prio" in tasks) {
-        let urgentCount = tasks.filter((t) => t["prio"][0] == "urgent").length;
-        document.getElementById('render-urgent-count').innerHTML = `${urgentCount}`;
-        getnextUrgentDate();    
-    } else {
-        document.getElementById('render-urgent-count').innerHTML = `0`;
-        document.getElementById('upcoming-deadline').innerHTML = `No Urgent Deadlines`;     
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if ("prio" in task) {
+            let urgentCount = tasks.filter((t) => t["prio"][0] == "urgent").length;
+            document.getElementById('render-urgent-count').innerHTML = `${urgentCount}`;
+            getnextUrgentDate();    
+        } else {
+            document.getElementById('render-urgent-count').innerHTML = `0`;
+            document.getElementById('upcoming-deadline').innerHTML = `No Urgent Deadlines`;     
+        }
     }
-
+    
     let allTasks = tasks.length;
     document.getElementById('tasks-in-board-count').innerHTML = `${allTasks}`;
 
@@ -37,7 +44,6 @@ async function renderKeyMetrics() {
 
     let awaitFeedbackCount = tasks.filter((t) => t["status"] == "await_feedback").length;
     document.getElementById('tasks-await-feedback-count').innerHTML = `${awaitFeedbackCount}`;
-
 }
 
 function getnextUrgentDate() {
@@ -48,13 +54,11 @@ function getnextUrgentDate() {
           index_urgent.push(i);
         }
       }
-    console.log(index_urgent);
     
     for (let j = 0; j < index_urgent.length; j++) {
         let date = tasks[index_urgent[j]]["due_date"];
         urgent_dates.push(date); 
     }
-    console.log(urgent_dates);
     
     urgent_dates.sort(function(a, b) {
         return new Date(a) - new Date(b);
