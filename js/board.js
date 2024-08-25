@@ -309,19 +309,10 @@ function updateHTML() {
   }
 }
 
-function renderIntialsinSmallTask(element, initialsCont) {
-  for (let i = 0; i < element.assigned_users.length; i++) {
-    const user = element.assigned_users[i];
-
-    document.getElementById(initialsCont).innerHTML += `
-      <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
-    `;
-  }
-}
-
 function startDragging(id) {
+  // document.getElementById(`task${id}`).style = `transform: rotate(8deg)`;
+
   currentDraggedElement = id;
-  // document.getElementById(`task${i}`).style = `transform: rotate(8deg)`;
 }
 
 function allowDrop(ev) {
@@ -414,19 +405,26 @@ function renderSubtaskProgress(element, id) {
   }
 }
 
-function renderAssignedContacts(task) {
-  let contacts = document.getElementById("assigned-contacts");
-  contacts.innerHTML = "";
-
-  for (let i = 0; i < task.assigned_users.length; i++) {
-    const user = task.assigned_users[i];
-
-    contacts.innerHTML += `
-              <div class="assigned-single-contact">
-                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
-                  <span>${user.username}</span>
-              </div>
-          `;
+function renderIntialsinSmallTask(element, initialsCont) {
+  let users = element.assigned_users;
+  if (users.length < 5) {
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      document.getElementById(initialsCont).innerHTML += `
+        <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
+      `;
+    }
+  } 
+  if (users.length > 5) {
+    for (let i = 0; i < users.length-(users.length-4); i++) {
+      const user = users[i];
+      document.getElementById(initialsCont).innerHTML += `
+        <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
+      `;
+    }   
+      document.getElementById(initialsCont).innerHTML += `
+      <div class="test-initials" style="background-color: #2A3647">+${users.length - 4}</div>
+    `;
   }
 }
 
@@ -484,6 +482,22 @@ function renderPrioInTaskDetails(task, i) {
       <span>${task.prio[0].charAt(0).toUpperCase() + task.prio[0].slice(1)}</span>
       <img src="${task.prio[1]}">
   `;
+}
+
+function renderAssignedContacts(task) {
+  let contacts = document.getElementById("assigned-contacts");
+  contacts.innerHTML = "";
+
+  for (let i = 0; i < task.assigned_users.length; i++) {
+    const user = task.assigned_users[i];
+
+    contacts.innerHTML += `
+              <div class="assigned-single-contact">
+                  <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
+                  <span>${user.username}</span>
+              </div>
+          `;
+  }
 }
 
 function renderSubtasks(task, i) {

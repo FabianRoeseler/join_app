@@ -304,14 +304,14 @@ input::placeholder {
     font-size: 16px;
     color: lightgray;
     word-wrap: break-word;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .subtasks {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 #subtask-counter {
     font-size: 14px;
@@ -328,7 +328,6 @@ input::placeholder {
   }
 #progress-bar {
     height: 14px;
-    /* width : 10%; */
     background-color: #4589FF;
     border-radius: 15px;
 }
@@ -343,8 +342,6 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     color: #fff;
-    /* margin-right: 15px;
-    margin-right: 32px; */
     font-size: 14px;
     margin-left: -11px;
 }
