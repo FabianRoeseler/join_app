@@ -407,7 +407,7 @@ function renderSubtaskProgress(element, id) {
 
 function renderIntialsinSmallTask(element, initialsCont) {
   let users = element.assigned_users;
-  if (users.length < 5) {
+  if (users.length < 6) {
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       document.getElementById(initialsCont).innerHTML += `
@@ -415,15 +415,15 @@ function renderIntialsinSmallTask(element, initialsCont) {
       `;
     }
   } 
-  if (users.length > 5) {
-    for (let i = 0; i < users.length-(users.length-4); i++) {
+  if (users.length > 6) {
+    for (let i = 0; i < users.length-(users.length - 5); i++) {
       const user = users[i];
       document.getElementById(initialsCont).innerHTML += `
         <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
       `;
     }   
       document.getElementById(initialsCont).innerHTML += `
-      <div class="test-initials" style="background-color: #2A3647">+${users.length - 4}</div>
+      <div class="test-initials" style="background-color: #2A3647">+${users.length - 5}</div>
     `;
   }
 }
