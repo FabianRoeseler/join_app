@@ -443,6 +443,10 @@ function openTaskDetails(i) {
   let task = tasks[i];
 
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
+  renderInfosInTaskDetails(task, i);
+}
+
+function renderInfosInTaskDetails(task, i) {
   if ("assigned_users" in task) {
     renderAssignedContacts(task);
   } else {
@@ -453,6 +457,10 @@ function openTaskDetails(i) {
   } else {
     document.getElementById(`subtasks-cont${i}`).classList.add("d-none");
   }
+  renderInfosInTaskDetailsTwo(task, i);
+}
+
+function renderInfosInTaskDetailsTwo(task, i) {
   if ("description" in task) {
     renderDescriptionInTaskDetails(task, i);
   } else {
@@ -541,18 +549,14 @@ function renderSubtasksEdit() {
   for (let i = 0; i < subtasksEdit.length; i++) {
     const element = subtasksEdit[i];
 
-    const liId = "subtask-" + subtaskIdCounter; // Erzeuge eine eindeutige ID für das li-Element
-    const spanId = "span-" + subtaskIdCounter; // ID für das span-Element
-    const inputId = "input-" + subtaskIdCounter; // ID für das Input-Element
-
     selectedSubtasks.innerHTML += /*html*/ `
-    <li id="${liId}" class="subtask-item">
+    <li id="subtask-${i}" class="subtask-item">
         <div class="dot"></div>
         <div class="subtask-text">
-            <span id="${spanId}" onclick="editSubtask('${liId}', '${spanId}', '${inputId}')">${element.subtask}</span>
+            <span id="span-${i}" onclick="editSubtask('subtask-${i}', 'span-${i}', 'input-${i}')">${element.subtask}</span>
         </div>
         <div class="subtask-icon">
-            <img onclick="editSubtask('${liId}', '${spanId}', '${inputId}')" src="../assets/img/edit.svg" alt="edit">
+            <img onclick="editSubtask('subtask-${i}', 'span-${i}', 'input-${i}')" src="../assets/img/edit.svg" alt="edit">
             <div class="divider"></div>
             <img onclick="deleteFromSubtaskArr('${element.subtask}')" src="../assets/img/delete.svg" alt="delete">
         </div>
@@ -740,6 +744,7 @@ function closeEdit(i) {
   let task = tasks[i];
   let taskDetails = document.getElementById("task-details-Popup");
   taskDetails.innerHTML = generateTaskDetailsHTML(task, i);
+  renderInfosInTaskDetails(task, i);
 }
 
 
