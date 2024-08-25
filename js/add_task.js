@@ -31,6 +31,7 @@ let categoryArr = [];
 let assignedUsersArr = [];
 let assignedUsersEdit = [];
 // let editStatusArr = [];
+let selectedUsers = new Set(); // Set verwenden für eine eindeutige Auswahl
 
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -152,7 +153,6 @@ function getInitials(username) {
   return initials;
 }
 
-
 async function fetchContactsFromAPI() {
   try {
     let response = await fetch(ADDTASK_URL + ".json");
@@ -193,73 +193,62 @@ async function showUsers() {
   document.getElementById("userNameInput").classList.toggle("outline");
 }
 
-// Funktion rendert die Liste der Benutzer im Dropdown-Menü
 function displayDropdownUserList(userList) {
   let dropdownMenu = document.getElementById("dropDownUserMenu");
   dropdownMenu.innerHTML = "";
-  console.log(userList);
 
-  // Alphabetisch User sortieren
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
 
-  let lastInitial = ""; // Variable zur Speicherung des letzten Buchstabens für Gruppierung
+  let lastInitial = "";
 
   sortedUsers.forEach((user, i) => {
-    let color = user.color || generateRandomColor(); // Verwende die gespeicherte Farbe, wenn vorhanden
-
+    let color = user.color || generateRandomColor();
     let initial = user.username[0].toUpperCase();
     if (initial !== lastInitial) {
       lastInitial = initial;
     }
 
+    let isSelected = selectedUsers.has(user.username);
+    let additionalClass = isSelected ? "contact-card-click-assigned" : "";
+
     dropdownMenu.innerHTML += /*html*/ `
-            <div onclick="toggleUserSelection(${i})" id="contact-info${i}" class="contact-assigned">
-                <div class="initials" style="background-color: ${color};">${getInitials(
-      user.username
-    )}</div>
-                <div class="contact-info">
-                    <p id="name${i}" class="name-assigned"><span>${
-      user.username
-    }</span></p>
-                </div>
-            </div>
-        `;
+      <div onclick="toggleUserSelection(${i})" id="contact-info${i}" class="contact-assigned ${additionalClass}">
+        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+        <div class="contact-info">
+          <p id="name${i}" class="name-assigned ${isSelected ? 'contact-name-assigned' : ''}">
+            <span>${user.username}</span>
+          </p>
+        </div>
+      </div>
+    `;
   });
 }
 
-// Funktion zum Auswählen und Anzeigen von Benutzern
 function toggleUserSelection(index) {
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-  let user = Object.values(sortedUsers)[index];
-  let contentAssignedUsers = document.getElementById("contentAssignedUsers");
-  let selectedUsers = Array.from(contentAssignedUsers.children).map(
-    (child) => child.dataset.username
-  );
-
+  let user = sortedUsers[index];
   let contactElementAssigned = document.getElementById(`contact-info${index}`);
-  // Überprüfen, ob der Benutzer bereits ausgewählt ist
-  if (selectedUsers.includes(user.username)) {
+
+  if (selectedUsers.has(user.username)) {
     // Benutzer entfernen
+    selectedUsers.delete(user.username);
     removeUserFromSelection(user.username);
-    // Entferne die Stile
     contactElementAssigned.classList.remove("contact-card-click-assigned");
     contactElementAssigned
       .querySelector(".name-assigned")
       .classList.remove("contact-name-assigned");
   } else {
     // Benutzer hinzufügen
+    selectedUsers.add(user.username);
     addUserToSelection(user, getInitials(user.username));
-    // Füge die Stile hinzu
     contactElementAssigned.classList.add("contact-card-click-assigned");
     contactElementAssigned
       .querySelector(".name-assigned")
       .classList.add("contact-name-assigned");
-    console.log("addUser", user);
-    
   }
 }
 
