@@ -5,6 +5,7 @@ function openAddTaskPopup() {
   addTaskPopup.style.right = "50%"; // Popup nach links schieben
   overlayAddTaskPopup.style.display = "flex"; // Overlay sichtbar machen
   overlayAddTaskPopup.addEventListener("click", closeAddTaskPopupByOverlay); // Event-Listener hinzufügen
+  toggleButton('medium');
 }
 
 function closeAddTaskPopup() {

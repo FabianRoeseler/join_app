@@ -2,16 +2,6 @@ body {
     margin: 0;
     font-family: "Inter", Sans-Serif;
 }
-/* .click-add-task {
-    background-color: var(--darkBlue);
-}
-.click-add-task:hover {
-    background-color: var(--darkBlue);
-}
-.click-add-task-mobile {
-    background-color: var(--darkBlue);
-    border-radius: 16px;
-} */
 .outline {
     outline: 1px solid var(--darkLightBlue);
 }
@@ -29,15 +19,10 @@ body {
 }
 
 .addtask-main-content {
-    /* position: fixed; */
     padding: 80px 0;
-    /* padding-left: 64px; */
-    /* padding-right: 64px; */
-    /* background-color: #F6F7F8; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* flex: 1; */
     scrollbar-color: gray;
     scrollbar-width: thin;
     overflow-y: auto;
@@ -53,7 +38,6 @@ body {
 .addtask-form-left-top {
     display: flex;
     flex-direction: column;
-    /* margin-right: 48px; */
     width: 440px;
     height: auto;
 }
@@ -68,6 +52,9 @@ body {
     margin-bottom: 24px;
 }
 #addTaskDiscriptionField {
+    width: auto;
+}
+#addTaskPopupDiscriptionField {
     width: auto;
 }
 
@@ -100,8 +87,6 @@ label {
 
 textarea {
     cursor: pointer;
-    /* width: 440px; */
-    /* margin-top: 8px; */
     height: 120px;
     border: 1px solid #d1d1d1;
     border-radius: 10px;
@@ -112,10 +97,22 @@ textarea {
 }
 textarea::placeholder {
     font-family: "Inter";
+    color: #D1D1D1;
 }
 textarea:focus {
     outline: 1px solid var(--darkLightBlue);
     border: 1px solid var(--darkLightBlue);
+}
+
+input::placeholder {
+    color: #D1D1D1;
+}
+
+input[type=date] {
+    font-family: "Inter";
+    font-size: 20px;
+    font-weight: 400;
+    color:#D1D1D1;
 }
 
 #arrowDropMenuCategory {
