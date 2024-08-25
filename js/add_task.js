@@ -159,7 +159,7 @@ async function fetchContactsFromAPI() {
     const data = await response.json();
     if (data && typeof data === "object" && data.users) {
       console.log("Loaded User Array:", data.users); // remove later
-      return data.users; // Rückgabe der Benutzerliste
+      return Object.values(data.users); // Rückgabe der Benutzerliste
     } else {
       console.error("Unexpected data format:", data);
       return [];
@@ -326,6 +326,20 @@ function hideUsers() {
   let icon = document.getElementById("arrowDropMenuAssigned");
   icon.style.transform = "rotate(0deg)";
   userListElement.innerHTML = "";
+}
+
+function filterUsers() {
+
+  if (!Array.isArray(userList) || userList.length === 0) {
+      return;
+  }
+
+  const searchTerm = document.getElementById("userNameInput").value.toLowerCase();
+  const filteredUsers = Object.values(userList).filter(user => 
+      user.username.toLowerCase().includes(searchTerm)
+  );
+
+  displayDropdownUserList(filteredUsers);
 }
 
 ////////////Subtask function////////////////////////
