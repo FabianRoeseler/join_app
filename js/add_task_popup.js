@@ -1,20 +1,23 @@
+/**
+ * Handles the add task popup, dnone and remove, moving in, out, click outside events.
+ */
 function openAddTaskPopup() {
   let addTaskPopup = document.getElementById("addTaskPopup");
   let overlayAddTaskPopup = document.getElementById("overlayAddTaskPopup");
 
-  addTaskPopup.style.right = "50%"; // Popup nach links schieben
-  overlayAddTaskPopup.style.display = "flex"; // Overlay sichtbar machen
-  overlayAddTaskPopup.addEventListener("click", closeAddTaskPopupByOverlay); // Event-Listener hinzufügen
-  toggleButton('medium');
+  addTaskPopup.style.right = "50%";
+  overlayAddTaskPopup.style.display = "flex";
+  overlayAddTaskPopup.addEventListener("click", closeAddTaskPopupByOverlay);
+  toggleButton("medium");
 }
 
 function closeAddTaskPopup() {
   let addTaskPopup = document.getElementById("addTaskPopup");
   let overlayAddTaskPopup = document.getElementById("overlayAddTaskPopup");
 
-  addTaskPopup.style.right = "-1200px"; // Popup nach rechts außerhalb des Bildschirms verschieben
-  overlayAddTaskPopup.style.display = "none"; // Overlay unsichtbar machen
-  overlayAddTaskPopup.removeEventListener("click", closeAddTaskPopupByOverlay); // Event-Listener entfernen
+  addTaskPopup.style.right = "-1200px";
+  overlayAddTaskPopup.style.display = "none";
+  overlayAddTaskPopup.removeEventListener("click", closeAddTaskPopupByOverlay);
 }
 
 function closeAddTaskPopupByOverlay(event) {
@@ -23,6 +26,10 @@ function closeAddTaskPopupByOverlay(event) {
   }
 }
 
+/**
+ * Starting the validationprocess from adding a new task, switching through the different fields, parts with regex and finally adding the task
+ * @returns
+ */
 function validateTaskTitle() {
   let x = document.getElementById("addTaskInputTitle").value;
   let xName = document.getElementById("addTitleError");

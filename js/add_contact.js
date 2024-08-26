@@ -1,25 +1,28 @@
+/**
+ * Handles popup from add contact part. Opening, closing, moving, click outside etc.
+ */
 function openAddContact() {
   let addContact = document.getElementById("addContact");
   let overlay = document.getElementById("overlay");
 
-  addContact.style.right = "50%"; // Popup nach links schieben
-  overlay.style.display = "flex"; // Overlay sichtbar machen
-  overlay.addEventListener("click", closeContactPopupByOverlay); // Event-Listener hinzufügen
+  addContact.style.right = "50%";
+  overlay.style.display = "flex";
+  overlay.addEventListener("click", closeContactPopupByOverlay);
   document.getElementById(
     "details-mobile-add-btn"
-  ).style.background = `var(--darkLightBlue)`; // ändert Farbe vom Hinzufügen Button
+  ).style.background = `var(--darkLightBlue)`;
 }
 
 function closeContactPopup() {
   let addContact = document.getElementById("addContact");
   let overlay = document.getElementById("overlay");
 
-  addContact.style.right = "-1200px"; // Popup nach rechts außerhalb des Bildschirms verschieben
-  overlay.style.display = "none"; // Overlay unsichtbar machen
-  overlay.removeEventListener("click", closeContactPopupByOverlay); // Event-Listener entfernen
+  addContact.style.right = "-1200px";
+  overlay.style.display = "none";
+  overlay.removeEventListener("click", closeContactPopupByOverlay);
   document.getElementById(
     "details-mobile-add-btn"
-  ).style.background = `var(--darkGray)`; // ändert Farbe vom Hinzufügen Button zurück
+  ).style.background = `var(--darkGray)`;
 }
 
 function closeContactPopupByOverlay(event) {
