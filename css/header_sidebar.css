@@ -2,7 +2,7 @@
 
 header {
     position: fixed;
-    z-index: 999;
+    z-index: 398;
     height: 100px;
     width: 100%;
     font-size: 20px;
@@ -96,7 +96,7 @@ header {
 
 nav {
     position: fixed;
-    z-index: 1000;
+    z-index: 399;
     width: 234px;
     height: 100%;
     background: #2A3647;
@@ -162,7 +162,7 @@ menu a:hover {
 .sidebar-mobile {
     height: 90px;
     position: fixed;
-    z-index: 1000;
+    z-index: 399;
     bottom: 0;
     left: 0;
     right: 0;
