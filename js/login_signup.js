@@ -8,8 +8,10 @@ async function addUser() {
   if (userExists) {
     alert("An account with this email already exists!");
   } else {
+    const signupSuccessElement = document.getElementById("userCreatedSuccess");
+    signupSuccessElement.classList.remove("d-none");
+    setTimeout(showCreatedUserSuccessPopUp, 100);
     addUserToDb();
-    showCreatedUserSuccessPopUp();
     setTimeout(function () {
       window.location.href = "../html/index.html";
     }, 1500);
@@ -74,6 +76,7 @@ async function addUserToDb() {
 async function login() {
   let userEmail = document.getElementById("enterUserEmail").value;
   let userPassword = document.getElementById("enterUserPassword").value;
+  let wrongCredentials = document.getElementById("loginPasswordInputError");
 
   let users = await loadUserFromDb();
   if (users && users.length > 0) {
@@ -81,19 +84,23 @@ async function login() {
       (u) => u.email === userEmail && u.password === userPassword
     );
 
-    if (user) {      
-      loginSuccessfullPopUp();
+    if (user) {
+      const loginSuccessElement = document.getElementById("loginSuccess");
+      loginSuccessElement.classList.remove("d-none");
+      setTimeout(loginSuccessfullPopUp, 100);
       saveUsernameLocal(user.username);
       users = [];
       setTimeout(function () {
         window.location.href = "../html/summary.html";
       }, 1500);
+    } else {
+      wrongCredentials.innerHTML = "Your Email or Password doesn't exist.";
     }
   }
 }
 
 function saveUsernameLocal(username) {
-  localStorage.setItem('username', username);
+  localStorage.setItem("username", username);
 }
 
 function validateNameInput() {
@@ -168,10 +175,12 @@ function showCreatedUserSuccessPopUp() {
 }
 
 function loginSuccessfullPopUp() {
+  const loginSuccessElement = document.getElementById("loginSuccess");
+  loginSuccessElement.classList.remove("d-none");
   if (window.innerWidth < 1350) {
-    document.getElementById("loginSuccess").style = `left: 60%;`;
+    loginSuccessElement.style.left = "60%";
   } else {
-    document.getElementById("loginSuccess").style = `left: 60%;`;
+    loginSuccessElement.style.left = "60%";
   }
 }
 
