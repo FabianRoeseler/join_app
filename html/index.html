@@ -16,15 +16,7 @@
       alt="Logo"
     />
 
-    <div class="sign-up-box-container">
-      <div class="sign-up-box">
-        <p href="">Not a Join user?</p>
-        <a href="../html/signup.html" class="btn-filled sign-up-link"
-          >Sign up</a
-        >
-      </div>
-    </div>
-
+  <div class="main-content">
     <div class="login-card">
       <h1>Log in</h1>
       <i class="blue-line"></i>
@@ -63,7 +55,7 @@
             />
             <p>Remember me</p>
           </div>
-          <p id="forgotPassword">I forgot my password</p>
+          <!-- <p id="forgotPassword">I forgot my password</p> -->
         </div>
         <div class="btn-container btn-login-flex">
           <button onclick="validateLoginEmailInput()" class="btn-filled">
@@ -74,26 +66,35 @@
           </a>
         </div>
       </form>
+      <div class="sign-up-box-container">
+        <div class="sign-up-box">
+          <p href="">Not a Join user?</p>
+          <a href="../html/signup.html" class="btn-filled sign-up-link"
+            >Sign up</a
+          >
+        </div>
+      </div>
+      <footer class="login-footer">
+        <a
+          href="./read_only_privacy_policy.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Privacy Policy</a
+        >
+        <a
+          href="./read_only_legal_notice.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Legal notice</a
+        >
+      </footer>    
     </div>
-
+  </div>
+  
     <div id="loginSuccess" class="d-none userCreatedSuccess">
       Login successfull
     </div>
 
-    <footer class="login-footer">
-      <a
-        href="./read_only_privacy_policy.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Privacy Policy</a
-      >
-      <a
-        href="./read_only_legal_notice.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Legal notice</a
-      >
-    </footer>
 
     <script src="../js/login_signup.js"></script>
   </body>
