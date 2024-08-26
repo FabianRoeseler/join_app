@@ -85,7 +85,7 @@ function renderContact(i, user, color, lastInitial) {
 }
 
 /**
- * renderContactDetails.js
+ * render contact details
  * @param {*} i
  * @param {*} user
  * @param {*} color
