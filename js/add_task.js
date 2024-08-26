@@ -267,9 +267,6 @@ function addUserToSelection(user, userInitials) {
             };">
                 ${getInitials(user.username)}
             </div>
-            <img onclick="removeUserFromSelection('${
-              user.username
-            }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
         </div>
     `;
 
@@ -279,7 +276,7 @@ function addUserToSelection(user, userInitials) {
   // console.log("assignedUsersArr", assignedUsersArr);
 }
 
-// Funktion zum Entfernen eines Benutzers aus der Auswahl
+//Funktion zum Entfernen eines Benutzers aus der Auswahl
 function removeUserFromSelection(username) {
   let contentAssignedUsers = document.getElementById("contentAssignedUsers");
   let userDiv = Array.from(contentAssignedUsers.children).find(
