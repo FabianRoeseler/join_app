@@ -85,6 +85,7 @@ async function login() {
     );
 
     if (user) {
+      saveLoginData();
       const loginSuccessElement = document.getElementById("loginSuccess");
       loginSuccessElement.classList.remove("d-none");
       setTimeout(loginSuccessfullPopUp, 100);
@@ -209,5 +210,33 @@ function validateLoginPasswordInput() {
   } else {
     xName.innerHTML = "";
     return login();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const savedEmail = localStorage.getItem("rememberedEmail");
+  const savedPassword = localStorage.getItem("rememberedPassword");
+  const rememberMeChecked = localStorage.getItem("rememberMeChecked");
+
+  if (savedEmail && savedPassword && rememberMeChecked) {
+    document.getElementById("enterUserEmail").value = savedEmail;
+    document.getElementById("enterUserPassword").value = savedPassword;
+    document.getElementById("rememberMeCheckbox").checked = true;
+  }
+});
+
+function saveLoginData() {
+  const email = document.getElementById("enterUserEmail").value;
+  const password = document.getElementById("enterUserPassword").value;
+  const rememberMe = document.getElementById("rememberMeCheckbox").checked;
+
+  if (rememberMe) {
+    localStorage.setItem("rememberedEmail", email);
+    localStorage.setItem("rememberedPassword", password);
+    localStorage.setItem("rememberMeChecked", rememberMe);
+  } else {
+    localStorage.removeItem("rememberedEmail");
+    localStorage.removeItem("rememberedPassword");
+    localStorage.removeItem("rememberMeChecked");
   }
 }
