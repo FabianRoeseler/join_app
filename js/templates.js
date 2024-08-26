@@ -2,7 +2,7 @@ async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
-    file = element.getAttribute("w3-include-html"); // "includes/header.html"
+    file = element.getAttribute("w3-include-html");
     let resp = await fetch(file);
     if (resp.ok) {
       element.innerHTML = await resp.text();
@@ -27,29 +27,29 @@ function openDropdown() {
 }
 
 function checkUserStatusForInitials() {
-  if (localStorage.getItem('username') == null) {
-    document.getElementById('profile-initials-header').innerHTML = `G`;
+  if (localStorage.getItem("username") == null) {
+    document.getElementById("profile-initials-header").innerHTML = `G`;
   } else {
     getUserInitials();
   }
 }
 
 function getUserInitials() {
-  let storedUserName = localStorage.getItem('username');
+  let storedUserName = localStorage.getItem("username");
   setUserInitials(storedUserName);
 }
 
 function setUserInitials(username) {
-  let initials = getInitialsHeader(username)
-  document.getElementById('profile-initials-header').innerHTML = `${initials}`;
+  let initials = getInitialsHeader(username);
+  document.getElementById("profile-initials-header").innerHTML = `${initials}`;
 }
 
- /**
+/**
  * Getting the first character from the names
  * @param {*} name
  * @returns
  */
- function getInitialsHeader(name) {
+function getInitialsHeader(name) {
   return name
     .split(" ")
     .map((word) => word[0])
@@ -57,8 +57,8 @@ function setUserInitials(username) {
 }
 
 function logOut() {
-  localStorage.removeItem('username');
-  localStorage.removeItem('pageLoaded');
+  localStorage.removeItem("username");
+  localStorage.removeItem("pageLoaded");
 }
 
 function renderContact(i, user, color, lastInitial) {
@@ -84,15 +84,21 @@ function renderContact(i, user, color, lastInitial) {
   return contactHTML;
 }
 
-// renderContactDetails.js
-
+/**
+ * renderContactDetails.js
+ * @param {*} i
+ * @param {*} user
+ * @param {*} color
+ * @param {*} isMobile
+ * @returns
+ */
 function generateContactDetailsHTML(i, user, color, isMobile) {
   if (isMobile) {
     return /*html*/ `
       <div class="render-details-head-mobile">
         <div id="initials-detail" class="profile-initials-mobile">${getInitials(
-      user.username
-    )}</div>
+          user.username
+        )}</div>
         <div class="profile-name-mobile">${user.username}</div>
       </div>
       <div class="render-details-info">
@@ -246,25 +252,18 @@ function generateToDoHTML(element, i) {
             </div>
         </div>
     `;
-
 }
 
 function generateInProgressHTML(element, i) {
   return /*html*/ `
-          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_in_progress[i]
-    })" onclick="openTaskDetails(${index_in_progress[i]})" class="task">
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_in_progress[i]})" onclick="openTaskDetails(${index_in_progress[i]})" class="task">
               <div class="task-head">
-                  <div class="task-category" style="background : ${element.category[1]
-    }">${element.category[0]}</div>
-                  <img onclick="toggleKebabDropdown(${index_in_progress[i]
-    }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
-                  <div id="kebab-dropdown${index_in_progress[i]
-    }" class="kebab-dropdown d-none">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_in_progress[i]}, stop(event))" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_in_progress[i]}" class="kebab-dropdown d-none">
                         <span onclick="moveToToDo(${index_in_progress[i]}), stop(event)">To do</span>
-                        <span onclick="moveToAwaitFeedback(${index_in_progress[i]
-    }), stop(event)">Await feedback</span>
-                        <span onclick="moveToDone(${index_in_progress[i]
-    }), stop(event)">Done</span>
+                        <span onclick="moveToAwaitFeedback(${index_in_progress[i]}), stop(event)">Await feedback</span>
+                        <span onclick="moveToDone(${index_in_progress[i]}), stop(event)">Done</span>
                   </div>
               
               </div>
@@ -282,20 +281,14 @@ function generateInProgressHTML(element, i) {
 
 function generateAwaitFeedbackHTML(element, i) {
   return /*html*/ `
-          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_await_feedback[i]
-    })" onclick="openTaskDetails(${index_await_feedback[i]})" class="task">
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_await_feedback[i]})" onclick="openTaskDetails(${index_await_feedback[i]})" class="task">
               <div class="task-head">
-                  <div class="task-category" style="background : ${element.category[1]
-    }">${element.category[0]}</div>
-                  <img onclick="toggleKebabDropdown(${index_await_feedback[i]
-    }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
-                  <div id="kebab-dropdown${index_await_feedback[i]
-    }" class="kebab-dropdown d-none">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_await_feedback[i]}, stop(event))" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_await_feedback[i]}" class="kebab-dropdown d-none">
                         <span onclick="moveToToDo(${index_await_feedback[i]}), stop(event)">To do</span>
-                        <span onclick="moveToInProgress(${index_await_feedback[i]
-    }), stop(event)">In progress</span>
-                        <span onclick="moveToDone(${index_await_feedback[i]
-    }), stop(event)">Done</span>
+                        <span onclick="moveToInProgress(${index_await_feedback[i]}), stop(event)">In progress</span>
+                        <span onclick="moveToDone(${index_await_feedback[i]}), stop(event)">Done</span>
                   </div>
               
               </div>
@@ -313,20 +306,14 @@ function generateAwaitFeedbackHTML(element, i) {
 
 function generateDoneHTML(element, i) {
   return /*html*/ `
-          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_done[i]
-    })" onclick="openTaskDetails(${index_done[i]})" class="task">
+          <div id="task${i}" draggable="true" ondragstart="startDragging(${index_done[i]})" onclick="openTaskDetails(${index_done[i]})" class="task">
               <div class="task-head">
-                  <div class="task-category" style="background : ${element.category[1]
-    }">${element.category[0]}</div>
-                  <img onclick="toggleKebabDropdown(${index_done[i]
-    }, stop(event))" src="../assets/img/kebab.svg" alt="more options">
-                  <div id="kebab-dropdown${index_done[i]
-    }" class="kebab-dropdown d-none">
+                  <div class="task-category" style="background : ${element.category[1]}">${element.category[0]}</div>
+                  <img onclick="toggleKebabDropdown(${index_done[i]}, stop(event))" src="../assets/img/kebab.svg" alt="more options">
+                  <div id="kebab-dropdown${index_done[i]}" class="kebab-dropdown d-none">
                         <span onclick="moveToToDo(${index_done[i]}), stop(event)">To do</span>
-                        <span onclick="moveToInProgress(${index_done[i]
-    }), stop(event)">In progress</span>
-                        <span onclick="moveToAwaitFeedback(${index_done[i]
-    }), stop(event)">Await feedback</span>
+                        <span onclick="moveToInProgress(${index_done[i]}), stop(event)">In progress</span>
+                        <span onclick="moveToAwaitFeedback(${index_done[i]}), stop(event)">Await feedback</span>
                   </div>
               
               </div>
@@ -401,34 +388,54 @@ function generateTaskDetailsHTML(task, i) {
 }
 
 function generateTaskEditSalmai() {
-  return /*html*/`
+  return /*html*/ `
         <div id="task-edit-view-${i}" style="display: none;">
       <div class="task-details">
         <div class="task-details-main-part">
           <div class="task-head">
-              <div class="task-category-detail" style="background : ${task.category[1]}">${task.category[0]}</div>
+              <div class="task-category-detail" style="background : ${
+                task.category[1]
+              }">${task.category[0]}</div>
               <img onclick="closeTaskDetails()" src="../assets/img/iconoir_cancel.svg" alt="close">
           </div>
-          <input type="text" id="editTaskTitle-${i}" value="${task.title}" class="input-addtask" placeholder="Enter a title...">
-          <textarea id="editDescription-${i}" class="task-details-description">${task.description}</textarea>
+          <input type="text" id="editTaskTitle-${i}" value="${
+    task.title
+  }" class="input-addtask" placeholder="Enter a title...">
+          <textarea id="editDescription-${i}" class="task-details-description">${
+    task.description
+  }</textarea>
           <div class="task-details-date-style">
               <span class="task-subtitles">Due date:</span>
-              <input type="date" id="editDueDate-${i}" value="${task.due_date}" class="input-addtask" placeholder="Select a due date">
+              <input type="date" id="editDueDate-${i}" value="${
+    task.due_date
+  }" class="input-addtask" placeholder="Select a due date">
           </div>
           <div class="task-details-prio-style">
               <span class="task-subtitles">Priority:</span>
               <div class="prio-btn-content">
-    <button id="urgent" class="prio-button ${task.prio === 'urgent' ? 'btn-urgent-active' : ''}" onclick="toggleButton('urgent')" type="button">
+    <button id="urgent" class="prio-button ${
+      task.prio === "urgent" ? "btn-urgent-active" : ""
+    }" onclick="toggleButton('urgent')" type="button">
         Urgent
-        <img id="urgentImg" src="../assets/img/Prio_urgent_${task.prio === 'urgent' ? 'white' : 'color'}.png" alt="Urgent Icon" />
+        <img id="urgentImg" src="../assets/img/Prio_urgent_${
+          task.prio === "urgent" ? "white" : "color"
+        }.png" alt="Urgent Icon" />
     </button>
-    <button id="medium" class="prio-button ${task.prio === 'medium' ? 'btn-medium-active' : ''}" onclick="toggleButton('medium')" type="button">
+    <button id="medium" class="prio-button ${
+      task.prio === "medium" ? "btn-medium-active" : ""
+    }" onclick="toggleButton('medium')" type="button">
         Medium
-        <img id="mediumImg" src="../assets/img/Prio_medium_${task.prio === 'medium' ? 'white' : 'color'}.png" alt="Medium Icon" />
+        <img id="mediumImg" src="../assets/img/Prio_medium_${
+          task.prio === "medium" ? "white" : "color"
+        }.png" alt="Medium Icon" />
     </button>
-    <button id="low" class="prio-button ${task.prio === 'low' ? 'btn-low-active' : ''}" onclick="toggleButton('low')" type="button">
+    <button id="low" class="prio-button ${
+      task.prio === "low" ? "btn-low-active" : ""
+    }" onclick="toggleButton('low')" type="button">
         Low
-        <img id="lowImg" src="../assets/img/Prio_low_${task.prio === 'low' ? 'white' : 'color'}.png" alt="Low Icon" />
+        <img id="lowImg" src="../assets/img/Prio_low_${
+          task.prio === "low" ? "white" : "color"
+        }.png" alt="Low Icon" />
     </button>
 </div>
           </div>
@@ -450,14 +457,18 @@ function generateTaskEditSalmai() {
     />
     <div id="dropDownUserMenu"></div>
     <div id="contentAssignedUsers">
-        ${task.assigned_users.map(user => `
+        ${task.assigned_users
+          .map(
+            (user) => `
             <div class="assigned-user">
                 <div class="initials" style="background-color: ${user.color};">
                     ${getInitials(user.username)}
                 </div>
                 <!-- Das unerwünschte Symbol wurde entfernt -->
             </div>
-        `).join('')}
+        `
+          )
+          .join("")}
     </div>
 </div>
 
@@ -470,8 +481,11 @@ function generateTaskEditSalmai() {
       </div>
     </div>
     <ul id="subtasksContent">
-        ${task.subtasks && task.subtasks.length > 0
-      ? task.subtasks.map((subtask, index) => `
+        ${
+          task.subtasks && task.subtasks.length > 0
+            ? task.subtasks
+                .map(
+                  (subtask, index) => `
                 <li id="subtask-${index}" class="subtask-item">
                     <div class="dot"></div>
                     <div class="subtask-text">
@@ -482,8 +496,11 @@ function generateTaskEditSalmai() {
                         <div class="divider"></div>
                         <img onclick="deleteSubtask('subtask-${index}')" src="../assets/img/delete.svg" alt="delete">
                     </div>
-                </li>`).join('')
-      : "No subtasks available"}
+                </li>`
+                )
+                .join("")
+            : "No subtasks available"
+        }
     </ul>
 </div>
 
@@ -512,7 +529,7 @@ function toggleEditView(i) {
 }
 
 function generateTaskDetailsEditHTML(i) {
-  return /*html*/`
+  return /*html*/ `
       <div class="edit-cancel-cont">
         <img onclick="closeEdit(${i})" src="../assets/img/iconoir_cancel.svg" class="edit-cancel" alt="close">
       </div>
