@@ -313,14 +313,52 @@ h1 {
 @media(max-width: 420px) {
     .add-contact-bottom-right-section {
         width: 320px;
+        padding-top: 65px;
     }
 
     .add-contact-top-left-section {
         width: 320px;
+        height: 200px;
     }
 
     .add-imput {
         width: 300px;
         background-position-x: calc(300px - 48px);
+    }
+
+    .add-contact-box {
+        overflow: auto;
+        scrollbar-width: none;
+    }
+
+    .add-contact-box {
+        top: 50%;
+        height: 640px;
+    }
+
+    h1 {
+        font-size: 61px;
+        font-weight: 700;
+        line-height: 73px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    .add-contact-headline {
+        font-size: 38px;
+        padding-bottom: 4px;
+    }
+
+    .add-contact-form {
+        gap: 2px;
+        padding-bottom: 4px;
+    }
+
+    .button-add-container {
+        padding-top: 4px;
+    }
+
+    .add-contact-close {
+        top: calc(-352px + 110px);
     }
 }
