@@ -98,6 +98,33 @@ function updateGreeting() {
     greetingContMobile.innerHTML = greeting;
 }
 
- // Aktualisierung jede Stunde (3600000 Millisekunden)
- setInterval(updateGreeting, 3600000); // 3600000 ms = 1 Stunde
+ // Updating every hour (3600000 milliseconds)
+ setInterval(updateGreeting, 3600000); // 3600000 ms = 1 hour
+
+function saveUsernameLocal(username) {
+    localStorage.setItem('username', username);
+}
+  
+
+function getUsername() {
+    let storedUserName = localStorage.getItem('username');
+    setUserGreeting(storedUserName);
+}
+  
+function setUserGreeting(username) {
+    document.getElementById('greeting-user-name').innerHTML = `${username}`;
+    document.getElementById('greeting-user-name-mobile').innerHTML = `${username}`;
+}
+
+function showMobileGreeting() {
+    if (window.innerWidth < 1210) {
+    document.getElementById('greeting-user-mobile').classList.remove('d-none');
+        setTimeout(hideMobileGreeting, 2000);
+    }
+}
+
+function hideMobileGreeting() {
+    document.getElementById('greeting-user-mobile').classList.add('d-none');
+}
+  
   

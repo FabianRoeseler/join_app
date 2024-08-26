@@ -81,9 +81,9 @@ async function login() {
       (u) => u.email === userEmail && u.password === userPassword
     );
 
-    if (user) {
-      setUserGreeting(user);
+    if (user) {      
       loginSuccessfullPopUp();
+      saveUsernameLocal(user.username);
       users = [];
       setTimeout(function () {
         window.location.href = "../html/summary.html";
@@ -92,24 +92,8 @@ async function login() {
   }
 }
 
-/**
- * Getting the first character from the names
- * @param {*} name
- * @returns
- */
-function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
-}
-
-
-function setUserGreeting(user) {
-  let initials = getInitials(user.username)
-  // document.getElementById('profile-initials-header').innerHTML = `${initials}`;
-  document.getElementById('greeting-user-name').innerHTML = `${user.username}`;
-  document.getElementById('greeting-user-name-mobile').innerHTML = `${user.username}`;
+function saveUsernameLocal(username) {
+  localStorage.setItem('username', username);
 }
 
 function validateNameInput() {

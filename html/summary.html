@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="../css/header_sidebar.css">
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/media.css">
-    <script src="../js/templates.js"></script>
-    <script src="../js/summary.js"></script>
 
 </head>
-<body onload="includeHTML(), renderKeyMetrics(), updateGreeting()">
+<body onload="includeHTML(), renderKeyMetrics(), updateGreeting(), getUsername(); showMobileGreeting()">
     <div w3-include-html="./templates/header_sidebar.html"></div>
     <div class="main-cont">
         <div class="summary-cont">
@@ -95,19 +93,21 @@
             </div>
             <div id="greeting-user-mobile" class="greeting-user-outer-mobile d-none">
                 <div class="greeting-user-inner-mobile">
-                    <div class="greeting-mobile" id="variable-greeting-mobile"></div>
+                    <div class="greeting" id="variable-greeting-mobile"></div>
                     <div class="username-mobile" id="greeting-user-name-mobile">Sofia Müller</div>
                 </div>
             </div>
             <div id="greeting-guest-mobile" class="greeting-user-outer-mobile d-none">
                 <div class="greeting-user-inner-mobile">
-                    <div class="greeting-mobile" id="variable-greeting-guest-mobile"></div>
+                    <div class="greeting greeting-mobile" id="variable-greeting-guest-mobile"></div>
                     <!-- <div class="username-mobile" id="greeting-user-name-guest"></div> -->
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="../js/templates.js"></script>
     <script src="../js/login_signup.js"></script>
+    <script src="../js/summary.js"></script>
 </body>
 </html>

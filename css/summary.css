@@ -196,10 +196,9 @@
     align-items: flex-start;
     flex-direction: column;
 }
-#variable-greeting {
+.greeting {
     font-size: 47px;
     font-weight: 500;
-
 }
 .username {
     align-self: left;
@@ -221,9 +220,13 @@
     font-weight: 700;
     color: var(--darkLightBlue);
 }
-.greeting-mobile {
+.greeting-user-inner-mobile {
     text-align: center;
 } 
+.greeting-user-outer-mobile {
+    padding-top: 90px;
+    padding-left: 232px;
+}
 
 
 @media(max-width: 1210px) {
@@ -270,6 +273,10 @@
     }
     .urgent-icon-cont {
         transform: scale(0.8);
+    }
+    .greeting-user-outer-mobile {
+        padding-top: 0;
+        padding-left: 0;
     }
 }
 @media(max-width: 640px) {

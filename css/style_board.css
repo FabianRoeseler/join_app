@@ -84,14 +84,8 @@ body {
     padding: 8px 66px 8px 16px;
     background-color: white;
     height: 48px;
-    
-
-    /* border: none;
-    outline: none;
-    margin-right: 5px;
-    flex-grow: 1;
-    height: auto; */
 }
+
 .search-container input[type=text] {
     font-size: 20px
 }
@@ -144,7 +138,6 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     gap: 32px;
-    /* height: 100%; */
 }
 .board-category {
     flex: 1;

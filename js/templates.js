@@ -6,6 +6,7 @@ async function includeHTML() {
     let resp = await fetch(file);
     if (resp.ok) {
       element.innerHTML = await resp.text();
+      getUserInitials();
     } else {
       element.innerHTML = "Page not found";
     }
@@ -23,6 +24,32 @@ function openDropdown() {
   // } else {
   document.getElementById("dropdown").classList.toggle("d-none");
   // }
+}
+
+ /**
+ * Getting the first character from the names
+ * @param {*} name
+ * @returns
+ */
+ function getInitials(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
+}
+
+function getUserInitials() {
+  let storedUserName = localStorage.getItem('username');
+  setUserInitials(storedUserName);
+}
+
+function setUserInitials(username) {
+  let initials = getInitials(username)
+  document.getElementById('profile-initials-header').innerHTML = `${initials}`;
+}
+
+function deleteUsernameLocal() {
+  localStorage.removeItem('username');
 }
 
 function renderContact(i, user, color, lastInitial) {
