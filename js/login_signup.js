@@ -213,18 +213,6 @@ function validateLoginPasswordInput() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const savedEmail = localStorage.getItem("rememberedEmail");
-  const savedPassword = localStorage.getItem("rememberedPassword");
-  const rememberMeChecked = localStorage.getItem("rememberMeChecked");
-
-  if (savedEmail && savedPassword && rememberMeChecked) {
-    document.getElementById("enterUserEmail").value = savedEmail;
-    document.getElementById("enterUserPassword").value = savedPassword;
-    document.getElementById("rememberMeCheckbox").checked = true;
-  }
-});
-
 function saveLoginData() {
   const email = document.getElementById("enterUserEmail").value;
   const password = document.getElementById("enterUserPassword").value;
@@ -240,3 +228,15 @@ function saveLoginData() {
     localStorage.removeItem("rememberMeChecked");
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const savedEmail = localStorage.getItem("rememberedEmail");
+  const savedPassword = localStorage.getItem("rememberedPassword");
+  const rememberMeChecked = localStorage.getItem("rememberMeChecked");
+
+  if (savedEmail && savedPassword && rememberMeChecked) {
+    document.getElementById("enterUserEmail").value = savedEmail;
+    document.getElementById("enterUserPassword").value = savedPassword;
+    document.getElementById("rememberMeCheckbox").checked = true;
+  }
+});
