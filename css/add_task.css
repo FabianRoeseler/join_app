@@ -674,8 +674,10 @@ ul {
 }
 
 .task-success {
-    position: absolute;
-    bottom: 128px;
+    position: fixed;  /* Fixiert das Popup im Viewport */
+    top: 50%;  /* Vertikal in der Mitte des Bildschirms */
+    left: 50%;  /* Horizontal in der Mitte des Bildschirms */
+    transform: translate(-50%, -50%) translateX(100%);  /* Startet außerhalb des Bildschirms rechts, bleibt aber zentriert */
     width: 326px;
     background-color: var(--darkGray);
     color: white;
@@ -686,7 +688,11 @@ ul {
     justify-content: center;
     align-items: center;
     padding: 16px 18px;
-    left: 100%;
-    right: 0;
-    transition: .5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;  /* Transition für Reinsliden und Opazität */
+    opacity: 0;  /* Anfangs unsichtbar */
+    display: none;  /* Popup ist standardmäßig ausgeblendet */
 }
+
+
+
+

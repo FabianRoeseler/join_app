@@ -447,16 +447,25 @@ function clearImput() {
   document.getElementById("subtaskInput").value = "";
 }
 
-//Pop-Up successfully
 function showTaskCreatedPopUp() {
-    if (window.innerWidth < 1350) {
-        document.getElementById("task-success").style = `left: 30px;`;
-    } else {
-        document.getElementById("task-success").style = `left: 64px;`;
-    }
-    setTimeout(closeTaskCreatedPopUp, 1200);
+  let taskSuccessElement = document.getElementById("task-success");
+  taskSuccessElement.style.display = 'flex';  // Popup einblenden
+  setTimeout(() => {
+      taskSuccessElement.style.transform = 'translateX(-50%)';  // Zentriere das Popup und slidet es herein
+      taskSuccessElement.style.opacity = '1';  // Sichtbar machen (Fade-In)
+  }, 10);  // Kleine Verzögerung für die Animation
+
+  setTimeout(closeTaskCreatedPopUp, 1200);  // Popup nach einer Zeit wieder ausblenden
 }
 
 function closeTaskCreatedPopUp() {
-    document.getElementById("task-success").style = `left: 100%;`;
+  let taskSuccessElement = document.getElementById("task-success");
+  taskSuccessElement.style.transform = 'translateX(100%)';  // Slide-Out nach rechts
+  taskSuccessElement.style.opacity = '0';  // Unsichtbar machen (Fade-Out)
+  setTimeout(() => {
+      taskSuccessElement.style.display = 'none';  // Popup ausblenden
+  }, 500);  // Wartezeit für die Ausblendanimation
 }
+
+
+
