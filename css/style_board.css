@@ -652,3 +652,24 @@ input::placeholder {
     }
 
 }
+
+.edit-success {
+    position: fixed;
+    top: 50%;  /* Vertikal in der Mitte des Bildschirms */
+    left: 50%;  /* Horizontal in der Mitte des Bildschirms */
+    transform: translate(100%, -50%);  /* Startet rechts außerhalb des Bildschirms */
+    width: 326px;
+    background-color: var(--darkGray);
+    color: white;
+    font-size: 20px;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 18px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    display: none;
+    z-index: 9999; 
+}
