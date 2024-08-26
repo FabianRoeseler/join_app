@@ -77,9 +77,9 @@ async function addTask() {
     body: JSON.stringify(data),
   });
   showTaskCreatedPopUp();
-  setTimeout(function() {
-  location.href = "../html/board.html";
-}, 1200);
+  setTimeout(function () {
+    location.href = "../html/board.html";
+  }, 1200);
 
   return await response.json();
 }
@@ -385,20 +385,17 @@ function renderSubtaskProgress(element, id) {
   if ("subtasks_done" in element) {
     progress.innerHTML = /*html*/ `
     <div id="subtask-progress">
-        <div id="progress-bar" style="width:${
-          (100 / element.subtasks.length) * element.subtasks_done.length
-        }%"></div>
+        <div id="progress-bar" style="width:${(100 / element.subtasks.length) * element.subtasks_done.length
+      }%"></div>
     </div>
-    <div id="subtask-counter">${element.subtasks_done.length}/${
-      element.subtasks.length
-    } Subtasks</div>
+    <div id="subtask-counter">${element.subtasks_done.length}/${element.subtasks.length
+      } Subtasks</div>
     `;
   } else {
     progress.innerHTML = /*html*/ `
     <div id="subtask-progress">
-        <div id="progress-bar" style="width:${
-          (100 / element.subtasks.length) * 0
-        }%"></div>
+        <div id="progress-bar" style="width:${(100 / element.subtasks.length) * 0
+      }%"></div>
     </div>
     <div id="subtask-counter">0/${element.subtasks.length} Subtasks</div>
     `;
@@ -414,15 +411,15 @@ function renderIntialsinSmallTask(element, initialsCont) {
         <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
       `;
     }
-  } 
+  }
   if (users.length > 6) {
-    for (let i = 0; i < users.length-(users.length - 5); i++) {
+    for (let i = 0; i < users.length - (users.length - 5); i++) {
       const user = users[i];
       document.getElementById(initialsCont).innerHTML += `
         <div class="test-initials" style="background-color: ${user.color}">${user.initials}</div>
       `;
-    }   
-      document.getElementById(initialsCont).innerHTML += `
+    }
+    document.getElementById(initialsCont).innerHTML += `
       <div class="test-initials" style="background-color: #2A3647">+${users.length - 5}</div>
     `;
   }
@@ -535,12 +532,11 @@ function renderSelectedUsersEdit() {
           <div class="initials" style="background-color: ${user.color};">
               ${user.initials}
           </div>
-          <img onclick="removeFromUsersArr('${
-            user.username
-          }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
+          <img onclick="removeFromUsersArr('${user.username
+      }')" class="rendered-user-initials-img" src="../assets/img/iconoir_cancel.svg" alt="close">
       </div>            
       `;
-    }
+  }
 }
 
 function renderSubtasksEdit() {
@@ -570,7 +566,7 @@ function removeFromUsersArr(username) {
   for (let i = 0; i < assignedUsersEdit.length; i++) {
     const element = assignedUsersEdit[i];
     if (element.username == username) {
-      assignedUsersEdit.splice(i,1);
+      assignedUsersEdit.splice(i, 1);
     }
   }
   renderSelectedUsersEdit();
@@ -580,7 +576,7 @@ function deleteFromSubtaskArr(subtask) {
   for (let i = 0; i < subtasksEdit.length; i++) {
     const element = subtasksEdit[i];
     if (element.subtask == subtask) {
-      subtasksEdit.splice(i,1);
+      subtasksEdit.splice(i, 1);
     }
   }
   renderSubtasksEdit();
@@ -659,7 +655,7 @@ async function openEdit(i) {
   taskDetails.innerHTML = generateTaskDetailsEditHTML(i);
 
   let taskKey = dbKeys[i];
-  
+
   let response = await fetch(ADD_URL + "tasks/" + taskKey + ".json");
   const data = await response.json();
 
@@ -691,10 +687,10 @@ function fillEditForm(data) {
   if ("assigned_users" in data) {
     assignedUsersEdit = [];
     for (let i = 0; i < data.assigned_users.length; i++) {
-      const user = data.assigned_users[i];      
-      assignedUsersEdit.push({"initials" : `${user.initials}`, "username" : `${user.username}`, "color" : `${user.color}`});
-      }
-      renderSelectedUsersEdit();
+      const user = data.assigned_users[i];
+      assignedUsersEdit.push({ "initials": `${user.initials}`, "username": `${user.username}`, "color": `${user.color}` });
+    }
+    renderSelectedUsersEdit();
   }
 
   if ("subtasks" in data) {
@@ -702,7 +698,7 @@ function fillEditForm(data) {
     for (let i = 0; i < data.subtasks.length; i++) {
       const element = data.subtasks[i];
 
-      subtasksEdit.push({"checkbox_img" : `${element.checkbox_img}`, "subtask" : `${element.subtask}`});
+      subtasksEdit.push({ "checkbox_img": `${element.checkbox_img}`, "subtask": `${element.subtask}` });
       console.log("subtasksArr", subtasksArr);
     }
     renderSubtasksEdit();
@@ -733,9 +729,11 @@ async function saveEdit(i) {
     body: JSON.stringify(data),
   });
 
-  location.href = "../html/board.html";
-  updateHTML();
-
+  showEditSuccessPopUp();
+  setTimeout(() => {
+    location.href = "../html/board.html";
+    updateHTML();
+  }, 2000);
   return await response.json();
 
 }
@@ -747,5 +745,25 @@ function closeEdit(i) {
   renderInfosInTaskDetails(task, i);
 }
 
+function showEditSuccessPopUp() {
+  console.log("showEditSuccessPopUp wird aufgerufen");
+  let editSuccessElement = document.getElementById("edit-success");
+  editSuccessElement.style.display = 'flex';  // Popup einblenden
+  setTimeout(() => {
+    editSuccessElement.style.transform = 'translate(-50%, -50%)';  // Slidet in die Mitte
+    editSuccessElement.style.opacity = '1';  // Sichtbar machen
+  }, 500);  // Kurze Verzögerung für den Slide-Effekt
+
+  setTimeout(closeEditSuccessPopUp, 3000);  // Popup nach einer Weile ausblenden
+}
+
+function closeEditSuccessPopUp() {
+  let editSuccessElement = document.getElementById("edit-success");
+  editSuccessElement.style.transform = 'translate(100%, -50%)';  // Slidet wieder nach rechts
+  editSuccessElement.style.opacity = '0';  // Unsichtbar machen
+  setTimeout(() => {
+    editSuccessElement.style.display = 'none';  // Popup ausblenden
+  }, 500);  // Wartezeit für den Slide-Out-Effekt
+}
 
 
