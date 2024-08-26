@@ -8,8 +8,10 @@ async function addUser() {
   if (userExists) {
     alert("An account with this email already exists!");
   } else {
+    const signupSuccessElement = document.getElementById("userCreatedSuccess");
+    signupSuccessElement.classList.remove("d-none");
+    setTimeout(showCreatedUserSuccessPopUp, 100);
     addUserToDb();
-    showCreatedUserSuccessPopUp();
     setTimeout(function () {
       window.location.href = "../html/index.html";
     }, 1500);
