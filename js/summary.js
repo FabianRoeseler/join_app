@@ -85,8 +85,17 @@ function checkUserStatus() {
             updateGreeting();
             getUsername();
             showMobileGreeting();
-        }    
+        } 
         localStorage.setItem('pageLoaded', 'true');
+    } else {
+        if (localStorage.getItem('username') == null) {
+            updateGreetingGuest();
+            showMobileGreeting();
+        } else {
+            updateGreeting();
+            getUsername();
+            showMobileGreeting();
+        } 
     }
 }
 
