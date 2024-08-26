@@ -8,8 +8,10 @@ async function addUser() {
   if (userExists) {
     alert("An account with this email already exists!");
   } else {
+    const signupSuccessElement = document.getElementById("userCreatedSuccess");
+    signupSuccessElement.classList.remove("d-none");
+    setTimeout(showCreatedUserSuccessPopUp, 100);
     addUserToDb();
-    showCreatedUserSuccessPopUp();
     setTimeout(function () {
       window.location.href = "../html/index.html";
     }, 1500);
@@ -83,7 +85,9 @@ async function login() {
     );
 
     if (user) {
-      loginSuccessfullPopUp();
+      const loginSuccessElement = document.getElementById("loginSuccess");
+      loginSuccessElement.classList.remove("d-none");
+      setTimeout(loginSuccessfullPopUp, 100);
       saveUsernameLocal(user.username);
       users = [];
       setTimeout(function () {
@@ -171,10 +175,12 @@ function showCreatedUserSuccessPopUp() {
 }
 
 function loginSuccessfullPopUp() {
+  const loginSuccessElement = document.getElementById("loginSuccess");
+  loginSuccessElement.classList.remove("d-none");
   if (window.innerWidth < 1350) {
-    document.getElementById("loginSuccess").style = `left: 60%;`;
+    loginSuccessElement.style.left = "60%";
   } else {
-    document.getElementById("loginSuccess").style = `left: 60%;`;
+    loginSuccessElement.style.left = "60%";
   }
 }
 
