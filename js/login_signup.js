@@ -1,5 +1,10 @@
 let users = [];
+const REG_URL =
+  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/regUsers";
 
+/**
+ * Adding a user to the Database incl. popup, timing, form reset etc.
+ */
 async function addUser() {
   let email = document.getElementById("userEmail").value;
 
@@ -23,22 +28,9 @@ async function addUser() {
   document.getElementById("confirmUserPassword").value = "";
 }
 
-const REG_URL =
-  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/regUsers";
-
 /**
  * Loading registered Userdata from DB and moves it to an local object for display
  */
-
-// async function loadUserFromDb() {
-//   let response = await fetch(REG_URL + ".json");
-//   const registeredUsers = await response.json();
-
-//   users = Object.values(registeredUsers); // Benutzerdaten in das Array speichert
-
-//   console.log(registeredUsers);
-// }
-
 async function loadUserFromDb() {
   let response = await fetch(REG_URL + ".json");
 
@@ -54,6 +46,10 @@ async function loadUserFromDb() {
   }
 }
 
+/**
+ * New user to DB push
+ * @returns
+ */
 async function addUserToDb() {
   let username = document.getElementById("userName");
   let mail = document.getElementById("userEmail");
@@ -73,6 +69,10 @@ async function addUserToDb() {
   return await response.json();
 }
 
+/**
+ * Login function, checking and setting localstorage if checked. Checking data, popup animation
+ * and linking to the summary after login.
+ */
 async function login() {
   let userEmail = document.getElementById("enterUserEmail").value;
   let userPassword = document.getElementById("enterUserPassword").value;
@@ -100,10 +100,18 @@ async function login() {
   }
 }
 
+/**
+ * Localstorage username for greeting in summary
+ * @param {*} username
+ */
 function saveUsernameLocal(username) {
   localStorage.setItem("username", username);
 }
 
+/**
+ * Formvalidation for Signup until adding a new user to DB
+ * @returns
+ */
 function validateNameInput() {
   let x = document.getElementById("userName").value;
   let xName = document.getElementById("addNameError");
@@ -167,6 +175,9 @@ function validatePrivacyInput() {
   }
 }
 
+/**
+ * Popups for creating a new user and logging in
+ */
 function showCreatedUserSuccessPopUp() {
   if (window.innerWidth < 1350) {
     document.getElementById("userCreatedSuccess").style = `left: 60%;`;
@@ -185,6 +196,10 @@ function loginSuccessfullPopUp() {
   }
 }
 
+/**
+ * Formvalidation for login
+ * @returns
+ */
 function validateLoginEmailInput() {
   let x = document.getElementById("enterUserEmail").value;
   let xName = document.getElementById("loginEmailInputError");
@@ -213,6 +228,9 @@ function validateLoginPasswordInput() {
   }
 }
 
+/**
+ * Remember me checkbox saving data to localstorage
+ */
 function saveLoginData() {
   const email = document.getElementById("enterUserEmail").value;
   const password = document.getElementById("enterUserPassword").value;
@@ -229,7 +247,10 @@ function saveLoginData() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+/**
+ * Checking localstorage for saved logindata
+ */
+function checkRememberedLoginData() {
   const savedEmail = localStorage.getItem("rememberedEmail");
   const savedPassword = localStorage.getItem("rememberedPassword");
   const rememberMeChecked = localStorage.getItem("rememberMeChecked");
@@ -239,4 +260,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("enterUserPassword").value = savedPassword;
     document.getElementById("rememberMeCheckbox").checked = true;
   }
-});
+}
