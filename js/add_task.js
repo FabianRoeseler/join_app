@@ -1,26 +1,17 @@
-// Globale Variable, um den aktuellen Prioritätszustand zu speichern
 let selectedPrio = null;
 let categoriesContainerClick = false;
-let assignedContainerClick = false; // Zustand der Dropdown-Menüs (offen/geschlossen)
-let userList = []; // Liste der Benutzer, die aus der Datenbank geladen werden
-let subtaskIdCounter = 0; // Zähler für eindeutige IDs
+let assignedContainerClick = false;
+let userList = [];
+let subtaskIdCounter = 0;
 let categories = [
   {
-    "category" : "User Story",
-    "bg-color" : "#0038FF"
+    category: "User Story",
+    "bg-color": "#0038FF",
   },
   {
-    "category" : "Technical Task",
-    "bg-color" : "#1FD7C1"
-  }
-  // "User Story",
-  // "Technical Task",
-  // "Feature",
-  // "Bug",
-  // "Documentation",
-  // "Design",
-  // "Testing QA",
-  // "Analyse/Research",
+    category: "Technical Task",
+    "bg-color": "#1FD7C1",
+  },
 ];
 let prioArr = [];
 let prioArrEdit = [];
@@ -30,26 +21,28 @@ let subtasksArr_done = [];
 let categoryArr = [];
 let assignedUsersArr = [];
 let assignedUsersEdit = [];
-// let editStatusArr = [];
-let selectedUsers = new Set(); // Set verwenden für eine eindeutige Auswahl
+let selectedUsers = new Set();
 
+/**
+ * Adding Firebase Realtime Database URL
+ */
 const ADDTASK_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
-
+/**
+ * Toggle button function. Handles which button is active/checked and unchecks the others
+ * @param {*} prioState
+ */
 function toggleButton(prioState) {
   prioArrEdit = [];
   let button = document.getElementById(prioState);
   let img = document.getElementById(prioState + "Img");
 
-  // Überprüfen, ob der aktuelle Button bereits aktiv ist
   if (selectedPrio === prioState) {
-    // Button deaktivieren
     button.classList.remove(`btn-${prioState}-active`);
     img.src = `../assets/img/Prio_${prioState}_color.png`;
-    selectedPrio = null; // Kein Button ist mehr ausgewählt
+    selectedPrio = null;
   } else {
-    // Alle anderen Buttons deaktivieren
     let priorities = ["urgent", "medium", "low"];
     priorities.forEach((priority) => {
       let otherButton = document.getElementById(priority);
@@ -57,26 +50,22 @@ function toggleButton(prioState) {
       otherButton.classList.remove(`btn-${priority}-active`);
       otherImg.src = `../assets/img/Prio_${priority}_color.png`;
     });
-
-    // Den geklickten Button aktivieren
     button.classList.add(`btn-${prioState}-active`);
     img.src = `../assets/img/Prio_${prioState}_white.png`;
-    selectedPrio = prioState; // Speichere den aktivierten Button
+    selectedPrio = prioState;
     prioArr = [];
     let prioImgSource = `../assets/img/prio_${prioState}.svg`;
     prioArr.push(prioState);
     prioArr.push(prioImgSource);
     prioArrEdit.push(prioState);
     prioArrEdit.push(prioImgSource);
-
-    console.log("prioArr", prioArr);
-    
   }
 }
 
-////////////Category function////////////////////////
-
-// render categories in dropdown menu
+/**
+ * Category function
+ * render categories in dropdown menu
+ */
 function renderCategories() {
   let categoryContainer = document.getElementById("dropDownCategoryMenu");
   categoryContainer.innerHTML = "";
@@ -93,7 +82,11 @@ function renderCategories() {
   }
 }
 
-// wirdt gewählen eine Kategorie für die neue Aufgabe
+/**
+ * Handles the category dropdown. activation,highlighting and selection
+ * @param {*} categoryTask
+ * @param {*} catColor
+ */
 function selectCategory(categoryTask, catColor) {
   let categoryInput = document.getElementById("categoryInput");
   let categoryList = document.getElementById("dropDownCategoryMenu");
@@ -103,10 +96,12 @@ function selectCategory(categoryTask, catColor) {
   categoryList.style.border = "0px";
   categoryArr = [];
   categoryArr.push(categoryTask);
-  categoryArr.push(catColor);  
+  categoryArr.push(catColor);
 }
 
-// open the dropdown menu
+/**
+ * Opens/closes the dropdown menu for the categorys, icon switch etc.
+ */
 function openCategories() {
   let categoryList = document.getElementById("dropDownCategoryMenu");
   let icon = document.getElementById("arrowDropMenuCategory");
@@ -124,7 +119,6 @@ function openCategories() {
   document.getElementById("categoryInput").classList.toggle("outline");
 }
 
-// close the dropdown menu
 function hideCategories() {
   categoriesContainerClick = false;
   let categoryList = document.getElementById("dropDownCategoryMenu");
@@ -133,58 +127,57 @@ function hideCategories() {
   categoryList.innerHTML = "";
 }
 
-////////////Assigned to function////////////////////////
-
-// Diese Funktion gibt die ersten Buchstaben jedes Wortes als Initialen zurück
+/**
+ * Assigned to function
+ * Picks the initials of the selected username due array methods
+ * Changes size of the first characters and returns the result
+ * @param {*} username
+ * @returns
+ */
 function getInitials(username) {
-  // Zerlegt den übergebenen Namen in ein Array, Leerzeichen dienen als Trennzeichen 
-  const names = username.split(' ');
-  
-  // Nimmt den ersten Buchstaben des ersten Namens, wandelt ihn in einen Großbuchstaben
+  const names = username.split(" ");
   let initials = names[0].charAt(0).toUpperCase();
-  
-  // Überprüft, ob mehr als ein Name vorhanden ist
+
   if (names.length > 1) {
-      // der erste Buchstabe des zweiten Namens wird in einen Großbuchstaben umgewandelt
-      initials += names[1].charAt(0).toUpperCase();
+    initials += names[1].charAt(0).toUpperCase();
   }
-  
-  // Gibt die berechneten Initialen zurück
   return initials;
 }
 
+/**
+ * Fetching data from the Database
+ * @returns
+ */
 async function fetchContactsFromAPI() {
   try {
     let response = await fetch(ADDTASK_URL + ".json");
     const data = await response.json();
     if (data && typeof data === "object" && data.users) {
-      console.log("Loaded User Array:", data.users); // remove later
-      return Object.values(data.users); // Rückgabe der Benutzerliste
+      return Object.values(data.users);
     } else {
-      console.error("Unexpected data format:", data);
       return [];
     }
   } catch (error) {
-    console.error("Error fetching users:", error);
     return [];
   }
 }
 
-// Funktion lädt die Benutzerliste von einer API und weist sie der userList-Variable zu
 async function loadContacts() {
   userList = await fetchContactsFromAPI();
 }
 
-// Funktion öffnet das Dropdown-Menü für Benutzer und lädt die Liste der Benutzer
+/**
+ * Opening the dropdown for the userlist and loading the acutal listed users
+ */
 async function showUsers() {
   let userListElement = document.getElementById("dropDownUserMenu");
   let icon = document.getElementById("arrowDropMenuAssigned");
   icon.style.transform = "rotate(180deg)";
-  await loadContacts(); // Lade die Kontakte
+  await loadContacts();
   if (!assignedContainerClick) {
     assignedContainerClick = true;
     userListElement.style.border = "1px solid #CDCDCD";
-    displayDropdownUserList(userList); // userList definiert und gefüllt
+    displayDropdownUserList(userList);
   } else {
     assignedContainerClick = false;
     userListElement.style.border = "0px";
@@ -196,28 +189,27 @@ async function showUsers() {
 function displayDropdownUserList(userList) {
   let dropdownMenu = document.getElementById("dropDownUserMenu");
   dropdownMenu.innerHTML = "";
-
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-
   let lastInitial = "";
-
   sortedUsers.forEach((user, i) => {
     let color = user.color || generateRandomColor();
     let initial = user.username[0].toUpperCase();
     if (initial !== lastInitial) {
       lastInitial = initial;
     }
-
     let isSelected = selectedUsers.has(user.username);
     let additionalClass = isSelected ? "contact-card-click-assigned" : "";
-
     dropdownMenu.innerHTML += /*html*/ `
       <div onclick="toggleUserSelection(${i})" id="contact-info${i}" class="contact-assigned ${additionalClass}">
-        <div class="initials" style="background-color: ${color};">${getInitials(user.username)}</div>
+        <div class="initials" style="background-color: ${color};">${getInitials(
+      user.username
+    )}</div>
         <div class="contact-info">
-          <p id="name${i}" class="name-assigned ${isSelected ? 'contact-name-assigned' : ''}">
+          <p id="name${i}" class="name-assigned ${
+      isSelected ? "contact-name-assigned" : ""
+    }">
             <span>${user.username}</span>
           </p>
         </div>
@@ -226,6 +218,10 @@ function displayDropdownUserList(userList) {
   });
 }
 
+/**
+ * Handles the userselection in the dropdown menu. Highlighting, selection, removing etc.
+ * @param {*} index
+ */
 function toggleUserSelection(index) {
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
@@ -234,7 +230,6 @@ function toggleUserSelection(index) {
   let contactElementAssigned = document.getElementById(`contact-info${index}`);
 
   if (selectedUsers.has(user.username)) {
-    // Benutzer entfernen
     selectedUsers.delete(user.username);
     removeUserFromSelection(user.username);
     contactElementAssigned.classList.remove("contact-card-click-assigned");
@@ -242,7 +237,6 @@ function toggleUserSelection(index) {
       .querySelector(".name-assigned")
       .classList.remove("contact-name-assigned");
   } else {
-    // Benutzer hinzufügen
     selectedUsers.add(user.username);
     addUserToSelection(user, getInitials(user.username));
     contactElementAssigned.classList.add("contact-card-click-assigned");
@@ -252,11 +246,8 @@ function toggleUserSelection(index) {
   }
 }
 
-// Funktion zum Hinzufügen eines Benutzers zur Auswahl
 function addUserToSelection(user, userInitials) {
   let contentAssignedUsers = document.getElementById("contentAssignedUsers");
-
-  // Erstellen eines neuen Elements für den ausgewählten Benutzer
   let userDiv = document.createElement("div");
   userDiv.className = "assigned-user";
   userDiv.dataset.username = user.username;
@@ -271,41 +262,43 @@ function addUserToSelection(user, userInitials) {
     `;
 
   contentAssignedUsers.appendChild(userDiv);
-  assignedUsersArr.push({"initials" : `${userInitials}`, "username" : `${user.username}`, "color" : `${user.color}`});
-  assignedUsersEdit.push({"initials" : `${userInitials}`, "username" : `${user.username}`, "color" : `${user.color}`});
-  // console.log("assignedUsersArr", assignedUsersArr);
+  assignedUsersArr.push({
+    initials: `${userInitials}`,
+    username: `${user.username}`,
+    color: `${user.color}`,
+  });
+  assignedUsersEdit.push({
+    initials: `${userInitials}`,
+    username: `${user.username}`,
+    color: `${user.color}`,
+  });
 }
 
-//Funktion zum Entfernen eines Benutzers aus der Auswahl
 function removeUserFromSelection(username) {
   let contentAssignedUsers = document.getElementById("contentAssignedUsers");
   let userDiv = Array.from(contentAssignedUsers.children).find(
     (child) => child.dataset.username === username
   );
-
   if (userDiv) {
     contentAssignedUsers.removeChild(userDiv);
   }
-
   for (let i = 0; i < assignedUsersArr.length; i++) {
     const element = assignedUsersArr[i];
     if (element.username == username) {
-      assignedUsersArr.splice(i,1);
+      assignedUsersArr.splice(i, 1);
     }
   }
-
   for (let i = 0; i < assignedUsersEdit.length; i++) {
     const element = assignedUsersEdit[i];
     if (element.username == username) {
-      assignedUsersEdit.splice(i,1);
+      assignedUsersEdit.splice(i, 1);
     }
   }
-
-  console.log("assignedUsersArr", assignedUsersArr);
-  
 }
 
-// Funktion schließt das Benutzer-Dropdown-Menü und setzt den Zustand des Dropdown-Menüs auf geschlossen zurück
+/**
+ * Closing the user dropdown menu and changes state of the dropdown
+ */
 function hideUsers() {
   assignedContainerClick = false;
   let userListElement = document.getElementById("dropDownUserMenu");
@@ -314,35 +307,37 @@ function hideUsers() {
   userListElement.innerHTML = "";
 }
 
+/**
+ * Filters the userlist shown in dropdown menu
+ * @returns
+ */
 function filterUsers() {
-
   if (!Array.isArray(userList) || userList.length === 0) {
-      return;
+    return;
   }
-
-  const searchTerm = document.getElementById("userNameInput").value.toLowerCase();
-  const filteredUsers = Object.values(userList).filter(user => 
-      user.username.toLowerCase().includes(searchTerm)
+  const searchTerm = document
+    .getElementById("userNameInput")
+    .value.toLowerCase();
+  const filteredUsers = Object.values(userList).filter((user) =>
+    user.username.toLowerCase().includes(searchTerm)
   );
 
   displayDropdownUserList(filteredUsers);
 }
 
-////////////Subtask function////////////////////////
-
-// Funktion zum Hinzufügen einer Unteraufgabe
+/**
+ * Subtask functions. Add, counter, creating li element, setting IDs for DOM Elements
+ * and creating the HTML.
+ */
 function addSubtask() {
   const subtaskInput = document.getElementById("subtaskInput");
   const subtasksContent = document.getElementById("subtasksContent");
 
   if (subtaskInput.value.trim() !== "") {
-    subtaskIdCounter++; // Erhöhe den Zähler für die ID
-
-    const liId = "subtask-" + subtaskIdCounter; // Erzeuge eine eindeutige ID für das li-Element
-    const spanId = "span-" + subtaskIdCounter; // ID für das span-Element
-    const inputId = "input-" + subtaskIdCounter; // ID für das Input-Element
-
-    // Erstelle das neue li-Element als HTML-String
+    subtaskIdCounter++;
+    const liId = "subtask-" + subtaskIdCounter;
+    const spanId = "span-" + subtaskIdCounter;
+    const inputId = "input-" + subtaskIdCounter;
     const newSubtaskHTML = /*html*/ `
     <li id="${liId}" class="subtask-item">
         <div class="dot"></div>
@@ -356,24 +351,27 @@ function addSubtask() {
         </div>
     </li>
 `;
-    subtasksArr.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`});
-    subtasksEdit.push({"checkbox_img" : "../assets/img/checkbox-empty.svg", "subtask" : `${subtaskInput.value}`});
-
-    // Füge das neue li-Element zur bestehenden Liste hinzu
+    subtasksArr.push({
+      checkbox_img: "../assets/img/checkbox-empty.svg",
+      subtask: `${subtaskInput.value}`,
+    });
+    subtasksEdit.push({
+      checkbox_img: "../assets/img/checkbox-empty.svg",
+      subtask: `${subtaskInput.value}`,
+    });
     subtasksContent.innerHTML += newSubtaskHTML;
-
-    // console.log("subtasksArr", subtasksArr);
-    console.log("subtasksArr", subtasksArr);
-    
-    
-
-    subtaskInput.value = ""; // Leert das Eingabefeld
+    subtaskInput.value = "";
   }
   document.getElementById("clear-add-icons").classList.add("d-none");
   document.getElementById("subtasks-plus-icon").classList.remove("d-none");
 }
 
-// Funktion zum Bearbeiten einer Unteraufgabe
+/**
+ * Subtask edit function
+ * @param {*} liId
+ * @param {*} spanId
+ * @param {*} inputId
+ */
 function editSubtask(liId, spanId, inputId) {
   const spanElement = document.getElementById(spanId);
   const li = document.getElementById(liId);
@@ -395,12 +393,15 @@ function editSubtask(liId, spanId, inputId) {
   li.classList.remove("subtask-item");
 }
 
-// Funktion zum Speichern einer bearbeiteten Unteraufgabe
+/**
+ * Saving edited subtask
+ * @param {*} liId
+ * @param {*} inputId
+ * @param {*} spanId
+ */
 function saveSubtask(liId, inputId, spanId) {
-  const li = document.getElementById(liId); // Hole das li-Element
-  const input = document.getElementById(inputId); // Hole das Input-Element
-
-  // Übernehme den bearbeiteten Text und stelle die ursprüngliche Ansicht wieder her
+  const li = document.getElementById(liId);
+  const input = document.getElementById(inputId);
   const saveSubtaskHTML = `
         <div class="subtask-text">
             <div class="dot"></div>
@@ -413,20 +414,25 @@ function saveSubtask(liId, inputId, spanId) {
         </div>
     `;
 
-  li.innerHTML = saveSubtaskHTML; // Setze den neuen Inhalt für das li-Element
+  li.innerHTML = saveSubtaskHTML;
   li.classList.remove("subtask-item-on-focus");
   li.classList.add("subtask-item");
 }
 
-// Funktion zum Löschen einer Unteraufgabe
+/**
+ * Deleting Subtasks
+ * @param {*} liId
+ */
 function deleteSubtask(liId) {
-  const li = document.getElementById(liId); // Hole das li-Element
-  li.remove(); // Entferne das li-Element aus der Liste
+  const li = document.getElementById(liId);
+  li.remove();
 }
 
-// Funktion zum Leeren des Eingabefelds
+/**
+ * Clearing inputfields from Subtask
+ */
 function clearSubtaskInput() {
-  document.getElementById("subtaskInput").value = ""; // Leert das Eingabefeld
+  document.getElementById("subtaskInput").value = "";
 }
 
 function clearSubtaskInput() {
@@ -444,29 +450,32 @@ function clearImput() {
   document.getElementById("subtaskInput").value = "";
 }
 
-//Pop-Up successfully
+/**
+ * Successpopup for adding a task. Opening, closing
+ */
 function showTaskCreatedPopUp() {
-    if (window.innerWidth < 1350) {
-        document.getElementById("task-success").style = `left: 30px;`;
-    } else {
-        document.getElementById("task-success").style = `left: 64px;`;
-    }
-    setTimeout(closeTaskCreatedPopUp, 1200);
+  if (window.innerWidth < 1350) {
+    document.getElementById("task-success").style = `left: 30px;`;
+  } else {
+    document.getElementById("task-success").style = `left: 64px;`;
+  }
+  setTimeout(closeTaskCreatedPopUp, 1200);
 }
 
 function closeTaskCreatedPopUp() {
-    document.getElementById("task-success").style = `left: 100%;`;
+  document.getElementById("task-success").style = `left: 100%;`;
 }
 
-// Funktion zum Überprüfen, ob ein Klick außerhalb des Menüs erfolgt ist
+/**
+ * Click outside event for dropdown closing
+ * @param {*} event
+ */
 function handleClickOutside(event) {
   let categoryList = document.getElementById("dropDownCategoryMenu");
   let categoryIcon = document.getElementById("arrowDropMenuCategory");
-  
+
   let userListElement = document.getElementById("dropDownUserMenu");
   let userIcon = document.getElementById("arrowDropMenuAssigned");
-
-  // Prüfen, ob der Klick innerhalb eines Menüs oder auf ein Icon erfolgt ist
   if (!categoryList.contains(event.target) && event.target !== categoryIcon) {
     hideCategories();
   }
@@ -475,5 +484,4 @@ function handleClickOutside(event) {
   }
 }
 
-// Event-Listener für Klicks außerhalb der Menüs hinzufügen
 document.addEventListener("click", handleClickOutside);
