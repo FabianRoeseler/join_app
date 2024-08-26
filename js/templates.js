@@ -56,8 +56,9 @@ function setUserInitials(username) {
     .join("");
 }
 
-function deleteUsernameLocal() {
+function logOut() {
   localStorage.removeItem('username');
+  localStorage.removeItem('pageLoaded');
 }
 
 function renderContact(i, user, color, lastInitial) {

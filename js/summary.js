@@ -77,11 +77,16 @@ function getnextUrgentDate() {
 }
 
 function checkUserStatus() {
-    if (localStorage.getItem('username') == null) {
-        updateGreetingGuest();
-    } else {
-        updateGreeting();
-        getUsername();
+    if (localStorage.getItem('pageLoaded') == null) {
+        if (localStorage.getItem('username') == null) {
+            updateGreetingGuest();
+            showMobileGreeting();
+        } else {
+            updateGreeting();
+            getUsername();
+            showMobileGreeting();
+        }    
+        localStorage.setItem('pageLoaded', 'true');
     }
 }
 
