@@ -6,7 +6,7 @@ async function includeHTML() {
     let resp = await fetch(file);
     if (resp.ok) {
       element.innerHTML = await resp.text();
-      getUserInitials();
+      checkUserStatusForInitials();
     } else {
       element.innerHTML = "Page not found";
     }
@@ -26,16 +26,12 @@ function openDropdown() {
   // }
 }
 
- /**
- * Getting the first character from the names
- * @param {*} name
- * @returns
- */
- function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
+function checkUserStatusForInitials() {
+  if (localStorage.getItem('username') == null) {
+    document.getElementById('profile-initials-header').innerHTML = `G`;
+  } else {
+    getUserInitials();
+  }
 }
 
 function getUserInitials() {
@@ -44,8 +40,20 @@ function getUserInitials() {
 }
 
 function setUserInitials(username) {
-  let initials = getInitials(username)
+  let initials = getInitialsHeader(username)
   document.getElementById('profile-initials-header').innerHTML = `${initials}`;
+}
+
+ /**
+ * Getting the first character from the names
+ * @param {*} name
+ * @returns
+ */
+ function getInitialsHeader(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
 }
 
 function deleteUsernameLocal() {

@@ -76,6 +76,15 @@ function getnextUrgentDate() {
     document.getElementById('rendered-deadline').innerHTML = `${formatedDate}`;
 }
 
+function checkUserStatus() {
+    if (localStorage.getItem('username') == null) {
+        updateGreetingGuest();
+    } else {
+        updateGreeting();
+        getUsername();
+    }
+}
+
 function updateGreeting() {
     const now = new Date();
     const hour = now.getHours();
@@ -98,13 +107,37 @@ function updateGreeting() {
     greetingContMobile.innerHTML = greeting;
 }
 
+function updateGreetingGuest() {
+    const now = new Date();
+    const hour = now.getHours();
+    const greetingCont = document.getElementById('variable-greeting');
+    const greetingContMobile = document.getElementById('variable-greeting-mobile');
+    
+    let greeting;
+
+    if (hour >= 6 && hour < 12) {
+        greeting = "Good Morning!";
+    } else if (hour >= 12 && hour < 18) {
+        greeting = "Good Afternoon!";
+    } else if (hour >= 18 && hour < 24) {
+        greeting = "Good Evening!";
+    } else {
+        greeting = "Good Night!";
+    }
+
+    greetingCont.innerHTML = greeting;
+    greetingContMobile.innerHTML = greeting;
+    document.getElementById('greeting-user-name').classList.add('d-none');
+    document.getElementById('greeting-user-name-mobile').classList.add('d-none');
+}
+
  // Updating every hour (3600000 milliseconds)
  setInterval(updateGreeting, 3600000); // 3600000 ms = 1 hour
+ setInterval(updateGreetingGuest, 3600000);
 
 function saveUsernameLocal(username) {
     localStorage.setItem('username', username);
-}
-  
+} 
 
 function getUsername() {
     let storedUserName = localStorage.getItem('username');
