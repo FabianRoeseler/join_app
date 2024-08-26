@@ -90,11 +90,9 @@ function checkUserStatus() {
     } else {
         if (localStorage.getItem('username') == null) {
             updateGreetingGuest();
-            showMobileGreeting();
         } else {
             updateGreeting();
             getUsername();
-            showMobileGreeting();
         } 
     }
 }
