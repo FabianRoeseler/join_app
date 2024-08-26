@@ -329,9 +329,6 @@ h1 {
     .add-contact-box {
         overflow: auto;
         scrollbar-width: none;
-    }
-
-    .add-contact-box {
         top: 50%;
         height: 640px;
     }

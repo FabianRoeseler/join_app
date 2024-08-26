@@ -313,14 +313,49 @@ h1 {
 @media(max-width: 420px) {
     .edit-contact-bottom-right-section {
         width: 320px;
+        padding-top: 65px;
     }
 
     .edit-contact-top-left-section {
         width: 320px;
+        height: 200px;
     }
 
     .edit-imput {
         width: 300px;
         background-position-x: calc(300px - 48px);
+    }
+
+    .edit-contact-box {
+        overflow: auto;
+        scrollbar-width: none;
+        top: 50%;
+        height: 640px;
+    }
+
+    h1 {
+        font-size: 61px;
+        font-weight: 700;
+        line-height: 73px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    .edit-contact-headline {
+        font-size: 38px;
+        padding-bottom: 4px;
+    }
+
+    .edit-contact-form {
+        gap: 2px;
+        padding-bottom: 4px;
+    }
+
+    .button-edit-container {
+        padding-top: 4px;
+    }
+
+    .edit-contact-close {
+        top: calc(-352px + 110px);
     }
 }
