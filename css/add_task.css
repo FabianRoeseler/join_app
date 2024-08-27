@@ -236,18 +236,16 @@ ul {
 }
 #dropDownCategoryMenu {
     position: absolute;
-    display: flex;
-    flex-direction: column;
+    z-index: 1;
     background-color: white;
     width: 100%;
     box-sizing: border-box;
     border-radius: 12px 8px 8px 12px;
-    max-height: 170px;
+    max-height: 200px;
     overflow-y: auto;
     gap: 4px;
-    z-index: 1000;
     top: 40px;
-    padding-top: 52px;
+    padding-top: 46px;
 }
 #dropDownCategoryMenu::-webkit-scrollbar {
     display: none;
@@ -266,7 +264,7 @@ ul {
     overflow-y: auto;
     gap: 4px;
     top: 40px;
-    padding-top: 47px;
+    padding-top: 46px;
 }
 #dropDownUserMenu::-webkit-scrollbar {
     display: none;
