@@ -18,12 +18,7 @@ function stop(event) {
 }
 
 function openDropdown() {
-  // if (window.innerWidth < 830) {
-  //     document.getElementById('dropdown').classList.add('dropdown-style-mobile');
-  //     document.getElementById('dropdown').classList.toggle('toggle-style-dropdown');
-  // } else {
   document.getElementById("dropdown").classList.toggle("d-none");
-  // }
 }
 
 function checkUserStatusForInitials() {
@@ -514,7 +509,6 @@ function generateTaskEditSalmai() {
   `;
 }
 
-//toggle
 function toggleEditView(i) {
   let detailView = document.getElementById(`task-details-view-${i}`);
   let editView = document.getElementById(`task-edit-view-${i}`);
