@@ -62,7 +62,6 @@ function getNextUrgentDate() {
       index_urgent.push(i);
     }
   }
-
   for (let j = 0; j < index_urgent.length; j++) {
     let date = tasks[index_urgent[j]]["due_date"];
     urgent_dates.push(date);
@@ -108,9 +107,7 @@ function updateGreeting() {
   const greetingContMobile = document.getElementById(
     "variable-greeting-mobile"
   );
-
   let greeting;
-
   if (hour >= 6 && hour < 12) {
     greeting = "Good Morning,";
   } else if (hour >= 12 && hour < 18) {
@@ -120,7 +117,6 @@ function updateGreeting() {
   } else {
     greeting = "Good Night,";
   }
-
   greetingCont.innerHTML = greeting;
   greetingContMobile.innerHTML = greeting;
 }
