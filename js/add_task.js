@@ -227,8 +227,6 @@ function toggleUserSelection(index) {
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
-  console.log("sortedUsersToggle", sortedUsers);
-  
   let user = sortedUsers[index];
   let contactElementAssigned = document.getElementById(`contact-info${index}`);
 
