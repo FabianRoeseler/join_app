@@ -1,3 +1,6 @@
+/**
+ * Opens the 'Add Task' popup by sliding it into view, displaying the overlay, setting up the close event listener, and toggling the button state to "medium".
+ */
 function openAddTaskPopup() {
   let addTaskPopup = document.getElementById("addTaskPopup");
   let overlayAddTaskPopup = document.getElementById("overlayAddTaskPopup");
@@ -8,6 +11,9 @@ function openAddTaskPopup() {
   toggleButton("medium");
 }
 
+/**
+ * Closes the 'Add Task' popup by sliding it out of view, hiding the overlay, and removing the close event listener.
+ */
 function closeAddTaskPopup() {
   let addTaskPopup = document.getElementById("addTaskPopup");
   let overlayAddTaskPopup = document.getElementById("overlayAddTaskPopup");
@@ -17,6 +23,9 @@ function closeAddTaskPopup() {
   overlayAddTaskPopup.removeEventListener("click", closeAddTaskPopupByOverlay);
 }
 
+/**
+ * Closes the 'Add Task' popup if the overlay is clicked by checking if the event target's ID is "overlayAddTaskPopup".
+ */
 function closeAddTaskPopupByOverlay(event) {
   if (event.target.id === "overlayAddTaskPopup") {
     closeAddTaskPopup();
@@ -39,6 +48,10 @@ function validateTaskTitle() {
   }
 }
 
+/**
+ * Validates the task due date input. Displays an error message if the date is invalid, otherwise clears the error and proceeds to validate the task category.
+ * @returns {boolean} Returns false if the date is invalid, otherwise proceeds to the next validation step.
+ */
 function validateTaskDate() {
   let x = document.getElementById("addTaskInputDueDate").value;
   let xName = document.getElementById("addDateError");
@@ -51,6 +64,10 @@ function validateTaskDate() {
   }
 }
 
+/**
+ * Validates the task category input. Displays an error message if no category is selected, otherwise clears the error and proceeds to add the task.
+ * @returns {boolean} Returns false if no category is selected, otherwise proceeds to add the task.
+ */
 function validateTaskCategory() {
   let x = document.getElementById("categoryInput").value;
   let xName = document.getElementById("addCategoryError");
@@ -63,6 +80,10 @@ function validateTaskCategory() {
   }
 }
 
+/**
+ * Validates the task title input in the popup. Displays an error message if the title is empty, otherwise clears the error and proceeds to validate the task date.
+ * @returns {boolean} Returns false if the title is empty, otherwise proceeds to validate the task date.
+ */
 function validatePopupTaskTitle() {
   let x = document.getElementById("addTaskPopupInputTitle").value;
   let xName = document.getElementById("addPopupTitleError");
