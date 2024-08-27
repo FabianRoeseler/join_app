@@ -46,6 +46,9 @@ function fillKeyMetrics(tasks) {
   fillKeyMetricsAmounts(tasks);
 }
 
+/**
+ * Updates the key metrics on the board (total tasks, in-progress tasks, and tasks awaiting feedback) based on the provided tasks array.
+ */
 function fillKeyMetricsAmounts(tasks) {
   let allTasks = tasks.length;
   document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
@@ -83,6 +86,9 @@ function getNextUrgentDate() {
   document.getElementById("rendered-deadline").innerHTML = `${formatedDate}`;
 }
 
+/**
+ * Retrieves indices and due dates of tasks marked as urgent and stores them in the `index_urgent` and `urgent_dates` arrays, respectively.
+ */
 function getUrgentData() {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i]["prio"][0] === "urgent") {
