@@ -117,8 +117,6 @@ function deleteFromSubtaskArr(subtask) {
   renderSubtasksEdit();
 }
 
-// end of render functions for detail task view
-
 /**
  * hides the task details overla
  */

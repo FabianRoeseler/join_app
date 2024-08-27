@@ -1,6 +1,3 @@
-/**
- * Handles popup from add contact part. Opening, closing, moving, click outside etc.
- */
 function openAddContact() {
   let addContact = document.getElementById("addContact");
   let overlay = document.getElementById("overlay");

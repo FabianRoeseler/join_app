@@ -270,16 +270,10 @@ img {
     }
 
     .add-task-box {
-        /* display: none; */
         height: 100%;
         width: 100%;
         border-radius: 0;
-        /* padding-top: 90px; */
         padding-bottom: 56px;
-    }
-
-    #spanFieldRequired {
-        /* padding-left: 80px; */
     }
  
 }
@@ -288,10 +282,6 @@ img {
     .addtask-popup-buttons {
         align-items: center;
         flex-direction: column;
-    }
-
-    .add-task-box {
-        /* top: 86%; */
     }
 
     .addtask-popup-form-left-top {

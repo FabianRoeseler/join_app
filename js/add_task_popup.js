@@ -1,6 +1,3 @@
-/**
- * Handles the add task popup, dnone and remove, moving in, out, click outside events.
- */
 function openAddTaskPopup() {
   let addTaskPopup = document.getElementById("addTaskPopup");
   let overlayAddTaskPopup = document.getElementById("overlayAddTaskPopup");

@@ -16,8 +16,6 @@ body {
     background-color: rgb(42, 54, 71) !important;
 }
 
-/* board styling */
-
 .main-cont {
     position: fixed;
     padding-top: 102px;
@@ -59,9 +57,6 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    /* border: 1px solid #A8A8A8;
-    border-radius: 10px;
-    padding: 5px 10px; */
     padding-right: 46px;
     height: 48px;
     width: 360px;
@@ -173,7 +168,7 @@ input::placeholder {
 }
 
 .column span {
-    margin-right: 30px; /* Adds space between text and icon */
+    margin-right: 30px;
 }
 
 .column .icon {
@@ -183,7 +178,6 @@ input::placeholder {
 
 .icon:hover {
     filter: invert(41%) sepia(91%) saturate(3000%) hue-rotate(175deg) brightness(95%) contrast(102%);
-    /* transition: filter 0.3s ease-in-out; */
 }
 
 .fontSize-span{
@@ -191,9 +185,6 @@ input::placeholder {
     color: #42526E;
     font-weight: bold;
 }
-
-
-/* task styling */
 
 .task {
     position: relative;
@@ -384,8 +375,6 @@ input::placeholder {
     width: 35px;
 }
 
-/* task detail popup styling */
-
 #task-details-overlay {
     background-color: rgba(0,0,0,0.2);
     z-index: 999;
@@ -396,7 +385,7 @@ input::placeholder {
     align-items: center;
 }
 #task-details-Popup {
-    height: auto;
+    height: 100%;
     width: 500px;
     /* left: 100%; */
     background-color: white;
@@ -406,7 +395,14 @@ input::placeholder {
     scrollbar-width: thin;    
     overflow: auto;
     transition: .5s ease;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-sizing: border-box;
 }
+#task-details-Popup::-webkit-scrollbar {
+    display: none;
+}
+
 .task-details {
     display: flex;
     flex-direction: column;
@@ -425,7 +421,6 @@ input::placeholder {
     padding: 8px 16px;
     background-color: #0038FF;
     color: white;
-    /* margin-bottom: 30px; */
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -512,8 +507,6 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* scrollbar-color: gray;
-    scrollbar-width: thin; */
     overflow-y: auto;
     width: 100%;
     height: 80vh;
@@ -658,9 +651,9 @@ input::placeholder {
 
 .edit-success {
     position: fixed;
-    top: 50%;  /* Vertikal in der Mitte des Bildschirms */
-    left: 50%;  /* Horizontal in der Mitte des Bildschirms */
-    transform: translate(100%, -50%);  /* Startet rechts außerhalb des Bildschirms */
+    top: 50%; 
+    left: 50%;
+    transform: translate(100%, -50%);
     width: 326px;
     background-color: var(--darkGray);
     color: white;
