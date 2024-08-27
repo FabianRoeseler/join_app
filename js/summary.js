@@ -19,7 +19,6 @@ async function renderKeyMetrics() {
 function fillKeyMetrics(tasks) {
   let toDoCount = tasks.filter((t) => t["status"] == "to_do").length;
   document.getElementById("render-to-do-count").innerHTML = `${toDoCount}`;
-
   let doneCount = tasks.filter((t) => t["status"] == "done").length;
   document.getElementById("render-done-count").innerHTML = `${doneCount}`;
 
@@ -41,14 +40,12 @@ function fillKeyMetrics(tasks) {
 
   let allTasks = tasks.length;
   document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
-
   let inProgressCount = tasks.filter(
     (t) => t["status"] == "in_progress"
   ).length;
   document.getElementById(
     "tasks-in-progress-count"
   ).innerHTML = `${inProgressCount}`;
-
   let awaitFeedbackCount = tasks.filter(
     (t) => t["status"] == "await_feedback"
   ).length;
@@ -70,20 +67,16 @@ function getNextUrgentDate() {
     let date = tasks[index_urgent[j]]["due_date"];
     urgent_dates.push(date);
   }
-
   urgent_dates.sort(function (a, b) {
     return new Date(a) - new Date(b);
   });
-
   let nextDate = urgent_dates[0];
   let dateObjekt = new Date(nextDate);
-
   let formatedDate = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   }).format(dateObjekt);
-
   document.getElementById("rendered-deadline").innerHTML = `${formatedDate}`;
 }
 
@@ -139,9 +132,7 @@ function updateGreetingGuest() {
   const greetingContMobile = document.getElementById(
     "variable-greeting-mobile"
   );
-
   let greeting;
-
   if (hour >= 6 && hour < 12) {
     greeting = "Good Morning!";
   } else if (hour >= 12 && hour < 18) {
