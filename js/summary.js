@@ -37,35 +37,30 @@ function fillKeyMetrics(tasks) {
       ).innerHTML = `No Urgent Deadlines`;
     }
   }
+  fillKeyMetricsAmounts(tasks);
+}
 
-  let allTasks = tasks.length;
-  document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
-  let inProgressCount = tasks.filter(
-    (t) => t["status"] == "in_progress"
-  ).length;
-  document.getElementById(
-    "tasks-in-progress-count"
-  ).innerHTML = `${inProgressCount}`;
-  let awaitFeedbackCount = tasks.filter(
-    (t) => t["status"] == "await_feedback"
-  ).length;
-  document.getElementById(
-    "tasks-await-feedback-count"
-  ).innerHTML = `${awaitFeedbackCount}`;
+function fillKeyMetricsAmounts(tasks) {
+    let allTasks = tasks.length;
+    document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
+    let inProgressCount = tasks.filter(
+      (t) => t["status"] == "in_progress"
+    ).length;
+    document.getElementById(
+      "tasks-in-progress-count"
+    ).innerHTML = `${inProgressCount}`;
+    let awaitFeedbackCount = tasks.filter(
+      (t) => t["status"] == "await_feedback"
+    ).length;
+    document.getElementById(
+      "tasks-await-feedback-count"
+    ).innerHTML = `${awaitFeedbackCount}`;  
 }
 
 function getNextUrgentDate() {
   index_urgent = [];
   urgent_dates = [];
-  for (let i = 0; i < tasks.length; i++) {
-    if (tasks[i]["prio"][0] === "urgent") {
-      index_urgent.push(i);
-    }
-  }
-  for (let j = 0; j < index_urgent.length; j++) {
-    let date = tasks[index_urgent[j]]["due_date"];
-    urgent_dates.push(date);
-  }
+  getUrgentData();
   urgent_dates.sort(function (a, b) {
     return new Date(a) - new Date(b);
   });
@@ -77,6 +72,18 @@ function getNextUrgentDate() {
     day: "numeric",
   }).format(dateObjekt);
   document.getElementById("rendered-deadline").innerHTML = `${formatedDate}`;
+}
+
+function getUrgentData() {
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i]["prio"][0] === "urgent") {
+          index_urgent.push(i);
+        }
+      }
+      for (let j = 0; j < index_urgent.length; j++) {
+        let date = tasks[index_urgent[j]]["due_date"];
+        urgent_dates.push(date);
+      }    
 }
 
 function checkUserStatus() {
@@ -145,8 +152,7 @@ function updateGreetingGuest() {
   document.getElementById("greeting-user-name-mobile").classList.add("d-none");
 }
 
-// Updating every hour (3600000 milliseconds)
-setInterval(updateGreeting, 3600000); // 3600000 ms = 1 hour
+setInterval(updateGreeting, 3600000);
 setInterval(updateGreetingGuest, 3600000);
 
 function saveUsernameLocal(username) {
