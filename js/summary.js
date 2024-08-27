@@ -119,6 +119,9 @@ function checkUserStatus() {
   }
 }
 
+/**
+ * Timecheck for greeting in summary
+ */
 function updateGreeting() {
   const now = new Date();
   const hour = now.getHours();
@@ -140,6 +143,9 @@ function updateGreeting() {
   greetingContMobile.innerHTML = greeting;
 }
 
+/**
+ * Timecheck for Guestlogin
+ */
 function updateGreetingGuest() {
   const now = new Date();
   const hour = now.getHours();
