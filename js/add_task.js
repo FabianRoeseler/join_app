@@ -17,6 +17,7 @@ let prioArr = [];
 let prioArrEdit = [];
 let subtasksArr = [];
 let subtasksEdit = [];
+let subtasksEdit_done = [];
 let subtasksArr_done = [];
 let categoryArr = [];
 let assignedUsersArr = [];
@@ -226,6 +227,8 @@ function toggleUserSelection(index) {
   let sortedUsers = Object.values(userList).sort((a, b) =>
     a.username.localeCompare(b.username)
   );
+  console.log("sortedUsersToggle", sortedUsers);
+  
   let user = sortedUsers[index];
   let contactElementAssigned = document.getElementById(`contact-info${index}`);
 
