@@ -5,18 +5,18 @@ function openEditContact() {
   let editContact = document.getElementById("editContact");
   let overlayEdit = document.getElementById("overlayEdit");
 
-  editContact.style.right = "50%"; // Popup nach links schieben
-  overlayEdit.style.display = "flex"; // Overlay sichtbar machen
-  overlayEdit.addEventListener("click", closeEditContactPopupByOverlay); // Event-Listener hinzufügen
+  editContact.style.right = "50%";
+  overlayEdit.style.display = "flex";
+  overlayEdit.addEventListener("click", closeEditContactPopupByOverlay);
 }
 
 function closeEditContactPopup() {
   let editContact = document.getElementById("editContact");
   let overlayEdit = document.getElementById("overlayEdit");
 
-  editContact.style.right = "-1200px"; // Popup nach rechts außerhalb des Bildschirms verschieben
-  overlayEdit.style.display = "none"; // Overlay unsichtbar machen
-  overlayEdit.removeEventListener("click", closeEditContactPopupByOverlay); // Event-Listener entfernen
+  editContact.style.right = "-1200px";
+  overlayEdit.style.display = "none";
+  overlayEdit.removeEventListener("click", closeEditContactPopupByOverlay);
 }
 
 function closeEditContactPopupByOverlay(event) {
