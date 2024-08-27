@@ -1,6 +1,9 @@
 const ADD_URL =
   "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
 
+/**
+ * Getting DB data for summary
+ */
 async function renderKeyMetrics() {
   tasks = [];
   let response = await fetch(ADD_URL + ".json");
@@ -16,6 +19,9 @@ async function renderKeyMetrics() {
   fillKeyMetrics(tasks);
 }
 
+/**
+ * Rendering summarydata in HTML
+ */
 function fillKeyMetrics(tasks) {
   let toDoCount = tasks.filter((t) => t["status"] == "to_do").length;
   document.getElementById("render-to-do-count").innerHTML = `${toDoCount}`;
@@ -41,22 +47,25 @@ function fillKeyMetrics(tasks) {
 }
 
 function fillKeyMetricsAmounts(tasks) {
-    let allTasks = tasks.length;
-    document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
-    let inProgressCount = tasks.filter(
-      (t) => t["status"] == "in_progress"
-    ).length;
-    document.getElementById(
-      "tasks-in-progress-count"
-    ).innerHTML = `${inProgressCount}`;
-    let awaitFeedbackCount = tasks.filter(
-      (t) => t["status"] == "await_feedback"
-    ).length;
-    document.getElementById(
-      "tasks-await-feedback-count"
-    ).innerHTML = `${awaitFeedbackCount}`;  
+  let allTasks = tasks.length;
+  document.getElementById("tasks-in-board-count").innerHTML = `${allTasks}`;
+  let inProgressCount = tasks.filter(
+    (t) => t["status"] == "in_progress"
+  ).length;
+  document.getElementById(
+    "tasks-in-progress-count"
+  ).innerHTML = `${inProgressCount}`;
+  let awaitFeedbackCount = tasks.filter(
+    (t) => t["status"] == "await_feedback"
+  ).length;
+  document.getElementById(
+    "tasks-await-feedback-count"
+  ).innerHTML = `${awaitFeedbackCount}`;
 }
 
+/**
+ * Selecting next urgent date for summary and display in HTML
+ */
 function getNextUrgentDate() {
   index_urgent = [];
   urgent_dates = [];
@@ -75,17 +84,20 @@ function getNextUrgentDate() {
 }
 
 function getUrgentData() {
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i]["prio"][0] === "urgent") {
-          index_urgent.push(i);
-        }
-      }
-      for (let j = 0; j < index_urgent.length; j++) {
-        let date = tasks[index_urgent[j]]["due_date"];
-        urgent_dates.push(date);
-      }    
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i]["prio"][0] === "urgent") {
+      index_urgent.push(i);
+    }
+  }
+  for (let j = 0; j < index_urgent.length; j++) {
+    let date = tasks[index_urgent[j]]["due_date"];
+    urgent_dates.push(date);
+  }
 }
 
+/**
+ * Checking user and displaying the correct greeting in summary
+ */
 function checkUserStatus() {
   if (localStorage.getItem("pageLoaded") == null) {
     if (localStorage.getItem("username") == null) {
@@ -152,9 +164,15 @@ function updateGreetingGuest() {
   document.getElementById("greeting-user-name-mobile").classList.add("d-none");
 }
 
+/**
+ * Updating greeting time for correct greeting
+ */
 setInterval(updateGreeting, 3600000);
 setInterval(updateGreetingGuest, 3600000);
 
+/**
+ * Getting and saving username for display in summary
+ */
 function saveUsernameLocal(username) {
   localStorage.setItem("username", username);
 }
@@ -164,6 +182,9 @@ function getUsername() {
   setUserGreeting(storedUserName);
 }
 
+/**
+ * Display user in greeting, app and mobile
+ */
 function setUserGreeting(username) {
   document.getElementById("greeting-user-name").innerHTML = `${username}`;
   document.getElementById(
