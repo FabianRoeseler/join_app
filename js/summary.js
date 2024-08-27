@@ -83,6 +83,9 @@ function getNextUrgentDate() {
   document.getElementById("rendered-deadline").innerHTML = `${formatedDate}`;
 }
 
+/**
+ * collects the indices and due dates of tasks marked as "urgent" from the tasks array
+ */
 function getUrgentData() {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i]["prio"][0] === "urgent") {
@@ -198,6 +201,9 @@ function setUserGreeting(username) {
   ).innerHTML = `${username}`;
 }
 
+/**
+ * displays a mobile greeting message
+ */
 function showMobileGreeting() {
   if (window.innerWidth < 1210) {
     document.getElementById("greeting-user-mobile").classList.remove("d-none");
@@ -205,6 +211,9 @@ function showMobileGreeting() {
   }
 }
 
+/**
+ * hides the mobile greeting message
+ */
 function hideMobileGreeting() {
   document.getElementById("greeting-user-mobile").classList.add("d-none");
 }
