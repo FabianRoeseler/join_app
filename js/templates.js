@@ -1,3 +1,6 @@
+/**
+ * loads HTML content from files specified in the w3-include-html attribute of elements and inserts the content into those elements
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -13,14 +16,25 @@ async function includeHTML() {
   }
 }
 
+/**
+ * prevents the event from propagating (bubbling) up the DOM hierarchy, stopping it from triggering any parent event handlers
+ * 
+ * @param {*} event 
+ */
 function stop(event) {
   event.stopPropagation();
 }
 
+/**
+ * toggles the visibility of an HTML element with the ID dropdown
+ */
 function openDropdown() {
   document.getElementById("dropdown").classList.toggle("d-none");
 }
 
+/**
+ * checks if a username is stored in localStorage; if not, it sets the profile initials in the header to "G", otherwise, it calls getUserInitials() to set the initials based on the stored username
+ */
 function checkUserStatusForInitials() {
   if (localStorage.getItem("username") == null) {
     document.getElementById("profile-initials-header").innerHTML = `G`;
@@ -29,11 +43,19 @@ function checkUserStatusForInitials() {
   }
 }
 
+/**
+ * retrieves the stored username from localStorage and then calls setUserInitials to display the user's initials based on the retrieved username
+ */
 function getUserInitials() {
   let storedUserName = localStorage.getItem("username");
   setUserInitials(storedUserName);
 }
 
+/**
+ * generates the initials from the provided username using the getInitialsHeader function and then displays these initials in the HTML element
+ * 
+ * @param {*} username 
+ */
 function setUserInitials(username) {
   let initials = getInitialsHeader(username);
   document.getElementById("profile-initials-header").innerHTML = `${initials}`;
@@ -51,11 +73,23 @@ function getInitialsHeader(name) {
     .join("");
 }
 
+/**
+ * removes the username and pageLoaded items from the browser's localStorage, effectively logging the user out
+ */
 function logOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pageLoaded");
 }
 
+/**
+ * generates HTML to display a contact in a list
+ * 
+ * @param {*} i 
+ * @param {*} user 
+ * @param {*} color 
+ * @param {*} lastInitial 
+ * @returns 
+ */
 function renderContact(i, user, color, lastInitial) {
   let initial = user.username[0].toUpperCase();
   let contactHTML = "";
@@ -75,7 +109,6 @@ function renderContact(i, user, color, lastInitial) {
       </div>
     </div>
   `;
-
   return contactHTML;
 }
 
@@ -380,146 +413,6 @@ function generateTaskDetailsHTML(task, i) {
       </div>
     </div>
   `;
-}
-
-function generateTaskEditSalmai() {
-  return /*html*/ `
-        <div id="task-edit-view-${i}" style="display: none;">
-      <div class="task-details">
-        <div class="task-details-main-part">
-          <div class="task-head">
-              <div class="task-category-detail" style="background : ${
-                task.category[1]
-              }">${task.category[0]}</div>
-              <img onclick="closeTaskDetails()" src="../assets/img/iconoir_cancel.svg" alt="close">
-          </div>
-          <input type="text" id="editTaskTitle-${i}" value="${
-    task.title
-  }" class="input-addtask" placeholder="Enter a title...">
-          <textarea id="editDescription-${i}" class="task-details-description">${
-    task.description
-  }</textarea>
-          <div class="task-details-date-style">
-              <span class="task-subtitles">Due date:</span>
-              <input type="date" id="editDueDate-${i}" value="${
-    task.due_date
-  }" class="input-addtask" placeholder="Select a due date">
-          </div>
-          <div class="task-details-prio-style">
-              <span class="task-subtitles">Priority:</span>
-              <div class="prio-btn-content">
-    <button id="urgent" class="prio-button ${
-      task.prio === "urgent" ? "btn-urgent-active" : ""
-    }" onclick="toggleButton('urgent')" type="button">
-        Urgent
-        <img id="urgentImg" src="../assets/img/Prio_urgent_${
-          task.prio === "urgent" ? "white" : "color"
-        }.png" alt="Urgent Icon" />
-    </button>
-    <button id="medium" class="prio-button ${
-      task.prio === "medium" ? "btn-medium-active" : ""
-    }" onclick="toggleButton('medium')" type="button">
-        Medium
-        <img id="mediumImg" src="../assets/img/Prio_medium_${
-          task.prio === "medium" ? "white" : "color"
-        }.png" alt="Medium Icon" />
-    </button>
-    <button id="low" class="prio-button ${
-      task.prio === "low" ? "btn-low-active" : ""
-    }" onclick="toggleButton('low')" type="button">
-        Low
-        <img id="lowImg" src="../assets/img/Prio_low_${
-          task.prio === "low" ? "white" : "color"
-        }.png" alt="Low Icon" />
-    </button>
-</div>
-          </div>
-          <div class="field-text-flex" id="addTaskAssignedTo">
-    <label>Assigned to</label>
-    <input
-        class="input-addtask"
-        onclick="showUsers()"
-        id="userNameInput"
-        type="text"
-        placeholder="Select contact to assign"
-        maxlength="40"
-    />
-    <img
-        onclick="showUsers()"
-        id="arrowDropMenuAssigned"
-        src="../assets/img/arrow_drop_down.png"
-        alt=""
-    />
-    <div id="dropDownUserMenu"></div>
-    <div id="contentAssignedUsers">
-        ${task.assigned_users
-          .map(
-            (user) => `
-            <div class="assigned-user">
-                <div class="initials" style="background-color: ${user.color};">
-                    ${getInitials(user.username)}
-                </div>
-                <!-- Das unerwünschte Symbol wurde entfernt -->
-            </div>
-        `
-          )
-          .join("")}
-    </div>
-</div>
-
-<div class="subtasks-popup">
-    <span class="task-subtitles">Subtasks</span>
-    <div class="subtask-input-wrapper">
-      <input id="subtaskInput" class="input-addtask" type="text" placeholder="Add new subtask">
-      <div class="input-icons">
-        <button onclick="addSubtask()">+</button>
-      </div>
-    </div>
-    <ul id="subtasksContent">
-        ${
-          task.subtasks && task.subtasks.length > 0
-            ? task.subtasks
-                .map(
-                  (subtask, index) => `
-                <li id="subtask-${index}" class="subtask-item">
-                    <div class="dot"></div>
-                    <div class="subtask-text">
-                        <span id="span-${index}" onclick="editSubtask('subtask-${index}', 'span-${index}', 'input-${index}')">${subtask.subtask}</span>
-                    </div>
-                    <div class="subtask-icon">
-                        <img onclick="editSubtask('subtask-${index}', 'span-${index}', 'input-${index}')" src="../assets/img/edit.svg" alt="edit">
-                        <div class="divider"></div>
-                        <img onclick="deleteSubtask('subtask-${index}')" src="../assets/img/delete.svg" alt="delete">
-                    </div>
-                </li>`
-                )
-                .join("")
-            : "No subtasks available"
-        }
-    </ul>
-</div>
-
-          <div class="save-cancel-cont">
-              <button onclick="saveEditedTask(${i})">Save</button>
-              <button onclick="toggleEditView(${i})">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function toggleEditView(i) {
-  let detailView = document.getElementById(`task-details-view-${i}`);
-  let editView = document.getElementById(`task-edit-view-${i}`);
-
-  if (detailView.style.display !== "none") {
-    detailView.style.display = "none";
-    editView.style.display = "block";
-  } else {
-    detailView.style.display = "block";
-    editView.style.display = "none";
-  }
 }
 
 function generateTaskDetailsEditHTML(i) {
