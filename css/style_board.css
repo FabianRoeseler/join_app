@@ -12,7 +12,7 @@ body {
     background-color: var(--darkBlue);
     border-radius: 16px;
 }
-.contact-card-click-assigned {
+.contact-card-click-assigned-edit {
     background-color: rgb(42, 54, 71) !important;
 }
 
@@ -385,7 +385,7 @@ input::placeholder {
     align-items: center;
 }
 #task-details-Popup {
-    height: 100%;
+    max-height: 90vh;
     width: 500px;
     /* left: 100%; */
     background-color: white;
