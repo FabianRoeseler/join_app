@@ -180,9 +180,9 @@ function validatePrivacyInput() {
  */
 function showCreatedUserSuccessPopUp() {
   if (window.innerWidth < 1350) {
-    document.getElementById("userCreatedSuccess").style = `left: 60%;`;
+    document.getElementById("userCreatedSuccess").style = `left: 1%;`;
   } else {
-    document.getElementById("userCreatedSuccess").style = `left: 60%;`;
+    document.getElementById("userCreatedSuccess").style = `left: 1%;`;
   }
 }
 
@@ -190,9 +190,9 @@ function loginSuccessfullPopUp() {
   const loginSuccessElement = document.getElementById("loginSuccess");
   loginSuccessElement.classList.remove("d-none");
   if (window.innerWidth < 1350) {
-    loginSuccessElement.style.left = "60%";
+    loginSuccessElement.style.left = "1%";
   } else {
-    loginSuccessElement.style.left = "60%";
+    loginSuccessElement.style.left = "1%";
   }
 }
 
