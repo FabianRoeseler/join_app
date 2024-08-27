@@ -37,25 +37,15 @@ async function getUsersFromDB() {
     );
   
     let user = sortedUsers[index];
-    let contactElementAssigned = document.getElementById(`contact-info${index}`);
   
     if (selectedUsers.has(user.username)) {
       selectedUsers.delete(user.username);
       removeUserFromSelection(user.username);
-      contactElementAssigned.classList.remove("contact-card-click-assigned-edit");
-      contactElementAssigned
-        .querySelector(".name-assigned")
-        .classList.remove("contact-name-assigned");
     } else {
       selectedUsers.add(user.username);
       addUserToSelection(user, getInitials(user.username));
-      contactElementAssigned.classList.add("contact-card-click-assigned-edit");
-      contactElementAssigned
-        .querySelector(".name-assigned")
-        .classList.add("contact-name-assigned");
     }
   }
-  
   
   /**
    * removes a user with the specified username from the assignedUsersEdit array

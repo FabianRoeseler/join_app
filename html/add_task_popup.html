@@ -52,8 +52,9 @@
                             <label>Assigned to</label>
                             <input 
                                 class="input-popup-addtask" 
-                                onclick="showUsers()" 
-                                id="userNameInputPopup" 
+                                onclick="showUsers()"
+                                oninput="filterUsers()"
+                                id="userNameInput" 
                                 type="text"
                                 placeholder="Select contact to assign" 
                                 maxlength="40">
