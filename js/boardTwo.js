@@ -56,7 +56,6 @@ function saveKeyIndexDone() {
    * @param {*} id 
    */
   function startDragging(id) {
-    // document.getElementById(`task${id}`).style = `transform: rotate(8deg)`;
   
     currentDraggedElement = id;
   }
@@ -168,9 +167,7 @@ function saveKeyIndexDone() {
     });
     return await response.json();
   }
-  
-  
-  // render functions for small task view
+
   
   /**
    * updates the HTML content of the element with the specified id to display the description property of the provided element
@@ -251,7 +248,6 @@ function saveKeyIndexDone() {
       }" alt="prio icon">`;
   }
   
-  // end of render functions for small task view
   
   /**
    * generates the Task Details HTML into PopUp and renders all Infos of the task
@@ -308,9 +304,7 @@ function saveKeyIndexDone() {
       document.getElementById(`task-details-prio${i}`).classList.add('d-none');
     }
   }
-  
-  
-  // render functions for detail task view
+
   
   /**
    * displays the description of the task details
