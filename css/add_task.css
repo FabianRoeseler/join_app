@@ -142,11 +142,10 @@ input[type=date] {
 
 #subtasksContent {
     height: auto;
-    /* max-height: 130px; */
     overflow-y: auto;
-    list-style-type: disc; /* Stellt sicher, dass die Aufzählungspunkte Kreise (discs) sind */
-    padding-left: 20px; /* Platz für die Aufzählungspunkte */
-    color: black; /* Setzt die Farbe der Aufzählungspunkte auf schwarz */
+    list-style-type: disc;
+    padding-left: 20px;
+    color: black; 
 }
 
 ul {
@@ -162,7 +161,6 @@ ul {
     cursor: pointer;
     font-weight: 500;
     font-size: 20px;
-    /* height: 56px; */
     padding: 12px 16px;
     border-radius: 10px;
     flex: 1;
@@ -222,7 +220,6 @@ ul {
 .addtask-form-container {
     display: flex;
     justify-content: center;
-    /* padding-right: 250px; */
     height: auto;
     margin-bottom: 56px;
 }
@@ -370,16 +367,16 @@ ul {
     margin-right: 10px;
 }
 
-/* Symbole anzeigen, wenn der Benutzer über das Listenelement hovert */
+
 .subtask-icon {
-    visibility: hidden; /* Versteckt das Mülleimer-Symbol standardmäßig */
+    visibility: hidden; 
     background: none;
     display: flex;
     align-items: center;
     gap: 5px;
     border: none;
     cursor: pointer;
-    margin-left: auto; /* Schiebt das Mülleimer-Symbol ganz nach rechts */
+    margin-left: auto;
 }
 .subtask-icon img {
     height: 20px;
@@ -387,7 +384,7 @@ ul {
 
 
 #subtasksContent li:hover .subtask-icon {
-    visibility: visible; /* Zeigt das Mülleimer-Symbol bei Hover */
+    visibility: visible;
 }
 
 #subtaskInput {
@@ -404,19 +401,17 @@ ul {
 }
 
 #clearButton:hover {
-    color: #ff0000; /* Optional: Hover-Effekt für das "Kreuz"-Symbol */
+    color: #ff0000; 
 }
 
 .subtask-input-wrapper {
     position: relative;
-    /* display: flex;
-    align-items: center; */
 }
 
 .subtask-input-wrapper input {
     width: 100%;
     box-sizing: border-box;
-    padding-right: 50px; /* Platz für die Symbole */
+    padding-right: 50px;
 }
 
 .input-icons {
@@ -425,9 +420,6 @@ ul {
     display: flex;
     align-items: center;
     gap: 5px;
-    /* cursor: pointer;
-    padding: 5px;
-    border-radius: 10px; */
 }
 
 .input-icons img {
@@ -484,7 +476,7 @@ ul {
 }
 
 .input-icons button:hover {
-    color: #ff0000; /* Optional: Hover-Effekt für die Symbole */
+    color: #ff0000;
 }
 
 .input-icons {
@@ -502,13 +494,9 @@ ul {
 }
 
 #subtasksContent {
-    /* display: list-item; */
-    /* list-style-position: inside; */
     margin-top: 5px;
     padding: 0;
     padding-left: 0;
-    /* list-style-type: disc; /* Setzt das Listensymbol auf einen Punkt */
-    /* padding-left: 20px; Platz für das Symbol schaffen */
 }
 
 #subtasksContent::-webkit-scrollbar {
@@ -527,7 +515,6 @@ ul {
     cursor: pointer;
     list-style-position: inside;
     color: #000000;
-    /* height: 40px; Gleiche Höhe wie das Bearbeitungs-Input-Feld */
 }
 .subtask-item:hover {
     background-color: #f0f0f0; 
@@ -540,7 +527,6 @@ ul {
     margin-bottom: 5px;
     padding: 4px 10px 4px 15px;
     cursor: pointer;
-    /* list-style-position: inside; */
     color: #000000;
     background-color: white;
     border-bottom: solid 1px var(--darkLightBlue);
@@ -561,15 +547,9 @@ ul {
     margin-left: auto;
 }
 
-/* .subtask-item:hover .subtask-icon button {
-    visibility: visible; 
-} */
-
-
-/* Styling für das Bearbeitungs-Input-Feld */
 .edit-subtask-input {
     flex: 1;
-    padding-right: 50px; /* Platz für die Symbole */
+    padding-right: 50px;
     height: 100%;
     border: none;
     padding: 0 10px;
@@ -586,7 +566,6 @@ ul {
     background-color: #D1D1D1;
 }
 
-/* Wrapper für das Bearbeitungs-Input-Feld, wenn es im Bearbeitungsmodus ist */
 .subtask-input-wrapper.edit-mode {
     display: flex;
     justify-content: space-between;
@@ -594,7 +573,6 @@ ul {
     width: 100%; 
     height: 22px; 
     background-color: rgb(255, 255, 255); 
-    /* border-radius: 8px; */
 }
 
 .divider {
@@ -674,10 +652,10 @@ ul {
 }
 
 .task-success {
-    position: fixed;  /* Fixiert das Popup im Viewport */
-    top: 50%;  /* Vertikal in der Mitte des Bildschirms */
-    left: 50%;  /* Horizontal in der Mitte des Bildschirms */
-    transform: translate(-50%, -50%) translateX(100%);  /* Startet außerhalb des Bildschirms rechts, bleibt aber zentriert */
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(100%);
     width: 326px;
     background-color: var(--darkGray);
     color: white;
@@ -688,9 +666,9 @@ ul {
     justify-content: center;
     align-items: center;
     padding: 16px 18px;
-    transition: transform 0.5s ease, opacity 0.5s ease;  /* Transition für Reinsliden und Opazität */
-    opacity: 0;  /* Anfangs unsichtbar */
-    display: none;  /* Popup ist standardmäßig ausgeblendet */
+    transition: transform 0.5s ease, opacity 0.5s ease; 
+    opacity: 0; 
+    display: none;
 }
 
 
