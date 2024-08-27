@@ -9,8 +9,6 @@ body {
     margin: 0;
 }
 
-/* general styling */
-
 .d-none {
     display: none !important;
 }
@@ -18,7 +16,6 @@ body {
     width: 100% !important;
 }
 
-/* defined color codes */
 :root {
     --orange: #FF7A00;
     --lilac: #9327FF;
@@ -40,8 +37,6 @@ body {
     --darkLightBlue: #29abe2;
     --darkBlue: #091931;
 }
-
-/* defined button styles */
 
 .btn-filled {
     background-color: var(--darkGray);

@@ -318,9 +318,6 @@ h1 {
 @media(max-width: 450px) {
     .sign-up-box-container {
         position: static;
-        /* bottom: 120px;
-        top: auto; */
-        /* justify-content: center; */
     }
 
     body {
