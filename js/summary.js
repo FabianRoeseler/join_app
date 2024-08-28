@@ -30,7 +30,7 @@ function fillKeyMetrics(tasks) {
 
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    if ("prio" in task) {
+    if (task["prio"][0] == "urgent") {
       let urgentCount = tasks.filter((t) => t["prio"][0] == "urgent").length;
       document.getElementById(
         "render-urgent-count"
