@@ -28,7 +28,7 @@ let selectedUsers = new Set();
  * Adding Firebase Realtime Database URL
  */
 const ADDTASK_URL =
-  "INSERT URL HERE";
+  "INSERT FIREBASE REALTIME DATABASE URL HERE";
 
 /**
  * Toggle button function. Handles which button is active/checked and unchecks the others
