@@ -28,7 +28,7 @@ let selectedUsers = new Set();
  * Adding Firebase Realtime Database URL
  */
 const ADDTASK_URL =
-  "https://join-4da86-default-rtdb.europe-west1.firebasedatabase.app/";
+  "INSERT URL HERE";
 
 /**
  * Toggle button function. Handles which button is active/checked and unchecks the others
